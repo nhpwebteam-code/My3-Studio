@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, Camera, MapPin, Calendar } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Camera, MapPin } from 'lucide-react';
 
 export default function LightboxModal({ item, items, onClose, onNavigate }) {
   const currentIndex = items.findIndex((i) => i.id === item.id);

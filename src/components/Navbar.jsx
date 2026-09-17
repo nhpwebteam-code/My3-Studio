@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Menu, X, Camera, ArrowUpRight } from 'lucide-react';
 import { studioConfig } from '../data/studioConfig';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
 
-  // Close mobile drawer on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
 
   // Subtle background elevation on scroll
   useEffect(() => {
@@ -95,6 +90,7 @@ export default function Navbar() {
               <NavLink
                 key={item.path}
                 to={item.path}
+                onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
                   `text-base tracking-wide py-1 ${
                     isActive ? 'text-gold font-semibold' : 'text-studio-300'
@@ -107,6 +103,7 @@ export default function Navbar() {
             <div className="pt-4 border-t border-studio-800">
               <Link
                 to="/contact"
+                onClick={() => setIsOpen(false)}
                 className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold bg-gold text-studio-950"
               >
                 <span>Book a Session</span>

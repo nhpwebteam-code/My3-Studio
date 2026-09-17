@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { MapPin, Mail, Phone, Clock, MessageSquare } from 'lucide-react';
+import { MapPin, Mail, Phone, Clock } from 'lucide-react';
 import PageHeader from '../components/PageHeader';
 import ContactForm from '../components/ContactForm';
 import { studioConfig } from '../data/studioConfig';
