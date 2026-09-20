@@ -8,6 +8,7 @@ import Gallery from './pages/Gallery';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Pricing from './pages/Pricing';
+import Services from './pages/Services';
 
 import BookingModal from './components/BookingModal';
 
@@ -24,7 +25,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/services" element={<Navigate to="/pricing" replace />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/portfolio" element={<Navigate to="/gallery" replace />} />
             <Route path="/contact" element={<Contact />} />

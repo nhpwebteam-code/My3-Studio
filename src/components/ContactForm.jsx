@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { Send, AlertCircle } from 'lucide-react';
 import ContactSuccess from './ContactSuccess';
-import FormFields from './FormFields';
 
 export default function ContactForm({ initialService = '' }) {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phone: '',
-    service: initialService,
-    eventDate: '',
-    budget: '',
+    subject: initialService ? `${initialService} Inquiry` : '',
     message: '',
   });
 
@@ -25,7 +22,7 @@ export default function ContactForm({ initialService = '' }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.fullName.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setError('Please provide your name, email address, and inquiry message.');
+      setError('Please provide your name, email address, and message.');
       return;
     }
     setError('');
@@ -38,9 +35,7 @@ export default function ContactForm({ initialService = '' }) {
       fullName: '',
       email: '',
       phone: '',
-      service: '',
-      eventDate: '',
-      budget: '',
+      subject: '',
       message: '',
     });
   };
@@ -50,7 +45,7 @@ export default function ContactForm({ initialService = '' }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 space-y-4 border border-gray-200 shadow-sm">
+    <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-7 py-2 sm:py-4">
       {error && (
         <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs">
           <AlertCircle size={16} className="shrink-0" />
@@ -58,11 +53,74 @@ export default function ContactForm({ initialService = '' }) {
         </div>
       )}
 
-      <FormFields formData={formData} onChange={handleChange} />
+      {/* Row 1: Name & Email - Underline Styling matching reference */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+        <div className="space-y-1">
+          <label className="block text-[11px] uppercase tracking-wider text-charcoal-400 font-bold">
+            Your Name *
+          </label>
+          <input
+            type="text"
+            name="fullName"
+            required
+            value={formData.fullName}
+            onChange={handleChange}
+            placeholder="John Trangely"
+            className="w-full bg-transparent rounded-none border-0 border-b-2 border-gray-200 focus:border-coral py-2 px-0 text-sm sm:text-base font-semibold text-charcoal-900 placeholder:text-charcoal-300 placeholder:font-normal focus:outline-none focus:ring-0 transition-colors"
+          />
+        </div>
 
-      <div>
-        <label className="block text-xs uppercase tracking-wider text-charcoal-700 font-bold mb-1.5">
-          Your Vision & Details *
+        <div className="space-y-1">
+          <label className="block text-[11px] uppercase tracking-wider text-charcoal-400 font-bold">
+            Your Email *
+          </label>
+          <input
+            type="email"
+            name="email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="hello@nurency.com"
+            className="w-full bg-transparent rounded-none border-0 border-b-2 border-gray-200 focus:border-coral py-2 px-0 text-sm sm:text-base font-semibold text-charcoal-900 placeholder:text-charcoal-300 placeholder:font-normal focus:outline-none focus:ring-0 transition-colors"
+          />
+        </div>
+      </div>
+
+      {/* Row 2: Phone & Subject */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+        <div className="space-y-1">
+          <label className="block text-[11px] uppercase tracking-wider text-charcoal-400 font-bold">
+            Phone / WhatsApp
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+91 98765 43210"
+            className="w-full bg-transparent rounded-none border-0 border-b-2 border-gray-200 focus:border-coral py-2 px-0 text-sm sm:text-base font-semibold text-charcoal-900 placeholder:text-charcoal-300 placeholder:font-normal focus:outline-none focus:ring-0 transition-colors"
+          />
+        </div>
+
+        <div className="space-y-1">
+          <label className="block text-[11px] uppercase tracking-wider text-charcoal-400 font-bold">
+            Your Subject
+          </label>
+          <input
+            type="text"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            placeholder="I want to hire you quickly"
+            className="w-full bg-transparent rounded-none border-0 border-b-2 border-gray-200 focus:border-coral py-2 px-0 text-sm sm:text-base font-semibold text-charcoal-900 placeholder:text-charcoal-300 placeholder:font-normal focus:outline-none focus:ring-0 transition-colors"
+          />
+        </div>
+      </div>
+
+      {/* Row 3: Message - Highlighted label matching reference */}
+      <div className="space-y-1">
+        <label className="block text-[11px] uppercase tracking-wider text-coral font-bold">
+          Message *
         </label>
         <textarea
           name="message"
@@ -70,18 +128,21 @@ export default function ContactForm({ initialService = '' }) {
           rows={3}
           value={formData.message}
           onChange={handleChange}
-          placeholder="Tell us about the shoot, venue, desired mood, or questions..."
-          className="w-full px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-coral focus:ring-1 focus:ring-coral focus:outline-none text-sm text-charcoal-900 placeholder-gray-400 transition-colors resize-none"
+          placeholder="Write here your message..."
+          className="w-full bg-transparent rounded-none border-0 border-b-2 border-gray-200 focus:border-coral py-2 px-0 text-sm sm:text-base font-medium text-charcoal-900 placeholder:text-charcoal-300 placeholder:font-normal focus:outline-none focus:ring-0 transition-colors resize-none"
         />
       </div>
 
-      <button
-        type="submit"
-        className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full text-xs uppercase tracking-wider font-bold bg-coral text-white hover:bg-coral-dark transition-all shadow-md shadow-coral/30 active:scale-95"
-      >
-        <span>Submit Booking Inquiry</span>
-        <Send size={15} />
-      </button>
+      {/* Row 4: Submit Button - Left-aligned pill matching reference */}
+      <div className="pt-2">
+        <button
+          type="submit"
+          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl sm:rounded-full bg-coral hover:bg-coral-dark text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md shadow-coral/30 hover:shadow-lg active:scale-95 transition-all cursor-pointer"
+        >
+          <span>Send Message</span>
+          <Send size={15} />
+        </button>
+      </div>
     </form>
   );
 }

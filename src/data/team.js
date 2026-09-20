@@ -1,13 +1,13 @@
 /**
- * Team Members & Artists
+ * Team Members & Artists for Mythri Studio Nandyal
  */
 export const teamMembers = [
   {
-    name: "Nihal Rao",
-    role: "Founder & Principal Visual Artist",
-    specialty: "Editorial Lighting & Architectural Medium Format",
-    bio: "With over a decade behind the lens across Europe and Asia, Nihal founded Mythri Studios to fuse classical chiaroscuro portraiture with contemporary Indian aesthetics.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+    name: "Anji",
+    role: "Founder & Lead Photographer",
+    specialty: "Traditional Rituals, Destination Weddings & Drone Cinematography",
+    bio: "With years of passionate dedication behind the camera, Anji founded Mythri Studio Nandyal to document authentic family celebrations, candid moments, and grand wedding milestones with artistic perfection.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
   },
   {
     name: "Tara Krishnan",

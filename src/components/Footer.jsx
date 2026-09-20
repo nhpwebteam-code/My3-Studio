@@ -31,15 +31,30 @@ export default function Footer() {
               Preserving authentic human narrative, light poetry, and celebration stories through fine art photography and 4K cinematography.
             </p>
             <div className="flex items-center gap-2 pt-2">
-              {['Instagram', 'Pinterest', 'Vimeo', 'Behance'].map((name) => (
-                <a
-                  key={name}
-                  href="#"
-                  className="px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-coral hover:text-white hover:border-coral text-xs text-gray-300 transition-all font-semibold shadow-sm"
-                >
-                  {name}
-                </a>
-              ))}
+              <a
+                href="https://www.instagram.com/mythri_studio_ndl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-coral hover:text-white hover:border-coral text-xs text-gray-300 transition-all font-semibold shadow-sm"
+              >
+                Instagram
+              </a>
+              <a
+                href="https://maps.app.goo.gl/qDx9ZJLWEVtMp7Uv5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-coral hover:text-white hover:border-coral text-xs text-gray-300 transition-all font-semibold shadow-sm"
+              >
+                Google Maps
+              </a>
+              <a
+                href="https://wa.me/919949395037"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-coral hover:text-white hover:border-coral text-xs text-gray-300 transition-all font-semibold shadow-sm"
+              >
+                WhatsApp
+              </a>
             </div>
           </div>
 
@@ -52,9 +67,9 @@ export default function Footer() {
               {[
                 { label: 'Home', path: '/' },
                 { label: 'About Us', path: '/about' },
+                { label: 'Our Services', path: '/services' },
                 { label: 'Pricing & Packages', path: '/pricing' },
                 { label: 'Portfolio Gallery', path: '/gallery' },
-                { label: 'FAQ', path: '/pricing' },
                 { label: 'Contact & Booking', path: '/contact' },
               ].map((item, idx) => (
                 <li key={idx}>
@@ -69,22 +84,28 @@ export default function Footer() {
           {/* Col 3: Studio Location & Hours */}
           <div>
             <h4 className="text-white text-xs font-bold mb-4 tracking-widest uppercase">
-              Studio & Atelier
+              Studio Location
             </h4>
             <div className="space-y-3 text-xs sm:text-sm">
-              <div className="flex items-start gap-2.5">
+              <a
+                href="https://maps.app.goo.gl/qDx9ZJLWEVtMp7Uv5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-2.5 group hover:text-white transition-colors"
+              >
                 <MapPin size={16} className="text-coral shrink-0 mt-0.5" />
-                <span className="text-gray-300">
-                  42 Heritage Boulevard, Art Quarter,<br />
-                  Bengaluru, KA 560001
+                <span className="text-gray-300 group-hover:text-white">
+                  Shop No 02, 1st Floor, Nivarthi Bhavan,<br />
+                  Opp. National College, Srinivasa Nagar,<br />
+                  Nandyala, Andhra Pradesh 518501
                 </span>
-              </div>
+              </a>
               <div className="pt-2 text-xs">
                 <p className="text-white font-semibold uppercase tracking-wider mb-1">
-                  Atelier Hours
+                  Studio Hours
                 </p>
-                <p className="text-gray-400">Tuesday – Saturday: 10:00 AM – 7:00 PM</p>
-                <p className="text-gray-400">Sunday: By Prior Appointment</p>
+                <p className="text-gray-400">Monday – Saturday: 9:30 AM – 8:30 PM</p>
+                <p className="text-gray-400">Sunday: 10:00 AM – 6:00 PM (Shoots)</p>
               </div>
             </div>
           </div>
@@ -95,19 +116,29 @@ export default function Footer() {
               Direct Inquiries
             </h4>
             <div className="space-y-3 text-xs sm:text-sm mb-5">
+              <div className="text-xs text-gray-400">
+                <span className="text-white font-bold block">Contact Person: Anji</span>
+              </div>
               <a
-                href={`mailto:${studioConfig.contact.email}`}
-                className="flex items-center gap-2 hover:text-coral transition-colors text-gray-300"
-              >
-                <Mail size={16} className="text-coral shrink-0" />
-                <span className="truncate">{studioConfig.contact.email}</span>
-              </a>
-              <a
-                href={`tel:${studioConfig.contact.phone}`}
+                href="tel:+919949395037"
                 className="flex items-center gap-2 hover:text-coral transition-colors text-gray-300"
               >
                 <Phone size={16} className="text-coral shrink-0" />
-                <span>{studioConfig.contact.phoneDisplay}</span>
+                <span>+91 99493 95037 (Anji)</span>
+              </a>
+              <a
+                href="tel:+917780181436"
+                className="flex items-center gap-2 hover:text-coral transition-colors text-gray-300"
+              >
+                <Phone size={16} className="text-coral shrink-0" />
+                <span>+91 77801 81436 (Desk)</span>
+              </a>
+              <a
+                href="mailto:mythristudiondl@gmail.com"
+                className="flex items-center gap-2 hover:text-coral transition-colors text-gray-300"
+              >
+                <Mail size={16} className="text-coral shrink-0" />
+                <span className="truncate">mythristudiondl@gmail.com</span>
               </a>
             </div>
             <Link

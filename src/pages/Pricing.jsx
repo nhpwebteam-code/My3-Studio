@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
-import PageHeader from '../components/PageHeader';
-import ServiceCard from '../components/ServiceCard';
+import PricingCard from '../components/PricingCard';
 import BookingModal from '../components/BookingModal';
 import FAQSection from '../components/FAQSection';
 import { services } from '../data/services';
-import { CheckCircle, ShieldCheck, Sparkles, PhoneCall } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import {
+  ShieldCheck,
+  CheckCircle,
+  Sparkles,
+  PhoneCall,
+  Star,
+  Clock,
+  CreditCard,
+  RefreshCw,
+  Award,
+  Users,
+  Heart,
+  Crown,
+} from 'lucide-react';
 
 export default function Pricing() {
   const [selectedPackageData, setSelectedPackageData] = useState(null);
@@ -17,103 +29,406 @@ export default function Pricing() {
   };
 
   return (
-    <div className="pb-24 space-y-20 bg-[#FAF7F2] text-charcoal min-h-screen">
-      <PageHeader
-        kicker="Transparent Investments"
-        title="Event Packages & Pricing"
-        subtitle="Complete upfront pricing for multi-day weddings, birthday milestones, and celebratory gatherings with custom album options and 4K cinematography."
-      />
+    <div className="pb-24 bg-[#FAF7F2] text-charcoal min-h-screen">
+      {/* ═══════════════════════════════════════════
+          HERO SECTION - Inspired by Reference
+      ═══════════════════════════════════════════ */}
+      <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 overflow-hidden">
+        {/* Background Gradient Orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-coral/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-orange-100/40 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-coral/3 rounded-full blur-[100px]" />
+        </div>
 
-      {/* Main Packages Catalog */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-              onBook={handleBookService}
-            />
-          ))}
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Kicker */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral-50 border border-coral/15 mb-6">
+            <Award size={14} className="text-coral" />
+            <span className="text-xs font-bold text-coral uppercase tracking-wider">
+              Transparent Investments
+            </span>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-charcoal-900 tracking-tight mb-3 leading-[1.1]">
+            Small Investment
+          </h1>
+          <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r from-coral via-orange-500 to-coral bg-clip-text text-transparent tracking-tight mb-6 leading-[1.1]">
+            Huge Visual Legacy
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-sm sm:text-base md:text-lg text-charcoal-500 max-w-2xl mx-auto leading-relaxed mb-10">
+            Complete upfront pricing for multi-day weddings, birthday milestones,
+            and celebratory gatherings with custom album options and 4K
+            cinematography.
+          </p>
+
+          {/* Trust Badges Row */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-10">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#EAE4D9] shadow-sm">
+              <CreditCard size={15} className="text-coral" />
+              <span className="text-xs font-semibold text-charcoal-700">
+                One-time Payment
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#EAE4D9] shadow-sm">
+              <CheckCircle size={15} className="text-coral" />
+              <span className="text-xs font-semibold text-charcoal-700">
+                All Deliverables Included
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#EAE4D9] shadow-sm">
+              <RefreshCw size={15} className="text-coral" />
+              <span className="text-xs font-semibold text-charcoal-700">
+                100% Satisfaction Guarantee
+              </span>
+            </div>
+          </div>
+
+          {/* Social Proof Strip */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            {/* Avatar Stack */}
+            <div className="flex -space-x-2.5">
+              {[
+                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face',
+                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face',
+                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face',
+                'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop&crop=face',
+              ].map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt="Happy client"
+                  className="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm"
+                />
+              ))}
+              <div className="w-8 h-8 rounded-full bg-coral border-2 border-white flex items-center justify-center">
+                <span className="text-[9px] font-black text-white">15+</span>
+              </div>
+            </div>
+
+            {/* Rating & Stars */}
+            <div className="flex items-center gap-3">
+              <div className="flex flex-col items-center sm:items-start">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-lg font-black text-charcoal-900">4.7</span>
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={14}
+                        className={
+                          i < 4
+                            ? 'text-amber-400 fill-amber-400'
+                            : 'text-amber-400 fill-amber-400 opacity-70'
+                        }
+                      />
+                    ))}
+                  </div>
+                </div>
+                <span className="text-[11px] text-charcoal-500 font-medium">
+                  15 verified ratings on Justdial
+                </span>
+              </div>
+            </div>
+
+            {/* Justdial Badge */}
+            <a
+              href="https://www.justdial.com/Nandyal/Mythri-Studio-Nandyal/9999P8514-8514-181022124920-M7R5_BZDET/reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#EAE4D9] shadow-sm text-[11px] font-bold text-charcoal-600 hover:border-coral/40 hover:text-coral transition-colors"
+            >
+              <ShieldCheck size={12} className="text-green-500" />
+              Verified on Justdial
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Package Guarantees / Studio Inclusions */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 sm:p-12 border border-[#EAE4D9] shadow-sm">
-          <div className="text-center max-w-2xl mx-auto mb-10">
+      {/* ═══════════════════════════════════════════
+          PRICING CARDS GRID
+      ═══════════════════════════════════════════ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4">
+        {/* Reorder: 1-day → 2-day (popular/center) → birthday */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-5 items-start">
+          {/* Left card: 1 Day Single Event */}
+          {services
+            .filter((s) => s.id === '1day-event')
+            .map((service) => (
+              <div key={service.id} className="lg:mt-8">
+                <PricingCard
+                  service={service}
+                  isPopular={false}
+                  onBook={handleBookService}
+                />
+              </div>
+            ))}
+
+          {/* Center card: 2 Days (Most Popular — elevated) */}
+          {services
+            .filter((s) => s.id === '2days-package')
+            .map((service) => (
+              <div key={service.id} className="lg:-mt-2">
+                <PricingCard
+                  service={service}
+                  isPopular={true}
+                  onBook={handleBookService}
+                />
+              </div>
+            ))}
+
+          {/* Right card: Birthday */}
+          {services
+            .filter((s) => s.id === 'birthday-shoot')
+            .map((service) => (
+              <div key={service.id} className="lg:mt-8">
+                <PricingCard
+                  service={service}
+                  isPopular={false}
+                  onBook={handleBookService}
+                />
+              </div>
+            ))}
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          TRUST FOOTER (Under Cards)
+      ═══════════════════════════════════════════ */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 text-center">
+        <p className="text-xs text-charcoal-500">
+          Prices in INR. Applicable taxes as per local GST norms may apply.
+        </p>
+        <div className="flex items-center justify-center gap-2 mt-2">
+          <ShieldCheck size={14} className="text-coral" />
+          <p className="text-xs text-charcoal-500">
+            Secure booking via WhatsApp / Direct Consultation. 64 GB Pen Drive delivery included.
+          </p>
+        </div>
+        <p className="text-[11px] text-charcoal-400 mt-3 max-w-md mx-auto leading-relaxed">
+          If you're not fully satisfied with our service, we will re-edit at no
+          extra charge. Your memories are our priority.
+        </p>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          PACKAGE GUARANTEES / STUDIO INCLUSIONS
+      ═══════════════════════════════════════════ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
+        <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 sm:p-12 border border-[#EAE4D9] shadow-sm relative overflow-hidden">
+          {/* Decorative */}
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-coral/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-orange-50/60 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative text-center max-w-2xl mx-auto mb-12">
             <span className="font-script text-3xl text-coral block -mb-1 select-none">
               Inclusions
             </span>
             <h3 className="font-display font-black text-2xl sm:text-3xl text-charcoal-900 tracking-tight">
               Standard Across Every Package
             </h3>
-            <p className="text-xs sm:text-sm text-charcoal-500 mt-2">
-              Every MY3 booking includes professional peace-of-mind commitments.
+            <p className="text-xs sm:text-sm text-charcoal-500 mt-3 leading-relaxed">
+              Every MY3 booking includes professional peace-of-mind commitments
+              at no extra cost.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-5 rounded-2xl bg-white border border-[#EAE4D9] shadow-sm space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-coral-50 text-coral flex items-center justify-center font-bold">
-                <CheckCircle size={20} />
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                icon: <CheckCircle size={20} />,
+                title: 'Dual Memory Cards',
+                desc: 'Real-time backup recording during all live rituals so no moment is ever lost.',
+              },
+              {
+                icon: <ShieldCheck size={20} />,
+                title: '64 GB Pen Drive',
+                desc: 'All raw and edited high-resolution media delivered safely in a high-speed physical drive.',
+              },
+              {
+                icon: <Sparkles size={20} />,
+                title: 'Lay-Flat Albums',
+                desc: 'Archival non-fade matte paper binding with custom photo spreads and multiple sheets layouts.',
+              },
+              {
+                icon: <PhoneCall size={20} />,
+                title: 'Direct Consultation',
+                desc: 'Pre-shoot briefing with the lead artist to review schedules, lighting, and rituals.',
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="group p-6 rounded-2xl bg-white border border-[#EAE4D9] hover:border-coral/30 shadow-sm hover:shadow-md transition-all duration-300 space-y-3"
+              >
+                <div className="w-11 h-11 rounded-xl bg-coral-50 text-coral flex items-center justify-center group-hover:bg-coral group-hover:text-white transition-colors duration-300">
+                  {item.icon}
+                </div>
+                <h4 className="font-bold text-sm text-charcoal-900">
+                  {item.title}
+                </h4>
+                <p className="text-xs text-charcoal-500 leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
-              <h4 className="font-bold text-sm text-charcoal-900">Dual Memory Cards</h4>
-              <p className="text-xs text-charcoal-500 leading-relaxed">
-                Real-time backup recording during all live rituals so no moment is ever lost.
-              </p>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white border border-[#EAE4D9] shadow-sm space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-coral-50 text-coral flex items-center justify-center font-bold">
-                <ShieldCheck size={20} />
-              </div>
-              <h4 className="font-bold text-sm text-charcoal-900">64 GB Pen Drive</h4>
-              <p className="text-xs text-charcoal-500 leading-relaxed">
-                All raw and edited high-resolution media delivered safely in a high-speed physical drive.
-              </p>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white border border-[#EAE4D9] shadow-sm space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-coral-50 text-coral flex items-center justify-center font-bold">
-                <Sparkles size={20} />
-              </div>
-              <h4 className="font-bold text-sm text-charcoal-900">Lay-Flat Designer Albums</h4>
-              <p className="text-xs text-charcoal-500 leading-relaxed">
-                Archival non-fade matte paper binding with custom photo spreads and multiple sheets layouts.
-              </p>
-            </div>
-
-            <div className="p-5 rounded-2xl bg-white border border-[#EAE4D9] shadow-sm space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-coral-50 text-coral flex items-center justify-center font-bold">
-                <PhoneCall size={20} />
-              </div>
-              <h4 className="font-bold text-sm text-charcoal-900">Direct Consultation</h4>
-              <p className="text-xs text-charcoal-500 leading-relaxed">
-                Pre-shoot briefing with the lead artist to review schedules, lighting, and rituals.
-              </p>
-            </div>
+            ))}
           </div>
 
-          <div className="mt-10 pt-8 border-t border-[#EAE4D9] text-center">
-            <p className="text-sm text-charcoal-600 mb-4">
-              Need a custom multi-destination or multi-event package? We are happy to customize.
-            </p>
+          {/* Custom Package CTA */}
+          <div className="relative mt-12 pt-8 border-t border-[#EAE4D9] text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Users size={18} className="text-coral" />
+              <p className="text-sm text-charcoal-600">
+                Need a custom multi-destination or multi-event package?
+              </p>
+            </div>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-coral hover:bg-coral-dark text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-coral/30"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-coral hover:bg-coral-dark text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-coral/30 hover:shadow-lg hover:shadow-coral/40 active:scale-95"
             >
+              <Heart size={14} />
               Contact Us For Custom Package
             </Link>
           </div>
         </div>
       </section>
 
-      {/* FAQ Accordion */}
-      <FAQSection />
+      {/* ═══════════════════════════════════════════
+          COMPARISON TABLE
+      ═══════════════════════════════════════════ */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
+        <div className="text-center mb-10">
+          <span className="font-script text-3xl text-coral block -mb-1 select-none">
+            At a Glance
+          </span>
+          <h3 className="font-display font-black text-2xl sm:text-3xl text-charcoal-900 tracking-tight">
+            Quick Package Comparison
+          </h3>
+        </div>
 
-      {/* Interactive Booking Modal */}
+        <div className="bg-white rounded-3xl border border-[#EAE4D9] shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="border-b border-[#EAE4D9]">
+                  <th className="px-6 py-5 text-xs font-bold uppercase tracking-wider text-charcoal-500">
+                    Features
+                  </th>
+                  <th className="px-6 py-5 text-xs font-bold uppercase tracking-wider text-charcoal-500 text-center">
+                    1 Day Event
+                  </th>
+                  <th className="px-6 py-5 text-xs font-bold uppercase tracking-wider text-center">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-coral text-white text-[10px] font-black uppercase tracking-wider">
+                      <Crown size={10} />
+                      2 Days Grand
+                    </span>
+                  </th>
+                  <th className="px-6 py-5 text-xs font-bold uppercase tracking-wider text-charcoal-500 text-center">
+                    Birthday / Baby
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  {
+                    feature: 'Starting Price',
+                    col1: '₹25,000',
+                    col2: '₹60,000',
+                    col3: '₹25,000',
+                  },
+                  {
+                    feature: 'Coverage Duration',
+                    col1: '1 Day',
+                    col2: '2 Days',
+                    col3: 'Event Day',
+                  },
+                  {
+                    feature: 'Photography',
+                    col1: '1 Lead',
+                    col2: '1 Lead',
+                    col3: '1 Lead',
+                  },
+                  {
+                    feature: 'Videography',
+                    col1: '1 Lead',
+                    col2: '1 Lead',
+                    col3: '1 Lead',
+                  },
+                  {
+                    feature: 'Album Sheets',
+                    col1: '30 Sheets',
+                    col2: '60 Sheets',
+                    col3: '30 Sheets',
+                  },
+                  {
+                    feature: 'Video Editing',
+                    col1: 'Full Edit',
+                    col2: 'Full + Teaser',
+                    col3: 'Full + Highlights',
+                  },
+                  {
+                    feature: 'Calendars',
+                    col1: '2',
+                    col2: '2',
+                    col3: '—',
+                  },
+                  {
+                    feature: 'Display Frame',
+                    col1: '—',
+                    col2: '12×18"',
+                    col3: '—',
+                  },
+                  {
+                    feature: 'Pen Drive',
+                    col1: '64 GB',
+                    col2: '64 GB',
+                    col3: '64 GB',
+                  },
+                ].map((row, idx) => (
+                  <tr
+                    key={idx}
+                    className={`border-b border-[#EAE4D9]/60 last:border-0 ${
+                      idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'
+                    }`}
+                  >
+                    <td className="px-6 py-4 text-sm font-semibold text-charcoal-800">
+                      {row.feature}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-charcoal-600 text-center">
+                      {row.col1}
+                    </td>
+                    <td className="px-6 py-4 text-sm font-bold text-coral text-center bg-coral-50/30">
+                      {row.col2}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-charcoal-600 text-center">
+                      {row.col3}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          FAQ ACCORDION
+      ═══════════════════════════════════════════ */}
+      <div className="mt-24">
+        <FAQSection />
+      </div>
+
+      {/* ═══════════════════════════════════════════
+          BOOKING MODAL
+      ═══════════════════════════════════════════ */}
       <BookingModal
-        key={selectedPackageData ? `${selectedPackageData.serviceId}-${isBookingOpen}` : 'default-pricing-modal'}
+        key={
+          selectedPackageData
+            ? `${selectedPackageData.serviceId}-${isBookingOpen}`
+            : 'default-pricing-modal'
+        }
         isOpen={isBookingOpen}
         initialPackageData={selectedPackageData}
         onClose={() => {

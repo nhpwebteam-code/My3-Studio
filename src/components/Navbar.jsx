@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowUpRight, Phone, Mail, Check } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Phone, Mail } from 'lucide-react';
 import { studioConfig } from '../data/studioConfig';
 
 export default function Navbar({ onOpenBooking }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [langMenuOpen, setLangMenuOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState('EN');
   const navigate = useNavigate();
   const location = useLocation();
-
-  const languages = [
-    { code: 'EN', name: 'English' },
-    { code: 'ES', name: 'Español' },
-    { code: 'FR', name: 'Français' },
-    { code: 'DE', name: 'Deutsch' },
-    { code: 'JA', name: '日本語' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,19 +19,6 @@ export default function Navbar({ onOpenBooking }) {
 
   const handleNavClick = (target) => {
     setIsDrawerOpen(false);
-    if (target === '#faq') {
-      if (location.pathname !== '/pricing') {
-        navigate('/pricing');
-        setTimeout(() => {
-          const el = document.getElementById('faq');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 150);
-      } else {
-        const el = document.getElementById('faq');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-      return;
-    }
     if (target.startsWith('#')) {
       const el = document.querySelector(target);
       if (el) {
@@ -128,9 +105,19 @@ export default function Navbar({ onOpenBooking }) {
             </Link>
           </div>
 
-          {/* Right: Symmetrical Links: Gallery, Contact, FAQ & Language Selector */}
+          {/* Right: Symmetrical Links: Services, Gallery, Contact & Language Selector */}
           <div className="flex items-center space-x-6 sm:space-x-8">
             <nav className="hidden md:flex items-center space-x-6 sm:space-x-7">
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  `text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors ${
+                    isActive ? 'text-coral' : 'text-charcoal-800 hover:text-coral'
+                  }`
+                }
+              >
+                Services
+              </NavLink>
               <NavLink
                 to="/gallery"
                 className={({ isActive }) =>
@@ -151,50 +138,7 @@ export default function Navbar({ onOpenBooking }) {
               >
                 Contact
               </NavLink>
-              <a
-                href="#faq"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('#faq');
-                }}
-                className="text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-800 hover:text-coral transition-colors"
-              >
-                FAQ
-              </a>
             </nav>
-
-            {/* Language Selector Dropdown */}
-            <div className="relative">
-              <button
-                id="lang-selector-btn"
-                onClick={() => setLangMenuOpen(!langMenuOpen)}
-                className="flex items-center space-x-1 text-xs sm:text-sm font-bold tracking-wider text-charcoal-800 hover:text-coral py-1.5 px-2.5 rounded-lg hover:bg-gray-100 transition-colors uppercase"
-                aria-label="Select Language"
-              >
-                <span>{selectedLang}</span>
-                <ChevronDown size={14} className={`transition-transform duration-200 ${langMenuOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {langMenuOpen && (
-                <div className="absolute right-0 mt-2 w-36 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 animate-fade-in">
-                  {languages.map((l) => (
-                    <button
-                      key={l.code}
-                      onClick={() => {
-                        setSelectedLang(l.code);
-                        setLangMenuOpen(false);
-                      }}
-                      className={`w-full px-4 py-2 text-left text-xs font-semibold flex items-center justify-between hover:bg-coral-50 hover:text-coral transition-colors ${
-                        selectedLang === l.code ? 'text-coral font-bold bg-coral-50/60' : 'text-charcoal-700'
-                      }`}
-                    >
-                      <span>{l.name}</span>
-                      {selectedLang === l.code && <Check size={13} className="text-coral" />}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </header>
@@ -245,9 +189,9 @@ export default function Navbar({ onOpenBooking }) {
                 {[
                   { label: 'Home', path: '/' },
                   { label: 'About Us', path: '/about' },
+                  { label: 'Our Services', path: '/services' },
                   { label: 'Event Packages & Pricing', path: '/pricing' },
                   { label: 'Client Photo Gallery', path: '/gallery' },
-                  { label: 'Frequently Asked Questions (FAQ)', href: '#faq' },
                   { label: 'Contact & Bookings', path: '/contact' },
                 ].map((item, idx) => (
                   <div key={idx}>
@@ -298,17 +242,37 @@ export default function Navbar({ onOpenBooking }) {
             </div>
 
             {/* Drawer Footer info */}
-            <div className="pt-6 border-t border-gray-100 mt-6 space-y-3 text-xs text-charcoal-500">
+            <div className="pt-6 border-t border-gray-100 mt-6 space-y-2.5 text-xs text-charcoal-600">
+              <div className="text-[11px] font-bold text-charcoal-900 uppercase tracking-wider">
+                Contact Person: Anji
+              </div>
+              <a
+                href="tel:+919949395037"
+                className="flex items-center space-x-2 hover:text-coral transition-colors"
+              >
+                <Phone size={14} className="text-coral" />
+                <span>+91 99493 95037 (Anji / WhatsApp)</span>
+              </a>
+              <a
+                href="tel:+917780181436"
+                className="flex items-center space-x-2 hover:text-coral transition-colors"
+              >
+                <Phone size={14} className="text-coral" />
+                <span>+91 77801 81436 (Desk)</span>
+              </a>
               <div className="flex items-center space-x-2">
                 <Mail size={14} className="text-coral" />
-                <span>{studioConfig.contact.email}</span>
+                <span>mythristudiondl@gmail.com</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Phone size={14} className="text-coral" />
-                <span>{studioConfig.contact.phoneDisplay}</span>
-              </div>
-              <div className="pt-2 text-[11px] text-gray-400">
-                © {new Date().getFullYear()} MY3 Studio. All rights reserved.
+              <div className="pt-2 flex items-center gap-3">
+                <a
+                  href="https://www.instagram.com/mythri_studio_ndl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-coral hover:underline"
+                >
+                  Instagram: @mythri_studio_ndl
+                </a>
               </div>
             </div>
           </div>

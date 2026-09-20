@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import HomeHero from '../components/HomeHero';
+import CuratedFramesSection from '../components/CuratedFramesSection';
+import ReviewsSection from '../components/ReviewsSection';
+import JustdialReviews from '../components/JustdialReviews';
 import BookingModal from '../components/BookingModal';
 import VideoReviewModal from '../components/VideoReviewModal';
 
@@ -13,8 +16,20 @@ export default function Home() {
       <HomeHero
         onOpenBooking={() => setIsBookingOpen(true)}
         onOpenVideoReviews={() => setIsVideoReviewOpen(true)}
-        onScrollToReviews={() => setIsVideoReviewOpen(true)}
+        onScrollToReviews={() => {
+          const el = document.getElementById('curated-frames');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
       />
+
+      {/* 2. Curated Frames Editorial Section (Directly from reference design) */}
+      <CuratedFramesSection onOpenBooking={() => setIsBookingOpen(true)} />
+
+      {/* 3. Arched Photo Collage & 3-Column Testimonials Showcase */}
+      <ReviewsSection />
+
+      {/* 4. Justdial 4.7 Rating Index, Rating Trend Bar Chart & Interactive Review Carousel */}
+      <JustdialReviews />
 
       {/* Interactive Booking Modal */}
       <BookingModal
