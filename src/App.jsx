@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Pricing from './pages/Pricing';
 
 import BookingModal from './components/BookingModal';
 
@@ -16,14 +17,16 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-white text-charcoal selection:bg-coral selection:text-white">
+      <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-charcoal selection:bg-coral selection:text-white">
         <Navbar onOpenBooking={() => setIsBookingOpen(true)} />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/services" element={<Navigate to="/pricing" replace />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/portfolio" element={<Navigate to="/gallery" replace />} />
-            <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             {/* Fallback route back to home */}
             <Route path="*" element={<Home />} />

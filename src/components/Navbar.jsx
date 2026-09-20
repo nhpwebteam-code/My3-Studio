@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ArrowUpRight, Phone, Mail, Check } from 'lucide-react';
 import { studioConfig } from '../data/studioConfig';
 
@@ -29,16 +29,25 @@ export default function Navbar({ onOpenBooking }) {
 
   const handleNavClick = (target) => {
     setIsDrawerOpen(false);
-    if (target.startsWith('#')) {
-      if (location.pathname !== '/') {
-        navigate('/' + target);
+    if (target === '#faq') {
+      if (location.pathname !== '/pricing') {
+        navigate('/pricing');
+        setTimeout(() => {
+          const el = document.getElementById('faq');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 150);
       } else {
-        const el = document.querySelector(target);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        const el = document.getElementById('faq');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
+    if (target.startsWith('#')) {
+      const el = document.querySelector(target);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   };
@@ -66,47 +75,44 @@ export default function Navbar({ onOpenBooking }) {
 
             {/* Desktop Left Nav Links: Home, About, Pricing */}
             <nav className="hidden md:flex items-center space-x-6 sm:space-x-7">
-              <a
-                href="#home"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('#home');
-                }}
-                className="text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-800 hover:text-coral transition-colors"
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  `text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors ${
+                    isActive ? 'text-coral' : 'text-charcoal-800 hover:text-coral'
+                  }`
+                }
               >
                 Home
-              </a>
-              <a
-                href="#about"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('#about');
-                }}
-                className="text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-800 hover:text-coral transition-colors"
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors ${
+                    isActive ? 'text-coral' : 'text-charcoal-800 hover:text-coral'
+                  }`
+                }
               >
                 About
-              </a>
-              <a
-                href="#pricing"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('#pricing');
-                }}
-                className="text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-800 hover:text-coral transition-colors"
+              </NavLink>
+              <NavLink
+                to="/pricing"
+                className={({ isActive }) =>
+                  `text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors ${
+                    isActive ? 'text-coral' : 'text-charcoal-800 hover:text-coral'
+                  }`
+                }
               >
                 Pricing
-              </a>
+              </NavLink>
             </nav>
           </div>
 
           {/* Center: Brand Logo - Prominent, Large & Clearly Visible */}
           <div className="flex-1 flex justify-center px-2 sm:px-4">
-            <a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick('#home');
-              }}
+            <Link
+              to="/"
               className="flex items-center justify-center py-1 group"
               aria-label="MY3 Studio Home"
             >
@@ -115,36 +121,16 @@ export default function Navbar({ onOpenBooking }) {
                 alt="MY3 Studio Logo"
                 className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 filter drop-shadow-md ${
                   isScrolled
-                    ? 'h-14 sm:h-16 md:h-18 max-h-[72px]'
-                    : 'h-16 sm:h-20 md:h-24 lg:h-28 max-h-[110px]'
+                    ? 'h-12 sm:h-14 md:h-16 max-h-[64px]'
+                    : 'h-14 sm:h-16 md:h-20 lg:h-22 max-h-[88px]'
                 }`}
               />
-            </a>
+            </Link>
           </div>
 
-          {/* Right: Symmetrical Links: FAQ, Contact, Portfolio & Language Selector */}
+          {/* Right: Symmetrical Links: Gallery, Contact, FAQ & Language Selector */}
           <div className="flex items-center space-x-6 sm:space-x-8">
             <nav className="hidden md:flex items-center space-x-6 sm:space-x-7">
-              <a
-                href="#faq"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('#faq');
-                }}
-                className="text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-800 hover:text-coral transition-colors"
-              >
-                FAQ
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('#contact');
-                }}
-                className="text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-800 hover:text-coral transition-colors"
-              >
-                Contact
-              </a>
               <NavLink
                 to="/gallery"
                 className={({ isActive }) =>
@@ -155,6 +141,26 @@ export default function Navbar({ onOpenBooking }) {
               >
                 Gallery
               </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  `text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors ${
+                    isActive ? 'text-coral' : 'text-charcoal-800 hover:text-coral'
+                  }`
+                }
+              >
+                Contact
+              </NavLink>
+              <a
+                href="#faq"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('#faq');
+                }}
+                className="text-xs lg:text-sm font-bold uppercase tracking-wider text-charcoal-800 hover:text-coral transition-colors"
+              >
+                FAQ
+              </a>
             </nav>
 
             {/* Language Selector Dropdown */}
@@ -237,17 +243,18 @@ export default function Navbar({ onOpenBooking }) {
                   Studio Directory
                 </p>
                 {[
-                  { label: 'Home', href: '#home' },
-                  { label: 'About Us', href: '#about' },
-                  { label: 'Event Packages & Pricing', href: '#pricing' },
+                  { label: 'Home', path: '/' },
+                  { label: 'About Us', path: '/about' },
+                  { label: 'Event Packages & Pricing', path: '/pricing' },
                   { label: 'Client Photo Gallery', path: '/gallery' },
                   { label: 'Frequently Asked Questions (FAQ)', href: '#faq' },
-                  { label: 'Contact & Bookings', href: '#contact' },
+                  { label: 'Contact & Bookings', path: '/contact' },
                 ].map((item, idx) => (
                   <div key={idx}>
                     {item.path ? (
                       <NavLink
                         to={item.path}
+                        end={item.path === '/'}
                         onClick={() => setIsDrawerOpen(false)}
                         className={({ isActive }) =>
                           `block py-3 px-3.5 rounded-2xl text-base font-bold transition-all ${

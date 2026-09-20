@@ -35,7 +35,7 @@ export default function ServiceCard({ service, onBook }) {
   };
 
   return (
-    <div className="flex flex-col rounded-3xl bg-white border border-gray-200 hover:border-coral/50 transition-all duration-300 overflow-hidden group shadow-sm hover:shadow-2xl">
+    <div className="flex flex-col rounded-3xl bg-white border border-[#EAE4D9] hover:border-coral/50 transition-all duration-300 overflow-hidden group shadow-sm hover:shadow-2xl">
       {/* Service Cover Image */}
       <div className="relative h-56 sm:h-64 overflow-hidden">
         <img

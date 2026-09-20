@@ -1,34 +1,38 @@
-import React, { useState, useMemo } from 'react';
-import LightboxModal from '../components/LightboxModal';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Maximize2 } from 'lucide-react';
 import { galleryItems, galleryCategories } from '../data/gallery';
-import { Maximize2, ArrowRight, Camera } from 'lucide-react';
+import LightboxModal from './LightboxModal';
 
-export default function Gallery() {
-  // Default to 'wedding' as shown in the reference screenshot
+export default function ShowcaseGallery() {
   const [activeCategory, setActiveCategory] = useState('wedding');
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Filter gallery items based on active category
-  const filteredItems = useMemo(() => {
-    if (activeCategory === 'all') return galleryItems;
-    return galleryItems.filter((item) => item.category === activeCategory);
-  }, [activeCategory]);
+  // Filter items based on active category
+  const filteredItems =
+    activeCategory === 'all'
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeCategory);
+
+  // Take up to 8 photos for the home showcase
+  const displayItems = filteredItems.slice(0, 8);
 
   return (
-    <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
-      {/* 1. Header Section - Clean Serif Typography on Cream Background */}
-      <section className="pt-28 sm:pt-36 pb-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
-        <span className="text-[11px] sm:text-xs font-mono tracking-[0.25em] uppercase text-charcoal-500 font-bold block mb-3">
-          Preserving Every Cherished Chapter • Memories That Live Forever
-        </span>
-        <h1 className="font-serif tracking-[0.18em] sm:tracking-[0.22em] text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-charcoal-900 font-normal">
-          THE GALLERY COLLECTION
-        </h1>
-        <div className="w-16 h-0.5 bg-coral mx-auto mt-4 rounded-full" />
-      </section>
+    <section id="portfolio" className="w-full bg-[#FAF7F2] py-20 px-4 sm:px-6 lg:px-8 scroll-mt-24">
+      <div className="max-w-7xl mx-auto space-y-10">
+        
+        {/* 1. Header Section - Matching Reference Screenshot */}
+        <div className="text-center max-w-4xl mx-auto space-y-3">
+          <span className="text-[11px] sm:text-xs font-mono tracking-[0.25em] uppercase text-charcoal-500 font-bold block">
+            Preserving Every Cherished Chapter
+          </span>
+          <h2 className="font-serif tracking-[0.18em] sm:tracking-[0.22em] text-3xl sm:text-4xl md:text-5xl uppercase text-charcoal-900 font-normal">
+            THE GALLERY COLLECTION
+          </h2>
+          <div className="w-16 h-0.5 bg-coral mx-auto rounded-full" />
+        </div>
 
-      {/* 2. Filter Pills - Exact Layout from Reference Screenshot */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+        {/* 2. Filter Pills - Only the 5 categories provided */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5">
           {galleryCategories.map((cat) => {
             const isActive = activeCategory === cat.id;
@@ -55,12 +59,10 @@ export default function Gallery() {
             );
           })}
         </div>
-      </section>
 
-      {/* 3. Four-Column Gallery Photo Grid - Matches Reference Screenshot Layout */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        {/* 3. Four-Column Gallery Photo Grid - Matches Reference Screenshot Layout */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6 animate-fade-in">
-          {filteredItems.map((item) => (
+          {displayItems.map((item) => (
             <div
               key={item.id}
               onClick={() => setSelectedImage(item)}
@@ -115,72 +117,18 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Empty Category Fallback */}
-        {filteredItems.length === 0 && (
-          <div className="text-center py-20 bg-white rounded-3xl border border-gray-200 shadow-sm max-w-xl mx-auto p-8">
-            <Camera size={32} className="text-coral mx-auto mb-3" />
-            <h4 className="font-display font-bold text-lg text-charcoal-900">
-              No photos found in this category
-            </h4>
-            <p className="text-xs text-charcoal-500 mt-1">
-              Select another collection tab above to explore our work.
-            </p>
-          </div>
-        )}
-      </section>
-
-      {/* 4. Bottom Journal / Instagram Strip (Matching Reference Screenshot 2 Footer Area) */}
-      <section className="w-full bg-[#121316] text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
-            <div>
-              <span className="text-[10px] font-mono tracking-widest text-coral uppercase font-bold block mb-1">
-                Visual Stories
-              </span>
-              <h3 className="font-display font-bold text-lg text-white">
-                Follow Our Journal On Instagram
-              </h3>
-            </div>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-white/20 hover:border-coral text-xs font-bold uppercase tracking-wider text-white hover:text-coral transition-all"
-            >
-              <span>@mythristudios</span>
-              <ArrowRight size={13} />
-            </a>
-          </div>
-
-          {/* Mini preview thumbnail reel from our takeout files */}
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
-            {[
-              "/takeout-1-001/wedding/Frame_000080.jpg",
-              "/takeout-1-001/prewedding/Frame_000121.jpg",
-              "/takeout-1-001/bday/Frame_000055.jpg",
-              "/takeout-1-001/prewedding/Frame_000048.jpg",
-              "/takeout-1-001/maternity/Frame_000027.jpg",
-              "/takeout-1-001/travelling/Frame_000133.jpg",
-            ].map((imgUrl, idx) => (
-              <div
-                key={idx}
-                className="aspect-square rounded-xl overflow-hidden group cursor-pointer relative"
-                onClick={() => {
-                  const matched = galleryItems.find((g) => g.image === imgUrl);
-                  if (matched) setSelectedImage(matched);
-                }}
-              >
-                <img
-                  src={imgUrl}
-                  alt="Gallery Snapshot"
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-90 group-hover:brightness-100"
-                />
-              </div>
-            ))}
-          </div>
+        {/* 4. Action Row to Full Gallery */}
+        <div className="text-center pt-6">
+          <Link
+            to="/gallery"
+            className="inline-flex items-center gap-2 px-9 py-3.5 rounded-full bg-[#1C1A17] hover:bg-black text-white text-xs font-bold uppercase tracking-widest transition-all shadow-lg hover:shadow-xl hover:scale-102 active:scale-98"
+          >
+            <span>Explore All 27+ Works in Full Gallery</span>
+            <ArrowRight size={14} />
+          </Link>
         </div>
-      </section>
+
+      </div>
 
       {/* Lightbox Modal on Card Click */}
       {selectedImage && (
@@ -191,6 +139,6 @@ export default function Gallery() {
           onNavigate={setSelectedImage}
         />
       )}
-    </div>
+    </section>
   );
 }

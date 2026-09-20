@@ -38,7 +38,7 @@ export default function FAQSection() {
   return (
     <section id="faq" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
       {/* Header Aligned with other sections */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-gray-100 pb-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-[#EAE4D9] pb-6">
         <div>
           <span className="font-script text-3xl sm:text-4xl text-coral block -mb-1 select-none">
             Common Inquiries
@@ -61,8 +61,8 @@ export default function FAQSection() {
               key={idx}
               className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                 isOpen
-                  ? 'bg-gray-50/80 border-coral/50 shadow-sm'
-                  : 'bg-white border-gray-200 hover:border-gray-300'
+                  ? 'bg-white border-coral/60 shadow-md ring-1 ring-coral/20'
+                  : 'bg-white border-[#EAE4D9] hover:border-coral/40 shadow-xs'
               }`}
             >
               <button
@@ -98,7 +98,7 @@ export default function FAQSection() {
       </div>
 
       {/* Bottom Still Have Questions Bar */}
-      <div className="mt-12 text-center bg-gray-50 rounded-2xl p-6 border border-gray-200 max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="mt-12 text-center bg-white rounded-2xl p-6 border border-[#EAE4D9] shadow-sm max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3 text-left">
           <div className="w-10 h-10 rounded-full bg-coral-50 text-coral flex items-center justify-center shrink-0">
             <HelpCircle size={20} />
@@ -110,7 +110,7 @@ export default function FAQSection() {
         </div>
 
         <a
-          href="#contact"
+          href="/contact"
           className="px-6 py-2.5 rounded-full bg-coral hover:bg-coral-dark text-white text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap shadow-md shadow-coral/25 active:scale-95"
         >
           Ask Us Directly

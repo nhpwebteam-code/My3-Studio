@@ -10,7 +10,7 @@ export default function Contact() {
   const initialService = location.state?.selectedService || '';
 
   return (
-    <div className="pb-24 space-y-16 bg-white">
+    <div className="pb-24 space-y-16 bg-[#FAF7F2] text-charcoal min-h-screen">
       <PageHeader
         kicker="Get In Touch"
         title="Bookings & Inquiries"
@@ -34,7 +34,7 @@ export default function Contact() {
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-gray-50 border border-gray-200">
+              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-[#EAE4D9] shadow-sm">
                 <MapPin size={18} className="text-coral shrink-0 mt-1" />
                 <div className="text-xs sm:text-sm text-charcoal-600">
                   <strong className="block text-charcoal-900 font-bold mb-0.5">Address</strong>
@@ -42,7 +42,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-gray-50 border border-gray-200">
+              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-[#EAE4D9] shadow-sm">
                 <Mail size={18} className="text-coral shrink-0 mt-1" />
                 <div className="text-xs sm:text-sm text-charcoal-600">
                   <strong className="block text-charcoal-900 font-bold mb-0.5">Email</strong>
@@ -52,7 +52,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-gray-50 border border-gray-200">
+              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-[#EAE4D9] shadow-sm">
                 <Phone size={18} className="text-coral shrink-0 mt-1" />
                 <div className="text-xs sm:text-sm text-charcoal-600">
                   <strong className="block text-charcoal-900 font-bold mb-0.5">Phone & WhatsApp</strong>
@@ -64,14 +64,14 @@ export default function Contact() {
             </div>
 
             {/* Operating Hours */}
-            <div className="p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-3">
+            <div className="p-6 rounded-2xl bg-white border border-[#EAE4D9] shadow-sm space-y-3">
               <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-bold text-coral">
                 <Clock size={15} />
                 <span>Working Hours</span>
               </div>
               <div className="space-y-2 text-xs text-charcoal-600">
                 {studioConfig.contact.hours.map((h, i) => (
-                  <div key={i} className="flex justify-between border-b border-gray-200 pb-2 last:border-0 last:pb-0">
+                  <div key={i} className="flex justify-between border-b border-[#EAE4D9] pb-2 last:border-0 last:pb-0">
                     <span className="text-charcoal-500 font-medium">{h.days}</span>
                     <span className="text-charcoal-900 font-bold text-right">{h.time}</span>
                   </div>

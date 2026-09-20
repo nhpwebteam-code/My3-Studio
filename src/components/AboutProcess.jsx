@@ -44,7 +44,7 @@ export default function AboutProcess() {
         {steps.map((s, idx) => {
           const Icon = s.icon;
           return (
-            <div key={idx} className="bg-white rounded-3xl p-6 relative group border border-gray-200 hover:border-coral/40 shadow-sm hover:shadow-xl transition-all">
+            <div key={idx} className="bg-white rounded-3xl p-6 relative group border border-[#EAE4D9] hover:border-coral/40 shadow-sm hover:shadow-xl transition-all">
               <span className="font-display text-sm text-coral font-black block mb-4">
                 Step {s.step}
               </span>
