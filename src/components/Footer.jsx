@@ -1,38 +1,43 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import { studioConfig } from '../data/studioConfig';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-studio-950 border-t border-studio-800 text-studio-400 pt-16 pb-12">
+    <footer className="bg-gray-50 text-charcoal-600 pt-16 pb-12 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Col 1: Studio Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-lg bg-studio-900 border border-studio-700 flex items-center justify-center text-gold">
-                <Camera size={18} />
+            <div className="flex flex-col space-y-2">
+              <img
+                src="/logo.png"
+                alt="MY3 Studio Logo"
+                className="h-16 sm:h-20 w-auto object-contain self-start filter drop-shadow-md"
+              />
+              <div>
+                <span className="font-display text-lg font-black tracking-widest text-charcoal-900 block">
+                  MY3 STUDIO
+                </span>
+                <span className="text-[10px] tracking-widest text-coral uppercase font-bold -mt-0.5 block">
+                  Photography Atelier
+                </span>
               </div>
-              <span className="font-serif text-xl font-bold tracking-wider text-studio-50">
-                MYTHRI STUDIOS
-              </span>
             </div>
-            <p className="text-sm leading-relaxed text-studio-400">
-              {studioConfig.shortBio}
+            <p className="text-xs sm:text-sm leading-relaxed text-charcoal-600 font-normal">
+              Preserving authentic human narrative, light poetry, and celebration stories through fine art photography and 4K cinematography.
             </p>
-            <div className="flex items-center gap-3 pt-2">
-              {studioConfig.socials.map((social) => (
+            <div className="flex items-center gap-2 pt-2">
+              {['Instagram', 'Pinterest', 'Vimeo', 'Behance'].map((name) => (
                 <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2.5 py-1 rounded bg-studio-900 hover:bg-studio-800 border border-studio-800 text-xs text-studio-300 hover:text-gold transition-colors"
+                  key={name}
+                  href="#"
+                  className="px-3 py-1 rounded-full bg-white border border-gray-200 hover:bg-coral hover:text-white hover:border-coral text-xs text-charcoal-700 transition-all font-semibold shadow-sm"
                 >
-                  {social.name}
+                  {name}
                 </a>
               ))}
             </div>
@@ -40,18 +45,28 @@ export default function Footer() {
 
           {/* Col 2: Navigation */}
           <div>
-            <h4 className="font-serif text-studio-100 text-base font-semibold mb-4 tracking-wider uppercase text-xs text-gold">
+            <h4 className="text-charcoal-900 text-xs font-bold mb-4 tracking-widest uppercase">
               Navigation
             </h4>
-            <ul className="space-y-2.5 text-sm">
-              {studioConfig.navigation.map((item) => (
-                <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    className="hover:text-gold transition-colors inline-block"
-                  >
-                    {item.label}
-                  </Link>
+            <ul className="space-y-2.5 text-xs sm:text-sm font-medium">
+              {[
+                { label: 'Home', href: '#home' },
+                { label: 'About Us', href: '#about' },
+                { label: 'Pricing & Packages', href: '#pricing' },
+                { label: 'Portfolio Gallery', path: '/portfolio' },
+                { label: 'FAQ (Frequently Asked Questions)', href: '#faq' },
+                { label: 'Contact & Booking', href: '#contact' },
+              ].map((item, idx) => (
+                <li key={idx}>
+                  {item.path ? (
+                    <Link to={item.path} className="hover:text-coral transition-colors">
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a href={item.href} className="hover:text-coral transition-colors">
+                      {item.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -59,66 +74,63 @@ export default function Footer() {
 
           {/* Col 3: Studio Location & Hours */}
           <div>
-            <h4 className="font-serif text-studio-100 text-base font-semibold mb-4 tracking-wider uppercase text-xs text-gold">
+            <h4 className="text-charcoal-900 text-xs font-bold mb-4 tracking-widest uppercase">
               Studio & Atelier
             </h4>
-            <div className="space-y-3 text-sm">
+            <div className="space-y-3 text-xs sm:text-sm">
               <div className="flex items-start gap-2.5">
-                <MapPin size={16} className="text-gold shrink-0 mt-0.5" />
-                <span>
-                  {studioConfig.contact.address.street},<br />
-                  {studioConfig.contact.address.city}, {studioConfig.contact.address.state}
+                <MapPin size={16} className="text-coral shrink-0 mt-0.5" />
+                <span className="text-charcoal-600">
+                  42 Heritage Boulevard, Art Quarter,<br />
+                  Bengaluru, KA 560001
                 </span>
               </div>
-              <div className="pt-2">
-                <p className="text-xs text-studio-300 font-medium uppercase tracking-wider mb-1">
+              <div className="pt-2 text-xs">
+                <p className="text-charcoal-900 font-semibold uppercase tracking-wider mb-1">
                   Atelier Hours
                 </p>
-                {studioConfig.contact.hours.slice(0, 2).map((h, i) => (
-                  <p key={i} className="text-xs text-studio-400">
-                    <span className="text-studio-300">{h.days}:</span> {h.time}
-                  </p>
-                ))}
+                <p className="text-charcoal-500">Tuesday – Saturday: 10:00 AM – 7:00 PM</p>
+                <p className="text-charcoal-500">Sunday: By Prior Appointment</p>
               </div>
             </div>
           </div>
 
           {/* Col 4: Direct Inquiries */}
           <div>
-            <h4 className="font-serif text-studio-100 text-base font-semibold mb-4 tracking-wider uppercase text-xs text-gold">
+            <h4 className="text-charcoal-900 text-xs font-bold mb-4 tracking-widest uppercase">
               Direct Inquiries
             </h4>
-            <div className="space-y-3 text-sm mb-5">
+            <div className="space-y-3 text-xs sm:text-sm mb-5">
               <a
                 href={`mailto:${studioConfig.contact.email}`}
-                className="flex items-center gap-2 hover:text-gold transition-colors"
+                className="flex items-center gap-2 hover:text-coral transition-colors text-charcoal-600"
               >
-                <Mail size={16} className="text-gold shrink-0" />
+                <Mail size={16} className="text-coral shrink-0" />
                 <span className="truncate">{studioConfig.contact.email}</span>
               </a>
               <a
                 href={`tel:${studioConfig.contact.phone}`}
-                className="flex items-center gap-2 hover:text-gold transition-colors"
+                className="flex items-center gap-2 hover:text-coral transition-colors text-charcoal-600"
               >
-                <Phone size={16} className="text-gold shrink-0" />
+                <Phone size={16} className="text-coral shrink-0" />
                 <span>{studioConfig.contact.phoneDisplay}</span>
               </a>
             </div>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-gold hover:text-gold-light uppercase tracking-wider group"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-coral hover:text-coral-dark uppercase tracking-wider group"
             >
-              <span>Request Private Consultation</span>
+              <span>Schedule Atelier Consultation</span>
               <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-studio-900/80 flex flex-col sm:flex-row items-center justify-between text-xs text-studio-500 gap-4">
-          <p>© {currentYear} {studioConfig.name}. All rights reserved.</p>
+        <div className="pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between text-xs text-charcoal-500 gap-4">
+          <p>© {currentYear} MY3 Photography Studio. All rights reserved.</p>
           <p className="tracking-wide">
-            Designed for timeless visual storytelling.
+            Editorial Photography & Fine Art Visuals.
           </p>
         </div>
       </div>

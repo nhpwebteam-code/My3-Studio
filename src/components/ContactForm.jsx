@@ -50,9 +50,9 @@ export default function ContactForm({ initialService = '' }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-6 sm:p-8 space-y-4 border border-studio-800/80">
+    <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 space-y-4 border border-gray-200 shadow-sm">
       {error && (
-        <div className="flex items-center gap-2 p-3 rounded-xl bg-red-950/40 border border-red-800/60 text-red-300 text-xs">
+        <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs">
           <AlertCircle size={16} className="shrink-0" />
           <span>{error}</span>
         </div>
@@ -61,21 +61,23 @@ export default function ContactForm({ initialService = '' }) {
       <FormFields formData={formData} onChange={handleChange} />
 
       <div>
-        <label className="block text-xs uppercase tracking-wider text-studio-300 mb-1.5">Your Vision & Details *</label>
+        <label className="block text-xs uppercase tracking-wider text-charcoal-700 font-bold mb-1.5">
+          Your Vision & Details *
+        </label>
         <textarea
           name="message"
           required
           rows={3}
           value={formData.message}
           onChange={handleChange}
-          placeholder="Tell us about the celebration, location, inspirations, or questions..."
-          className="w-full px-4 py-2.5 rounded-xl bg-studio-900 border border-studio-800 focus:border-gold focus:outline-none text-sm text-studio-100 placeholder-studio-600 transition-colors resize-none"
+          placeholder="Tell us about the shoot, venue, desired mood, or questions..."
+          className="w-full px-4 py-2.5 rounded-xl bg-gray-50 border border-gray-200 focus:border-coral focus:ring-1 focus:ring-coral focus:outline-none text-sm text-charcoal-900 placeholder-gray-400 transition-colors resize-none"
         />
       </div>
 
       <button
         type="submit"
-        className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl text-xs uppercase tracking-wider font-semibold bg-gold text-studio-950 hover:bg-gold-light transition-all shadow-lg hover:shadow-gold/20"
+        className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full text-xs uppercase tracking-wider font-bold bg-coral text-white hover:bg-coral-dark transition-all shadow-md shadow-coral/30 active:scale-95"
       >
         <span>Submit Booking Inquiry</span>
         <Send size={15} />

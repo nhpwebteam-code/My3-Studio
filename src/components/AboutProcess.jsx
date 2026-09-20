@@ -1,30 +1,30 @@
 import React from 'react';
-import { Sparkles, Calendar, Camera, Award } from 'lucide-react';
+import { Calendar, Camera, Film, Gift } from 'lucide-react';
 
 const steps = [
   {
     step: "01",
-    title: "Discovery & Moodboarding",
+    title: "Planning & Date Lock",
     icon: Calendar,
-    desc: "We discuss your personal aesthetic, wardrobe nuances, location ambiance, and lighting cues over tea or video call.",
+    desc: "We discuss your event dates, venue locations, rituals schedule, and package requirements to lock in our crew.",
   },
   {
     step: "02",
-    title: "Production & Direction",
+    title: "Event Day Coverage",
     icon: Camera,
-    desc: "A relaxed, immersive shooting environment with gentle guidance, natural rapport, and precision lighting.",
+    desc: "Our dedicated photo and video team captures traditional rituals, candid moments, drone angles, and family portraits.",
   },
   {
     step: "03",
-    title: "Darkroom & Retouching",
-    icon: Sparkles,
-    desc: "Each frame is meticulously color graded to achieve organic skin tones, rich analog tonal gradations, and cinematic contrast.",
+    title: "Editing & Color Tuning",
+    icon: Film,
+    desc: "We edit the full ceremony videos, cut the cinematic highlights teaser, and retouch all photos with natural color tones.",
   },
   {
     step: "04",
-    title: "Heirloom Delivery",
-    icon: Award,
-    desc: "Private cloud gallery delivery of full resolution files, accompanied by custom Italian linen print folios.",
+    title: "Album & Media Delivery",
+    icon: Gift,
+    desc: "You receive your printed photo album, calendars, framed prints, master edited video, and all files on a high-speed pendrive.",
   },
 ];
 
@@ -32,11 +32,11 @@ export default function AboutProcess() {
   return (
     <section className="space-y-10">
       <div className="text-center max-w-2xl mx-auto">
-        <span className="text-xs uppercase tracking-widest text-gold font-semibold mb-2 block">
-          The Experience
+        <span className="font-script text-3xl text-coral block -mb-1 select-none">
+          Simple & Transparent
         </span>
-        <h2 className="font-serif text-3xl sm:text-4xl text-studio-50">
-          Our Four-Stage Creative Journey
+        <h2 className="font-display font-black text-3xl sm:text-4xl text-charcoal-900 tracking-tight">
+          How We Work With You
         </h2>
       </div>
 
@@ -44,17 +44,17 @@ export default function AboutProcess() {
         {steps.map((s, idx) => {
           const Icon = s.icon;
           return (
-            <div key={idx} className="glass-card rounded-2xl p-6 relative group border border-studio-800">
-              <span className="font-mono text-xs text-gold font-bold block mb-4">
-                PHASE {s.step}
+            <div key={idx} className="bg-white rounded-3xl p-6 relative group border border-gray-200 hover:border-coral/40 shadow-sm hover:shadow-xl transition-all">
+              <span className="font-display text-sm text-coral font-black block mb-4">
+                Step {s.step}
               </span>
-              <div className="w-10 h-10 rounded-xl bg-studio-900 border border-studio-700 flex items-center justify-center text-gold mb-4 group-hover:border-gold/60 transition-colors">
-                <Icon size={18} />
+              <div className="w-12 h-12 rounded-2xl bg-coral-50 text-coral flex items-center justify-center mb-4 group-hover:bg-coral group-hover:text-white transition-all">
+                <Icon size={20} />
               </div>
-              <h3 className="font-serif text-lg text-studio-100 mb-2">
+              <h3 className="font-display font-bold text-lg text-charcoal-900 mb-2">
                 {s.title}
               </h3>
-              <p className="text-xs text-studio-400 leading-relaxed font-light">
+              <p className="text-xs text-charcoal-600 leading-relaxed font-normal">
                 {s.desc}
               </p>
             </div>

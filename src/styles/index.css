@@ -3,46 +3,51 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-color: #07080B;
-    color: #F1F5F9;
+    background-color: #FFFFFF;
+    color: #1E2024;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
   }
 
+  ::selection {
+    background-color: #FF6548;
+    color: #FFFFFF;
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
     letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
-  /* Editorial custom subtle scrollbar */
+  /* Editorial subtle scrollbar */
   ::-webkit-scrollbar {
-    width: 7px;
+    width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0E1017;
+    background: #F4F4F5;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2A3142;
+    background: #D4D4D8;
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #C9A96E;
+    background: #FF6548;
   }
 
-  /* Glassmorphism token */
-  .glass-header {
-    background: rgba(14, 16, 23, 0.75);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+  /* Glassmorphism tokens */
+  .glass-header-light {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
-  .glass-card {
-    background: rgba(20, 23, 33, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+  .editorial-shadow {
+    box-shadow: 0 20px 40px -15px rgba(30, 32, 36, 0.08);
   }
 }

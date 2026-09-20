@@ -5,7 +5,7 @@ export default function GalleryCard({ item, onSelect }) {
   return (
     <div
       onClick={() => onSelect(item)}
-      className="group relative cursor-pointer overflow-hidden rounded-xl bg-studio-900 border border-studio-800/80 transition-all duration-500 hover:border-gold/50 hover:shadow-2xl hover:shadow-black/60"
+      className="group relative cursor-pointer overflow-hidden rounded-2xl bg-gray-100 border border-gray-200 transition-all duration-500 hover:border-coral/50 hover:shadow-2xl"
     >
       {/* Image container */}
       <div className="relative overflow-hidden aspect-[4/5] sm:aspect-auto">
@@ -17,34 +17,34 @@ export default function GalleryCard({ item, onSelect }) {
         />
 
         {/* Ambient Dark Gradient on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-studio-950 via-studio-950/40 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/85 via-charcoal-950/30 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-300" />
       </div>
 
       {/* Top Badge */}
       <div className="absolute top-3.5 left-3.5 z-10">
-        <span className="px-2.5 py-1 rounded-md text-[10px] uppercase tracking-wider font-semibold bg-studio-950/80 text-studio-200 border border-studio-700/60 backdrop-blur-md">
+        <span className="px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-white/90 text-charcoal shadow-sm backdrop-blur-md">
           {item.categoryLabel}
         </span>
       </div>
 
       {/* Expand Icon */}
       <div className="absolute top-3.5 right-3.5 z-10 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-        <div className="w-8 h-8 rounded-full bg-studio-950/80 border border-gold/40 text-gold flex items-center justify-center backdrop-blur-md">
-          <Maximize2 size={14} />
+        <div className="w-9 h-9 rounded-full bg-coral text-white flex items-center justify-center shadow-lg">
+          <Maximize2 size={15} />
         </div>
       </div>
 
       {/* Bottom Info Overlay */}
-      <div className="absolute bottom-0 inset-x-0 p-5 z-10">
-        <p className="text-[11px] font-mono text-gold mb-1 tracking-wider uppercase">
+      <div className="absolute bottom-0 inset-x-0 p-5 z-10 text-white">
+        <p className="text-[11px] font-mono text-coral-light mb-1 tracking-wider uppercase font-bold">
           {item.year} • {item.client}
         </p>
-        <h3 className="font-serif text-lg md:text-xl text-studio-50 font-medium group-hover:text-white transition-colors">
+        <h3 className="font-display text-lg md:text-xl font-bold group-hover:text-white transition-colors">
           {item.title}
         </h3>
         {item.location && (
-          <div className="flex items-center gap-1.5 text-xs text-studio-400 mt-1 opacity-80">
-            <MapPin size={12} className="text-gold" />
+          <div className="flex items-center gap-1.5 text-xs text-gray-300 mt-1">
+            <MapPin size={12} className="text-coral" />
             <span>{item.location}</span>
           </div>
         )}

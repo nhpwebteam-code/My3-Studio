@@ -7,34 +7,45 @@ export default {
   theme: {
     extend: {
       colors: {
-        studio: {
-          950: '#07080B',
-          900: '#0E1017',
-          850: '#141721',
-          800: '#1C212E',
-          700: '#2A3142',
-          600: '#475369',
-          500: '#7E8B9B',
-          400: '#A3B0C2',
-          300: '#CBD5E1',
-          200: '#E2E8F0',
-          100: '#F1F5F9',
-          50: '#FAF8F5',
+        coral: {
+          DEFAULT: '#FF6548',
+          light: '#FF8066',
+          dark: '#E54F33',
+          50: '#FFF5F3',
+          100: '#FFE8E4',
+          500: '#FF6548',
+          600: '#E54F33',
         },
-        gold: {
-          DEFAULT: '#C9A96E',
-          light: '#E4CF9B',
-          dark: '#9E7C3C',
-          shimmer: '#F6E7C1',
+        charcoal: {
+          DEFAULT: '#1E2024',
+          50: '#F7F7F8',
+          100: '#EEEEF0',
+          200: '#D9DBDF',
+          300: '#B5B8C0',
+          400: '#838793',
+          500: '#5F636F',
+          600: '#42454E',
+          700: '#2F3239',
+          800: '#23252B',
+          900: '#191A1E',
+          950: '#111215',
+        },
+        orange: {
+          50: '#FFF7ED',
+          500: '#F97316',
+          600: '#EA580C',
         },
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+        display: ['"Montserrat"', '"Plus Jakarta Sans"', 'sans-serif'],
+        script: ['"Caveat"', 'cursive'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',
         'fade-up': 'fadeUp 0.6s ease-out forwards',
+        'spin-slow': 'spin 18s linear infinite',
       },
       keyframes: {
         fadeIn: {

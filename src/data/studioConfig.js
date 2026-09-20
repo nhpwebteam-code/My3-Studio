@@ -3,13 +3,13 @@
  * Real details can be updated here without changing component logic.
  */
 export const studioConfig = {
-  name: "Mythri Studios",
+  name: "MY3 Studio",
   tagline: "Fine Art, Wedding & Editorial Photography",
   shortBio: "Crafting timeless visual heirlooms with cinematic light, natural emotion, and modern editorial precision.",
   establishedYear: 2018,
   
   contact: {
-    email: "inquiries@mythristudios.com",
+    email: "inquiries@my3studio.com",
     phone: "+91 98765 43210",
     phoneDisplay: "+91 (0) 98765 43210",
     address: {

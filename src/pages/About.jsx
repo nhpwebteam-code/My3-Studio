@@ -6,44 +6,46 @@ import { studioConfig } from '../data/studioConfig';
 
 export default function About() {
   return (
-    <div className="pb-24 space-y-24">
+    <div className="pb-24 space-y-24 bg-white">
       <PageHeader
-        breadcrumb="About"
-        badge="Philosophy & Atelier"
-        title="Artistry Bound to Authentic Light"
-        subtitle="Mythri Studios was founded with an uncompromised commitment to preserving human legacy with painterly tonality and documentary truth."
+        kicker="Behind The Lens"
+        title="About MY3 Studio"
+        subtitle="Dedicated to authentic wedding stories, vibrant birthday celebrations, and timeless portraits."
       />
 
       {/* Origin Story & Vision */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl border border-studio-800">
-            <img
-              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1000&q=85"
-              alt="Studio Founder at Work"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-studio-950/80 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 text-xs text-studio-300 font-mono">
-              EST. {studioConfig.establishedYear} • BENGALURU, INDIA
+          <div className="relative flex flex-col items-center justify-center">
+            <div className="relative w-full max-w-[400px]">
+              <img
+                src="/photographer-bw.png"
+                alt="MY3 Studio Lead Photographer"
+                className="w-full h-auto object-contain filter contrast-105 drop-shadow-[0_20px_35px_rgba(0,0,0,0.2)]"
+              />
+              <div className="mt-3 p-4 rounded-2xl bg-gray-50 border border-gray-200 shadow-sm text-center">
+                <span className="text-xs text-charcoal-600 font-mono tracking-wider font-bold">
+                  EST. {studioConfig.establishedYear} • PROFESSIONAL EVENT COVERAGE
+                </span>
+              </div>
             </div>
           </div>
 
-          <div className="space-y-6 text-studio-300 font-light leading-relaxed text-sm sm:text-base">
-            <span className="text-xs uppercase tracking-widest text-gold font-semibold block">
-              The Philosophy
+          <div className="space-y-6 text-charcoal-600 font-normal leading-relaxed text-sm sm:text-base">
+            <span className="font-script text-3xl text-coral block -mb-2 select-none">
+              Our Story
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-studio-50 leading-tight">
-              Beyond Trends: Creating Visual Heirlooms
+            <h2 className="font-display font-black text-3xl sm:text-4xl text-charcoal-900 leading-tight">
+              Real Smiles, Genuine Emotions & True Colors
             </h2>
             <p>
-              In an era overwhelmed by disposable digital snapshots, Mythri Studios operates with the deliberate patience of an art atelier. We treat light as a sculptor treats stone — shaping mood, revealing personality, and immortalizing moments before they fade into memory.
+              We believe great photography isn't about stiff poses or artificial filters. It's about capturing how your celebration actually felt — the laughter during haldi, the happy tears during the vows, and the joyous dance floor energy with your closest friends.
             </p>
             <p>
-              Whether documenting high-profile weddings or sculpting an intimate editorial portrait, our approach balances unobtrusive photojournalism with refined cinematic direction.
+              With over 8 years of experience covering multi-day weddings, birthday milestones, and family gatherings, our team combines traditional rituals coverage with modern candid moments and cinematic drone visuals.
             </p>
-            <div className="p-5 rounded-xl bg-studio-900 border border-studio-800 italic font-serif text-studio-100 text-sm">
-              "A photograph is not taken; it is recognized, honored, and distilled."
+            <div className="p-6 rounded-2xl bg-gray-50 border-l-4 border-coral text-charcoal-800 text-sm font-semibold">
+              "We take care of every detail — from photography and videography to custom printed albums and frames you'll cherish for a lifetime."
             </div>
           </div>
         </div>
@@ -57,11 +59,11 @@ export default function About() {
       {/* The Team / Artists */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs uppercase tracking-widest text-gold font-semibold mb-2 block">
-            The Artists
+          <span className="font-script text-3xl text-coral block -mb-1 select-none">
+            Our Crew
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-studio-50">
-            Meet the Principal Creators
+          <h2 className="font-display font-black text-3xl sm:text-4xl text-charcoal-900 tracking-tight">
+            Meet the Team
           </h2>
         </div>
 
@@ -69,7 +71,7 @@ export default function About() {
           {teamMembers.map((member, idx) => (
             <div
               key={idx}
-              className="rounded-2xl bg-studio-900/80 border border-studio-800 overflow-hidden group hover:border-gold/40 transition-all duration-300 flex flex-col"
+              className="rounded-3xl bg-white border border-gray-200 overflow-hidden group hover:border-coral/40 hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm"
             >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <img
@@ -77,22 +79,22 @@ export default function About() {
                   alt={member.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-studio-950 via-studio-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent" />
               </div>
               <div className="p-6 flex-grow flex flex-col justify-between">
                 <div>
-                  <p className="text-[11px] font-mono text-gold uppercase tracking-wider mb-1">
+                  <p className="text-[11px] font-mono text-coral uppercase tracking-wider font-bold mb-1">
                     {member.role}
                   </p>
-                  <h3 className="font-serif text-xl text-studio-50 mb-2">
+                  <h3 className="font-display font-bold text-xl text-charcoal-900 mb-2">
                     {member.name}
                   </h3>
-                  <p className="text-xs text-studio-400 leading-relaxed font-light mb-4">
+                  <p className="text-xs text-charcoal-600 leading-relaxed font-normal mb-4">
                     {member.bio}
                   </p>
                 </div>
-                <div className="pt-3 border-t border-studio-800/80 text-[11px] text-studio-500">
-                  <span className="text-studio-400">Specialty:</span> {member.specialty}
+                <div className="pt-3 border-t border-gray-100 text-[11px] text-charcoal-500">
+                  <span className="font-bold text-charcoal-700">Specialty:</span> {member.specialty}
                 </div>
               </div>
             </div>
