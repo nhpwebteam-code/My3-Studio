@@ -52,8 +52,8 @@ export default function InteractiveMap() {
       html: `
         <div style="position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer;">
           <div style="position: absolute; width: 46px; height: 46px; background: rgba(225, 91, 62, 0.35); border-radius: 50%; animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
-          <div style="position: relative; width: 38px; height: 38px; background: #E15B3E; border: 3px solid #ffffff; border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 16px;">
-            📸
+          <div style="position: relative; width: 38px; height: 38px; background: #E15B3E; border: 3px solid #ffffff; border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 18px; line-height: 1;">
+            📍
           </div>
         </div>
       `,
@@ -114,29 +114,31 @@ export default function InteractiveMap() {
 
   return (
     <div className="relative w-full h-full min-h-[380px] lg:min-h-[480px]">
-      {/* Map Switcher Pill (Top-Right) */}
-      <div className="absolute top-4 right-4 z-[400] flex items-center bg-white/90 backdrop-blur-md rounded-full p-1 border border-[#EAE4D9] shadow-md">
+      {/* Map Switcher Pill (Top-Right) - Emojis only matching user drawing */}
+      <div className="absolute top-3 right-3 z-[400] flex items-center bg-white/95 backdrop-blur-md rounded-full p-1 border border-[#EAE4D9] shadow-lg">
         <button
           type="button"
           onClick={() => switchMapType('satellite')}
-          className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
+          title="Google Satellite View"
+          className={`w-8 h-8 rounded-full flex items-center justify-center text-base transition-all ${
             mapType === 'satellite'
-              ? 'bg-coral text-white shadow-sm'
-              : 'text-charcoal-700 hover:text-charcoal-900'
+              ? 'bg-coral text-white shadow-sm scale-105'
+              : 'text-charcoal-600 hover:bg-gray-100'
           }`}
         >
-          🛰️ Satellite
+          🛰️
         </button>
         <button
           type="button"
           onClick={() => switchMapType('roadmap')}
-          className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
+          title="Google Standard Map"
+          className={`w-8 h-8 rounded-full flex items-center justify-center text-base transition-all ${
             mapType === 'roadmap'
-              ? 'bg-coral text-white shadow-sm'
-              : 'text-charcoal-700 hover:text-charcoal-900'
+              ? 'bg-coral text-white shadow-sm scale-105'
+              : 'text-charcoal-600 hover:bg-gray-100'
           }`}
         >
-          🗺️ Map
+          🗺️
         </button>
       </div>
 
