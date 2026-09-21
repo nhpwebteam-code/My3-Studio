@@ -46,20 +46,18 @@ export default function InteractiveMap() {
 
     currentTileLayerRef.current = tileLayer;
 
-    // Custom glowing Studio Pin
+    // Exact 3D Red Location Pin from user's uploaded image
     const customIcon = L.divIcon({
-      className: 'studio-google-marker',
+      className: 'studio-location-pin',
       html: `
-        <div style="position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-          <div style="position: absolute; width: 46px; height: 46px; background: rgba(225, 91, 62, 0.35); border-radius: 50%; animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
-          <div style="position: relative; width: 38px; height: 38px; background: #E15B3E; border: 3px solid #ffffff; border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 18px; line-height: 1;">
-            📍
-          </div>
+        <div style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 44px; height: 58px; cursor: pointer;">
+          <div style="position: absolute; bottom: 1px; width: 20px; height: 8px; background: rgba(0, 0, 0, 0.4); border-radius: 50%; filter: blur(2px);"></div>
+          <img src="/pin.png" alt="Mythri Studio Location Pin" style="width: 42px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); transform: translateY(-2px);" />
         </div>
       `,
-      iconSize: [38, 38],
-      iconAnchor: [19, 19],
-      popupAnchor: [0, -22],
+      iconSize: [44, 58],
+      iconAnchor: [22, 58],
+      popupAnchor: [0, -56],
     });
 
     const marker = L.marker(studioCoords, { icon: customIcon }).addTo(map);
