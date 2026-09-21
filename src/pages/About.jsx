@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import HomeStats from '../components/HomeStats';
 import AboutProcess from '../components/AboutProcess';
-import { teamMembers } from '../data/team';
 import { studioConfig } from '../data/studioConfig';
 
 export default function About() {
@@ -74,52 +73,6 @@ export default function About() {
       {/* The 4-step Process */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AboutProcess />
-      </section>
-
-      {/* The Team / Artists */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="font-script text-3xl text-coral block -mb-1 select-none">
-            Our Crew
-          </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl text-charcoal-900 tracking-tight">
-            Meet the Team
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {teamMembers.map((member, idx) => (
-            <div
-              key={idx}
-              className="rounded-3xl bg-white border border-[#EAE4D9] overflow-hidden group hover:border-coral/40 hover:shadow-xl transition-all duration-300 flex flex-col shadow-sm"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent" />
-              </div>
-              <div className="p-6 flex-grow flex flex-col justify-between">
-                <div>
-                  <p className="text-[11px] font-mono text-coral uppercase tracking-wider font-bold mb-1">
-                    {member.role}
-                  </p>
-                  <h3 className="font-display font-bold text-xl text-charcoal-900 mb-2">
-                    {member.name}
-                  </h3>
-                  <p className="text-xs text-charcoal-600 leading-relaxed font-normal mb-4">
-                    {member.bio}
-                  </p>
-                </div>
-                <div className="pt-3 border-t border-gray-100 text-[11px] text-charcoal-500">
-                  <span className="font-bold text-charcoal-700">Specialty:</span> {member.specialty}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* CTA Section */}

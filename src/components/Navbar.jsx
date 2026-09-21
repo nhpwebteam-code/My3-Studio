@@ -260,10 +260,13 @@ export default function Navbar({ onOpenBooking }) {
                 <Phone size={14} className="text-coral" />
                 <span>+91 77801 81436 (Desk)</span>
               </a>
-              <div className="flex items-center space-x-2">
+              <a
+                href="mailto:rmythristudiondl.anji@gmail.com"
+                className="flex items-center space-x-2 hover:text-coral transition-colors"
+              >
                 <Mail size={14} className="text-coral" />
-                <span>mythristudiondl@gmail.com</span>
-              </div>
+                <span>rmythristudiondl.anji@gmail.com</span>
+              </a>
               <div className="pt-2 flex items-center gap-3">
                 <a
                   href="https://www.instagram.com/mythri_studio_ndl"

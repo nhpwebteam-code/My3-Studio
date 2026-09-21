@@ -22,13 +22,13 @@ export default function Home() {
         }}
       />
 
-      {/* 2. Curated Frames Editorial Section (Directly from reference design) */}
+      {/* 2. Curated Frames Editorial Section (Scroll-driven interactive frames arc) */}
       <CuratedFramesSection onOpenBooking={() => setIsBookingOpen(true)} />
 
-      {/* 3. Arched Photo Collage & 3-Column Testimonials Showcase */}
+      {/* 3. Client Testimonials */}
       <ReviewsSection />
 
-      {/* 4. Justdial 4.7 Rating Index, Rating Trend Bar Chart & Interactive Review Carousel */}
+      {/* 3. Justdial Reviews */}
       <JustdialReviews />
 
       {/* Interactive Booking Modal */}

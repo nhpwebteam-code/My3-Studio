@@ -9,11 +9,6 @@ import {
   CheckCircle,
   Sparkles,
   PhoneCall,
-  Star,
-  Clock,
-  CreditCard,
-  RefreshCw,
-  Award,
   Users,
   Heart,
   Crown,
@@ -31,163 +26,62 @@ export default function Pricing() {
   return (
     <div className="pb-24 bg-[#FAF7F2] text-charcoal min-h-screen">
       {/* ═══════════════════════════════════════════
-          HERO SECTION - Inspired by Reference
+          HERO SECTION - Exact Reference Design
       ═══════════════════════════════════════════ */}
-      <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 overflow-hidden">
-        {/* Background Gradient Orbs */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-32 -right-32 w-96 h-96 bg-coral/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-orange-100/40 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-coral/3 rounded-full blur-[100px]" />
+      <section className="relative pt-32 sm:pt-40 pb-12 sm:pb-14 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+        {/* Top Pill Badge matching other sections */}
+        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-coral-50 border border-coral/20 text-coral text-xs font-bold uppercase tracking-wider mb-5">
+          Plan & Pricing
         </div>
 
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Kicker */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral-50 border border-coral/15 mb-6">
-            <Award size={14} className="text-coral" />
-            <span className="text-xs font-bold text-coral uppercase tracking-wider">
-              Transparent Investments
-            </span>
-          </div>
+        {/* Two-Tone Headline matching reference */}
+        <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-[54px] text-charcoal-900 tracking-tight leading-[1.18] mb-4">
+          <span className="text-coral">Choose the plan</span> that's <br className="hidden sm:inline" />
+          right for you
+        </h1>
 
-          {/* Main Headline */}
-          <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-charcoal-900 tracking-tight mb-3 leading-[1.1]">
-            Small Investment
-          </h1>
-          <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl bg-gradient-to-r from-coral via-orange-500 to-coral bg-clip-text text-transparent tracking-tight mb-6 leading-[1.1]">
-            Huge Visual Legacy
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-sm sm:text-base md:text-lg text-charcoal-500 max-w-2xl mx-auto leading-relaxed mb-10">
-            Complete upfront pricing for multi-day weddings, birthday milestones,
-            and celebratory gatherings with custom album options and 4K
-            cinematography.
-          </p>
-
-          {/* Trust Badges Row */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-10">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#EAE4D9] shadow-sm">
-              <CreditCard size={15} className="text-coral" />
-              <span className="text-xs font-semibold text-charcoal-700">
-                One-time Payment
-              </span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#EAE4D9] shadow-sm">
-              <CheckCircle size={15} className="text-coral" />
-              <span className="text-xs font-semibold text-charcoal-700">
-                All Deliverables Included
-              </span>
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#EAE4D9] shadow-sm">
-              <RefreshCw size={15} className="text-coral" />
-              <span className="text-xs font-semibold text-charcoal-700">
-                100% Satisfaction Guarantee
-              </span>
-            </div>
-          </div>
-
-          {/* Social Proof Strip */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-            {/* Avatar Stack */}
-            <div className="flex -space-x-2.5">
-              {[
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face',
-                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face',
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face',
-                'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&h=80&fit=crop&crop=face',
-              ].map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt="Happy client"
-                  className="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm"
-                />
-              ))}
-              <div className="w-8 h-8 rounded-full bg-coral border-2 border-white flex items-center justify-center">
-                <span className="text-[9px] font-black text-white">15+</span>
-              </div>
-            </div>
-
-            {/* Rating & Stars */}
-            <div className="flex items-center gap-3">
-              <div className="flex flex-col items-center sm:items-start">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-lg font-black text-charcoal-900">4.7</span>
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={14}
-                        className={
-                          i < 4
-                            ? 'text-amber-400 fill-amber-400'
-                            : 'text-amber-400 fill-amber-400 opacity-70'
-                        }
-                      />
-                    ))}
-                  </div>
-                </div>
-                <span className="text-[11px] text-charcoal-500 font-medium">
-                  15 verified ratings on Justdial
-                </span>
-              </div>
-            </div>
-
-            {/* Justdial Badge */}
-            <a
-              href="https://www.justdial.com/Nandyal/Mythri-Studio-Nandyal/9999P8514-8514-181022124920-M7R5_BZDET/reviews"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#EAE4D9] shadow-sm text-[11px] font-bold text-charcoal-600 hover:border-coral/40 hover:text-coral transition-colors"
-            >
-              <ShieldCheck size={12} className="text-green-500" />
-              Verified on Justdial
-            </a>
-          </div>
-        </div>
+        {/* Subtitle keeping existing studio text */}
+        <p className="text-xs sm:text-sm text-charcoal-500 max-w-lg mx-auto leading-relaxed">
+          Complete upfront pricing for multi-day weddings, birthday milestones, and celebratory gatherings with custom album options and 4K cinematography.
+        </p>
       </section>
 
       {/* ═══════════════════════════════════════════
-          PRICING CARDS GRID
+          PRICING CARDS GRID - Exact Reference 3-Card Layout
       ═══════════════════════════════════════════ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4">
-        {/* Reorder: 1-day → 2-day (popular/center) → birthday */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-5 items-start">
-          {/* Left card: 1 Day Single Event */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-6 items-stretch">
+          {/* Left card: 1 Day Single Event (Starter style) */}
           {services
             .filter((s) => s.id === '1day-event')
             .map((service) => (
-              <div key={service.id} className="lg:mt-8">
+              <div key={service.id} className="flex">
                 <PricingCard
                   service={service}
-                  isPopular={false}
                   onBook={handleBookService}
                 />
               </div>
             ))}
 
-          {/* Center card: 2 Days (Most Popular — elevated) */}
+          {/* Center card: 2 Days (Most Recommended - Gradient Cap & Frame) */}
           {services
             .filter((s) => s.id === '2days-package')
             .map((service) => (
-              <div key={service.id} className="lg:-mt-2">
+              <div key={service.id} className="flex">
                 <PricingCard
                   service={service}
-                  isPopular={true}
                   onBook={handleBookService}
                 />
               </div>
             ))}
 
-          {/* Right card: Birthday */}
+          {/* Right card: Birthday & Milestones (Enterprise style) */}
           {services
             .filter((s) => s.id === 'birthday-shoot')
             .map((service) => (
-              <div key={service.id} className="lg:mt-8">
+              <div key={service.id} className="flex">
                 <PricingCard
                   service={service}
-                  isPopular={false}
                   onBook={handleBookService}
                 />
               </div>

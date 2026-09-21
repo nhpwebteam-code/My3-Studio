@@ -10,6 +10,7 @@ export default function BookingModal({ isOpen, onClose, initialPackageData }) {
   const [selectedExtras, setSelectedExtras] = useState(
     initialPackageData?.selectedExtras?.map((e) => e.id) || []
   );
+  const [isChangingPackage, setIsChangingPackage] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -107,40 +108,82 @@ export default function BookingModal({ isOpen, onClose, initialPackageData }) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* 1. Package Selection */}
+              {/* 1. Package Selection: Display only the selected package */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-charcoal-700 mb-1.5">
-                  Select Photography Package *
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  {services.map((s) => {
-                    const isSelected = selectedServiceId === s.id;
-                    return (
-                      <div
-                        key={s.id}
-                        onClick={() => {
-                          setSelectedServiceId(s.id);
-                          setSelectedExtras([]);
-                        }}
-                        className={`p-3 rounded-2xl border text-left cursor-pointer transition-all ${
-                          isSelected
-                            ? 'border-coral bg-coral-50/60 ring-2 ring-coral/20'
-                            : 'border-gray-200 hover:border-gray-300 bg-white'
-                        }`}
-                      >
-                        <span className="block text-[10px] uppercase font-bold text-coral mb-0.5">
-                          {s.duration}
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-charcoal-700">
+                    Selected Photography Package
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setIsChangingPackage(!isChangingPackage)}
+                    className="text-xs font-semibold text-coral hover:underline focus:outline-none transition-colors"
+                  >
+                    {isChangingPackage ? 'Close Options' : 'Change Package'}
+                  </button>
+                </div>
+
+                {!isChangingPackage ? (
+                  /* Clean Single Selected Package Card - Only shows the chosen package */
+                  <div className="p-4 rounded-2xl border-2 border-coral bg-coral-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm animate-fade-in">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="inline-block px-2.5 py-0.5 rounded-full bg-coral/15 text-coral text-[10px] font-black uppercase tracking-wider">
+                          {currentService.duration}
                         </span>
-                        <h5 className="font-bold text-xs text-charcoal-900 leading-tight mb-1">
-                          {s.title}
-                        </h5>
-                        <span className="text-sm font-black text-charcoal-900 font-display">
-                          {s.startingPrice}
+                        <span className="text-[11px] font-semibold text-charcoal-500">
+                          {currentService.type || 'Official Studio Package'}
                         </span>
                       </div>
-                    );
-                  })}
-                </div>
+                      <h4 className="font-display font-black text-base sm:text-lg text-charcoal-900 leading-tight">
+                        {currentService.title}
+                      </h4>
+                      <p className="text-xs text-charcoal-600 leading-relaxed max-w-md">
+                        {currentService.tagline}
+                      </p>
+                    </div>
+                    <div className="text-left sm:text-right shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-coral/20">
+                      <span className="text-[10px] uppercase font-bold text-charcoal-400 block">
+                        Base Investment
+                      </span>
+                      <span className="text-xl sm:text-2xl font-black text-coral font-display">
+                        {currentService.startingPrice}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  /* Alternate packages only show if user explicitly clicks 'Change Package' */
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 animate-fade-in">
+                    {services.map((s) => {
+                      const isSelected = selectedServiceId === s.id;
+                      return (
+                        <div
+                          key={s.id}
+                          onClick={() => {
+                            setSelectedServiceId(s.id);
+                            setSelectedExtras([]);
+                            setIsChangingPackage(false);
+                          }}
+                          className={`p-3 rounded-2xl border text-left cursor-pointer transition-all ${
+                            isSelected
+                              ? 'border-coral bg-coral-50/60 ring-2 ring-coral/20 shadow-sm'
+                              : 'border-gray-200 hover:border-gray-300 bg-white'
+                          }`}
+                        >
+                          <span className="block text-[10px] uppercase font-bold text-coral mb-0.5">
+                            {s.duration}
+                          </span>
+                          <h5 className="font-bold text-xs text-charcoal-900 leading-tight mb-1">
+                            {s.title}
+                          </h5>
+                          <span className="text-sm font-black text-charcoal-900 font-display">
+                            {s.startingPrice}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
               {/* 2. Extras & Add-ons Checklist */}

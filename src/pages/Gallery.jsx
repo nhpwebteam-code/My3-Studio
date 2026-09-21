@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import LightboxModal from '../components/LightboxModal';
 import { galleryItems, galleryCategories } from '../data/gallery';
-import { Maximize2, ArrowRight, Camera } from 'lucide-react';
+import { Camera } from 'lucide-react';
 
 export default function Gallery() {
   // Default to 'wedding' as shown in the reference screenshot
@@ -16,15 +16,17 @@ export default function Gallery() {
 
   return (
     <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
-      {/* 1. Header Section - Clean Serif Typography on Cream Background */}
+      {/* 1. Header Section - Matching Bold Display Typography of Other Sections */}
       <section className="pt-28 sm:pt-36 pb-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
-        <span className="text-[11px] sm:text-xs font-mono tracking-[0.25em] uppercase text-charcoal-500 font-bold block mb-3">
-          Preserving Every Cherished Chapter • Memories That Live Forever
-        </span>
-        <h1 className="font-serif tracking-[0.18em] sm:tracking-[0.22em] text-3xl sm:text-4xl md:text-5xl lg:text-6xl uppercase text-charcoal-900 font-normal">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral-50 border border-coral/15 mb-4">
+          <span className="text-xs font-bold text-coral uppercase tracking-wider">
+            Preserving Every Cherished Chapter • Memories That Live Forever
+          </span>
+        </div>
+        <h1 className="font-display font-black tracking-tight text-3xl sm:text-5xl md:text-6xl uppercase text-charcoal-900 leading-tight">
           THE GALLERY COLLECTION
         </h1>
-        <div className="w-16 h-0.5 bg-coral mx-auto mt-4 rounded-full" />
+        <div className="w-16 h-1 bg-coral mx-auto mt-4 rounded-full" />
       </section>
 
       {/* 2. Filter Pills - Exact Layout from Reference Screenshot */}
@@ -74,18 +76,8 @@ export default function Gallery() {
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
 
-              {/* Hover Dark Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/85 via-charcoal-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-5" />
-
-              {/* Hover Top Badge */}
-              <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-charcoal-900 shadow-md">
-                  <Maximize2 size={13} />
-                </div>
-              </div>
-
               {/* Bottom Center Circular Studio Emblem Watermark (as seen in reference) */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 group-hover:opacity-0 transition-opacity duration-200 pointer-events-none">
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none transition-transform duration-300 group-hover:scale-110">
                 <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm shadow-sm flex items-center justify-center p-0.5 border border-white">
                   <img
                     src="/logo.png"
@@ -93,23 +85,6 @@ export default function Gallery() {
                     className="w-full h-full object-contain rounded-full"
                   />
                 </div>
-              </div>
-
-              {/* Hover Bottom Title & Category */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white">
-                <span className="text-[10px] uppercase tracking-widest text-coral font-bold block mb-1">
-                  {item.categoryLabel}
-                </span>
-                <h3 className="font-display font-bold text-sm text-white leading-snug line-clamp-2">
-                  {item.title}
-                </h3>
-                <p className="text-[11px] text-white/70 mt-1 flex items-center justify-between">
-                  <span>{item.location}</span>
-                  <span className="text-coral font-bold flex items-center gap-1">
-                    <span>Full View</span>
-                    <ArrowRight size={11} />
-                  </span>
-                </p>
               </div>
             </div>
           ))}
@@ -129,58 +104,7 @@ export default function Gallery() {
         )}
       </section>
 
-      {/* 4. Bottom Journal / Instagram Strip (Matching Reference Screenshot 2 Footer Area) */}
-      <section className="w-full bg-[#121316] text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
-            <div>
-              <span className="text-[10px] font-mono tracking-widest text-coral uppercase font-bold block mb-1">
-                Visual Stories
-              </span>
-              <h3 className="font-display font-bold text-lg text-white">
-                Follow Our Journal On Instagram
-              </h3>
-            </div>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-white/20 hover:border-coral text-xs font-bold uppercase tracking-wider text-white hover:text-coral transition-all"
-            >
-              <span>@mythristudios</span>
-              <ArrowRight size={13} />
-            </a>
-          </div>
 
-          {/* Mini preview thumbnail reel from our takeout files */}
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
-            {[
-              "/takeout-1-001/wedding/Frame_000080.jpg",
-              "/takeout-1-001/prewedding/Frame_000121.jpg",
-              "/takeout-1-001/bday/Frame_000055.jpg",
-              "/takeout-1-001/prewedding/Frame_000048.jpg",
-              "/takeout-1-001/maternity/Frame_000027.jpg",
-              "/takeout-1-001/travelling/Frame_000133.jpg",
-            ].map((imgUrl, idx) => (
-              <div
-                key={idx}
-                className="aspect-square rounded-xl overflow-hidden group cursor-pointer relative"
-                onClick={() => {
-                  const matched = galleryItems.find((g) => g.image === imgUrl);
-                  if (matched) setSelectedImage(matched);
-                }}
-              >
-                <img
-                  src={imgUrl}
-                  alt="Gallery Snapshot"
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 brightness-90 group-hover:brightness-100"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Lightbox Modal on Card Click */}
       {selectedImage && (

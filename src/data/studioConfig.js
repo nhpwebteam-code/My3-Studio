@@ -11,7 +11,7 @@ export const studioConfig = {
   establishedYear: 2018,
   
   contact: {
-    email: "mythristudiondl@gmail.com",
+    email: "rmythristudiondl.anji@gmail.com",
     phone: "+919949395037",
     phoneDisplay: "+91 99493 95037",
     secondaryPhone: "+917780181436",
@@ -38,6 +38,21 @@ export const studioConfig = {
     {
       name: "Instagram",
       url: "https://www.instagram.com/mythri_studio_ndl",
+      handle: "@mythri_studio_ndl",
+    },
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/profile.php?id=100071005435754",
+      handle: "Mythri Studio Nandyal",
+    },
+    {
+      name: "YouTube",
+      url: "https://youtube.com/@mythristudio8857?si=5szrcmSiVDF_36an",
+      handle: "@mythristudio8857",
+    },
+    {
+      name: "Threads",
+      url: "https://www.threads.net/@mythri_studio_ndl",
       handle: "@mythri_studio_ndl",
     },
     {

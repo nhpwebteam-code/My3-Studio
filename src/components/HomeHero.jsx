@@ -42,12 +42,22 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           <button
             id="product-reviews-stamp"
             onClick={onOpenVideoReviews}
-            className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#1F2125] text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group"
+            className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#1F2125] text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden"
             aria-label="View our product reviews"
           >
+            {/* Looping Client Video Preview */}
+            <video
+              src="/takeout-1-001/vedio/vedio.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-35 group-hover:opacity-60 transition-opacity"
+            />
+
             {/* Rotating SVG Curved Text */}
             <svg
-              className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none"
+              className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none z-10"
               viewBox="0 0 100 100"
             >
               <defs>
@@ -64,7 +74,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             </svg>
 
             {/* Inner Video Preview & Play Icon */}
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/15 backdrop-blur-sm group-hover:bg-coral text-white flex items-center justify-center transition-colors shadow-inner">
+            <div className="relative z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral text-white flex items-center justify-center transition-colors shadow-inner">
               <Play size={16} fill="white" className="ml-0.5" />
             </div>
           </button>

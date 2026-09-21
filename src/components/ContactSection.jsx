@@ -14,6 +14,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import ContactForm from './ContactForm';
+import InteractiveMap from './InteractiveMap';
 import { studioConfig } from '../data/studioConfig';
 
 function InstagramIcon({ size = 14, className = "" }) {
@@ -294,43 +295,9 @@ export default function ContactSection({ initialService = '' }) {
                 </div>
               </div>
 
-              {/* Right Interactive Map Embed Column (7 cols) */}
-              <div className="lg:col-span-7 relative min-h-[360px] lg:min-h-[460px] bg-charcoal-100 border-t lg:border-t-0 lg:border-l border-[#EAE4D9] overflow-hidden group">
-                <iframe
-                  title="Mythri Studio Nandyal Location Map"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=78.4720%2C15.4740%2C78.4960%2C15.4960&layer=mapnik&marker=15.4855%2C78.4840"
-                  className="w-full h-full min-h-[360px] lg:min-h-[460px] border-0"
-                  loading="lazy"
-                />
-
-                {/* Floating Map Pin Badge */}
-                <div className="absolute top-4 left-4 right-4 sm:right-auto sm:max-w-xs bg-white/95 backdrop-blur-md p-3.5 rounded-2xl border border-[#EAE4D9] shadow-lg flex items-start gap-3 pointer-events-auto">
-                  <div className="w-8 h-8 rounded-xl bg-coral text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5">
-                    <MapPin size={16} />
-                  </div>
-                  <div className="text-xs leading-tight">
-                    <strong className="block text-charcoal-900 font-bold mb-0.5">
-                      Mythri Studio Nandyal
-                    </strong>
-                    <span className="text-charcoal-600 block text-[11px]">
-                      Nivarthi Bhavan, Opp. National College
-                    </span>
-                    <a
-                      href={googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-coral font-bold text-[10px] mt-1 hover:underline uppercase tracking-wide"
-                    >
-                      <span>View on Google Maps</span>
-                      <ExternalLink size={9} />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Map Bottom Hint */}
-                <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-[10px] font-semibold text-charcoal-600 border border-gray-200 shadow-sm pointer-events-none">
-                  📍 Srinivasa Nagar, Nandyal, AP 518501
-                </div>
+              {/* Right Interactive Map Column (7 cols) - Clean, scroll-zoomable, no ctrl restrictions, no extra buttons */}
+              <div className="lg:col-span-7 relative min-h-[380px] lg:min-h-[480px] bg-charcoal-100 border-t lg:border-t-0 lg:border-l border-[#EAE4D9] overflow-hidden">
+                <InteractiveMap />
               </div>
             </div>
           </div>
