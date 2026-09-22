@@ -11,7 +11,7 @@ export default function ContactSuccess({ clientName, onReset }) {
         Inquiry Received With Gratitude
       </h3>
       <p className="text-sm text-charcoal-600 max-w-md mx-auto mb-6 leading-relaxed">
-        Thank you, <span className="text-coral font-bold">{clientName}</span>. Our studio director will review your vision and connect within 24 business hours.
+        Thank you, <span className="text-coral font-bold">{clientName}</span>. Our studios director will review your vision and connect within 24 business hours.
       </p>
       <button
         onClick={onReset}

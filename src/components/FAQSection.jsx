@@ -105,7 +105,7 @@ export default function FAQSection() {
           </div>
           <div>
             <h4 className="font-bold text-sm text-charcoal-900">Have more questions?</h4>
-            <p className="text-xs text-charcoal-500">Our studio concierge is always happy to assist.</p>
+            <p className="text-xs text-charcoal-500">Our studios concierge is always happy to assist.</p>
           </div>
         </div>
 

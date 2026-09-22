@@ -52,7 +52,7 @@ export default function InteractiveMap() {
       html: `
         <div style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 44px; height: 58px; cursor: pointer;">
           <div style="position: absolute; bottom: 1px; width: 20px; height: 8px; background: rgba(0, 0, 0, 0.4); border-radius: 50%; filter: blur(2px);"></div>
-          <img src="/pin.png" alt="Mythri Studio Location Pin" style="width: 42px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); transform: translateY(-2px);" />
+          <img src="/pin.png" alt="Mythri Studios Location Pin" style="width: 42px; height: auto; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); transform: translateY(-2px);" />
         </div>
       `,
       iconSize: [44, 58],
@@ -65,10 +65,10 @@ export default function InteractiveMap() {
     marker.bindPopup(`
       <div style="font-family: system-ui, -apple-system, sans-serif; padding: 4px 2px; min-width: 200px;">
         <div style="display: inline-block; background: #FFF1EE; color: #E15B3E; font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 4px;">
-          Official Studio Atelier
+          Official Studios Atelier
         </div>
         <div style="font-weight: 800; font-size: 14px; color: #1E2024; margin-bottom: 2px;">
-          Mythri Studio Nandyal
+          Mythri Studios Nandyal
         </div>
         <div style="font-size: 11px; color: #555555; line-height: 1.4; margin-bottom: 8px;">
           Shop No 02, 1st Floor, Nivarthi Bhavan<br/>

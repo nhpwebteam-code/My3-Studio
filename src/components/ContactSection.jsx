@@ -53,13 +53,13 @@ export default function ContactSection({ initialService = '' }) {
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-coral/10 text-coral text-xs font-bold uppercase tracking-wider">
             <User size={13} />
-            Mythri Studio Nandyal • Contact: Anji
+            Mythri Studios Nandyal • Contact: Anji
           </span>
           <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-charcoal-900 tracking-tight">
             Get In Touch
           </h2>
           <p className="text-sm sm:text-base text-charcoal-500 font-medium leading-relaxed">
-            Have an upcoming wedding, ceremony, or portrait shoot? Reach out directly to Anji and the Mythri Studio crew or leave your message below.
+            Have an upcoming wedding, ceremony, or portrait shoot? Reach out directly to Anji and the Mythri Studios crew or leave your message below.
           </p>
         </div>
 
@@ -71,10 +71,17 @@ export default function ContactSection({ initialService = '' }) {
               {/* Content */}
               <div className="relative z-10 space-y-6">
                 <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-white/80 bg-white/20 px-2.5 py-0.5 rounded-full">
-                      Studio Lead: Anji
-                    </span>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2.5">
+                      <img
+                        src="/logo.png"
+                        alt="MY3 Studios"
+                        className="w-9 h-9 object-contain rounded-full bg-white/10 p-0.5"
+                      />
+                      <span className="text-[11px] font-bold uppercase tracking-widest text-white/90 bg-white/20 px-2.5 py-0.5 rounded-full">
+                        Studios Lead: Anji
+                      </span>
+                    </div>
                     <a
                       href="https://www.instagram.com/mythri_studio_ndl"
                       target="_blank"
@@ -204,10 +211,10 @@ export default function ContactSection({ initialService = '' }) {
           <div className="text-center max-w-xl mx-auto space-y-2">
             <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-coral">
               <Compass size={13} />
-              Studio Location & Visit
+              Studios Location & Visit
             </span>
             <h3 className="font-display font-black text-2xl sm:text-3xl text-charcoal-900 tracking-tight">
-              Visit Mythri Studio in Nandyal
+              Visit Mythri Studios in Nandyal
             </h3>
             <p className="text-xs sm:text-sm text-charcoal-500 font-medium leading-relaxed">
               Conveniently situated in Nivarthi Bhavan opposite National College. Walk in to explore real printed albums, discuss event dates, or customize your photoshoot package with Anji.
@@ -226,7 +233,7 @@ export default function ContactSection({ initialService = '' }) {
 
                   <div>
                     <h4 className="font-display font-black text-xl sm:text-2xl text-charcoal-900 leading-tight mb-2">
-                      Mythri Studio Nandyal
+                      Mythri Studios Nandyal
                     </h4>
                     <p className="text-xs sm:text-sm text-charcoal-600 leading-relaxed">
                       Shop No 02, 1st Floor, Nivarthi Bhavan, near Srinivasa Nagar, Opp. National College, Srinivasa Nagar, Nandyala, Andhra Pradesh 518501

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Star, Quote, ShieldCheck, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { Quote, ShieldCheck, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { testimonials } from '../data/testimonials';
 
 /**
  * ReviewsSection — showcases real Mythri Studio reviews
- * with Justdial 4.7/5 rating badge, animated auto-scroll cards,
+ * with Justdial 4.9/5 rating badge, animated auto-scroll cards,
  * and individual review details.
  */
 export default function JustdialReviews() {
@@ -63,24 +63,15 @@ export default function JustdialReviews() {
             <div className="flex flex-col items-end">
               <div className="flex items-center gap-2">
                 <span className="text-3xl sm:text-4xl font-black text-charcoal-900 font-display tracking-tight">
-                  4.7
+                  4.9
                 </span>
                 <div className="flex flex-col">
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={16}
-                        className={
-                          i < 4
-                            ? 'text-amber-400 fill-amber-400'
-                            : 'text-amber-400 fill-amber-400 opacity-60'
-                        }
-                      />
-                    ))}
-                  </div>
-                  <span className="text-[11px] text-charcoal-500 font-medium">
-                    15 ratings on Justdial
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                    Top Rated on Justdial
+                  </span>
+                  <span className="text-[11px] text-charcoal-500 font-medium mt-1">
+                    15+ Verified Client Ratings
                   </span>
                 </div>
               </div>
@@ -93,7 +84,7 @@ export default function JustdialReviews() {
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-[#EAE4D9] shadow-sm text-xs font-bold text-charcoal-700 hover:border-coral/50 hover:text-coral transition-all hover:shadow-md"
             >
               <ShieldCheck size={14} className="text-green-500" />
-              <span>Verified on Justdial</span>
+              <span>100% Verified Reviews</span>
               <ExternalLink size={11} className="opacity-50" />
             </a>
           </div>
@@ -106,7 +97,7 @@ export default function JustdialReviews() {
               Recent Rating Trend
             </h4>
             <span className="text-[11px] font-semibold text-coral bg-coral-50 px-3 py-1 rounded-full">
-              Consistently 5★
+              Consistently Top Rated
             </span>
           </div>
           <div className="flex items-end gap-1.5 sm:gap-2 h-16">
@@ -125,7 +116,7 @@ export default function JustdialReviews() {
                 />
                 {/* Tooltip on hover */}
                 <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-charcoal-900 text-white text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap pointer-events-none">
-                  {rating}★
+                  {rating}/5
                 </div>
               </div>
             ))}
@@ -151,15 +142,12 @@ export default function JustdialReviews() {
               />
 
               <div className="relative">
-                {/* Stars */}
-                <div className="flex items-center gap-1 mb-6">
-                  {[...Array(reviews[activeIndex].rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={18}
-                      className="text-amber-400 fill-amber-400"
-                    />
-                  ))}
+                {/* Verified Badge */}
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
+                    <ShieldCheck size={13} />
+                    Verified Review
+                  </span>
                 </div>
 
                 {/* Quote */}
@@ -259,14 +247,8 @@ export default function JustdialReviews() {
                       >
                         {review.author}
                       </h4>
-                      <div className="flex items-center gap-0.5 shrink-0">
-                        {[...Array(review.rating)].map((_, j) => (
-                          <Star
-                            key={j}
-                            size={10}
-                            className="text-amber-400 fill-amber-400"
-                          />
-                        ))}
+                      <div className="flex items-center gap-1 shrink-0">
+                        <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded">{review.rating}.0</span>
                       </div>
                     </div>
                     <p className="text-xs text-charcoal-500 font-medium mb-1.5">
@@ -280,14 +262,14 @@ export default function JustdialReviews() {
               </button>
             ))}
 
-            {/* View All on Justdial */}
+            {/* View All Reviews */}
             <a
               href="https://www.justdial.com/Nandyal/Mythri-Studio-Nandyal/9999P8514-8514-181022124920-M7R5_BZDET/reviews"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-dashed border-[#EAE4D9] hover:border-coral/40 text-charcoal-500 hover:text-coral transition-all text-xs font-bold uppercase tracking-wider"
             >
-              <span>Read All 15 Reviews on Justdial</span>
+              <span>Read All 15 Verified Client Reviews</span>
               <ExternalLink size={12} />
             </a>
           </div>

@@ -10,7 +10,7 @@ export default function About() {
     <div className="pb-24 space-y-20 bg-[#FAF7F2] text-charcoal min-h-screen">
       <PageHeader
         kicker="Behind The Lens"
-        title="About MY3 Studio"
+        title="About MY3 Studios"
         subtitle="Dedicated to authentic wedding stories, vibrant birthday celebrations, and timeless portraits."
       />
 
@@ -31,14 +31,19 @@ export default function About() {
                 <div className="relative overflow-hidden bg-charcoal-100 aspect-[4/5]">
                   <img
                     src="/photographer-bw.png"
-                    alt="MY3 Studio Lead Photographer"
+                    alt="MY3 Studios Lead Photographer"
                     className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-103 transition-transform duration-700"
                   />
                 </div>
 
-                <div className="pt-3 pb-1 text-center">
+                <div className="pt-3 pb-1 text-center flex flex-col items-center">
+                  <img
+                    src="/logo.png"
+                    alt="MY3 Studios Official Seal"
+                    className="w-10 h-10 object-contain mb-1 drop-shadow-sm"
+                  />
                   <span className="font-script text-2xl text-coral block -mb-1 select-none">
-                    hi, we're my3 studio
+                    hi, we're my3 studios
                   </span>
                   <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-charcoal-600">
                     EST. {studioConfig.establishedYear} • PROFESSIONAL EVENT COVERAGE

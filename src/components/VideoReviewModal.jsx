@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Play, Star, ShieldCheck } from 'lucide-react';
+import { X, Play, ShieldCheck } from 'lucide-react';
 
 export default function VideoReviewModal({ isOpen, onClose }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -11,12 +11,12 @@ export default function VideoReviewModal({ isOpen, onClose }) {
     {
       id: 1,
       title: "Wedding Celebration & Highlight Film",
-      client: "MY3 Studio Client Showcase",
+      client: "MY3 Studios Client Showcase",
       role: "Grand Ceremony & Candid Moments",
       videoPoster: "/takeout-1-001/wedding/1.png",
       rating: 5.0,
       duration: "Cinematic Reel",
-      quote: "MY3 Studio captured the very soul of our wedding day. Looking through our frames and video brings back every tear of joy and laughter.",
+      quote: "MY3 Studios captured the very soul of our wedding day. Looking through our frames and video brings back every tear of joy and laughter.",
       videoUrl: "/takeout-1-001/vedio/vedio.mp4",
     },
     {
@@ -46,9 +46,13 @@ export default function VideoReviewModal({ isOpen, onClose }) {
       <div className="relative bg-white w-full max-w-3xl rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-10 flex flex-col">
         {/* Header */}
         <div className="bg-charcoal px-6 py-4 text-white flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <ShieldCheck size={18} className="text-coral" />
-            <span className="font-bold text-sm tracking-wide uppercase">Verified Client Video Reviews</span>
+          <div className="flex items-center space-x-2.5">
+            <img
+              src="/logo.png"
+              alt="MY3 Studios"
+              className="w-7 h-7 object-contain rounded-full"
+            />
+            <span className="font-bold text-sm tracking-wide uppercase">Verified Client Video Reviews • MY3 Studios</span>
           </div>
           <button
             onClick={onClose}
@@ -105,11 +109,9 @@ export default function VideoReviewModal({ isOpen, onClose }) {
         <div className="p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-gray-100">
             <div>
-              <div className="flex items-center space-x-1 mb-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="fill-amber-400 text-amber-400" />
-                ))}
-                <span className="font-bold text-sm text-charcoal-900 ml-2">5.0 / 5.0 Rating</span>
+              <div className="flex items-center space-x-2 mb-1">
+                <span className="text-sm font-black text-charcoal-900 font-display">4.9 / 5.0</span>
+                <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Verified</span>
               </div>
               <p className="font-bold text-base text-charcoal">{current.client}</p>
               <p className="text-xs text-charcoal-500">{current.role}</p>

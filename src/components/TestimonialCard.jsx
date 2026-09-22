@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Quote, CheckCircle2 } from 'lucide-react';
+import { Quote, CheckCircle2 } from 'lucide-react';
 
 export default function TestimonialCard({ testimonial }) {
   return (
@@ -11,13 +11,12 @@ export default function TestimonialCard({ testimonial }) {
       />
 
       <div>
-        {/* Star Rating & Verified Badge */}
+        {/* Verified Badge */}
         <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-1 text-amber-400">
-            {[...Array(testimonial.rating)].map((_, i) => (
-              <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
-            ))}
-          </div>
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-charcoal-700 bg-gray-100 px-3 py-1 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Verified Client
+          </span>
           <span className="inline-flex items-center gap-1 text-[11px] font-bold text-coral bg-coral-50 px-2.5 py-0.5 rounded-full">
             <CheckCircle2 size={12} />
             <span>Verified Patron</span>

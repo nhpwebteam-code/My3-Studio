@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PricingCard from '../components/PricingCard';
 import BookingModal from '../components/BookingModal';
 import FAQSection from '../components/FAQSection';
-import { services } from '../data/services';
+import { useStudioData } from '../context/StudioDataContext';
 import { Link } from 'react-router-dom';
 import {
   ShieldCheck,
@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 
 export default function Pricing() {
+  const { packages } = useStudioData();
   const [selectedPackageData, setSelectedPackageData] = useState(null);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
@@ -30,8 +31,13 @@ export default function Pricing() {
       ═══════════════════════════════════════════ */}
       <section className="relative pt-32 sm:pt-40 pb-12 sm:pb-14 text-center px-4 sm:px-6 max-w-4xl mx-auto">
         {/* Top Pill Badge matching other sections */}
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-coral-50 border border-coral/20 text-coral text-xs font-bold uppercase tracking-wider mb-5">
-          Plan & Pricing
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-coral-50 border border-coral/20 text-coral text-xs font-bold uppercase tracking-wider mb-5">
+          <img
+            src="/logo.png"
+            alt="MY3 Studios"
+            className="w-5 h-5 object-contain rounded-full"
+          />
+          <span>Plan & Pricing • MY3 Studios</span>
         </div>
 
         {/* Two-Tone Headline matching reference */}
@@ -47,45 +53,18 @@ export default function Pricing() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          PRICING CARDS GRID - Exact Reference 3-Card Layout
+          PRICING CARDS GRID - Dynamic Live Packages from Studio Data
       ═══════════════════════════════════════════ */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-6 items-stretch">
-          {/* Left card: 1 Day Single Event (Starter style) */}
-          {services
-            .filter((s) => s.id === '1day-event')
-            .map((service) => (
-              <div key={service.id} className="flex">
-                <PricingCard
-                  service={service}
-                  onBook={handleBookService}
-                />
-              </div>
-            ))}
-
-          {/* Center card: 2 Days (Most Recommended - Gradient Cap & Frame) */}
-          {services
-            .filter((s) => s.id === '2days-package')
-            .map((service) => (
-              <div key={service.id} className="flex">
-                <PricingCard
-                  service={service}
-                  onBook={handleBookService}
-                />
-              </div>
-            ))}
-
-          {/* Right card: Birthday & Milestones (Enterprise style) */}
-          {services
-            .filter((s) => s.id === 'birthday-shoot')
-            .map((service) => (
-              <div key={service.id} className="flex">
-                <PricingCard
-                  service={service}
-                  onBook={handleBookService}
-                />
-              </div>
-            ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6 items-stretch">
+          {packages.map((service) => (
+            <div key={service.id} className="flex">
+              <PricingCard
+                service={service}
+                onBook={handleBookService}
+              />
+            </div>
+          ))}
         </div>
       </section>
 

@@ -27,62 +27,62 @@ export default function CuratedFramesSection({ onOpenBooking }) {
   const startX = useRef(0);
   const dragStartProgress = useRef(0);
 
+  // Mobile sideways scroll tracking (mobile responsive only)
+  const mobileScrollRef = useRef(null);
+  const isMobileInteracting = useRef(false);
+  const mobileInteractionTimeout = useRef(null);
+  const targetMobileScroll = useRef(0);
+  const currentMobileScroll = useRef(0);
+  const [activeMobileIdx, setActiveMobileIdx] = useState(0);
+
   const frames = [
     {
       id: 1,
       title: 'Traditional Muhurtham',
       tag: 'Sacred Rituals',
-      image:
-        'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80',
+      image: '/takeout-1-001/wedding/1.png',
     },
     {
       id: 2,
-      title: 'Cinematic Grandeur',
-      tag: 'Couple Royal Portrait',
-      image:
-        'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80',
+      title: 'Royal Telugu Couple',
+      tag: 'Wedding Portrait',
+      image: '/takeout-1-001/wedding/3.png',
     },
     {
       id: 3,
       title: 'Candid Haldi Joy',
       tag: 'Pure Emotion',
-      image:
-        'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80',
+      image: '/takeout-1-001/potraites/1.png',
     },
     {
       id: 4,
-      title: 'Golden Hour Story',
-      tag: 'Sunset Shoot',
-      image:
-        'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=600&q=80',
+      title: 'Cinematic Pre-Wedding',
+      tag: 'Romantic Escape',
+      image: '/takeout-1-001/prewedding/1.png',
     },
     {
       id: 5,
-      title: 'Editorial Elegance',
-      tag: 'Groom & Saree',
-      image:
-        'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80',
+      title: 'Heritage Bridal Elegance',
+      tag: 'Telugu Bride',
+      image: '/takeout-1-001/wedding/5.png',
     },
     {
       id: 6,
-      title: 'Aerial 4K Drone',
-      tag: 'Venue & Baraat',
-      image:
-        'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=600&q=80',
+      title: 'Sacred Talambralu',
+      tag: 'Muhurtham Moments',
+      image: '/takeout-1-001/wedding/2.png',
     },
     {
       id: 7,
-      title: 'Baby Milestone',
-      tag: '1st Birthday Joy',
-      image:
-        'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=600&q=80',
+      title: 'Maternity Grace',
+      tag: 'Family Milestone',
+      image: '/takeout-1-001/maternity/1.png',
     },
     {
       id: 8,
-      title: 'Pre-Wedding Romance',
-      tag: 'Cinematic Love',
-      image:
-        'https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=600&q=80',
+      title: 'Sunset Golden Hour',
+      tag: 'Pre-Wedding Story',
+      image: '/takeout-1-001/prewedding/6.png',
     },
   ];
 
@@ -95,33 +95,37 @@ export default function CuratedFramesSection({ onOpenBooking }) {
   const CARD_R = R + RADIAL_OFFSET;
   const FRAME_SPACING = 14.5; // degrees between adjacent frames
 
-  // 1. Scroll tracking with sticky pinning
+  // 1. Scroll tracking with sticky pinning on desktop and sideways motion on mobile
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      const totalScrollable = rect.height - window.innerHeight;
+      const windowHeight = window.innerHeight;
 
+      // Desktop sticky scroll calculation
+      const totalScrollable = rect.height - windowHeight;
       if (totalScrollable > 0) {
-        // -rect.top is how much has scrolled into the sticky container
         const currentScroll = -rect.top;
         const progress = currentScroll / totalScrollable;
         targetProgress.current = Math.max(0, Math.min(1, progress));
       }
+
+      // Mobile: DISABLED auto-scroll-driven sliding to prevent scroll hijacking
+      // Users can manually swipe the cards horizontally instead
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [frames.length]);
 
   // 2. Smooth Lerp Animation Loop (60/120fps) for velvet-smooth line and card movement
   useEffect(() => {
     let animId;
 
     const tick = () => {
-      // Linear interpolation (lerp) toward target progress
+      // Linear interpolation (lerp) toward target progress for desktop arc
       const diff = targetProgress.current - smoothProgress.current;
       smoothProgress.current += diff * 0.09;
       flowTick.current += 0.5;
@@ -134,6 +138,9 @@ export default function CuratedFramesSection({ onOpenBooking }) {
       const currentAngleOffset = smoothProgress.current * totalSpan;
       const closestIdx = Math.round(currentAngleOffset / FRAME_SPACING);
       setActiveIndex(Math.max(0, Math.min(frames.length - 1, closestIdx)));
+
+      // Mobile sideways lerp: DISABLED auto-scrolling to prevent scroll hijacking
+      // Manual swipe still works via touch handlers
 
       animId = requestAnimationFrame(tick);
     };
@@ -162,8 +169,75 @@ export default function CuratedFramesSection({ onOpenBooking }) {
     isDragging.current = false;
   };
 
+  // Mobile Touch & Sideways Scroll handlers
+  const handleMobileTouchStart = () => {
+    isMobileInteracting.current = true;
+    if (mobileInteractionTimeout.current) clearTimeout(mobileInteractionTimeout.current);
+  };
+
+  const handleMobileTouchEnd = () => {
+    if (mobileScrollRef.current) {
+      currentMobileScroll.current = mobileScrollRef.current.scrollLeft;
+      targetMobileScroll.current = mobileScrollRef.current.scrollLeft;
+    }
+    mobileInteractionTimeout.current = setTimeout(() => {
+      isMobileInteracting.current = false;
+    }, 1200);
+  };
+
+  const handleMobileContainerScroll = () => {
+    if (mobileScrollRef.current && isMobileInteracting.current) {
+      currentMobileScroll.current = mobileScrollRef.current.scrollLeft;
+      targetMobileScroll.current = mobileScrollRef.current.scrollLeft;
+      const cardEl = mobileScrollRef.current.querySelector('.mobile-frame-card');
+      const cardWidth = cardEl ? cardEl.offsetWidth + 16 : 226;
+      const currentIdx = Math.round(mobileScrollRef.current.scrollLeft / cardWidth);
+      setActiveMobileIdx(Math.max(0, Math.min(frames.length - 1, currentIdx)));
+    }
+  };
+
+  const handleSelectMobileDot = (index) => {
+    if (mobileScrollRef.current) {
+      isMobileInteracting.current = true;
+      const cardEl = mobileScrollRef.current.querySelector('.mobile-frame-card');
+      const cardWidth = cardEl ? cardEl.offsetWidth + 16 : 226;
+      const targetX = index * cardWidth;
+      mobileScrollRef.current.scrollTo({
+        left: targetX,
+        behavior: 'smooth',
+      });
+      targetMobileScroll.current = targetX;
+      currentMobileScroll.current = targetX;
+      setActiveMobileIdx(index);
+      if (mobileInteractionTimeout.current) clearTimeout(mobileInteractionTimeout.current);
+      mobileInteractionTimeout.current = setTimeout(() => {
+        isMobileInteracting.current = false;
+      }, 700);
+    }
+  };
+
   // Step button handlers (Prev / Next)
   const handleStep = (direction) => {
+    // Mobile sideways step (Only in mobile responsive)
+    if (mobileScrollRef.current && window.innerWidth < 1024) {
+      isMobileInteracting.current = true;
+      const cardEl = mobileScrollRef.current.querySelector('.mobile-frame-card');
+      const cardWidth = cardEl ? cardEl.offsetWidth + 16 : 226;
+      const targetX = mobileScrollRef.current.scrollLeft + direction * cardWidth;
+      mobileScrollRef.current.scrollTo({
+        left: targetX,
+        behavior: 'smooth',
+      });
+      targetMobileScroll.current = targetX;
+      currentMobileScroll.current = targetX;
+      if (mobileInteractionTimeout.current) clearTimeout(mobileInteractionTimeout.current);
+      mobileInteractionTimeout.current = setTimeout(() => {
+        isMobileInteracting.current = false;
+      }, 700);
+      return;
+    }
+
+    // Desktop step (Preserved 100%)
     const step = 1 / (frames.length - 1);
     const newTarget = Math.max(0, Math.min(1, targetProgress.current + direction * step));
     targetProgress.current = newTarget;
@@ -251,13 +325,12 @@ export default function CuratedFramesSection({ onOpenBooking }) {
     <section
       ref={containerRef}
       id="curated-frames"
-      className="relative w-full bg-[#FF6548] text-black select-none"
-      style={{ minHeight: '230vh' }}
+      className="relative w-full bg-[#FF6548] text-black select-none py-12 sm:py-16 lg:py-0 lg:min-h-[230vh]"
     >
       {/* ═══════════════════════════════════════════
-          STICKY FULL-SCREEN VIEWPORT CONTAINER
+          STICKY FULL-SCREEN VIEWPORT ON DESKTOP, FLUID ON MOBILE
       ═══════════════════════════════════════════ */}
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden py-6 sm:py-10">
+      <div className="relative lg:sticky lg:top-0 lg:h-screen w-full flex items-center justify-center lg:overflow-hidden py-6 sm:py-10">
         <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
@@ -265,7 +338,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                 LEFT: SEMI-CIRCLE ARC & SCROLL-DRIVEN FRAMES
             ═══════════════════════════════════════════ */}
             <div
-              className="lg:col-span-7 relative flex items-center justify-center w-full"
+              className="hidden lg:flex lg:col-span-7 relative items-center justify-center w-full"
               onMouseDown={handlePointerDown}
               onMouseMove={handlePointerMove}
               onMouseUp={handlePointerUp}
@@ -274,7 +347,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
               onTouchEnd={handlePointerUp}
             >
               {/* Aspect-Square Container guarantees 1:1 coordinate symmetry with zero distortion */}
-              <div className="relative w-full max-w-[560px] sm:max-w-[620px] lg:max-w-[680px] aspect-square">
+              <div className="relative w-full max-w-[320px] sm:max-w-[460px] md:max-w-[560px] lg:max-w-[680px] aspect-square mx-auto">
                 
                 {/* ─── The Continuous Flowing Semi-Circle Arc ─── */}
                 <svg
@@ -369,7 +442,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                       onMouseEnter={() => setHoveredId(frame.id)}
                       onMouseLeave={() => setHoveredId(null)}
                       style={style}
-                      className="absolute w-24 sm:w-32 lg:w-40 aspect-[4/5] bg-black p-1 sm:p-1.5 rounded-sm sm:rounded-md shadow-[0_20px_40px_rgba(0,0,0,0.45)] cursor-pointer group will-change-transform"
+                      className="absolute w-20 sm:w-28 md:w-32 lg:w-40 aspect-[4/5] bg-black p-1 sm:p-1.5 rounded-sm sm:rounded-md shadow-[0_15px_30px_rgba(0,0,0,0.45)] cursor-pointer group will-change-transform"
                     >
                       <div className="relative w-full h-full overflow-hidden rounded-xs bg-charcoal-950">
                         <img
@@ -395,16 +468,6 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                   );
                 })}
 
-                {/* Scroll-Driven Status Badge with Progress Indicator */}
-                <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 z-40 flex items-center gap-2.5 bg-black/90 backdrop-blur-md text-white py-1.5 px-3.5 rounded-full shadow-2xl border border-white/15 text-xs">
-                  <span className="w-2 h-2 rounded-full bg-coral animate-ping" />
-                  <span className="text-[11px] font-bold tracking-wider uppercase">
-                    Scroll to Rotate
-                  </span>
-                  <span className="text-white/50 text-[10px]">
-                    • Frame {activeIndex + 1} of {frames.length}
-                  </span>
-                </div>
               </div>
             </div>
 
@@ -452,6 +515,76 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                 <p className="text-xs sm:text-sm font-medium text-black/90 leading-relaxed max-w-lg">
                   Every celebration is a living tapestry of sacred rituals, tender family bonds, and fleeting glances. In Nandyal and across South India, our atelier transforms unscripted wedding moments into enduring visual heirlooms. By redefining candid storytelling and cinematic light, we create imagery that doesn't just document your celebration — it commands timeless reverence.
                 </p>
+              </div>
+
+              {/* ─── Mobile Responsive Only: Sideways Moving Cards in "ABOUT THIS PROJECT" ─── */}
+              <div className="block lg:hidden w-full my-2">
+                <div
+                  ref={mobileScrollRef}
+                  onScroll={handleMobileContainerScroll}
+                  onTouchStart={handleMobileTouchStart}
+                  onTouchEnd={handleMobileTouchEnd}
+                  className="flex items-center gap-4 overflow-x-auto no-scrollbar py-3 px-1 -mx-1 snap-x snap-mandatory scroll-smooth"
+                  style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                >
+                  {frames.map((frame, idx) => (
+                    <div
+                      key={frame.id}
+                      onClick={() => handleSelectMobileDot(idx)}
+                      className="mobile-frame-card w-[210px] sm:w-[250px] shrink-0 aspect-[4/5] bg-black p-1.5 rounded-2xl shadow-[0_12px_28px_rgba(0,0,0,0.35)] relative overflow-hidden group cursor-pointer transition-all duration-500 ease-out hover:scale-[1.03] hover:shadow-[0_18px_40px_rgba(0,0,0,0.45)] active:scale-[0.97] snap-center"
+                      style={{
+                        opacity: 0,
+                        transform: 'translateY(20px)',
+                        animation: `mobileCardEntrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${idx * 0.08}s forwards`,
+                      }}
+                    >
+                      <div className="relative w-full h-full overflow-hidden rounded-xl bg-charcoal-950">
+                        <img
+                          src={frame.image}
+                          alt={frame.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover filter contrast-105"
+                        />
+                        {/* Gradient overlay for legibility */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
+
+                        {/* Top tag badge */}
+                        <div className="absolute top-2.5 left-2.5">
+                          <span className="inline-block bg-black/60 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider border border-white/20">
+                            {frame.tag}
+                          </span>
+                        </div>
+
+                        {/* Bottom Frame Info */}
+                        <div className="absolute bottom-3 left-3 right-3">
+                          <span className="text-[10px] font-semibold text-white/70 block uppercase tracking-wider">
+                            Frame 0{idx + 1}
+                          </span>
+                          <h4 className="text-sm font-bold text-white font-display leading-tight truncate">
+                            {frame.title}
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mobile indicators (Active dot track) */}
+                <div className="flex items-center justify-center gap-1.5 mt-2.5">
+                  {frames.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => handleSelectMobileDot(i)}
+                      aria-label={`Jump to frame ${i + 1}`}
+                      className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                        activeMobileIdx === i
+                          ? 'w-6 bg-black'
+                          : 'w-1.5 bg-black/30 hover:bg-black/50'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* Middle Block: Downward Arrow + Massive Condensed Headline */}

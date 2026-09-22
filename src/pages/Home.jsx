@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import HomeHero from '../components/HomeHero';
 import CuratedFramesSection from '../components/CuratedFramesSection';
 import ReviewsSection from '../components/ReviewsSection';
-import JustdialReviews from '../components/JustdialReviews';
 import BookingModal from '../components/BookingModal';
 import VideoReviewModal from '../components/VideoReviewModal';
 
@@ -11,8 +10,8 @@ export default function Home() {
   const [isVideoReviewOpen, setIsVideoReviewOpen] = useState(false);
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* 1. Hero Section ("Home Section") - Pure White, High Impact */}
+    <div className="bg-[#FAF7F2] min-h-screen">
+      {/* 1. Hero Section ("Home Section") - Unified #FAF7F2 aesthetic */}
       <HomeHero
         onOpenBooking={() => setIsBookingOpen(true)}
         onOpenVideoReviews={() => setIsVideoReviewOpen(true)}
@@ -25,11 +24,8 @@ export default function Home() {
       {/* 2. Curated Frames Editorial Section (Scroll-driven interactive frames arc) */}
       <CuratedFramesSection onOpenBooking={() => setIsBookingOpen(true)} />
 
-      {/* 3. Client Testimonials */}
+      {/* 3. Inspiring Client Experiences Testimonials */}
       <ReviewsSection />
-
-      {/* 3. Justdial Reviews */}
-      <JustdialReviews />
 
       {/* Interactive Booking Modal */}
       <BookingModal

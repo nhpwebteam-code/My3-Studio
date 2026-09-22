@@ -3,8 +3,8 @@
  * Real details for Mythri Studio Nandyal (Lead: Anji).
  */
 export const studioConfig = {
-  name: "Mythri Studio Nandyal",
-  shortName: "MY3 Studio",
+  name: "Mythri Studios Nandyal",
+  shortName: "MY3 Studios",
   leadName: "Anji",
   tagline: "Destination Weddings, Traditional Shoots & Candid Moments",
   shortBio: "Preserving your most cherished celebration memories with genuine emotion, natural light, and cinematic storytelling in Nandyal and across South India.",
@@ -16,7 +16,7 @@ export const studioConfig = {
     phoneDisplay: "+91 99493 95037",
     secondaryPhone: "+917780181436",
     secondaryPhoneDisplay: "+91 77801 81436",
-    whatsappUrl: "https://wa.me/919949395037?text=Hello%20Anji%20garu,%20I%20would%20like%20to%20inquire%20about%20a%20photoshoot%20with%20Mythri%20Studio",
+    whatsappUrl: "https://wa.me/919949395037?text=Hello%20Anji%20garu,%20I%20would%20like%20to%20inquire%20about%20a%20photoshoot%20with%20Mythri%20Studios",
     address: {
       building: "Shop No 02, 1st Floor, Nivarthi Bhavan",
       landmark: "Opp. National College, Srinivasa Nagar",
@@ -25,7 +25,7 @@ export const studioConfig = {
       zip: "518501",
       country: "India",
       short: "Shop No 02, 1st Floor, Nivarthi Bhavan, Opp. National College, Srinivasa Nagar, Nandyal",
-      full: "Shop No 02, 1st Floor, Mythri Studio Nandyal, Nivarthi Bhavan, Opp. National College, Srinivasa Nagar, Nandyala, Andhra Pradesh 518501",
+      full: "Shop No 02, 1st Floor, Mythri Studios Nandyal, Nivarthi Bhavan, Opp. National College, Srinivasa Nagar, Nandyala, Andhra Pradesh 518501",
       googleMapsUrl: "https://maps.app.goo.gl/qDx9ZJLWEVtMp7Uv5",
     },
     hours: [
@@ -43,7 +43,7 @@ export const studioConfig = {
     {
       name: "Facebook",
       url: "https://www.facebook.com/profile.php?id=100071005435754",
-      handle: "Mythri Studio Nandyal",
+      handle: "Mythri Studios Nandyal",
     },
     {
       name: "YouTube",
@@ -58,7 +58,7 @@ export const studioConfig = {
     {
       name: "Google Maps",
       url: "https://maps.app.goo.gl/qDx9ZJLWEVtMp7Uv5",
-      handle: "Mythri Studio Nandyal",
+      handle: "Mythri Studios Nandyal",
     },
     {
       name: "WhatsApp",
@@ -68,7 +68,7 @@ export const studioConfig = {
   ],
 
   stats: [
-    { value: "4.7★", label: "Justdial Verified Rating (15+ Reviews)" },
+    { value: "4.9 / 5.0", label: "Verified Client Rating (15+ Reviews)" },
     { value: "8+", label: "Years of Visual Excellence" },
     { value: "600+", label: "Weddings & Ceremonies Captured" },
     { value: "100%", label: "Heartfelt Storytelling" },
@@ -76,10 +76,10 @@ export const studioConfig = {
 
   navigation: [
     { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Services", path: "/services" },
-    { label: "Pricing", path: "/pricing" },
     { label: "Gallery", path: "/gallery" },
+    { label: "Pricing", path: "/pricing" },
+    { label: "Services", path: "/services" },
+    { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
   ],
 };

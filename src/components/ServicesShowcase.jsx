@@ -2,201 +2,262 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Camera,
-  Plane,
-  Image,
-  Aperture,
-  Users,
   Heart,
-  Cake,
   Crown,
-  Star,
-  Film,
-  Palette,
-  ArrowRight,
   Sparkles,
+  Users,
+  Film,
+  Cake,
+  Focus,
+  Aperture,
+  ArrowUpRight,
+  ArrowRight,
+  CheckCircle2,
 } from 'lucide-react';
 
 /**
- * Full photoshoot service types offered by Mythri Studio
- * as listed on Justdial.
+ * Curated services offered by MY3 Studio
+ * Featuring authentic Telugu and Indian cultural ceremonies & photography styles
  */
-const photoshootTypes = [
+const coreServices = [
   {
-    name: 'Destination Wedding Shoot',
-    icon: <Plane size={22} />,
-    desc: 'Dreamy destination ceremonies captured across scenic locales.',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-coral to-rose-500',
+    id: 'telugu-muhurtham',
+    name: 'Traditional Telugu Muhurtham',
+    category: 'Sacred Rituals',
+    icon: Crown,
+    image: '/takeout-1-001/wedding/1.png',
+    desc: 'Comprehensive multi-day coverage of sacred Telugu rituals including Pellikoothuru, Muhurtham, Talambralu, and Kanyadaanam captured with rich cultural reverence.',
+    deliverables: ['Pellikoothuru & Rituals', 'Talambralu Candid', 'Traditional 4K Video'],
   },
   {
-    name: 'Portfolio',
-    icon: <Image size={22} />,
-    desc: 'Professional portfolio shoots for models, actors, and artists.',
-    image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-violet-500 to-purple-600',
+    id: 'candid-wedding',
+    name: 'Candid Wedding Cinema',
+    category: 'Pure Emotion',
+    icon: Sparkles,
+    image: '/takeout-1-001/wedding/3.png',
+    desc: 'Unscripted family tears, spontaneous laughter, and heartwarming glances between couple and elders, captured with master cinematic lighting and natural warmth.',
+    deliverables: ['Unposed Candid Moments', 'Cinematic Teaser Reel', 'Full Color Grading'],
   },
   {
-    name: 'Black & White Wedding Shoot',
-    icon: <Aperture size={22} />,
-    desc: 'Timeless monochrome artistry for classic wedding moments.',
-    image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-gray-700 to-gray-900',
+    id: 'pre-wedding',
+    name: 'Cinematic Pre-Wedding Shoots',
+    category: 'Romantic Escapes',
+    icon: Heart,
+    image: '/takeout-1-001/prewedding/1.png',
+    desc: 'Romantic couple narratives filmed across scenic outdoor landscapes and architectural heritage sites with artistic styling and musical synchronization.',
+    deliverables: ['Scenic Locales', '4K Teaser & Music Video', 'Costume & Style Direction'],
   },
   {
-    name: 'Drone Shoot',
-    icon: <Film size={22} />,
-    desc: '4K aerial perspectives for grand venue and baraat coverage.',
-    image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-sky-500 to-blue-600',
+    id: 'maternity-cradle',
+    name: 'Maternity & Cradle Ceremonies',
+    category: 'Family Heritage',
+    icon: Users,
+    image: '/takeout-1-001/maternity/1.png',
+    desc: 'Cherish the journey into parenthood and traditional Seemantham ceremonies with serene studio lighting, comfortable setups, and heartfelt family portraits.',
+    deliverables: ['Maternity Studio Themes', 'Traditional Cradle Rituals', 'Keepsake Fine-Art Prints'],
   },
   {
-    name: 'Modeling Shoot',
-    icon: <Star size={22} />,
-    desc: 'Fashion-forward shoots with creative direction and styling.',
-    image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-amber-500 to-orange-600',
+    id: 'birthday-milestones',
+    name: 'Birthday & Baby Milestone Shoots',
+    category: 'Childhood Joy',
+    icon: Cake,
+    image: '/takeout-1-001/bday/1.png',
+    desc: 'Vibrant 1st birthday celebrations, joyful cake smashes, and 5 to 6 playful indoor baby themes crafted with safe, kid-friendly studio sets.',
+    deliverables: ['5-6 Indoor Baby Themes', 'Event Photo & Video', 'Custom Designer Mini-Book'],
   },
   {
-    name: 'Post Wedding Shoot',
-    icon: <Heart size={22} />,
-    desc: 'Romantic post-ceremony outdoor and cinematic couple shoots.',
-    image: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-pink-500 to-rose-600',
+    id: 'drone-cinematography',
+    name: '4K Aerial Drone & Event Cinema',
+    category: 'Grandeur & Scale',
+    icon: Film,
+    image: '/takeout-1-001/prewedding/6.png',
+    desc: 'Breathtaking 4K aerial drone perspectives of grand kalyana mandapams, festive baraat processions, and elaborate stage decor in ultra-high definition.',
+    deliverables: ['Licensed 4K Drone Flight', 'Baraat & Stage Coverage', 'Cinematic Highlight Film'],
   },
   {
-    name: 'Wedding Anniversary',
-    icon: <Crown size={22} />,
-    desc: 'Celebrate milestones with beautifully styled anniversary sessions.',
-    image: 'https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-emerald-500 to-teal-600',
+    id: 'luxury-albums',
+    name: 'Luxury Lay-Flat Designer Albums',
+    category: 'Heirloom Craft',
+    icon: Camera,
+    image: '/takeout-1-001/wedding/5.png',
+    desc: 'Museum-grade flush mount albums bound in premium metallic, leatherette, or acrylic covers with archival water-resistant and anti-scratch sheets.',
+    deliverables: ['60 Sheets Lay-Flat Bind', 'Multi-Photo Designer Spread', 'Complimentary Wall Frames'],
   },
   {
-    name: 'Traditional Wedding Shoot',
-    icon: <Camera size={22} />,
-    desc: 'Complete multi-day traditional ceremony photo & video coverage.',
-    image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-coral to-orange-500',
+    id: 'portraits-modeling',
+    name: 'Portraits & Traditional Modeling',
+    category: 'Editorial Grace',
+    icon: Focus,
+    image: '/takeout-1-001/potraites/4.png',
+    desc: 'Magazine-quality bridal portraits, classical dance profiles, and heritage saree showcases with calibrated multi-point studio strobe illumination.',
+    deliverables: ['Precision Studio Strobes', 'Fine Editorial Retouching', 'High-Res Digital Delivery'],
   },
   {
-    name: 'Freelance Shoot',
-    icon: <Palette size={22} />,
-    desc: 'Custom freelance sessions tailored to your creative vision.',
-    image: 'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-indigo-500 to-blue-600',
-  },
-  {
-    name: 'Candid Photography',
-    icon: <Sparkles size={22} />,
-    desc: 'Natural, unposed moments that tell your authentic story.',
-    image: 'https://images.unsplash.com/photo-1606216794079-73f85bbd57d5?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-yellow-500 to-amber-600',
-  },
-  {
-    name: 'Birthday & Baby Shoot',
-    icon: <Cake size={22} />,
-    desc: 'Themed birthday celebrations and adorable baby milestone captures.',
-    image: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-fuchsia-500 to-pink-600',
-  },
-  {
-    name: 'Event Videography',
-    icon: <Film size={22} />,
-    desc: 'Full 4K cinematic video production with teasers and highlights.',
-    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80',
-    accent: 'from-red-500 to-coral',
+    id: 'reception-post-wedding',
+    name: 'Reception & Post-Wedding Shoots',
+    category: 'Evening Elegance',
+    icon: Aperture,
+    image: '/takeout-1-001/wedding/2.png',
+    desc: 'Glamorous evening reception celebrations, guest candid interactions, and intimate post-ceremony couple portraits under romantic golden hour illumination.',
+    deliverables: ['Stage & Guest Coverage', 'Golden Hour Couple Session', 'Fast Preview Edits'],
   },
 ];
 
 export default function ServicesShowcase() {
-  const [hoveredIdx, setHoveredIdx] = useState(null);
+  const [hoveredId, setHoveredId] = useState(null);
 
   return (
     <section
       id="our-services"
-      className="relative py-20 sm:py-28 overflow-hidden scroll-mt-24"
+      className="relative py-16 sm:py-24 overflow-hidden scroll-mt-24"
     >
-      {/* Background Decorative */}
+      {/* Background Decorative Ambient Elements (strictly using website colors) */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-px bg-[#EAE4D9]" />
-        <div className="absolute -top-40 right-0 w-[500px] h-[500px] bg-coral/[0.03] rounded-full blur-[100px]" />
-        <div className="absolute -bottom-32 -left-20 w-80 h-80 bg-orange-50/50 rounded-full blur-3xl" />
+        <div className="absolute -top-40 right-0 w-[500px] h-[500px] bg-coral/[0.04] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 -left-20 w-80 h-80 bg-orange-50/60 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ─── Top CTA ─── */}
-        <div className="flex justify-end mb-8">
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-coral hover:bg-coral-dark text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-coral/30 hover:shadow-lg active:scale-95 whitespace-nowrap"
-          >
-            Book a Session
-            <ArrowRight size={14} />
-          </Link>
+        
+        {/* ─── Header: Inspired by Reference Design Layout, Website Colors ─── */}
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-18">
+          <div className="inline-flex items-center gap-2.5 mb-3">
+            <img
+              src="/logo.png"
+              alt="MY3 Studios"
+              className="w-7 h-7 object-contain rounded-full"
+            />
+            <span className="text-[11px] sm:text-xs uppercase font-bold tracking-[0.25em] text-coral bg-coral-50 px-4 py-1.5 rounded-full border border-coral/20">
+              Professional Photography & Cinematography
+            </span>
+          </div>
+          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-charcoal-900 tracking-tight leading-tight">
+            Our Expert Services:{' '}
+            <span className="text-coral">Tailored for Your Milestones</span>
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-charcoal-600 leading-relaxed max-w-2xl mx-auto">
+            At MY3 Studios, we provide a wide range of photography and cinematic services designed to elevate your celebrations. From sacred Telugu wedding rituals to modern pre-wedding films, we ensure every moment is preserved with artistic excellence. Explore our core services below.
+          </p>
         </div>
 
-        {/* ─── Services Grid ─── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {photoshootTypes.map((service, idx) => (
-            <div
-              key={idx}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer border border-[#EAE4D9] hover:border-transparent transition-all duration-500"
-              onMouseEnter={() => setHoveredIdx(idx)}
-              onMouseLeave={() => setHoveredIdx(null)}
-              style={{
-                transform: hoveredIdx === idx ? 'translateY(-4px)' : 'translateY(0)',
-                transition: 'all 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
-              }}
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={service.image}
-                  alt={service.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 group-hover:from-black/90 group-hover:via-black/50 transition-all duration-500" />
-              </div>
+        {/* ─── 3-Column Services Card Grid (Matching Reference Structure) ─── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {coreServices.map((service, idx) => {
+            const IconComponent = service.icon;
+            const isHovered = hoveredId === service.id;
+            // Default highlight on first card if none hovered (like reference active card)
+            const isHighlighted = isHovered || (hoveredId === null && idx === 0);
 
-              {/* Content */}
-              <div className="relative z-10 p-5 sm:p-6 flex flex-col justify-end min-h-[200px] sm:min-h-[220px]">
-                {/* Icon */}
-                <div
-                  className={`w-10 h-10 rounded-xl bg-gradient-to-br ${service.accent} text-white flex items-center justify-center mb-3 shadow-lg opacity-90 group-hover:opacity-100 transition-opacity`}
-                >
-                  {service.icon}
+            return (
+              <div
+                key={service.id}
+                onMouseEnter={() => setHoveredId(service.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className={`relative bg-white rounded-3xl p-6 sm:p-7 border transition-all duration-300 flex flex-col justify-between group ${
+                  isHighlighted
+                    ? 'border-coral shadow-[0_15px_35px_rgba(255,101,72,0.12)] -translate-y-1.5 ring-1 ring-coral/30'
+                    : 'border-[#EAE4D9] hover:border-coral/50 hover:shadow-lg hover:-translate-y-1'
+                }`}
+              >
+                <div>
+                  {/* Top Row: Icon Badge (Left) & Arrow Button (Right) */}
+                  <div className="flex items-center justify-between">
+                    {/* Icon Badge */}
+                    <div
+                      className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-sm ${
+                        isHighlighted
+                          ? 'bg-coral text-white shadow-md shadow-coral/30'
+                          : 'bg-coral-50 text-coral group-hover:bg-coral group-hover:text-white'
+                      }`}
+                    >
+                      <IconComponent size={22} />
+                    </div>
+
+                    {/* Top-Right Arrow Button (Filled in Active/Hover state matching reference) */}
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm ${
+                        isHighlighted
+                          ? 'bg-coral text-white shadow-md shadow-coral/30 rotate-45'
+                          : 'bg-gray-100 text-charcoal-700 group-hover:bg-coral group-hover:text-white group-hover:rotate-45'
+                      }`}
+                    >
+                      <ArrowUpRight size={18} />
+                    </div>
+                  </div>
+
+                  {/* Authentic Telugu / Indian Photo Showcase */}
+                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden my-5 bg-charcoal-900 border border-gray-100 shadow-sm">
+                    <img
+                      src={service.image}
+                      alt={service.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-[1.02]"
+                    />
+                    {/* Subtle Category Pill on Image */}
+                    <div className="absolute top-3 left-3 bg-charcoal-950/75 backdrop-blur-md text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full border border-white/10 shadow-sm">
+                      {service.category}
+                    </div>
+                  </div>
+
+                  {/* Service Title */}
+                  <h3 className="font-display font-black text-xl sm:text-2xl text-charcoal-900 leading-snug mb-2 group-hover:text-coral transition-colors">
+                    {service.name}
+                  </h3>
+
+                  {/* Service Description */}
+                  <p className="text-xs sm:text-sm text-charcoal-600 leading-relaxed mb-5">
+                    {service.desc}
+                  </p>
                 </div>
 
-                {/* Name */}
-                <h3 className="text-white font-display font-bold text-base sm:text-lg leading-tight mb-1 group-hover:text-white transition-colors">
-                  {service.name}
-                </h3>
-
-                {/* Description — visible on mobile, smooth expand on desktop hover */}
-                <p className="text-white/80 text-xs leading-relaxed mt-1 sm:mt-0 sm:max-h-0 sm:overflow-hidden sm:opacity-0 sm:group-hover:max-h-20 sm:group-hover:opacity-100 transition-all duration-500">
-                  {service.desc}
-                </p>
+                {/* Key Deliverables Pill Badges */}
+                <div className="pt-4 border-t border-gray-100 flex flex-wrap gap-1.5">
+                  {service.deliverables.map((item, dIdx) => (
+                    <span
+                      key={dIdx}
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-charcoal-700 bg-[#FAF7F2] px-2.5 py-1 rounded-full border border-[#EAE4D9]"
+                    >
+                      <CheckCircle2 size={11} className="text-coral shrink-0" />
+                      <span>{item}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
-
-              {/* Hover Ring Effect */}
-              <div className="absolute inset-0 rounded-2xl ring-0 group-hover:ring-2 ring-white/20 transition-all duration-300 pointer-events-none" />
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* ─── Bottom Info Strip ─── */}
+        {/* ─── Bottom Centered CTA: "Get a Quote" (Matching Reference Image) ─── */}
+        <div className="mt-14 sm:mt-18 flex flex-col items-center justify-center text-center">
+          <Link
+            to="/contact"
+            id="services-get-quote-btn"
+            className="px-10 py-4 rounded-full bg-coral hover:bg-coral-dark text-white font-bold text-xs sm:text-sm tracking-widest uppercase transition-all shadow-lg shadow-coral/30 hover:shadow-xl hover:scale-105 active:scale-95 flex items-center gap-2 group"
+          >
+            <span>Get a Quote</span>
+            <ArrowRight
+              size={16}
+              className="group-hover:translate-x-1 transition-transform"
+            />
+          </Link>
+          <p className="mt-3 text-xs text-charcoal-500 font-medium">
+            Custom wedding dates & multi-day event bundles available • Free consultation with lead artist Anji
+          </p>
+        </div>
+
+        {/* ─── Bottom Info Strip for Custom Shoots ─── */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-5 sm:p-6 border border-[#EAE4D9] shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-coral-50 text-coral flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-coral-50 text-coral flex items-center justify-center shrink-0">
               <Camera size={20} />
             </div>
             <div>
               <h4 className="font-bold text-sm text-charcoal-900">
-                Custom shoot not listed?
+                Planning an intimate celebration or destination ceremony?
               </h4>
               <p className="text-xs text-charcoal-500">
-                We handle any photographic occasion. Tell us your vision!
+                We travel across Andhra Pradesh & Telangana. Tell us your location and date!
               </p>
             </div>
           </div>
@@ -207,6 +268,7 @@ export default function ServicesShowcase() {
             Request Custom Quote
           </Link>
         </div>
+
       </div>
     </section>
   );

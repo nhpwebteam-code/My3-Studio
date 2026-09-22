@@ -81,7 +81,7 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
       {/* Permanent Static Top Header Cap for Center Recommended Card */}
       {isFeatured && (
         <div className="bg-gradient-to-r from-[#F77F42] via-[#E15B3E] to-[#E15B3E] text-white py-2.5 px-4 text-center rounded-t-[30px] flex items-center justify-center gap-1.5 text-xs font-bold tracking-wide">
-          <span className="text-sm">⚡</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
           <span>Most Recommended</span>
         </div>
       )}

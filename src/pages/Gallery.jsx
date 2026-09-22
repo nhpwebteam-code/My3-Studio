@@ -1,26 +1,32 @@
 import React, { useState, useMemo } from 'react';
 import LightboxModal from '../components/LightboxModal';
-import { galleryItems, galleryCategories } from '../data/gallery';
+import { useStudioData } from '../context/StudioDataContext';
 import { Camera } from 'lucide-react';
 
 export default function Gallery() {
+  const { gallery, galleryCategories } = useStudioData();
   // Default to 'wedding' as shown in the reference screenshot
   const [activeCategory, setActiveCategory] = useState('wedding');
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Filter gallery items based on active category
   const filteredItems = useMemo(() => {
-    if (activeCategory === 'all') return galleryItems;
-    return galleryItems.filter((item) => item.category === activeCategory);
-  }, [activeCategory]);
+    if (activeCategory === 'all') return gallery;
+    return gallery.filter((item) => item.category === activeCategory);
+  }, [activeCategory, gallery]);
 
   return (
     <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
       {/* 1. Header Section - Matching Bold Display Typography of Other Sections */}
       <section className="pt-28 sm:pt-36 pb-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-coral-50 border border-coral/15 mb-4">
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-coral-50 border border-coral/15 mb-4">
+          <img
+            src="/logo.png"
+            alt="MY3 Studios"
+            className="w-5 h-5 object-contain rounded-full"
+          />
           <span className="text-xs font-bold text-coral uppercase tracking-wider">
-            Preserving Every Cherished Chapter • Memories That Live Forever
+            MY3 Studios • Preserving Every Cherished Chapter
           </span>
         </div>
         <h1 className="font-display font-black tracking-tight text-3xl sm:text-5xl md:text-6xl uppercase text-charcoal-900 leading-tight">
@@ -36,14 +42,14 @@ export default function Gallery() {
             const isActive = activeCategory === cat.id;
             const count =
               cat.id === 'all'
-                ? galleryItems.length
-                : galleryItems.filter((item) => item.category === cat.id).length;
+                ? gallery.length
+                : gallery.filter((item) => item.category === cat.id).length;
 
             return (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-6 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs uppercase tracking-widest font-bold transition-all duration-200 ${
+                className={`px-6 sm:px-7 py-2.5 rounded-full text-[11px] sm:text-xs uppercase tracking-widest font-bold transition-all duration-200 cursor-pointer ${
                   isActive
                     ? 'bg-[#1C1A17] text-white shadow-lg scale-102 ring-2 ring-black/10'
                     : 'bg-white hover:bg-white/90 text-charcoal-700 hover:text-charcoal-950 border border-gray-200/80 shadow-xs hover:shadow-sm'
@@ -78,10 +84,10 @@ export default function Gallery() {
 
               {/* Bottom Center Circular Studio Emblem Watermark (as seen in reference) */}
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none transition-transform duration-300 group-hover:scale-110">
-                <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm shadow-sm flex items-center justify-center p-0.5 border border-white">
+                <div className="w-6 h-6 rounded-full bg-white/95 backdrop-blur-sm shadow-sm flex items-center justify-center p-0.5 border border-white">
                   <img
                     src="/logo.png"
-                    alt="MY3"
+                    alt="MY3 Studios"
                     className="w-full h-full object-contain rounded-full"
                   />
                 </div>

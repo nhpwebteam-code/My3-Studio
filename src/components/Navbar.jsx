@@ -50,7 +50,7 @@ export default function Navbar({ onOpenBooking }) {
               <Menu size={19} className="group-hover:scale-110 transition-transform" />
             </button>
 
-            {/* Desktop Left Nav Links: Home, About, Pricing */}
+            {/* Desktop Left Nav Links: Home, Gallery, Pricing */}
             <nav className="hidden md:flex items-center space-x-6 sm:space-x-7">
               <NavLink
                 to="/"
@@ -64,14 +64,14 @@ export default function Navbar({ onOpenBooking }) {
                 Home
               </NavLink>
               <NavLink
-                to="/about"
+                to="/gallery"
                 className={({ isActive }) =>
                   `text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors ${
                     isActive ? 'text-coral' : 'text-charcoal-800 hover:text-coral'
                   }`
                 }
               >
-                About
+                Gallery
               </NavLink>
               <NavLink
                 to="/pricing"
@@ -91,11 +91,11 @@ export default function Navbar({ onOpenBooking }) {
             <Link
               to="/"
               className="flex items-center justify-center py-1 group"
-              aria-label="MY3 Studio Home"
+              aria-label="MY3 Studios Home"
             >
               <img
                 src="/logo.png"
-                alt="MY3 Studio Logo"
+                alt="MY3 Studios Logo"
                 className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 filter drop-shadow-md ${
                   isScrolled
                     ? 'h-12 sm:h-14 md:h-16 max-h-[64px]'
@@ -105,7 +105,7 @@ export default function Navbar({ onOpenBooking }) {
             </Link>
           </div>
 
-          {/* Right: Symmetrical Links: Services, Gallery, Contact & Language Selector */}
+          {/* Right: Symmetrical Links: Services, About, Contact */}
           <div className="flex items-center space-x-6 sm:space-x-8">
             <nav className="hidden md:flex items-center space-x-6 sm:space-x-7">
               <NavLink
@@ -119,14 +119,14 @@ export default function Navbar({ onOpenBooking }) {
                 Services
               </NavLink>
               <NavLink
-                to="/gallery"
+                to="/about"
                 className={({ isActive }) =>
                   `text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors ${
                     isActive ? 'text-coral' : 'text-charcoal-800 hover:text-coral'
                   }`
                 }
               >
-                Gallery
+                About
               </NavLink>
               <NavLink
                 to="/contact"
@@ -138,7 +138,32 @@ export default function Navbar({ onOpenBooking }) {
               >
                 Contact
               </NavLink>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `text-xs lg:text-sm font-bold uppercase tracking-wider transition-colors px-2.5 py-1 rounded-full border ${
+                    isActive
+                      ? 'border-coral text-coral bg-coral-50/50'
+                      : 'border-gray-200 text-charcoal-700 hover:border-charcoal-900 hover:text-black'
+                  }`
+                }
+                title="Admin Studio Portal"
+              >
+                <span>Admin</span>
+              </NavLink>
             </nav>
+
+            {/* Mobile Right: Symmetrical Action Button to perfectly balance the logo */}
+            <button
+              onClick={() => {
+                if (onOpenBooking) onOpenBooking();
+              }}
+              className="md:hidden w-10 h-10 rounded-full bg-coral hover:bg-coral-dark text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-sm shadow-coral/30"
+              aria-label="Book a Session"
+              title="Book Schedule"
+            >
+              <ArrowUpRight size={17} />
+            </button>
           </div>
         </div>
       </header>
@@ -158,14 +183,16 @@ export default function Navbar({ onOpenBooking }) {
               {/* Header with prominent logo */}
               <div className="flex items-center justify-between pb-6 border-b border-gray-100">
                 <div className="flex items-center space-x-3">
-                  <img
-                    src="/logo.png"
-                    alt="MY3 Studio"
-                    className="h-16 sm:h-20 w-auto object-contain filter drop-shadow-sm"
-                  />
+                  <div className="w-11 h-11 rounded-full bg-white p-1 border border-gray-200 shadow-sm flex items-center justify-center">
+                    <img
+                      src="/logo.png"
+                      alt="MY3 Studios Official Seal"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                   <div>
-                    <span className="font-black text-base tracking-widest text-charcoal font-display uppercase block">
-                      MY3 STUDIO
+                    <span className="font-display font-black text-sm tracking-tight text-charcoal-900 block">
+                      MY3 STUDIOS
                     </span>
                     <span className="text-[10px] text-coral tracking-widest uppercase font-bold">
                       Photography Atelier
@@ -184,15 +211,16 @@ export default function Navbar({ onOpenBooking }) {
               {/* Navigation Links with Proper Alignment */}
               <nav className="mt-8 space-y-2">
                 <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-3">
-                  Studio Directory
+                  Studios Directory
                 </p>
                 {[
                   { label: 'Home', path: '/' },
-                  { label: 'About Us', path: '/about' },
-                  { label: 'Our Services', path: '/services' },
-                  { label: 'Event Packages & Pricing', path: '/pricing' },
                   { label: 'Client Photo Gallery', path: '/gallery' },
+                  { label: 'Event Packages & Pricing', path: '/pricing' },
+                  { label: 'Our Services', path: '/services' },
+                  { label: 'About Us', path: '/about' },
                   { label: 'Contact & Bookings', path: '/contact' },
+                  { label: 'Admin Portal (Login / CRUD)', path: '/login' },
                 ].map((item, idx) => (
                   <div key={idx}>
                     {item.path ? (

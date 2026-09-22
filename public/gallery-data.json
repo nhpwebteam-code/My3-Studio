@@ -1,36 +1,4 @@
-/**
- * Gallery Items - Real Client Photography Archive
- * Sourced directly from takeout-1-001 user upload folders
- */
-
-export const galleryCategories = [
-  {
-    "id": "all",
-    "label": "ALL"
-  },
-  {
-    "id": "wedding",
-    "label": "WEDDING"
-  },
-  {
-    "id": "prewedding",
-    "label": "PRE WEDDING"
-  },
-  {
-    "id": "bday",
-    "label": "BIRTHDAY"
-  },
-  {
-    "id": "maternity",
-    "label": "MATERNITY"
-  },
-  {
-    "id": "potraites",
-    "label": "PORTRAITS"
-  }
-];
-
-export const galleryItems = [
+[
   {
     "id": "wedding-1",
     "title": "Wedding Celebration #1",
@@ -619,4 +587,4 @@ export const galleryItems = [
     "description": "Authentic moments captured by MY3 Studios.",
     "camera": "Sony Alpha 7R V"
   }
-];
+]
