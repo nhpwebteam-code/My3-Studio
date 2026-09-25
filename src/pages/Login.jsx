@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Eye, EyeOff, ArrowRight, CheckCircle2 } from 'lucide-react';
+import {
+  Eye,
+  EyeOff,
+  ArrowRight,
+  CheckCircle2,
+  Lock,
+  KeyRound,
+  HelpCircle,
+  X,
+  Copy,
+  Check,
+  AlertTriangle,
+  ShieldCheck,
+} from 'lucide-react';
 import { useStudioData } from '../context/StudioDataContext';
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login, isAuthenticated } = useStudioData();
+  const {
+    login,
+    isAuthenticated,
+    securityQA,
+    adminAccounts = [],
+    updateAdminPassword,
+  } = useStudioData();
 
   const [email, setEmail] = useState('admin@my3studios.com');
   const [password, setPassword] = useState('my3studios2026');
@@ -13,6 +32,7 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
 
   // If already authenticated, redirect to admin
   React.useEffect(() => {
@@ -186,7 +206,7 @@ export default function Login() {
 
               <button
                 type="button"
-                onClick={() => alert("For admin password reset, please contact Anji garu directly at +91 99493 95037.")}
+                onClick={() => setIsForgotModalOpen(true)}
                 className="text-xs text-[#E59A3D] hover:text-[#f3b05c] font-medium transition-colors cursor-pointer"
               >
                 Forgot password?
@@ -285,6 +305,385 @@ export default function Login() {
           </p>
         </div>
       </footer>
+
+      {/* ─── Forgot Password / Security Question Recovery Modal ─── */}
+      {isForgotModalOpen && (
+        <ForgotPasswordSecurityModal
+          onClose={() => setIsForgotModalOpen(false)}
+          securityQA={securityQA}
+          adminAccounts={adminAccounts}
+          updateAdminPassword={updateAdminPassword}
+          login={login}
+          navigate={navigate}
+        />
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// FORGOT PASSWORD / SECURITY QUESTION RECOVERY MODAL
+// ─────────────────────────────────────────────────────────────
+function ForgotPasswordSecurityModal({
+  onClose,
+  securityQA,
+  adminAccounts = [],
+  updateAdminPassword,
+  login,
+  navigate,
+}) {
+  const [answerInput, setAnswerInput] = useState('');
+  const [isVerified, setIsVerified] = useState(false);
+  const [verifyError, setVerifyError] = useState('');
+  const [copiedId, setCopiedId] = useState(null);
+  const [showPassFor, setShowPassFor] = useState({});
+  const [selectedAdminId, setSelectedAdminId] = useState(
+    adminAccounts[0]?.id || 'admin-1'
+  );
+  const [newPassword, setNewPassword] = useState('');
+  const [newPassMsg, setNewPassMsg] = useState('');
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const activeQuestion =
+    securityQA?.question ||
+    'What is the founding location and primary atelier of MY3 Studios?';
+  const activeAnswer =
+    securityQA?.answer || 'Srinivasa Center, Nandyal, Andhra Pradesh';
+
+  const handleVerify = (e) => {
+    if (e) e.preventDefault();
+    const cleanInput = (answerInput || '')
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
+    const cleanTarget = activeAnswer
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '');
+
+    if (!cleanInput) {
+      setVerifyError('Please enter your security answer to proceed.');
+      return;
+    }
+
+    const isMatch =
+      cleanInput === cleanTarget ||
+      (cleanInput.length >= 3 && cleanTarget.includes(cleanInput)) ||
+      (cleanTarget.length >= 3 && cleanInput.includes(cleanTarget));
+
+    if (isMatch) {
+      setIsVerified(true);
+      setVerifyError('');
+    } else {
+      setVerifyError('Incorrect security answer. Please check your answer and try again.');
+    }
+  };
+
+  const togglePasswordVisibility = (id) => {
+    setShowPassFor((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const handleCopyPassword = (id, pass) => {
+    navigator.clipboard.writeText(pass);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const handleDirectLogin = (account) => {
+    login(account.email, account.password);
+    onClose();
+    navigate('/admin');
+  };
+
+  const handleSetNewPassword = (e) => {
+    e.preventDefault();
+    if (!newPassword || newPassword.trim().length < 4) {
+      setNewPassMsg('Password must be at least 4 characters');
+      return;
+    }
+
+    setIsUpdating(true);
+    updateAdminPassword(selectedAdminId, newPassword.trim());
+
+    const targetAccount =
+      adminAccounts.find((a) => a.id === selectedAdminId) || adminAccounts[0];
+
+    setNewPassMsg('Password updated successfully! Logging you in...');
+    setTimeout(() => {
+      login(targetAccount.email, newPassword.trim());
+      setIsUpdating(false);
+      onClose();
+      navigate('/admin');
+    }, 700);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-fade-in">
+      <div className="bg-[#14161C] rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-white/10 relative overflow-hidden max-h-[90vh] overflow-y-auto">
+        {/* Glow Accent */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-24 bg-[#E59A3D]/15 blur-2xl pointer-events-none" />
+
+        {/* Header */}
+        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5 relative z-10">
+          <div className="flex items-center gap-2.5">
+            <div
+              className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                isVerified
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                  : 'bg-[#E59A3D]/20 text-[#E59A3D] border border-[#E59A3D]/30'
+              }`}
+            >
+              {isVerified ? <ShieldCheck size={18} /> : <KeyRound size={18} />}
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-white">
+                {isVerified ? 'Studio Access Recovery' : 'Admin Security Verification'}
+              </h3>
+              <p className="text-[11px] text-gray-400">
+                {isVerified
+                  ? 'Identity confirmed. View credentials or set a new password.'
+                  : 'Answer your registered security question to access credentials'}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white flex items-center justify-center cursor-pointer transition-colors"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        {/* Step 1: Security Question Verification */}
+        {!isVerified ? (
+          <form onSubmit={handleVerify} className="space-y-4 relative z-10">
+            {/* Display Active Question */}
+            <div className="p-4 rounded-2xl bg-[#1C1F28] border border-white/10 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#E59A3D] flex items-center gap-1.5">
+                  <HelpCircle size={13} />
+                  <span>Security Question</span>
+                </span>
+                <span className="text-[10px] text-gray-500 font-mono">
+                  {securityQA?.lastUpdated || 'Active'}
+                </span>
+              </div>
+              <p className="text-sm font-semibold text-white leading-relaxed">
+                {activeQuestion}
+              </p>
+            </div>
+
+            {/* Answer Input */}
+            <div>
+              <label className="block text-xs font-bold text-gray-300 mb-1.5 flex items-center justify-between">
+                <span>Enter Your Security Answer *</span>
+                <span className="text-[10px] text-gray-400 font-normal">
+                  Case-insensitive
+                </span>
+              </label>
+              <input
+                type="text"
+                autoFocus
+                value={answerInput}
+                onChange={(e) => {
+                  setAnswerInput(e.target.value);
+                  if (verifyError) setVerifyError('');
+                }}
+                placeholder="Type your answer here..."
+                className="w-full px-4 py-3 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+              />
+            </div>
+
+            {/* Error Message */}
+            {verifyError && (
+              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs flex items-center gap-2">
+                <AlertTriangle size={15} className="shrink-0 text-red-400" />
+                <span>{verifyError}</span>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex items-center justify-end gap-3 pt-3 border-t border-white/10">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-gray-300 cursor-pointer transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2.5 rounded-xl bg-[#E59A3D] hover:bg-[#c98028] text-black text-xs font-bold shadow-md transition-all cursor-pointer flex items-center gap-2"
+              >
+                <span>Verify &amp; Recover Access</span>
+                <ArrowRight size={14} />
+              </button>
+            </div>
+
+            <div className="pt-2 text-center border-t border-white/5">
+              <p className="text-[11px] text-gray-500">
+                Can't remember the answer? Contact Anji garu directly at{' '}
+                <a
+                  href="tel:+919949395037"
+                  className="text-[#E59A3D] hover:underline font-mono"
+                >
+                  +91 99493 95037
+                </a>
+              </p>
+            </div>
+          </form>
+        ) : (
+          /* Step 2: Credentials Revealed & Reset Option */
+          <div className="space-y-4 relative z-10">
+            {/* Success notification */}
+            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-2.5">
+              <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+              <span className="text-xs font-semibold text-emerald-300">
+                Security answer verified successfully! Here are your credentials:
+              </span>
+            </div>
+
+            {/* List of Admin Accounts */}
+            <div className="space-y-2.5">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 block">
+                Admin Credentials
+              </span>
+
+              {adminAccounts.map((account) => {
+                const isPassVisible = showPassFor[account.id];
+                const isCopied = copiedId === account.id;
+
+                return (
+                  <div
+                    key={account.id}
+                    className="p-3.5 rounded-2xl bg-[#1C1F28] border border-white/10 space-y-2.5"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-white/10 text-white font-bold text-xs flex items-center justify-center">
+                          {account.avatarInitial || account.name?.charAt(0) || 'A'}
+                        </span>
+                        <div>
+                          <p className="text-xs font-bold text-white leading-none">
+                            {account.name}
+                          </p>
+                          <p className="text-[11px] text-gray-400 font-mono mt-0.5">
+                            {account.email}
+                          </p>
+                        </div>
+                      </div>
+
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#E59A3D]/15 text-[#E59A3D] border border-[#E59A3D]/30">
+                        {account.role || 'Admin'}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/5 flex-wrap">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-gray-400 font-medium">Password:</span>
+                        <span className="text-xs font-mono font-bold text-[#E59A3D] bg-black/40 px-2 py-0.5 rounded-md border border-white/5">
+                          {isPassVisible ? account.password : '••••••••••••'}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => togglePasswordVisibility(account.id)}
+                          className="text-gray-400 hover:text-white transition-colors cursor-pointer text-xs"
+                          title={isPassVisible ? 'Hide Password' : 'Show Password'}
+                        >
+                          {isPassVisible ? <EyeOff size={14} /> : <Eye size={14} />}
+                        </button>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleCopyPassword(account.id, account.password)}
+                          className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-semibold text-gray-300 hover:text-white flex items-center gap-1 cursor-pointer transition-all"
+                        >
+                          {isCopied ? (
+                            <>
+                              <Check size={12} className="text-emerald-400" />
+                              <span className="text-emerald-400">Copied</span>
+                            </>
+                          ) : (
+                            <>
+                              <Copy size={12} />
+                              <span>Copy</span>
+                            </>
+                          )}
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => handleDirectLogin(account)}
+                          className="px-3 py-1 rounded-lg bg-[#E59A3D] hover:bg-[#c98028] text-black text-[11px] font-bold flex items-center gap-1 cursor-pointer transition-all"
+                        >
+                          <span>Sign In</span>
+                          <ArrowRight size={12} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Set New Password Form */}
+            <form onSubmit={handleSetNewPassword} className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2.5">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-gray-300">
+                <Lock size={13} className="text-[#E59A3D]" />
+                <span>Or Reset Password Directly</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <select
+                  value={selectedAdminId}
+                  onChange={(e) => setSelectedAdminId(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white text-xs focus:outline-none focus:border-[#E59A3D]"
+                >
+                  {adminAccounts.map((a) => (
+                    <option key={a.id} value={a.id}>
+                      {a.name} ({a.email})
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="text"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="Enter new password"
+                  className="w-full px-3 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#E59A3D]"
+                />
+              </div>
+
+              {newPassMsg && (
+                <p className="text-[11px] text-emerald-400 font-semibold">{newPassMsg}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isUpdating}
+                className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all cursor-pointer flex items-center justify-center gap-1.5 disabled:opacity-60"
+              >
+                <CheckCircle2 size={14} />
+                <span>{isUpdating ? 'Saving...' : 'Save New Password & Sign In'}</span>
+              </button>
+            </form>
+
+            <div className="flex justify-end pt-2">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-semibold text-gray-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

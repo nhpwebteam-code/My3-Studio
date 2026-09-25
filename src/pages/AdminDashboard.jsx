@@ -26,6 +26,7 @@ import {
   Eye,
   EyeOff,
   AlertCircle,
+  AlertTriangle,
   Key,
   Lock,
   Shield,
@@ -2238,6 +2239,7 @@ function ChangePasswordModal({ account, onSave, onClose }) {
 function SecurityQAModal({ currentQA, onSave, onClose }) {
   const [question, setQuestion] = useState(currentQA.question || '');
   const [answer, setAnswer] = useState(currentQA.answer || '');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const presetQuestions = [
     'What is the founding location and primary atelier of MY3 Studios?',
@@ -2248,11 +2250,11 @@ function SecurityQAModal({ currentQA, onSave, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!question || !answer) {
-      alert('Please fill out both the security question and answer');
+    if (!question.trim() || !answer.trim()) {
+      setErrorMsg('Please enter both the security question and answer.');
       return;
     }
-    onSave(question, answer);
+    onSave(question.trim(), answer.trim());
   };
 
   return (
@@ -2273,28 +2275,64 @@ function SecurityQAModal({ currentQA, onSave, onClose }) {
           </button>
         </div>
 
+        {errorMsg && (
+          <div className="mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs flex items-center gap-2">
+            <AlertTriangle size={15} className="shrink-0 text-red-400" />
+            <span>{errorMsg}</span>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold text-gray-300 mb-1">
-              Select or Customize Security Question *
-            </label>
-            <select
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white text-xs font-bold focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D] mb-2"
-            >
-              {presetQuestions.map((q, idx) => (
-                <option key={idx} value={q}>{q}</option>
-              ))}
-            </select>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-xs font-bold text-gray-300">
+                Security Question *
+              </label>
+              <span className="text-[10px] text-gray-400 font-normal">
+                Type question or click a suggestion
+              </span>
+            </div>
             <input
               type="text"
               required
               value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Or type custom question"
-              className="w-full px-3.5 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+              onChange={(e) => {
+                setQuestion(e.target.value);
+                if (errorMsg) setErrorMsg('');
+              }}
+              placeholder="Enter your security question..."
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
             />
+            {/* Quick Template Suggestion Chips */}
+            <div className="mt-2.5 flex flex-wrap gap-1.5">
+              <span className="text-[10px] text-gray-500 self-center">Suggestions:</span>
+              {presetQuestions.map((preset, idx) => {
+                const isSelected = question === preset;
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setQuestion(preset);
+                      if (errorMsg) setErrorMsg('');
+                    }}
+                    className={`text-[10.5px] px-2.5 py-1 rounded-lg border transition-all text-left cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#E59A3D]/20 text-[#E59A3D] border-[#E59A3D]/40 font-semibold'
+                        : 'bg-white/5 text-gray-400 border-white/10 hover:bg-white/10 hover:text-white'
+                    }`}
+                  >
+                    {idx === 0
+                      ? '📍 Founding Location'
+                      : idx === 1
+                      ? '📅 Founding Year'
+                      : idx === 2
+                      ? '📸 Founder & Photographer'
+                      : '📷 Camera Equipment'}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <div>
@@ -2305,7 +2343,10 @@ function SecurityQAModal({ currentQA, onSave, onClose }) {
               type="text"
               required
               value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
+              onChange={(e) => {
+                setAnswer(e.target.value);
+                if (errorMsg) setErrorMsg('');
+              }}
               placeholder="Enter recovery answer"
               className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
             />
