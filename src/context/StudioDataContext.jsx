@@ -233,8 +233,8 @@ export function StudioDataProvider({ children }) {
       location: newItem.location || 'Nandyal / Kurnool',
       client: newItem.client || 'MY3 Client',
       aspect: newItem.aspect || 'portrait',
-      image: newItem.image || '/takeout-1-001/wedding/1.png',
-      thumbnail: newItem.thumbnail || newItem.image || '/takeout-1-001/wedding/1.png',
+      image: newItem.image || '/takeout-1-001/wedding/MY306596.jpg',
+      thumbnail: newItem.thumbnail || newItem.image || '/takeout-1-001/wedding/MY306596.jpg',
       description: newItem.description || 'Authentic moments captured by MY3 Studios.',
       camera: newItem.camera || 'Sony Alpha 7R V',
     };

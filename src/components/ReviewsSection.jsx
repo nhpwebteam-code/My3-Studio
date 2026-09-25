@@ -271,17 +271,17 @@ export default function ReviewsSection() {
                 <div className="flex items-center gap-3.5 pt-1">
                   <div className="flex -space-x-3 items-center">
                     <img
-                      src="/takeout-1-001/potraites/2.png"
+                      src="/takeout-1-001/potraites/DSC04170.jpg"
                       alt="Verified Client"
                       className="w-10 h-10 rounded-full border-2 border-[#14161C] object-cover shadow-xs"
                     />
                     <img
-                      src="/takeout-1-001/wedding/6.png"
+                      src="/takeout-1-001/wedding/MY306596.jpg"
                       alt="Verified Client"
                       className="w-10 h-10 rounded-full border-2 border-[#14161C] object-cover shadow-xs"
                     />
                     <img
-                      src="/takeout-1-001/potraites/7.png"
+                      src="/takeout-1-001/potraites/DSC05314.jpg"
                       alt="Verified Client"
                       className="w-10 h-10 rounded-full border-2 border-[#14161C] object-cover shadow-xs"
                     />

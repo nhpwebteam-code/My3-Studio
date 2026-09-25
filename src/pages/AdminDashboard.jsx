@@ -880,7 +880,7 @@ export default function AdminDashboard() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search gallery..."
-                    className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-[#F8F9FA] border border-white/10 text-xs text-gray-200 focus:outline-none focus:border-charcoal-900"
+                    className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-[#1C1F28] border border-white/20 text-xs text-white placeholder-gray-400 focus:outline-none focus:border-[#E59A3D]"
                   />
                 </div>
               </div>
@@ -1168,7 +1168,7 @@ function PackageFormModal({ title, initialData, onSave, onClose }) {
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="e.g. 3 Days Royal Wedding Package"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 text-sm focus:outline-none focus:border-charcoal-900 font-medium"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D] font-medium"
             />
           </div>
 
@@ -1183,7 +1183,7 @@ function PackageFormModal({ title, initialData, onSave, onClose }) {
                 value={formData.startingPrice}
                 onChange={(e) => setFormData({ ...formData, startingPrice: e.target.value })}
                 placeholder="₹60,000"
-                className="w-full px-3.5 py-2 rounded-xl border border-white/10 text-sm font-bold text-[#E59A3D] focus:outline-none focus:border-charcoal-900"
+                className="w-full px-3.5 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-sm font-bold text-[#E59A3D] placeholder-gray-500 focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
               />
             </div>
             <div>
@@ -1195,7 +1195,7 @@ function PackageFormModal({ title, initialData, onSave, onClose }) {
                 value={formData.duration}
                 onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
                 placeholder="2 Days Full Event Coverage"
-                className="w-full px-3.5 py-2 rounded-xl border border-white/10 text-sm focus:outline-none focus:border-charcoal-900"
+                className="w-full px-3.5 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
               />
             </div>
           </div>
@@ -1210,7 +1210,7 @@ function PackageFormModal({ title, initialData, onSave, onClose }) {
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                 placeholder="Wedding & Multi-Day"
-                className="w-full px-3.5 py-2 rounded-xl border border-white/10 text-sm focus:outline-none focus:border-charcoal-900"
+                className="w-full px-3.5 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
               />
             </div>
             <div>
@@ -1222,7 +1222,7 @@ function PackageFormModal({ title, initialData, onSave, onClose }) {
                 value={formData.badge}
                 onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
                 placeholder="Most Popular / Essential"
-                className="w-full px-3.5 py-2 rounded-xl border border-white/10 text-sm focus:outline-none focus:border-charcoal-900"
+                className="w-full px-3.5 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
               />
             </div>
           </div>
@@ -1242,7 +1242,7 @@ function PackageFormModal({ title, initialData, onSave, onClose }) {
                 })
               }
               placeholder="Brief description of the package scope and photography approach..."
-              className="w-full px-3.5 py-2 rounded-xl border border-white/10 text-xs focus:outline-none focus:border-charcoal-900"
+              className="w-full px-3.5 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
             />
           </div>
 
@@ -1255,7 +1255,7 @@ function PackageFormModal({ title, initialData, onSave, onClose }) {
               value={formData.deliverables || ''}
               onChange={(e) => setFormData({ ...formData, deliverables: e.target.value })}
               placeholder="Traditional Photography&#10;Traditional Videography&#10;60 Sheets Luxury Lay-Flat Album&#10;Teaser Video"
-              className="w-full px-3.5 py-2 rounded-xl border border-white/10 text-xs font-mono focus:outline-none focus:border-charcoal-900"
+              className="w-full px-3.5 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-xs font-mono focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
             />
             <span className="text-[10px] text-gray-500 mt-1 block">
               Each new line will render as a checkmark bullet point on the pricing card.
@@ -1293,17 +1293,17 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
   const fileInputRef = React.useRef(null);
 
   const photoPresets = [
-    '/takeout-1-001/wedding/1.png',
-    '/takeout-1-001/wedding/2.png',
-    '/takeout-1-001/wedding/3.png',
-    '/takeout-1-001/wedding/5.png',
-    '/takeout-1-001/wedding/6.png',
-    '/takeout-1-001/potraites/1.png',
-    '/takeout-1-001/potraites/2.png',
-    '/takeout-1-001/potraites/7.png',
-    '/takeout-1-001/prewedding/1.png',
-    '/takeout-1-001/prewedding/6.png',
-    '/takeout-1-001/maternity/1.png',
+    '/takeout-1-001/wedding/MY306596.jpg',
+    '/takeout-1-001/wedding/MY308576.jpg',
+    '/takeout-1-001/wedding/SAI09788.jpg',
+    '/takeout-1-001/prewedding/DSC04247.jpg',
+    '/takeout-1-001/prewedding/SAI09694.jpg',
+    '/takeout-1-001/potraites/DSC04170.jpg',
+    '/takeout-1-001/potraites/DSC06581_1a.jpg',
+    '/takeout-1-001/maternity/DSC05912_A.jpg',
+    '/takeout-1-001/bday/MY300026.jpg',
+    '/takeout-1-001/bday/01.jpg',
+    '/takeout-1-001/prewedding/DSC04577.jpg',
   ];
 
   // Process uploaded file → compress and convert to base64 data URL
@@ -1402,7 +1402,7 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="e.g. Royal Telugu Muhurtham"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 text-sm focus:outline-none focus:border-charcoal-900 font-medium"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D] font-medium"
             />
           </div>
 
@@ -1414,7 +1414,7 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
               <select
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 text-xs font-bold focus:outline-none focus:border-charcoal-900 bg-[#14161C]"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white text-xs font-bold focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
               >
                 <option value="wedding">Wedding</option>
                 <option value="prewedding">Pre Wedding</option>
@@ -1432,7 +1432,7 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
                 value={formData.year}
                 onChange={(e) => setFormData({ ...formData, year: e.target.value })}
                 placeholder="2026"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 text-sm focus:outline-none focus:border-charcoal-900"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
               />
             </div>
           </div>
@@ -1446,7 +1446,7 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
               value={formData.location}
               onChange={(e) => setFormData({ ...formData, location: e.target.value })}
               placeholder="Nandyal / Kurnool / Gandikota"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 text-sm focus:outline-none focus:border-charcoal-900"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
             />
           </div>
 
@@ -1462,8 +1462,8 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
               onClick={() => fileInputRef.current?.click()}
               className={`relative rounded-2xl border-2 border-dashed p-6 text-center cursor-pointer transition-all duration-200 ${
                 isDragOver
-                  ? 'border-[#E59A3D] bg-[#E59A3D]-50 scale-[1.01]'
-                  : 'border-gray-300 bg-[#FAFAF9] hover:border-charcoal-400 hover:bg-white/5'
+                  ? 'border-[#E59A3D] bg-[#E59A3D]/10 scale-[1.01]'
+                  : 'border-white/20 bg-[#1C1F28] hover:border-[#E59A3D]/50 hover:bg-white/5'
               }`}
             >
               <input
