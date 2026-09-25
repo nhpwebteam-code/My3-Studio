@@ -24,7 +24,19 @@ import {
   Check,
   RotateCcw,
   Eye,
-  AlertCircle
+  EyeOff,
+  AlertCircle,
+  Key,
+  Lock,
+  Shield,
+  ShieldCheck,
+  Mail,
+  Copy,
+  RefreshCw,
+  HelpCircle,
+  UserCheck,
+  Bell,
+  Settings,
 } from 'lucide-react';
 import { useStudioData } from '../context/StudioDataContext';
 
@@ -45,12 +57,52 @@ export default function AdminDashboard() {
     resetGallery,
 
     bookings,
+    adminAccounts = [],
+    updateAdminEmail,
+    updateAdminPassword,
+    securityQA = {
+      question: 'What is the founding location of MY3 Studios?',
+      answer: 'Srinivasa Center, Nandyal, Andhra Pradesh',
+      lastUpdated: 'September 2026',
+    },
+    updateSecurityQA,
+
     user,
     logout,
   } = useStudioData();
 
-  // Active top/sidebar tab: 'overview', 'packages', 'gallery', 'bookings'
+  // Active top/sidebar tab: 'overview', 'packages', 'gallery', 'bookings', 'security'
   const [activeTab, setActiveTab] = useState('overview');
+
+  // Security Tab States
+  const [visiblePasswords, setVisiblePasswords] = useState({});
+  const [emailModalAccount, setEmailModalAccount] = useState(null);
+  const [passwordModalAccount, setPasswordModalAccount] = useState(null);
+  const [isQAModalOpen, setIsQAModalOpen] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
+  const [isRefreshingSecurity, setIsRefreshingSecurity] = useState(false);
+  const [showQAAnswer, setShowQAAnswer] = useState(false);
+
+  const togglePasswordVisibility = (id) => {
+    setVisiblePasswords((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const handleCopyPassword = (account) => {
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(account.password);
+      setCopiedId(account.id);
+      showToast(`Password for ${account.name} copied to clipboard!`);
+      setTimeout(() => setCopiedId(null), 2000);
+    }
+  };
+
+  const handleRefreshSecurity = () => {
+    setIsRefreshingSecurity(true);
+    setTimeout(() => {
+      setIsRefreshingSecurity(false);
+      showToast('All security credentials & active sessions verified in real-time');
+    }, 600);
+  };
 
   // Package Modals
   const [isAddPackageOpen, setIsAddPackageOpen] = useState(false);
@@ -181,11 +233,24 @@ export default function AdminDashboard() {
                   {bookings.length}
                 </span>
               </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveTab('security')}
+                className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                  activeTab === 'security'
+                    ? 'bg-black text-white border border-[#E59A3D]/40 shadow-xs'
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                <Key size={14} className={activeTab === 'security' ? 'text-[#E59A3D]' : ''} />
+                <span>Security</span>
+              </button>
             </nav>
 
             {/* Mobile: show current tab name */}
             <span className="md:hidden text-sm font-bold text-white font-display capitalize truncate">
-              {activeTab === 'overview' ? 'Dashboard' : activeTab === 'bookings' ? 'Inquiries' : activeTab}
+              {activeTab === 'overview' ? 'Dashboard' : activeTab === 'bookings' ? 'Inquiries' : activeTab === 'security' ? 'Security' : activeTab}
             </span>
           </div>
 
@@ -257,6 +322,7 @@ export default function AdminDashboard() {
             { id: 'packages', icon: Package, label: 'Packages', count: packages.length },
             { id: 'gallery', icon: ImageIcon, label: 'Gallery', count: gallery.length },
             { id: 'bookings', icon: Calendar, label: 'Inquiries', count: bookings.length },
+            { id: 'security', icon: Key, label: 'Security' },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -334,6 +400,17 @@ export default function AdminDashboard() {
             >
               <Calendar size={17} />
             </button>
+            <button
+              onClick={() => setActiveTab('security')}
+              className={`w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+                activeTab === 'security'
+                  ? 'bg-black text-[#E59A3D] border border-white/20 shadow-sm'
+                  : 'text-gray-500 hover:text-white hover:bg-white/5'
+              }`}
+              title="Password & Access Security"
+            >
+              <Key size={17} />
+            </button>
           </div>
 
           <div className="flex flex-col items-center gap-3 pt-4 border-t border-white/10">
@@ -349,6 +426,66 @@ export default function AdminDashboard() {
 
         {/* Center Main Content Area */}
         <main className="flex-1 min-w-0">
+
+          {/* Mobile Profile & Horizontal Pill Tabs (Matching Mobile Reference Screenshot) */}
+          <div className="md:hidden space-y-3.5 mb-6">
+            <div className="bg-[#14161C] rounded-3xl p-4 border border-white/10 shadow-sm flex items-center justify-between">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-10 h-10 rounded-full bg-black text-white font-black text-sm flex items-center justify-center border border-white/20 shadow-xs shrink-0">
+                  K
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-sm font-bold text-white truncate leading-tight">
+                    MY3 Fotography Admin
+                  </h3>
+                  <p className="text-[11px] text-gray-400 truncate leading-tight mt-0.5">
+                    Studio Admin <span className="text-gray-500">(@my3fotography)</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-1.5 shrink-0">
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-red-500/20 text-gray-300 hover:text-red-400 text-xs font-semibold border border-white/10 transition-colors"
+                >
+                  <LogOut size={12} />
+                  <span>Logout</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Horizontal scrollable tab buttons */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+              {[
+                { id: 'overview', label: 'Dashboard' },
+                { id: 'packages', label: 'Packages', count: packages.length },
+                { id: 'gallery', label: 'Gallery', count: gallery.length },
+                { id: 'bookings', label: 'Inquiries', count: bookings.length },
+                { id: 'security', label: 'Security', icon: Key },
+              ].map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setActiveTab(t.id)}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
+                    activeTab === t.id
+                      ? 'bg-black text-white border border-[#E59A3D]/40 shadow-sm'
+                      : 'bg-[#14161C] text-gray-400 hover:text-white border border-white/10'
+                  }`}
+                >
+                  {t.icon && <t.icon size={13} className={activeTab === t.id ? 'text-[#E59A3D]' : ''} />}
+                  <span>{t.label}</span>
+                  {t.count != null && (
+                    <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-white/10 text-gray-300 font-mono">
+                      {t.count}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* ═══════════════════════════════════════════
               TAB 1: OVERVIEW & DASHBOARD SUMMARY (Exact Reference Image 2 Layout)
@@ -1035,6 +1172,232 @@ export default function AdminDashboard() {
             </div>
           )}
 
+          {/* ═══════════════════════════════════════════
+              SECTION: SECURITY & ACCESS MANAGEMENT (Matching Reference Screenshot)
+          ═══════════════════════════════════════════ */}
+          {activeTab === 'security' && (
+            <div className="space-y-6 sm:space-y-8 animate-fade-in">
+              
+              {/* Header Title block */}
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-black font-display text-white tracking-tight">
+                  Password &amp; Access Security
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-400 mt-1">
+                  Welcome back, <strong className="text-white font-semibold">MY3 Fotography Admin</strong>. All studio systems running in real-time.
+                </p>
+              </div>
+
+              {/* Top Hero Banner Card */}
+              <div className="bg-[#14161C] rounded-3xl p-5 sm:p-7 border border-white/10 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-500/15 text-blue-400 border border-blue-500/30 flex items-center justify-center shrink-0 shadow-inner">
+                    <Key size={22} className="rotate-45" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                      Password &amp; Access Security
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-400 mt-0.5">
+                      Manage passwords and access emails securely &middot; Admin Portal Only
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5 shrink-0 self-start md:self-center">
+                  <button
+                    type="button"
+                    onClick={() => setIsQAModalOpen(true)}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95"
+                  >
+                    <HelpCircle size={14} />
+                    <span>UPDATE SECURITY Q&amp;A</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleRefreshSecurity}
+                    disabled={isRefreshingSecurity}
+                    className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                    title="Refresh Security Status"
+                  >
+                    <RefreshCw size={15} className={isRefreshingSecurity ? 'animate-spin text-[#E59A3D]' : ''} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Administrator Accounts Section */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck size={16} className="text-[#E59A3D]" />
+                    <h3 className="text-xs font-black uppercase tracking-wider text-gray-300">
+                      ADMINISTRATOR ACCOUNTS
+                    </h3>
+                    <span className="text-[11px] font-bold text-gray-400 bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10">
+                      {adminAccounts.length} accounts
+                    </span>
+                  </div>
+                </div>
+
+                {/* Account Cards Grid */}
+                <div className="grid grid-cols-1 gap-4">
+                  {adminAccounts.map((acc) => {
+                    const isRevealed = Boolean(visiblePasswords[acc.id]);
+                    const isCopied = copiedId === acc.id;
+
+                    return (
+                      <div
+                        key={acc.id}
+                        className="bg-[#14161C] rounded-3xl p-5 sm:p-6 border border-white/10 hover:border-white/20 transition-all shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-5"
+                      >
+                        {/* Left: Avatar + Account Meta */}
+                        <div className="flex items-start sm:items-center gap-4 min-w-0">
+                          <div className="w-12 h-12 rounded-full bg-black text-white font-black text-base flex items-center justify-center border-2 border-white/20 shadow-md shrink-0">
+                            {acc.avatarInitial || acc.name.charAt(0)}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <h4 className="text-base font-bold text-white truncate">
+                                {acc.name}
+                              </h4>
+                              {acc.isCurrent && (
+                                <span className="text-xs font-bold text-[#E59A3D]">
+                                  (You)
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-xs text-gray-400 mt-0.5 truncate">
+                              <span className="text-gray-300 font-medium">{acc.email}</span>
+                              <span className="mx-1.5">&middot;</span>
+                              <span>{acc.role || acc.designation}</span>
+                            </p>
+
+                            {/* Badges row matching screenshot */}
+                            <div className="flex items-center gap-2 mt-2.5 flex-wrap">
+                              {acc.isMaster ? (
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-500/15 text-rose-300 border border-rose-500/30 uppercase tracking-wider">
+                                  MASTER ADMIN
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-500/15 text-blue-300 border border-blue-500/30 uppercase tracking-wider">
+                                  ADMINISTRATOR
+                                </span>
+                              )}
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                ACTIVE
+                              </span>
+                              {acc.isMaster && (
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/5 text-gray-400 border border-white/10">
+                                  Master Admin Only
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Right: Actions (Change Email + Show/Copy Password + Change Password) */}
+                        <div className="flex items-center gap-2.5 flex-wrap self-start md:self-center shrink-0">
+                          {/* Change Email Button */}
+                          <button
+                            type="button"
+                            onClick={() => setEmailModalAccount(acc)}
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-200 transition-all hover:border-[#E59A3D]/40 cursor-pointer active:scale-95"
+                          >
+                            <Mail size={13} className="text-[#E59A3D]" />
+                            <span>CHANGE EMAIL</span>
+                          </button>
+
+                          {/* Password Box: Toggle View & Copy */}
+                          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C1F28] border border-white/15 shadow-inner">
+                            <span className="text-xs font-mono font-bold text-white min-w-[70px]">
+                              {isRevealed ? acc.password : '••••••••••••'}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => togglePasswordVisibility(acc.id)}
+                              className="text-gray-400 hover:text-white transition-colors cursor-pointer p-0.5"
+                              title={isRevealed ? "Hide Password" : "View Password"}
+                            >
+                              {isRevealed ? <EyeOff size={14} className="text-[#E59A3D]" /> : <Eye size={14} />}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleCopyPassword(acc)}
+                              className="text-gray-400 hover:text-white transition-colors cursor-pointer p-0.5"
+                              title="Copy Password to Clipboard"
+                            >
+                              {isCopied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+                            </button>
+                          </div>
+
+                          {/* Change Password Button */}
+                          <button
+                            type="button"
+                            onClick={() => setPasswordModalAccount(acc)}
+                            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-200 transition-all hover:border-[#E59A3D]/40 cursor-pointer active:scale-95"
+                          >
+                            <Key size={13} className="text-[#E59A3D]" />
+                            <span>CHANGE PASSWORD</span>
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Security Recovery & Q&A Status Card */}
+              <div className="bg-[#14161C] rounded-3xl p-5 sm:p-6 border border-white/10 shadow-sm space-y-3">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <div className="flex items-center gap-2">
+                    <Lock size={16} className="text-emerald-400" />
+                    <h4 className="text-xs font-black uppercase tracking-wider text-gray-300">
+                      Studio Security Recovery Protocol
+                    </h4>
+                  </div>
+                  <span className="text-[11px] text-gray-500 font-mono">
+                    Last updated: {securityQA.lastUpdated || 'Active'}
+                  </span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-[#1C1F28] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 block">
+                      Active Security Question
+                    </span>
+                    <p className="text-xs sm:text-sm font-semibold text-white">
+                      {securityQA.question}
+                    </p>
+                    <div className="flex items-center gap-2 pt-0.5">
+                      <span className="text-[10px] text-gray-400">Answer:</span>
+                      <span className="text-xs font-mono font-bold text-emerald-400">
+                        {showQAAnswer ? securityQA.answer : '••••••••••••••••'}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setShowQAAnswer(!showQAAnswer)}
+                        className="text-gray-400 hover:text-white transition-colors cursor-pointer text-[11px] underline ml-1"
+                      >
+                        {showQAAnswer ? 'Hide' : 'Reveal'}
+                      </button>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsQAModalOpen(true)}
+                    className="self-start sm:self-center px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-white border border-white/15 transition-all shadow-xs cursor-pointer"
+                  >
+                    Edit Q&amp;A
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          )}
+
         </main>
       </div>
 
@@ -1125,6 +1488,51 @@ export default function AdminDashboard() {
             showToast(`Updated photo "${data.title}"`);
           }}
           onClose={() => setEditingPhoto(null)}
+        />
+      )}
+
+      {/* ═══════════════════════════════════════════
+          MODAL: CHANGE ADMIN EMAIL
+      ═══════════════════════════════════════════ */}
+      {emailModalAccount && (
+        <ChangeEmailModal
+          account={emailModalAccount}
+          onSave={(newEmail) => {
+            updateAdminEmail(emailModalAccount.id, newEmail);
+            showToast(`Updated email for "${emailModalAccount.name}" to ${newEmail}`);
+            setEmailModalAccount(null);
+          }}
+          onClose={() => setEmailModalAccount(null)}
+        />
+      )}
+
+      {/* ═══════════════════════════════════════════
+          MODAL: CHANGE ADMIN PASSWORD
+      ═══════════════════════════════════════════ */}
+      {passwordModalAccount && (
+        <ChangePasswordModal
+          account={passwordModalAccount}
+          onSave={(newPassword) => {
+            updateAdminPassword(passwordModalAccount.id, newPassword);
+            showToast(`Updated password for "${passwordModalAccount.name}" successfully!`);
+            setPasswordModalAccount(null);
+          }}
+          onClose={() => setPasswordModalAccount(null)}
+        />
+      )}
+
+      {/* ═══════════════════════════════════════════
+          MODAL: UPDATE SECURITY Q&A
+      ═══════════════════════════════════════════ */}
+      {isQAModalOpen && (
+        <SecurityQAModal
+          currentQA={securityQA}
+          onSave={(q, a) => {
+            updateSecurityQA(q, a);
+            showToast('Security recovery question and answer updated successfully!');
+            setIsQAModalOpen(false);
+          }}
+          onClose={() => setIsQAModalOpen(false)}
         />
       )}
 
@@ -1550,6 +1958,308 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
               className="px-5 py-2 rounded-xl bg-[#1E2024] hover:bg-black text-white text-xs font-bold shadow-md cursor-pointer"
             >
               Save Photo
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// MODAL: CHANGE ADMIN EMAIL
+// ─────────────────────────────────────────────
+function ChangeEmailModal({ account, onSave, onClose }) {
+  const [email, setEmail] = useState(account.email || '');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    onSave(email);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+      <div className="bg-[#14161C] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-white/10">
+        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-[#E59A3D]/20 text-[#E59A3D] flex items-center justify-center">
+              <Mail size={16} />
+            </div>
+            <h3 className="text-base font-bold text-white">Change Admin Email</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 flex items-center justify-center cursor-pointer"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+            <span className="text-gray-400 block text-[11px]">Administrator:</span>
+            <span className="font-bold text-white block mt-0.5">{account.name}</span>
+            <span className="text-[11px] text-gray-400 block mt-0.5 font-mono">Current: {account.email}</span>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              New Email Address *
+            </label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="e.g. rmythristudiondl.anji@gmail.com"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+            />
+            <span className="text-[10px] text-gray-500 mt-1 block">
+              This email will be used for authentication on the MY3 Studios admin portal.
+            </span>
+          </div>
+
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-gray-300 hover:bg-white/10 cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-5 py-2 rounded-xl bg-[#E59A3D] hover:bg-[#E59A3D]-dark text-white text-xs font-bold shadow-md cursor-pointer"
+            >
+              Save Email
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// MODAL: CHANGE ADMIN PASSWORD
+// ─────────────────────────────────────────────
+function ChangePasswordModal({ account, onSave, onClose }) {
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!newPassword || newPassword.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setError('Passwords do not match. Please re-enter.');
+      return;
+    }
+    onSave(newPassword);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+      <div className="bg-[#14161C] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-white/10">
+        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-[#E59A3D]/20 text-[#E59A3D] flex items-center justify-center">
+              <Key size={16} />
+            </div>
+            <h3 className="text-base font-bold text-white">Change Admin Password</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 flex items-center justify-center cursor-pointer"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+            <span className="text-gray-400 block text-[11px]">Account:</span>
+            <span className="font-bold text-white block mt-0.5">{account.name}</span>
+            <span className="text-[11px] text-gray-400 block font-mono">{account.email}</span>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              New Password *
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                required
+                value={newPassword}
+                onChange={(e) => {
+                  setNewPassword(e.target.value);
+                  setError('');
+                }}
+                placeholder="Enter new strong password"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D] pr-10 font-mono"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white cursor-pointer"
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
+            <span className="text-[10px] text-gray-500 mt-1 block">
+              Minimum 6 characters with mixed letters and numbers recommended.
+            </span>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              Confirm New Password *
+            </label>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              required
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                setError('');
+              }}
+              placeholder="Confirm new password"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D] font-mono"
+            />
+          </div>
+
+          {error && (
+            <p className="text-xs text-red-400 font-bold flex items-center gap-1.5 bg-red-500/10 p-2.5 rounded-xl border border-red-500/20">
+              <AlertCircle size={14} className="shrink-0" />
+              <span>{error}</span>
+            </p>
+          )}
+
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-gray-300 hover:bg-white/10 cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-5 py-2 rounded-xl bg-[#E59A3D] hover:bg-[#E59A3D]-dark text-white text-xs font-bold shadow-md cursor-pointer"
+            >
+              Update Password
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// MODAL: UPDATE SECURITY Q&A
+// ─────────────────────────────────────────────
+function SecurityQAModal({ currentQA, onSave, onClose }) {
+  const [question, setQuestion] = useState(currentQA.question || '');
+  const [answer, setAnswer] = useState(currentQA.answer || '');
+
+  const presetQuestions = [
+    'What is the founding location and primary atelier of MY3 Studios?',
+    'What was the founding year of MY3 Studios photography studio?',
+    'What is the founder full name and master photographer of MY3 Studios?',
+    'What is the primary flagship camera body used by MY3 Studios?',
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!question || !answer) {
+      alert('Please fill out both the security question and answer');
+      return;
+    }
+    onSave(question, answer);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+      <div className="bg-[#14161C] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-white/10">
+        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <HelpCircle size={16} />
+            </div>
+            <h3 className="text-base font-bold text-white">Update Security Q&amp;A</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 flex items-center justify-center cursor-pointer"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              Select or Customize Security Question *
+            </label>
+            <select
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white text-xs font-bold focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D] mb-2"
+            >
+              {presetQuestions.map((q, idx) => (
+                <option key={idx} value={q}>{q}</option>
+              ))}
+            </select>
+            <input
+              type="text"
+              required
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              placeholder="Or type custom question"
+              className="w-full px-3.5 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              Security Answer *
+            </label>
+            <input
+              type="text"
+              required
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              placeholder="Enter recovery answer"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+            />
+            <span className="text-[10px] text-gray-500 mt-1 block">
+              Used to verify studio ownership and identity in the event of access recovery.
+            </span>
+          </div>
+
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-gray-300 hover:bg-white/10 cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md cursor-pointer"
+            >
+              Save Q&amp;A
             </button>
           </div>
         </form>

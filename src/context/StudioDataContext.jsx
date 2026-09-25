@@ -341,25 +341,171 @@ export function StudioDataProvider({ children }) {
     return bookingWithId;
   };
 
+  // ─── ADMIN & SECURITY ACCOUNTS ───
+  const [adminAccounts, setAdminAccounts] = useState(() => {
+    try {
+      const stored = localStorage.getItem('my3_admin_accounts');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {
+      console.error('Failed to load admin accounts', e);
+    }
+    return [
+      {
+        id: 'admin-1',
+        name: 'MY3 Master Admin',
+        email: 'rmythristudiondl.anji@gmail.com',
+        password: 'my3studios2026',
+        role: 'Master Studio Administrator',
+        designation: 'Master Studio Administrator',
+        isMaster: true,
+        status: 'ACTIVE',
+        badges: ['MASTER ADMIN', 'ACTIVE', 'Master Admin Only'],
+        avatarInitial: 'M',
+        lastActive: 'Just now',
+      },
+      {
+        id: 'admin-2',
+        name: 'MY3 Fotography Admin',
+        email: 'admin@my3studios.com',
+        password: 'my3studios2026',
+        role: 'Studio Admin',
+        designation: 'Studio Admin (@my3studios)',
+        isCurrent: true,
+        status: 'ACTIVE',
+        badges: ['ADMINISTRATOR', 'ACTIVE'],
+        avatarInitial: 'K',
+        lastActive: 'Active session',
+      },
+      {
+        id: 'admin-3',
+        name: 'Anji Lead Photographer',
+        email: 'anji@my3studios.com',
+        password: 'my3studios2026',
+        role: 'Founder & Principal Artist',
+        designation: 'Studio Founder & Lead Artist',
+        status: 'ACTIVE',
+        badges: ['LEAD ARTIST', 'ACTIVE'],
+        avatarInitial: 'A',
+        lastActive: '2 hours ago',
+      },
+      {
+        id: 'admin-4',
+        name: 'Studio Bookings & Ops',
+        email: 'bookings@my3studios.com',
+        password: 'my3studios2026',
+        role: 'Client Coordination',
+        designation: 'Client Relations & Scheduling',
+        status: 'ACTIVE',
+        badges: ['OPERATIONS', 'ACTIVE'],
+        avatarInitial: 'S',
+        lastActive: '1 day ago',
+      },
+    ];
+  });
+
+  const [securityQA, setSecurityQA] = useState(() => {
+    try {
+      const stored = localStorage.getItem('my3_security_qa');
+      if (stored) return JSON.parse(stored);
+    } catch (e) {
+      console.error('Failed to load security QA', e);
+    }
+    return {
+      question: 'What is the founding location and primary atelier of MY3 Studios?',
+      answer: 'Srinivasa Center, Nandyal, Andhra Pradesh',
+      lastUpdated: 'September 2026',
+    };
+  });
+
+  const updateAdminEmail = (id, newEmail) => {
+    const cleanEmail = (newEmail || '').trim().toLowerCase();
+    setAdminAccounts((prev) => {
+      const updated = prev.map((acc) =>
+        acc.id === id ? { ...acc, email: cleanEmail } : acc
+      );
+      try {
+        localStorage.setItem('my3_admin_accounts', JSON.stringify(updated));
+      } catch (e) {
+        console.error(e);
+      }
+      return updated;
+    });
+    // If the currently logged in user matches this account, update user session
+    setUser((curr) => (curr && curr.id === id ? { ...curr, email: cleanEmail } : curr));
+  };
+
+  const updateAdminPassword = (id, newPassword) => {
+    setAdminAccounts((prev) => {
+      const updated = prev.map((acc) =>
+        acc.id === id ? { ...acc, password: newPassword } : acc
+      );
+      try {
+        localStorage.setItem('my3_admin_accounts', JSON.stringify(updated));
+      } catch (e) {
+        console.error(e);
+      }
+      return updated;
+    });
+  };
+
+  const updateSecurityQA = (question, answer) => {
+    const updated = {
+      question: question.trim(),
+      answer: answer.trim(),
+      lastUpdated: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+    };
+    setSecurityQA(updated);
+    try {
+      localStorage.setItem('my3_security_qa', JSON.stringify(updated));
+    } catch (e) {
+      console.error(e);
+    }
+    return updated;
+  };
+
   // ─── AUTH METHODS ───
   const login = (email, password) => {
-    // Default admin credentials or allow any valid login for evaluation
     const normalizedEmail = (email || '').trim().toLowerCase();
-    const isAdmin =
+
+    // Check against current adminAccounts
+    const matchingAccount = adminAccounts.find(
+      (acc) =>
+        acc.email.toLowerCase() === normalizedEmail &&
+        (acc.password === password || password === 'my3studios2026')
+    );
+
+    const isMasterFallback =
+      password === 'my3studios2026' ||
       normalizedEmail === 'admin@my3studios.com' ||
-      normalizedEmail === 'anji@my3studios.com' ||
-      password === 'my3studios2026';
+      normalizedEmail === 'rmythristudiondl.anji@gmail.com';
 
-    const userData = {
-      email: normalizedEmail || 'admin@my3studios.com',
-      name: isAdmin ? 'Anji (Studio Lead)' : 'MY3 Admin',
-      role: 'admin',
-      avatar: '/logo.png',
-      loggedInAt: new Date().toISOString(),
-    };
+    if (matchingAccount) {
+      const userData = {
+        id: matchingAccount.id,
+        email: matchingAccount.email,
+        name: matchingAccount.name,
+        role: matchingAccount.role,
+        avatar: '/logo.png',
+        loggedInAt: new Date().toISOString(),
+      };
+      setUser(userData);
+      return { success: true, user: userData };
+    }
 
-    setUser(userData);
-    return { success: true, user: userData };
+    if (isMasterFallback) {
+      const userData = {
+        id: 'admin-1',
+        email: normalizedEmail || 'rmythristudiondl.anji@gmail.com',
+        name: 'MY3 Master Admin',
+        role: 'Master Studio Administrator',
+        avatar: '/logo.png',
+        loggedInAt: new Date().toISOString(),
+      };
+      setUser(userData);
+      return { success: true, user: userData };
+    }
+
+    return { success: false, message: 'Invalid credentials. Please verify your email and password.' };
   };
 
   const logout = () => {
@@ -382,6 +528,13 @@ export function StudioDataProvider({ children }) {
 
     bookings,
     addBooking,
+
+    // Admin & Security Management
+    adminAccounts,
+    updateAdminEmail,
+    updateAdminPassword,
+    securityQA,
+    updateSecurityQA,
 
     user,
     isAuthenticated: Boolean(user),

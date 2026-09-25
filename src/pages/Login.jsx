@@ -36,19 +36,23 @@ export default function Login() {
     setErrorMsg('');
 
     setTimeout(() => {
-      login(email, password);
+      const res = login(email, password);
       setIsLoading(false);
-      navigate('/admin');
-    }, 400);
+      if (res && res.success) {
+        navigate('/admin');
+      } else {
+        setErrorMsg(res?.message || 'Invalid email or password');
+      }
+    }, 350);
   };
 
   const handleQuickDemoLogin = () => {
     setIsLoading(true);
     setTimeout(() => {
-      login('admin@my3studios.com', 'my3studios2026');
+      login('rmythristudiondl.anji@gmail.com', 'my3studios2026');
       setIsLoading(false);
       navigate('/admin');
-    }, 300);
+    }, 250);
   };
 
   return (
