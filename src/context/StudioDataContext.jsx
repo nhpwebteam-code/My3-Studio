@@ -463,6 +463,49 @@ export function StudioDataProvider({ children }) {
     return updated;
   };
 
+  const deleteAdminAccount = (id) => {
+    const target = adminAccounts.find((a) => a.id === id);
+    if (target?.isMaster) {
+      return { success: false, message: 'Master Admin account is protected and cannot be deleted.' };
+    }
+    setAdminAccounts((prev) => {
+      const updated = prev.filter((acc) => acc.id !== id);
+      try {
+        localStorage.setItem('my3_admin_accounts', JSON.stringify(updated));
+      } catch (e) {
+        console.error(e);
+      }
+      return updated;
+    });
+    return { success: true };
+  };
+
+  const addAdminAccount = (newAcc) => {
+    const accountWithId = {
+      id: `admin-${Date.now()}`,
+      name: newAcc.name.trim(),
+      email: newAcc.email.trim().toLowerCase(),
+      password: newAcc.password || 'my3studios2026',
+      role: newAcc.role || 'Studio Admin',
+      designation: newAcc.designation || newAcc.role || 'Studio Administrator',
+      status: 'ACTIVE',
+      badges: ['ADMINISTRATOR', 'ACTIVE'],
+      avatarInitial: (newAcc.name.trim().charAt(0) || 'A').toUpperCase(),
+      lastActive: 'Just created',
+    };
+
+    setAdminAccounts((prev) => {
+      const updated = [...prev, accountWithId];
+      try {
+        localStorage.setItem('my3_admin_accounts', JSON.stringify(updated));
+      } catch (e) {
+        console.error(e);
+      }
+      return updated;
+    });
+    return accountWithId;
+  };
+
   // ─── AUTH METHODS ───
   const login = (email, password) => {
     const normalizedEmail = (email || '').trim().toLowerCase();
@@ -533,6 +576,8 @@ export function StudioDataProvider({ children }) {
     adminAccounts,
     updateAdminEmail,
     updateAdminPassword,
+    deleteAdminAccount,
+    addAdminAccount,
     securityQA,
     updateSecurityQA,
 

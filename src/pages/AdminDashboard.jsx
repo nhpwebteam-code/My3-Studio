@@ -60,6 +60,8 @@ export default function AdminDashboard() {
     adminAccounts = [],
     updateAdminEmail,
     updateAdminPassword,
+    deleteAdminAccount,
+    addAdminAccount,
     securityQA = {
       question: 'What is the founding location of MY3 Studios?',
       answer: 'Srinivasa Center, Nandyal, Andhra Pradesh',
@@ -78,6 +80,8 @@ export default function AdminDashboard() {
   const [visiblePasswords, setVisiblePasswords] = useState({});
   const [emailModalAccount, setEmailModalAccount] = useState(null);
   const [passwordModalAccount, setPasswordModalAccount] = useState(null);
+  const [deleteModalAccount, setDeleteModalAccount] = useState(null);
+  const [isAddAdminOpen, setIsAddAdminOpen] = useState(false);
   const [isQAModalOpen, setIsQAModalOpen] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
   const [isRefreshingSecurity, setIsRefreshingSecurity] = useState(false);
@@ -1228,7 +1232,7 @@ export default function AdminDashboard() {
 
               {/* Administrator Accounts Section */}
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between flex-wrap gap-2">
                   <div className="flex items-center gap-2">
                     <ShieldCheck size={16} className="text-[#E59A3D]" />
                     <h3 className="text-xs font-black uppercase tracking-wider text-gray-300">
@@ -1238,6 +1242,15 @@ export default function AdminDashboard() {
                       {adminAccounts.length} accounts
                     </span>
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsAddAdminOpen(true)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E59A3D] hover:bg-[#E59A3D]-dark text-white text-xs font-bold transition-all shadow-xs cursor-pointer active:scale-95"
+                  >
+                    <Plus size={13} />
+                    <span>Add Administrator</span>
+                  </button>
                 </div>
 
                 {/* Account Cards Grid */}
@@ -1297,13 +1310,13 @@ export default function AdminDashboard() {
                           </div>
                         </div>
 
-                        {/* Right: Actions (Change Email + Show/Copy Password + Change Password) */}
-                        <div className="flex items-center gap-2.5 flex-wrap self-start md:self-center shrink-0">
+                        {/* Right: Actions (Change Email + Show/Copy Password + Change Password + Delete) */}
+                        <div className="flex items-center gap-2 flex-wrap self-start md:self-center shrink-0">
                           {/* Change Email Button */}
                           <button
                             type="button"
                             onClick={() => setEmailModalAccount(acc)}
-                            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-200 transition-all hover:border-[#E59A3D]/40 cursor-pointer active:scale-95"
+                            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-200 transition-all hover:border-[#E59A3D]/40 cursor-pointer active:scale-95"
                           >
                             <Mail size={13} className="text-[#E59A3D]" />
                             <span>CHANGE EMAIL</span>
@@ -1336,11 +1349,32 @@ export default function AdminDashboard() {
                           <button
                             type="button"
                             onClick={() => setPasswordModalAccount(acc)}
-                            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-200 transition-all hover:border-[#E59A3D]/40 cursor-pointer active:scale-95"
+                            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-200 transition-all hover:border-[#E59A3D]/40 cursor-pointer active:scale-95"
                           >
                             <Key size={13} className="text-[#E59A3D]" />
                             <span>CHANGE PASSWORD</span>
                           </button>
+
+                          {/* Delete Account Button */}
+                          {acc.isMaster ? (
+                            <div
+                              className="px-2.5 py-2 rounded-full bg-white/5 border border-white/10 text-gray-500 flex items-center gap-1 text-[11px] font-semibold cursor-not-allowed"
+                              title="Master Admin account is protected"
+                            >
+                              <Lock size={12} />
+                              <span>Protected</span>
+                            </div>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => setDeleteModalAccount(acc)}
+                              className="inline-flex items-center gap-1 px-3 py-2 rounded-full bg-white/5 hover:bg-red-500/15 text-gray-400 hover:text-red-400 border border-white/10 hover:border-red-500/30 text-xs font-bold transition-all cursor-pointer active:scale-95"
+                              title={`Delete ${acc.name}`}
+                            >
+                              <Trash2 size={13} className="text-red-400" />
+                              <span>DELETE</span>
+                            </button>
+                          )}
                         </div>
                       </div>
                     );
@@ -1533,6 +1567,39 @@ export default function AdminDashboard() {
             setIsQAModalOpen(false);
           }}
           onClose={() => setIsQAModalOpen(false)}
+        />
+      )}
+
+      {/* ═══════════════════════════════════════════
+          MODAL: CONFIRM DELETE ADMIN
+      ═══════════════════════════════════════════ */}
+      {deleteModalAccount && (
+        <ConfirmDeleteAdminModal
+          account={deleteModalAccount}
+          onConfirm={() => {
+            const res = deleteAdminAccount(deleteModalAccount.id);
+            if (res.success) {
+              showToast(`Administrator "${deleteModalAccount.name}" removed successfully`);
+            } else {
+              showToast(res.message || 'Cannot delete account');
+            }
+            setDeleteModalAccount(null);
+          }}
+          onClose={() => setDeleteModalAccount(null)}
+        />
+      )}
+
+      {/* ═══════════════════════════════════════════
+          MODAL: ADD NEW ADMINISTRATOR
+      ═══════════════════════════════════════════ */}
+      {isAddAdminOpen && (
+        <AddAdminModal
+          onSave={(data) => {
+            addAdminAccount(data);
+            showToast(`Added new administrator "${data.name}"`);
+            setIsAddAdminOpen(false);
+          }}
+          onClose={() => setIsAddAdminOpen(false)}
         />
       )}
 
@@ -2260,6 +2327,180 @@ function SecurityQAModal({ currentQA, onSave, onClose }) {
               className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md cursor-pointer"
             >
               Save Q&amp;A
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// MODAL: CONFIRM DELETE ADMINISTRATOR
+// ─────────────────────────────────────────────
+function ConfirmDeleteAdminModal({ account, onConfirm, onClose }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+      <div className="bg-[#14161C] rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-white/10 text-center">
+        <div className="w-12 h-12 rounded-full bg-red-500/15 text-red-400 border border-red-500/30 flex items-center justify-center mx-auto mb-4">
+          <Trash2 size={22} />
+        </div>
+        <h3 className="text-lg font-bold text-white mb-2">Delete Administrator?</h3>
+        <p className="text-xs text-gray-300 mb-2 leading-relaxed">
+          Are you sure you want to delete <strong className="text-white font-bold">{account.name}</strong>?
+        </p>
+        <div className="p-3 bg-white/5 rounded-xl border border-white/10 mb-4 text-[11px] text-gray-300 font-mono">
+          {account.email}
+        </div>
+        <p className="text-[11px] text-red-400 font-medium mb-5">
+          This account will permanently lose login access to MY3 Studios admin portal.
+        </p>
+
+        <div className="flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex-1 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-gray-300 cursor-pointer"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            className="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-md cursor-pointer transition-colors"
+          >
+            Yes, Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────
+// MODAL: ADD NEW ADMINISTRATOR
+// ─────────────────────────────────────────────
+function AddAdminModal({ onSave, onClose }) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: 'Studio Admin',
+  });
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.password.trim()) {
+      alert('Please fill out all required fields');
+      return;
+    }
+    if (formData.password.length < 6) {
+      alert('Password must be at least 6 characters');
+      return;
+    }
+    onSave(formData);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+      <div className="bg-[#14161C] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-white/10">
+        <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-full bg-[#E59A3D]/20 text-[#E59A3D] flex items-center justify-center">
+              <Plus size={16} />
+            </div>
+            <h3 className="text-base font-bold text-white">Add New Administrator</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 flex items-center justify-center cursor-pointer"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              Full Name *
+            </label>
+            <input
+              type="text"
+              required
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              placeholder="e.g. Rajesh Kumar"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              Admin Email *
+            </label>
+            <input
+              type="email"
+              required
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              placeholder="e.g. rajesh@my3studios.com"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              Access Password *
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                required
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                placeholder="Set password (min 6 chars)"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D] pr-10 font-mono"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white cursor-pointer"
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-300 mb-1">
+              Role &amp; Responsibility *
+            </label>
+            <select
+              value={formData.role}
+              onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1F28] border border-white/20 text-white text-xs font-bold focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+            >
+              <option value="Studio Admin">Studio Administrator</option>
+              <option value="Lead Artist">Lead Cinematographer / Photographer</option>
+              <option value="Client Coordination">Client Desk &amp; Operations</option>
+              <option value="Post-Production Editor">Post-Production &amp; Album Editor</option>
+            </select>
+          </div>
+
+          <div className="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-gray-300 hover:bg-white/10 cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-5 py-2 rounded-xl bg-[#E59A3D] hover:bg-[#E59A3D]-dark text-white text-xs font-bold shadow-md cursor-pointer"
+            >
+              Add Administrator
             </button>
           </div>
         </form>
