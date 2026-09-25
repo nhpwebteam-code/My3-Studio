@@ -38,22 +38,22 @@ export default function JustdialReviews() {
   return (
     <section
       id="justdial-reviews"
-      className="relative py-20 sm:py-28 bg-[#FAF7F2] overflow-hidden scroll-mt-24"
+      className="relative py-20 sm:py-28 bg-[#07080A] overflow-hidden scroll-mt-24"
     >
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-32 right-0 w-[500px] h-[500px] bg-coral/[0.03] rounded-full blur-[100px]" />
-        <div className="absolute -bottom-24 -left-16 w-96 h-96 bg-orange-50/50 rounded-full blur-3xl" />
+        <div className="absolute -top-32 right-0 w-[500px] h-[500px] bg-[#E59A3D]/[0.03] rounded-full blur-[100px]" />
+        <div className="absolute -bottom-24 -left-16 w-96 h-96 bg-[#E59A3D]/[0.03] rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ─── Section Header ─── */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
           <div>
-            <span className="font-script text-3xl sm:text-4xl text-coral block -mb-1 select-none">
+            <span className="font-script text-3xl sm:text-4xl text-[#E59A3D] block -mb-1 select-none">
               Client Love
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-charcoal-900 tracking-tight">
+            <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-white tracking-tight">
               What Our Families Say
             </h2>
           </div>
@@ -62,15 +62,15 @@ export default function JustdialReviews() {
           <div className="flex items-center gap-4 lg:gap-6">
             <div className="flex flex-col items-end">
               <div className="flex items-center gap-2">
-                <span className="text-3xl sm:text-4xl font-black text-charcoal-900 font-display tracking-tight">
+                <span className="text-3xl sm:text-4xl font-black text-white font-display tracking-tight">
                   4.9
                 </span>
                 <div className="flex flex-col">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#E59A3D] bg-[#E59A3D]/10 px-2.5 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E59A3D]"></span>
                     Top Rated on Justdial
                   </span>
-                  <span className="text-[11px] text-charcoal-500 font-medium mt-1">
+                  <span className="text-[11px] text-gray-500 font-medium mt-1">
                     15+ Verified Client Ratings
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export default function JustdialReviews() {
               href="https://www.justdial.com/Nandyal/Mythri-Studio-Nandyal/9999P8514-8514-181022124920-M7R5_BZDET/reviews"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-[#EAE4D9] shadow-sm text-xs font-bold text-charcoal-700 hover:border-coral/50 hover:text-coral transition-all hover:shadow-md"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#14161C] border border-white/10 shadow-sm text-xs font-bold text-gray-300 hover:border-[#E59A3D]/50 hover:text-[#E59A3D] transition-all hover:shadow-md"
             >
               <ShieldCheck size={14} className="text-green-500" />
               <span>100% Verified Reviews</span>
@@ -91,12 +91,12 @@ export default function JustdialReviews() {
         </div>
 
         {/* ─── Rating Trend Bar ─── */}
-        <div className="mb-12 bg-white rounded-2xl border border-[#EAE4D9] shadow-sm p-5 sm:p-6">
+        <div className="mb-12 bg-[#14161C] rounded-2xl border border-white/10 shadow-sm p-5 sm:p-6">
           <div className="flex items-center justify-between mb-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal-700">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400">
               Recent Rating Trend
             </h4>
-            <span className="text-[11px] font-semibold text-coral bg-coral-50 px-3 py-1 rounded-full">
+            <span className="text-[11px] font-semibold text-[#E59A3D] bg-[#E59A3D]/10 px-3 py-1 rounded-full">
               Consistently Top Rated
             </span>
           </div>
@@ -109,21 +109,21 @@ export default function JustdialReviews() {
                 <div
                   className={`w-full rounded-t-lg transition-all duration-300 group-hover:opacity-100 ${
                     rating >= 4
-                      ? 'bg-gradient-to-t from-coral to-orange-400'
-                      : 'bg-charcoal-200'
+                      ? 'bg-gradient-to-t from-[#E59A3D] to-[#F0B95A]'
+                      : 'bg-gray-700'
                   }`}
                   style={{ height: `${(rating / 5) * 100}%`, minHeight: '4px' }}
                 />
                 {/* Tooltip on hover */}
-                <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-charcoal-900 text-white text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap pointer-events-none">
+                <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white text-black text-[10px] font-bold px-2 py-0.5 rounded whitespace-nowrap pointer-events-none">
                   {rating}/5
                 </div>
               </div>
             ))}
           </div>
           <div className="flex items-center justify-between mt-2">
-            <span className="text-[10px] text-charcoal-400">Oldest</span>
-            <span className="text-[10px] text-charcoal-400">Most Recent</span>
+            <span className="text-[10px] text-gray-500">Oldest</span>
+            <span className="text-[10px] text-gray-500">Most Recent</span>
           </div>
         </div>
 
@@ -132,19 +132,19 @@ export default function JustdialReviews() {
           {/* Featured Review (Large) */}
           <div className="lg:col-span-7">
             <div
-              className="relative bg-white rounded-3xl p-8 sm:p-10 border border-[#EAE4D9] shadow-sm hover:shadow-xl transition-all duration-500 min-h-[320px] flex flex-col justify-between overflow-hidden group"
+              className="relative bg-[#14161C] rounded-3xl p-8 sm:p-10 border border-white/10 shadow-sm hover:shadow-xl transition-all duration-500 min-h-[320px] flex flex-col justify-between overflow-hidden group"
               key={activeIndex}
             >
               {/* Decorative Quote */}
               <Quote
                 size={80}
-                className="absolute -top-2 -right-2 text-coral/[0.06] group-hover:text-coral/10 transition-colors pointer-events-none"
+                className="absolute -top-2 -right-2 text-[#E59A3D]/[0.06] group-hover:text-[#E59A3D]/10 transition-colors pointer-events-none"
               />
 
               <div className="relative">
                 {/* Verified Badge */}
                 <div className="flex items-center gap-2 mb-6">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full">
                     <ShieldCheck size={13} />
                     Verified Review
                   </span>
@@ -152,7 +152,7 @@ export default function JustdialReviews() {
 
                 {/* Quote */}
                 <blockquote
-                  className="text-lg sm:text-xl md:text-2xl text-charcoal-800 font-serif italic leading-relaxed mb-8"
+                  className="text-lg sm:text-xl md:text-2xl text-gray-200 font-serif italic leading-relaxed mb-8"
                   style={{
                     animation: 'reviewFadeIn 0.5s ease-out',
                   }}
@@ -167,13 +167,13 @@ export default function JustdialReviews() {
                   <img
                     src={reviews[activeIndex].avatar}
                     alt={reviews[activeIndex].author}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-coral/30 shadow-sm"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-[#E59A3D]/30 shadow-sm"
                   />
                   <div>
-                    <h4 className="font-display text-sm font-bold text-charcoal-900">
+                    <h4 className="font-display text-sm font-bold text-white">
                       {reviews[activeIndex].author}
                     </h4>
-                    <p className="text-xs text-charcoal-500 font-medium">
+                    <p className="text-xs text-gray-500 font-medium">
                       {reviews[activeIndex].context}
                     </p>
                   </div>
@@ -183,14 +183,14 @@ export default function JustdialReviews() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={goPrev}
-                    className="w-10 h-10 rounded-full border border-[#EAE4D9] hover:border-coral hover:text-coral text-charcoal-500 flex items-center justify-center transition-all active:scale-90"
+                    className="w-10 h-10 rounded-full border border-white/10 hover:border-[#E59A3D] hover:text-[#E59A3D] text-gray-500 flex items-center justify-center transition-all active:scale-90"
                     aria-label="Previous review"
                   >
                     <ChevronLeft size={16} />
                   </button>
                   <button
                     onClick={goNext}
-                    className="w-10 h-10 rounded-full border border-[#EAE4D9] hover:border-coral hover:text-coral text-charcoal-500 flex items-center justify-center transition-all active:scale-90"
+                    className="w-10 h-10 rounded-full border border-white/10 hover:border-[#E59A3D] hover:text-[#E59A3D] text-gray-500 flex items-center justify-center transition-all active:scale-90"
                     aria-label="Next review"
                   >
                     <ChevronRight size={16} />
@@ -206,8 +206,8 @@ export default function JustdialReviews() {
                     onClick={() => goTo(i)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
                       i === activeIndex
-                        ? 'w-8 bg-coral'
-                        : 'w-1.5 bg-charcoal-200 hover:bg-charcoal-300'
+                        ? 'w-8 bg-[#E59A3D]'
+                        : 'w-1.5 bg-gray-600 hover:bg-gray-500'
                     }`}
                     aria-label={`Go to review ${i + 1}`}
                   />
@@ -224,8 +224,8 @@ export default function JustdialReviews() {
                 onClick={() => goTo(i)}
                 className={`text-left p-5 rounded-2xl border transition-all duration-300 group/card ${
                   i === activeIndex
-                    ? 'bg-coral-50/50 border-coral/40 shadow-md ring-1 ring-coral/10'
-                    : 'bg-white border-[#EAE4D9] hover:border-coral/30 shadow-sm hover:shadow-md'
+                    ? 'bg-[#E59A3D]/10 border-[#E59A3D]/40 shadow-md ring-1 ring-[#E59A3D]/10'
+                    : 'bg-[#14161C] border-white/10 hover:border-[#E59A3D]/30 shadow-sm hover:shadow-md'
                 }`}
               >
                 <div className="flex items-start gap-3">
@@ -233,7 +233,7 @@ export default function JustdialReviews() {
                     src={review.avatar}
                     alt={review.author}
                     className={`w-10 h-10 rounded-full object-cover border-2 shrink-0 ${
-                      i === activeIndex ? 'border-coral' : 'border-gray-200'
+                      i === activeIndex ? 'border-[#E59A3D]' : 'border-white/10'
                     }`}
                   />
                   <div className="min-w-0">
@@ -241,20 +241,20 @@ export default function JustdialReviews() {
                       <h4
                         className={`text-sm font-bold truncate ${
                           i === activeIndex
-                            ? 'text-coral'
-                            : 'text-charcoal-900 group-hover/card:text-coral'
+                            ? 'text-[#E59A3D]'
+                            : 'text-white group-hover/card:text-[#E59A3D]'
                         }`}
                       >
                         {review.author}
                       </h4>
                       <div className="flex items-center gap-1 shrink-0">
-                        <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded">{review.rating}.0</span>
+                        <span className="text-[10px] font-bold text-[#E59A3D] bg-[#E59A3D]/10 px-1.5 py-0.5 rounded">{review.rating}.0</span>
                       </div>
                     </div>
-                    <p className="text-xs text-charcoal-500 font-medium mb-1.5">
+                    <p className="text-xs text-gray-500 font-medium mb-1.5">
                       {review.context}
                     </p>
-                    <p className="text-xs text-charcoal-600 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed">
                       "{review.quote}"
                     </p>
                   </div>
@@ -267,7 +267,7 @@ export default function JustdialReviews() {
               href="https://www.justdial.com/Nandyal/Mythri-Studio-Nandyal/9999P8514-8514-181022124920-M7R5_BZDET/reviews"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-dashed border-[#EAE4D9] hover:border-coral/40 text-charcoal-500 hover:text-coral transition-all text-xs font-bold uppercase tracking-wider"
+              className="flex items-center justify-center gap-2 py-3.5 rounded-2xl border border-dashed border-white/10 hover:border-[#E59A3D]/40 text-gray-500 hover:text-[#E59A3D] transition-all text-xs font-bold uppercase tracking-wider"
             >
               <span>Read All 15 Verified Client Reviews</span>
               <ExternalLink size={12} />

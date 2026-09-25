@@ -1,12 +1,12 @@
-# Mythri Studios — Photography Studio Platform
+# Mythri Studio — Photography Studio Platform
 
-> A luxury editorial web experience for **Mythri Studios**, specializing in fine art weddings, high-fashion campaigns, executive portraiture, and architectural visual storytelling.
+> A luxury editorial web experience for **Mythri Studio**, specializing in fine art weddings, high-fashion campaigns, executive portraiture, and architectural visual storytelling.
 
 ---
 
 ## 📸 Project Overview
 
-This application serves as the primary digital portfolio, service catalog, and booking inquiry portal for Mythri Studios. Designed with an editorial luxury aesthetic, it balances high-resolution visual presentation with rapid client-side interactivity, categorized portfolio filtering, a full-screen image lightbox, and an inquiry workflow.
+This application serves as the primary digital portfolio, service catalog, and booking inquiry portal for Mythri Studio. Designed with an editorial luxury aesthetic, it balances high-resolution visual presentation with rapid client-side interactivity, categorized portfolio filtering, a full-screen image lightbox, and an inquiry workflow.
 
 All copy, offerings, team details, and gallery items are completely decoupled from UI components and stored in modular configuration files within `src/data/`, allowing seamless updates once final client questionnaires and branding assets arrive.
 

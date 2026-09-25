@@ -26,7 +26,7 @@ function AppContent() {
     location.pathname === '/dashboard';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-charcoal selection:bg-coral selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#000000] text-white selection:bg-[#E59A3D] selection:text-black">
       {!isDashboardOrAuth && <Navbar onOpenBooking={() => setIsBookingOpen(true)} />}
       <main className="flex-grow">
         <Routes>

@@ -89,12 +89,12 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Write Email..."
                   required
-                  className="w-full bg-[#1C1E26] border border-white/15 text-white text-xs sm:text-sm pl-4 pr-12 py-3 rounded-full outline-none focus:border-coral focus:ring-2 focus:ring-coral/20 shadow-xs transition-all placeholder:text-gray-500"
+                  className="w-full bg-[#1C1E26] border border-white/15 text-white text-xs sm:text-sm pl-4 pr-12 py-3 rounded-full outline-none focus:border-[#E59A3D] focus:ring-2 focus:ring-[#E59A3D]/20 shadow-xs transition-all placeholder:text-gray-500"
                 />
                 <button
                   type="submit"
                   aria-label="Submit newsletter subscription"
-                  className="absolute right-1.5 w-8 h-8 rounded-full bg-coral hover:bg-coral-dark text-white flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer"
+                  className="absolute right-1.5 w-8 h-8 rounded-full bg-[#E59A3D] hover:bg-[#c98028] text-black flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer font-bold"
                 >
                   <ArrowRight size={14} />
                 </button>
@@ -126,21 +126,21 @@ export default function Footer() {
               />
               <div>
                 <h3 className="text-2xl font-black font-display tracking-tight text-white">
-                  MY3 STUDIOS
+                  MY3 STUDIO
                 </h3>
-                <p className="text-[11px] font-bold uppercase tracking-wider text-coral">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-[#E59A3D]">
                   Cinematic Wedding &amp; Celebration Atelier
                 </p>
               </div>
             </div>
 
-            <div className="w-12 h-[2px] bg-coral/40" />
+            <div className="w-12 h-[2px] bg-[#E59A3D]/40" />
 
             <p className="text-xs sm:text-[13px] text-gray-400 leading-relaxed font-normal max-w-sm">
               Capturing sacred traditions, unscripted emotions, and cinematic wedding heirlooms across Nandyal, Kurnool, and South India.
             </p>
 
-            {/* Circular Social Media Badges matching Reference (F, T, Y, T, W) */}
+            {/* Circular Social Media Badges matching Reference */}
             <div className="pt-2">
               <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest block mb-3">
                 Follow Us
@@ -151,7 +151,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-coral hover:text-white text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E59A3D] hover:text-black text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
                 >
                   <InstagramIcon size={14} />
                 </a>
@@ -160,7 +160,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-coral hover:text-white text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E59A3D] hover:text-black text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
                 >
                   <FacebookIcon size={14} />
                 </a>
@@ -169,7 +169,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-coral hover:text-white text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E59A3D] hover:text-black text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
                 >
                   <YoutubeIcon size={14} />
                 </a>
@@ -178,7 +178,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Threads"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-coral hover:text-white text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E59A3D] hover:text-black text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
                 >
                   <ThreadsIcon size={14} />
                 </a>
@@ -187,7 +187,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-coral hover:text-white text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#E59A3D] hover:text-black text-gray-300 flex items-center justify-center transition-all duration-200 border border-white/10 hover:scale-105"
                 >
                   <WhatsAppIcon size={14} />
                 </a>
@@ -214,9 +214,9 @@ export default function Footer() {
                 <Link to="/contact" className="hover:text-white transition-colors">Reserve Dates</Link>
               </li>
               <li>
-                <Link to="/login" className="hover:text-[#FFCE26] text-gray-300 font-semibold transition-colors flex items-center gap-1 mt-1">
+                <Link to="/login" className="hover:text-[#E59A3D] text-gray-300 font-semibold transition-colors flex items-center gap-1 mt-1">
                   <span>Admin Portal</span>
-                  <span className="text-[9px] bg-white/10 px-1.5 py-0.2 rounded text-[#FFCE26]">Studio</span>
+                  <span className="text-[9px] bg-white/10 px-1.5 py-0.2 rounded text-[#E59A3D]">Studio</span>
                 </Link>
               </li>
             </ul>
@@ -257,39 +257,62 @@ export default function Footer() {
             <div className="space-y-3 text-xs text-gray-400">
               <div>
                 <span className="font-semibold text-gray-200 block">Direct Call:</span>
-                <a href="tel:+919949395037" className="hover:text-coral transition-colors block mt-0.5 text-gray-300">
-                  +91 99493 95037
+                <a href="tel:+919949395037" className="hover:text-[#E59A3D] transition-colors block mt-0.5 text-gray-300">
+                  +91 99493 95037 <span className="text-[10px] text-gray-400">(Main / Anji)</span>
                 </a>
-                <a href="tel:+917780181436" className="hover:text-coral transition-colors block text-[11px] text-gray-400">
-                  +91 77801 81436
+                <a href="tel:+919848000339" className="hover:text-[#E59A3D] transition-colors block text-[11px] text-gray-300 mt-0.5">
+                  +91 98480 00339 <span className="text-[10px] text-gray-400">(Kid's Studio)</span>
                 </a>
               </div>
 
               <div>
                 <span className="font-semibold text-gray-200 block">Email:</span>
                 <a
-                  href="mailto:rmythristudiondl.anji@gmail.com"
-                  className="hover:text-coral transition-colors block mt-0.5 truncate text-gray-300"
-                  title="rmythristudiondl.anji@gmail.com"
+                  href="mailto:mythristudiondl.anji@gmail.com"
+                  className="hover:text-[#E59A3D] transition-colors block mt-0.5 truncate text-gray-300"
+                  title="mythristudiondl.anji@gmail.com"
                 >
-                  rmythristudiondl...
+                  mythristudiondl...
                 </a>
               </div>
 
-              <div>
-                <span className="font-semibold text-gray-200 block">Studio Location:</span>
-                <span className="block mt-0.5 text-gray-400 leading-snug">
-                  Nivarthi Bhavan, Opp. National College, Srinivasa Nagar, Nandyal
-                </span>
+              <div className="space-y-2">
+                <div>
+                  <span className="font-semibold text-gray-200 block">Main Studio:</span>
+                  <a
+                    href="https://maps.app.goo.gl/qDx9ZJLWEVtMp7Uv5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block mt-0.5 text-gray-400 hover:text-[#E59A3D] transition-colors leading-snug"
+                  >
+                    Nivarthi Bhavan, Opp. National College, Srinivasa Nagar, Nandyal
+                  </a>
+                </div>
+                <div>
+                  <span className="font-semibold text-gray-200 block">Kid's Studio:</span>
+                  <a
+                    href="https://maps.app.goo.gl/WBiXbYgQa3tuTJQ26?g_st=ac"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block mt-0.5 text-gray-400 hover:text-[#E59A3D] transition-colors leading-snug"
+                  >
+                    Bhagatsingh colony, near Noone palle flyover, Raithunagar Road, Nandyal
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Column 5: Studio Location Interactive Map (3 Cols) */}
+          {/* Column 5: Studio Locations Interactive 2 Maps (3 Cols) */}
           <div className="lg:col-span-3 space-y-3.5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white font-display">
-              Studio Location
-            </h4>
+            <div className="flex items-center justify-between">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white font-display">
+                Studio Locations (2 Maps)
+              </h4>
+              <span className="text-[10px] text-[#E59A3D] font-bold bg-[#E59A3D]/10 border border-[#E59A3D]/20 px-2 py-0.5 rounded-full">
+                2 Branches
+              </span>
+            </div>
             <FooterMap />
           </div>
 
@@ -314,7 +337,7 @@ export default function Footer() {
 
           {/* Copyright Notice on Right */}
           <p className="text-[11px] text-gray-500 font-normal">
-            &copy; {currentYear} MY3 Studios. All images &amp; films are protected.
+            &copy; {currentYear} MY3 Studio. All images &amp; films are protected.
           </p>
         </div>
       </div>

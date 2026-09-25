@@ -135,17 +135,17 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
       />
 
       {/* Modal Container */}
-      <div className="relative bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-10 my-8">
+      <div className="relative bg-[#14161C] w-full max-w-2xl rounded-3xl shadow-2xl border border-white/5 overflow-hidden z-10 my-8">
         {/* Top Header */}
         <div className="bg-[#1E2024] px-6 sm:px-8 py-6 text-white flex items-center justify-between">
           <div className="flex items-center gap-3.5">
             <img
               src="/logo.png"
               alt="MY3 Studios Emblem"
-              className="w-12 h-12 object-contain filter drop-shadow-md rounded-full bg-white/5 p-0.5 border border-white/10 shrink-0"
+              className="w-12 h-12 object-contain filter drop-shadow-md rounded-full bg-[#14161C]/5 p-0.5 border border-white/10 shrink-0"
             />
             <div>
-              <span className="font-script text-coral text-2xl tracking-wide block -mb-1 select-none">
+              <span className="font-script text-[#E59A3D] text-2xl tracking-wide block -mb-1 select-none">
                 MY3 Studios Atelier
               </span>
               <h3 className="text-xl sm:text-2xl font-black font-display tracking-tight">
@@ -155,7 +155,7 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+            className="p-2 rounded-full bg-[#14161C]/10 hover:bg-[#14161C]/20 text-white transition-colors"
             aria-label="Close dialog"
           >
             <X size={18} />
@@ -175,39 +175,39 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
                   <WhatsAppIcon size={14} />
                   Redirecting to WhatsApp
                 </span>
-                <h4 className="text-2xl font-black text-charcoal-900 font-display tracking-tight">
+                <h4 className="text-2xl font-black text-white font-display tracking-tight">
                   Booking Request Confirmed!
                 </h4>
               </div>
 
               {/* Booking Summary Card */}
-              <div className="bg-gray-50/90 border border-gray-200 rounded-2xl p-4 sm:p-5 text-left max-w-md mx-auto text-xs space-y-2.5 shadow-xs">
-                <div className="flex justify-between border-b border-gray-200/70 pb-2">
+              <div className="bg-[#0D0E12]/90 border border-white/10 rounded-2xl p-4 sm:p-5 text-left max-w-md mx-auto text-xs space-y-2.5 shadow-xs">
+                <div className="flex justify-between border-b border-white/10/70 pb-2">
                   <span className="text-gray-500 font-medium">Client Name:</span>
-                  <span className="font-bold text-charcoal-900">{formData.name}</span>
+                  <span className="font-bold text-white">{formData.name}</span>
                 </div>
-                <div className="flex justify-between border-b border-gray-200/70 pb-2">
+                <div className="flex justify-between border-b border-white/10/70 pb-2">
                   <span className="text-gray-500 font-medium">Phone / WhatsApp:</span>
-                  <span className="font-bold text-charcoal-900">{formData.phone}</span>
+                  <span className="font-bold text-white">{formData.phone}</span>
                 </div>
-                <div className="flex justify-between border-b border-gray-200/70 pb-2">
+                <div className="flex justify-between border-b border-white/10/70 pb-2">
                   <span className="text-gray-500 font-medium">Selected Package:</span>
-                  <span className="font-bold text-coral">{currentService.title}</span>
+                  <span className="font-bold text-[#E59A3D]">{currentService.title}</span>
                 </div>
-                <div className="flex justify-between border-b border-gray-200/70 pb-2">
+                <div className="flex justify-between border-b border-white/10/70 pb-2">
                   <span className="text-gray-500 font-medium">Event Date:</span>
-                  <span className="font-bold text-charcoal-900">{formData.date || 'Date to be finalized'}</span>
+                  <span className="font-bold text-white">{formData.date || 'Date to be finalized'}</span>
                 </div>
                 <div className="flex justify-between pt-1 items-center">
-                  <span className="text-charcoal-800 font-bold">Estimated Investment:</span>
-                  <span className="font-black text-charcoal-950 text-sm">
+                  <span className="text-gray-200 font-bold">Estimated Investment:</span>
+                  <span className="font-black text-white-950 text-sm">
                     ₹{totalCalculated.toLocaleString('en-IN')}
                   </span>
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-charcoal-600 max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-charcoal-900">{formData.name}</strong>! Your inquiry message has been prepared for Anji garu. If WhatsApp didn't open automatically, click below to send it directly.
+              <p className="text-xs sm:text-sm text-gray-400 max-w-md mx-auto leading-relaxed">
+                Thank you, <strong className="text-white">{formData.name}</strong>! Your inquiry message has been prepared for Anji garu. If WhatsApp didn't open automatically, click below to send it directly.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
@@ -223,7 +223,7 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
 
                 <button
                   onClick={handleReset}
-                  className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gray-100 hover:bg-gray-200 text-charcoal-800 font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
+                  className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-200 font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
                 >
                   Done
                 </button>
@@ -234,13 +234,13 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
               {/* 1. Package Selection: Display only the selected package */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-charcoal-700">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-300">
                     Selected Photography Package
                   </label>
                   <button
                     type="button"
                     onClick={() => setIsChangingPackage(!isChangingPackage)}
-                    className="text-xs font-semibold text-coral hover:underline focus:outline-none transition-colors"
+                    className="text-xs font-semibold text-[#E59A3D] hover:underline focus:outline-none transition-colors"
                   >
                     {isChangingPackage ? 'Close Options' : 'Change Package'}
                   </button>
@@ -248,28 +248,28 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
 
                 {!isChangingPackage ? (
                   /* Clean Single Selected Package Card - Only shows the chosen package */
-                  <div className="p-4 rounded-2xl border-2 border-coral bg-coral-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm animate-fade-in">
+                  <div className="p-4 rounded-2xl border-2 border-[#E59A3D] bg-[#E59A3D]/10/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm animate-fade-in">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="inline-block px-2.5 py-0.5 rounded-full bg-coral/15 text-coral text-[10px] font-black uppercase tracking-wider">
+                        <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#E59A3D]/15 text-[#E59A3D] text-[10px] font-black uppercase tracking-wider">
                           {currentService.duration}
                         </span>
-                        <span className="text-[11px] font-semibold text-charcoal-500">
+                        <span className="text-[11px] font-semibold text-gray-500">
                           {currentService.type || 'Official Studio Package'}
                         </span>
                       </div>
-                      <h4 className="font-display font-black text-base sm:text-lg text-charcoal-900 leading-tight">
+                      <h4 className="font-display font-black text-base sm:text-lg text-white leading-tight">
                         {currentService.title}
                       </h4>
-                      <p className="text-xs text-charcoal-600 leading-relaxed max-w-md">
+                      <p className="text-xs text-gray-400 leading-relaxed max-w-md">
                         {currentService.tagline}
                       </p>
                     </div>
-                    <div className="text-left sm:text-right shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-coral/20">
-                      <span className="text-[10px] uppercase font-bold text-charcoal-400 block">
+                    <div className="text-left sm:text-right shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#E59A3D]/20">
+                      <span className="text-[10px] uppercase font-bold text-white-400 block">
                         Base Investment
                       </span>
-                      <span className="text-xl sm:text-2xl font-black text-coral font-display">
+                      <span className="text-xl sm:text-2xl font-black text-[#E59A3D] font-display">
                         {currentService.startingPrice}
                       </span>
                     </div>
@@ -289,17 +289,17 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
                           }}
                           className={`p-3 rounded-2xl border text-left cursor-pointer transition-all ${
                             isSelected
-                              ? 'border-coral bg-coral-50/60 ring-2 ring-coral/20 shadow-sm'
-                              : 'border-gray-200 hover:border-gray-300 bg-white'
+                              ? 'border-[#E59A3D] bg-[#E59A3D]/10/60 ring-2 ring-coral/20 shadow-sm'
+                              : 'border-white/10 hover:border-gray-300 bg-[#14161C]'
                           }`}
                         >
-                          <span className="block text-[10px] uppercase font-bold text-coral mb-0.5">
+                          <span className="block text-[10px] uppercase font-bold text-[#E59A3D] mb-0.5">
                             {s.duration}
                           </span>
-                          <h5 className="font-bold text-xs text-charcoal-900 leading-tight mb-1">
+                          <h5 className="font-bold text-xs text-white leading-tight mb-1">
                             {s.title}
                           </h5>
-                          <span className="text-sm font-black text-charcoal-900 font-display">
+                          <span className="text-sm font-black text-white font-display">
                             {s.startingPrice}
                           </span>
                         </div>
@@ -311,13 +311,13 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
 
               {/* 2. Extras & Add-ons Checklist */}
               {currentService.extras && currentService.extras.length > 0 && (
-                <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+                <div className="p-4 rounded-2xl bg-[#0D0E12] border border-white/10">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-charcoal-800 flex items-center gap-1.5">
-                      <Plus size={14} className="text-coral" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-gray-200 flex items-center gap-1.5">
+                      <Plus size={14} className="text-[#E59A3D]" />
                       <span>Optional Add-ons for this package:</span>
                     </span>
-                    <span className="text-[11px] font-bold text-coral">
+                    <span className="text-[11px] font-bold text-[#E59A3D]">
                       +₹{extrasCost.toLocaleString('en-IN')}
                     </span>
                   </div>
@@ -331,21 +331,21 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
                           onClick={() => toggleExtra(extra.id)}
                           className={`flex items-center justify-between p-2 rounded-xl text-xs cursor-pointer border transition-all ${
                             isChecked
-                              ? 'bg-white border-coral font-bold text-charcoal-900 shadow-sm'
-                              : 'bg-white/80 border-gray-200 text-charcoal-600 font-medium'
+                              ? 'bg-[#14161C] border-[#E59A3D] font-bold text-white shadow-sm'
+                              : 'bg-[#14161C]/80 border-white/10 text-gray-400 font-medium'
                           }`}
                         >
                           <div className="flex items-center gap-2">
                             <div
                               className={`w-4 h-4 rounded flex items-center justify-center text-white text-[10px] ${
-                                isChecked ? 'bg-coral' : 'border border-gray-300'
+                                isChecked ? 'bg-[#E59A3D]' : 'border border-gray-300'
                               }`}
                             >
                               {isChecked && <Check size={12} />}
                             </div>
                             <span className="truncate">{extra.name}</span>
                           </div>
-                          <span className="text-coral font-bold ml-2 shrink-0">
+                          <span className="text-[#E59A3D] font-bold ml-2 shrink-0">
                             +₹{extra.price.toLocaleString('en-IN')}
                           </span>
                         </label>
@@ -356,7 +356,7 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
               )}
 
               {/* 3. Live Price Summary Banner */}
-              <div className="p-4 rounded-2xl bg-gradient-to-r from-coral to-coral-dark text-white flex items-center justify-between shadow-lg shadow-coral/25">
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-coral to-coral-dark text-white flex items-center justify-between shadow-lg shadow-[#E59A3D]/25">
                 <div>
                   <span className="text-[11px] font-semibold text-white/90 block uppercase tracking-wider">
                     Total Estimated Investment
@@ -375,7 +375,7 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
               {/* 4. Contact Fields */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-charcoal-700 mb-1">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">
                     Your Full Name *
                   </label>
                   <div className="relative">
@@ -386,13 +386,13 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
                       placeholder="e.g. Rahul Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral transition-all"
+                      className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-[#0D0E12] border border-white/10 rounded-xl focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-coral transition-all"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-charcoal-700 mb-1">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">
                     Phone / WhatsApp *
                   </label>
                   <div className="relative">
@@ -403,7 +403,7 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral transition-all"
+                      className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-[#0D0E12] border border-white/10 rounded-xl focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-coral transition-all"
                     />
                   </div>
                 </div>
@@ -411,7 +411,7 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-charcoal-700 mb-1">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">
                     Email Address *
                   </label>
                   <div className="relative">
@@ -422,13 +422,13 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
                       placeholder="rahul@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral transition-all"
+                      className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-[#0D0E12] border border-white/10 rounded-xl focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-coral transition-all"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-charcoal-700 mb-1">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">
                     Event / Shoot Date *
                   </label>
                   <div className="relative">
@@ -438,14 +438,14 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
                       required
                       value={formData.date}
                       onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral transition-all"
+                      className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-[#0D0E12] border border-white/10 rounded-xl focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-coral transition-all"
                     />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-charcoal-700 mb-1">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-gray-300 mb-1">
                   Event Location & Special Requirements
                 </label>
                 <textarea
@@ -453,19 +453,19 @@ _Sent directly from MY3 Studios Official Booking Portal_`;
                   placeholder="Venue location, event timings, theme preferences..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full px-3.5 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral transition-all"
+                  className="w-full px-3.5 py-2 text-sm bg-[#0D0E12] border border-white/10 rounded-xl focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-coral transition-all"
                 />
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-full bg-coral hover:bg-coral-dark text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg shadow-coral/30 flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
+                  className="w-full py-4 px-6 rounded-full bg-[#E59A3D] hover:bg-[#E59A3D]-dark text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg shadow-[#E59A3D]/30 flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
                 >
                   <span>Confirm &amp; Send Booking to WhatsApp (₹{totalCalculated.toLocaleString('en-IN')})</span>
                   <ArrowRight size={16} />
                 </button>
-                <p className="text-[11px] text-center text-charcoal-400 mt-2 flex items-center justify-center gap-1.5 font-medium">
+                <p className="text-[11px] text-center text-white-400 mt-2 flex items-center justify-center gap-1.5 font-medium">
                   <WhatsAppIcon size={14} className="text-[#25D366] shrink-0" />
                   <span>Submits your name, phone &amp; selected package directly to Anji garu via WhatsApp</span>
                 </p>

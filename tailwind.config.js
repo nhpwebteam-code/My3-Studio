@@ -8,13 +8,20 @@ export default {
     extend: {
       colors: {
         coral: {
-          DEFAULT: '#FF6548',
-          light: '#FF8066',
-          dark: '#E54F33',
-          50: '#FFF5F3',
-          100: '#FFE8E4',
-          500: '#FF6548',
-          600: '#E54F33',
+          DEFAULT: '#E59A3D',
+          light: '#F3B462',
+          dark: '#C87F28',
+          50: '#2A1F14',
+          100: '#3D2D1B',
+          500: '#E59A3D',
+          600: '#C87F28',
+        },
+        gold: {
+          DEFAULT: '#E59A3D',
+          light: '#F3B462',
+          dark: '#C87F28',
+          50: '#2A1F14',
+          100: '#3D2D1B',
         },
         charcoal: {
           DEFAULT: '#1E2024',

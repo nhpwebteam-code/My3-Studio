@@ -17,7 +17,7 @@ export default function ReviewsSection() {
     {
       id: 1,
       quote:
-        "Mythri Studios documented our 3-day wedding with pure cinematic perfection! Anji and his team were so patient with our elders during the rituals and captured every joyful tear and laugh. Our luxury lay-flat album is a treasure our whole family cherishes.",
+        "Mythri Studio documented our 3-day wedding with pure cinematic perfection! Anji and his team were so patient with our elders during the rituals and captured every joyful tear and laugh. Our luxury lay-flat album is a treasure our whole family cherishes.",
       author: "Sowmya & Rakesh M.",
       location: "Grand Wedding, Nandyal",
       avatar:
@@ -26,7 +26,7 @@ export default function ReviewsSection() {
     {
       id: 2,
       quote:
-        "We booked them for our daughter's 1st birthday and traditional cradle ceremony. The candid moments, lightning-fast album delivery, and humble demeanor blew our entire family away. Best studios in Srinivasa Nagar!",
+        "We booked them for our daughter's 1st birthday and traditional cradle ceremony. The candid moments, lightning-fast album delivery, and humble demeanor blew our entire family away. Best studio in Srinivasa Nagar!",
       author: "Venkatesh Rao",
       location: "Srinivasa Nagar, Nandyal",
       avatar:
@@ -62,7 +62,7 @@ export default function ReviewsSection() {
     {
       id: 6,
       quote:
-        "Mythri Studios has captured every milestone in our household for the last five years. Their print fidelity, album binding, and genuine passion for visual storytelling are unmatched in the region.",
+        "Mythri Studio has captured every milestone in our household for the last five years. Their print fidelity, album binding, and genuine passion for visual storytelling are unmatched in the region.",
       author: "Lakshmi Prasanna",
       location: "Family Heritage Celebrations, Nandyal",
       avatar:
@@ -201,7 +201,7 @@ export default function ReviewsSection() {
     <section
       id="reviews"
       ref={sectionRef}
-      className="relative w-full bg-[#FAF7F2] select-none md:min-h-[175vh] scroll-mt-20"
+      className="relative w-full bg-[#07080A] text-white select-none md:min-h-[175vh] scroll-mt-20"
     >
       {/* ─── Sticky Viewport Container ─── */}
       <div className="md:sticky md:top-0 md:h-screen md:min-h-[100dvh] w-full flex flex-col justify-center overflow-hidden py-8 sm:py-12 pt-16 sm:pt-20">
@@ -209,10 +209,10 @@ export default function ReviewsSection() {
           
           {/* ─── Header: Centered Title & Subtitle Matching Image 1 ─── */}
           <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-[#1E2024] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white tracking-tight">
               Inspiring Client Experiences
             </h2>
-            <p className="mt-2.5 text-sm sm:text-base text-charcoal-500 font-medium">
+            <p className="mt-2.5 text-sm sm:text-base text-gray-400 font-medium">
               Join us and become our next success story
             </p>
           </div>
@@ -230,20 +230,20 @@ export default function ReviewsSection() {
               className="flex items-stretch gap-6 overflow-x-auto no-scrollbar py-4 px-1 -mx-1 snap-x snap-mandatory md:snap-none scroll-smooth"
               style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {/* 1. Half-Yellow, Half-White Highlight Stat Card */}
-              <div className="review-carousel-card w-[290px] sm:w-[330px] md:w-[360px] shrink-0 rounded-3xl overflow-hidden border border-yellow-200/90 shadow-[0_10px_30px_rgba(255,206,38,0.18)] hover:shadow-[0_16px_35px_rgba(255,206,38,0.28)] transition-all duration-300 flex flex-col bg-white snap-center">
+              {/* 1. Highlight Stat Card (Warm Gold & Dark Obsidian) */}
+              <div className="review-carousel-card w-[290px] sm:w-[330px] md:w-[360px] shrink-0 rounded-3xl overflow-hidden border border-[#E59A3D]/30 shadow-[0_10px_30px_rgba(229,154,61,0.15)] hover:shadow-[0_16px_35px_rgba(229,154,61,0.25)] transition-all duration-300 flex flex-col bg-[#14161C] snap-center">
               
-              {/* TOP HALF: Radiant Golden Yellow */}
-              <div className="bg-[#FFCE26] p-6 sm:p-7 flex-1 flex flex-col justify-between relative">
+              {/* TOP HALF: Radiant Warm Gold */}
+              <div className="bg-gradient-to-br from-[#E59A3D] to-[#c47c25] p-6 sm:p-7 flex-1 flex flex-col justify-between relative text-black">
                 {/* Official Emblem & Rating Badge */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/15 text-[11px] font-bold uppercase tracking-wider text-black">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/20 text-[11px] font-bold uppercase tracking-wider text-black">
                     Verified Clients
                   </span>
                   <img
                     src="/logo.png"
                     alt="MY3 Studios Official Seal"
-                    className="w-10 h-10 object-contain rounded-full bg-white/40 p-0.5 border border-black/10 shadow-xs"
+                    className="w-10 h-10 object-contain rounded-full bg-black/10 p-0.5 border border-black/20 shadow-xs"
                   />
                 </div>
 
@@ -253,44 +253,44 @@ export default function ReviewsSection() {
                     <h3 className="text-4xl sm:text-5xl font-black font-display text-black tracking-tight leading-none">
                       4.9
                     </h3>
-                    <span className="text-lg font-bold text-black/50 font-display">/ 5.0</span>
+                    <span className="text-lg font-bold text-black/60 font-display">/ 5.0</span>
                   </div>
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-black/75 mt-1.5">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-black/80 mt-1.5">
                     Client Satisfaction Score
                   </p>
                 </div>
               </div>
 
-              {/* BOTTOM HALF: Crisp Pristine White */}
-              <div className="bg-white p-6 sm:p-7 flex-1 flex flex-col justify-between border-t border-yellow-200/60">
-                <p className="text-xs text-charcoal-600 leading-relaxed font-normal mb-5">
-                  Over 600+ traditional Telugu weddings and celebratory milestones documented across South India.
+              {/* BOTTOM HALF: Obsidian Dark Card */}
+              <div className="bg-[#14161C] p-6 sm:p-7 flex-1 flex flex-col justify-between border-t border-white/10">
+                <p className="text-xs text-gray-300 leading-relaxed font-normal mb-5">
+                  Over 1000+ traditional Telugu weddings and celebratory milestones documented across South India.
                 </p>
 
-                {/* Bottom: Overlapping Avatars + 600+ Counter */}
+                {/* Bottom: Overlapping Avatars + 1000+ Counter */}
                 <div className="flex items-center gap-3.5 pt-1">
                   <div className="flex -space-x-3 items-center">
                     <img
                       src="/takeout-1-001/potraites/2.png"
                       alt="Verified Client"
-                      className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-xs"
+                      className="w-10 h-10 rounded-full border-2 border-[#14161C] object-cover shadow-xs"
                     />
                     <img
                       src="/takeout-1-001/wedding/6.png"
                       alt="Verified Client"
-                      className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-xs"
+                      className="w-10 h-10 rounded-full border-2 border-[#14161C] object-cover shadow-xs"
                     />
                     <img
                       src="/takeout-1-001/potraites/7.png"
                       alt="Verified Client"
-                      className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-xs"
+                      className="w-10 h-10 rounded-full border-2 border-[#14161C] object-cover shadow-xs"
                     />
                   </div>
                   <div>
-                    <span className="block text-base sm:text-lg font-black text-[#1E2024] leading-tight font-display">
-                      600+
+                    <span className="block text-base sm:text-lg font-extrabold text-white leading-tight font-sans tracking-tight">
+                      1000<span className="text-[0.85em] font-bold ml-0.5 text-[#E59A3D]">+</span>
                     </span>
-                    <span className="text-[11px] font-semibold text-charcoal-500 block leading-tight">
+                    <span className="text-[11px] font-semibold text-[#E59A3D] block leading-tight">
                       Happy Families
                     </span>
                   </div>
@@ -299,15 +299,15 @@ export default function ReviewsSection() {
 
             </div>
 
-            {/* 2. Testimonial Cards (White cards with yellow dual quotation marks) */}
+            {/* 2. Testimonial Cards (Sleek dark cards with gold dual quotation marks) */}
             {reviews.map((item) => (
               <div
                 key={item.id}
-                className="review-carousel-card w-[290px] sm:w-[330px] md:w-[360px] shrink-0 bg-white rounded-3xl p-7 sm:p-8 flex flex-col justify-between border border-gray-100/90 shadow-[0_8px_25px_rgba(0,0,0,0.04)] hover:shadow-[0_14px_35px_rgba(0,0,0,0.07)] hover:-translate-y-1 transition-all duration-300 snap-center"
+                className="review-carousel-card w-[290px] sm:w-[330px] md:w-[360px] shrink-0 bg-[#14161C] rounded-3xl p-7 sm:p-8 flex flex-col justify-between border border-white/10 shadow-[0_8px_25px_rgba(0,0,0,0.3)] hover:shadow-[0_14px_35px_rgba(0,0,0,0.5)] hover:-translate-y-1 transition-all duration-300 snap-center"
               >
                 <div>
-                  {/* Yellow Dual Quotation Marks Icon */}
-                  <div className="mb-4 text-[#FFCE26]">
+                  {/* Gold Dual Quotation Marks Icon */}
+                  <div className="mb-4 text-[#E59A3D]">
                     <svg
                       className="w-8 h-8 fill-current"
                       viewBox="0 0 24 24"
@@ -318,23 +318,23 @@ export default function ReviewsSection() {
                   </div>
 
                   {/* Review Text */}
-                  <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
                     {item.quote}
                   </p>
                 </div>
 
                 {/* Reviewer Meta: Avatar, Name, Location */}
-                <div className="flex items-center gap-3.5 mt-8 pt-4 border-t border-gray-100">
+                <div className="flex items-center gap-3.5 mt-8 pt-4 border-t border-white/10">
                   <img
                     src={item.avatar}
                     alt={item.author}
-                    className="w-11 h-11 rounded-full object-cover shrink-0 ring-2 ring-gray-100/80"
+                    className="w-11 h-11 rounded-full object-cover shrink-0 ring-2 ring-white/10"
                   />
                   <div className="min-w-0">
-                    <h4 className="font-bold text-sm sm:text-[15px] text-[#1E2024] leading-tight">
+                    <h4 className="font-bold text-sm sm:text-[15px] text-white leading-tight">
                       {item.author}
                     </h4>
-                    <p className="text-xs text-charcoal-400 font-medium mt-0.5 truncate">
+                    <p className="text-xs text-gray-400 font-medium mt-0.5 truncate">
                       {item.location}
                     </p>
                   </div>
@@ -344,14 +344,14 @@ export default function ReviewsSection() {
           </div>
         </div>
 
-        {/* ─── Centered Navigation Arrows (< >) Matching Image 1 ─── */}
+        {/* ─── Centered Navigation Arrows (< >) Matching Dark Theme ─── */}
         <div className="flex items-center justify-center gap-3 mt-6 sm:mt-10">
           <button
             type="button"
             onClick={() => handleScroll('prev')}
             disabled={!canScrollLeft}
             aria-label="Previous reviews"
-            className="w-10 h-10 rounded-full bg-white border border-gray-200/90 shadow-sm flex items-center justify-center text-charcoal-700 hover:bg-gray-50 hover:border-gray-300 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+            className="w-10 h-10 rounded-full bg-[#14161C] border border-white/20 shadow-sm flex items-center justify-center text-white hover:border-[#E59A3D] hover:text-[#E59A3D] active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed transition-all cursor-pointer"
           >
             <ChevronLeft size={18} />
           </button>
@@ -360,7 +360,7 @@ export default function ReviewsSection() {
             onClick={() => handleScroll('next')}
             disabled={!canScrollRight}
             aria-label="Next reviews"
-            className="w-10 h-10 rounded-full bg-white border border-gray-200/90 shadow-sm flex items-center justify-center text-charcoal-700 hover:bg-gray-50 hover:border-gray-300 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed transition-all cursor-pointer"
+            className="w-10 h-10 rounded-full bg-[#14161C] border border-white/20 shadow-sm flex items-center justify-center text-white hover:border-[#E59A3D] hover:text-[#E59A3D] active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed transition-all cursor-pointer"
           >
             <ChevronRight size={18} />
           </button>

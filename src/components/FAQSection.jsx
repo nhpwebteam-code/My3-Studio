@@ -37,22 +37,22 @@ export default function FAQSection() {
 
   return (
     <section id="faq" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
-      {/* Header Aligned with other sections */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-[#EAE4D9] pb-6">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 border-b border-white/10 pb-6">
         <div>
-          <span className="font-script text-3xl sm:text-4xl text-coral block -mb-1 select-none">
+          <span className="font-script text-3xl sm:text-4xl text-[#E59A3D] block -mb-1 select-none">
             Common Inquiries
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl text-charcoal-900 tracking-tight">
+          <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
             Frequently Asked Questions
           </h2>
         </div>
-        <p className="text-sm text-charcoal-500 max-w-md font-medium">
+        <p className="text-sm text-gray-400 max-w-md font-medium">
           Everything you need to know about our event packages, album specifications, extras, and delivery timelines.
         </p>
       </div>
 
-      {/* Accordion List Container with Impeccable Alignment */}
+      {/* Accordion List */}
       <div className="max-w-4xl mx-auto space-y-3.5">
         {faqs.map((faq, idx) => {
           const isOpen = openIndex === idx;
@@ -61,8 +61,8 @@ export default function FAQSection() {
               key={idx}
               className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                 isOpen
-                  ? 'bg-white border-coral/60 shadow-md ring-1 ring-coral/20'
-                  : 'bg-white border-[#EAE4D9] hover:border-coral/40 shadow-xs'
+                  ? 'bg-[#14161C] border-[#E59A3D]/60 shadow-md ring-1 ring-[#E59A3D]/20'
+                  : 'bg-[#14161C] border-white/10 hover:border-[#E59A3D]/40 shadow-xs'
               }`}
             >
               <button
@@ -71,16 +71,16 @@ export default function FAQSection() {
                 aria-expanded={isOpen}
               >
                 <div className="flex items-center gap-3">
-                  <span className={`text-xs font-mono font-bold px-2.5 py-0.5 rounded-md ${isOpen ? 'bg-coral text-white' : 'bg-gray-100 text-charcoal-500'}`}>
+                  <span className={`text-xs font-mono font-bold px-2.5 py-0.5 rounded-md ${isOpen ? 'bg-[#E59A3D] text-black' : 'bg-white/5 text-gray-500'}`}>
                     0{idx + 1}
                   </span>
-                  <span className={`text-base sm:text-lg font-bold transition-colors ${isOpen ? 'text-charcoal-900' : 'text-charcoal-800 group-hover:text-coral'}`}>
+                  <span className={`text-base sm:text-lg font-bold transition-colors ${isOpen ? 'text-white' : 'text-gray-200 group-hover:text-[#E59A3D]'}`}>
                     {faq.question}
                   </span>
                 </div>
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                    isOpen ? 'bg-coral text-white rotate-180' : 'bg-gray-100 text-charcoal-600 group-hover:bg-gray-200'
+                    isOpen ? 'bg-[#E59A3D] text-black rotate-180' : 'bg-white/5 text-gray-400 group-hover:bg-white/10'
                   }`}
                 >
                   <ChevronDown size={16} />
@@ -88,7 +88,7 @@ export default function FAQSection() {
               </button>
 
               {isOpen && (
-                <div className="px-6 pb-6 pt-1 text-sm sm:text-base text-charcoal-600 leading-relaxed font-normal animate-fade-in border-t border-gray-100/60 mt-1">
+                <div className="px-6 pb-6 pt-1 text-sm sm:text-base text-gray-400 leading-relaxed font-normal animate-fade-in border-t border-white/5 mt-1">
                   <p className="pl-9">{faq.answer}</p>
                 </div>
               )}
@@ -98,20 +98,20 @@ export default function FAQSection() {
       </div>
 
       {/* Bottom Still Have Questions Bar */}
-      <div className="mt-12 text-center bg-white rounded-2xl p-6 border border-[#EAE4D9] shadow-sm max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="mt-12 text-center bg-[#14161C] rounded-2xl p-6 border border-white/10 shadow-sm max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3 text-left">
-          <div className="w-10 h-10 rounded-full bg-coral-50 text-coral flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-full bg-[#E59A3D]/10 text-[#E59A3D] flex items-center justify-center shrink-0">
             <HelpCircle size={20} />
           </div>
           <div>
-            <h4 className="font-bold text-sm text-charcoal-900">Have more questions?</h4>
-            <p className="text-xs text-charcoal-500">Our studios concierge is always happy to assist.</p>
+            <h4 className="font-bold text-sm text-white">Have more questions?</h4>
+            <p className="text-xs text-gray-500">Our studios concierge is always happy to assist.</p>
           </div>
         </div>
 
         <a
           href="/contact"
-          className="px-6 py-2.5 rounded-full bg-coral hover:bg-coral-dark text-white text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap shadow-md shadow-coral/25 active:scale-95"
+          className="px-6 py-2.5 rounded-full bg-[#E59A3D] hover:bg-[#d08a2f] text-black text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap shadow-md shadow-[#E59A3D]/25 active:scale-95"
         >
           Ask Us Directly
         </a>

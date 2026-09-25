@@ -325,7 +325,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
     <section
       ref={containerRef}
       id="curated-frames"
-      className="relative w-full bg-[#FF6548] text-black select-none py-12 sm:py-16 lg:py-0 lg:min-h-[230vh]"
+      className="relative w-full bg-[#E59A3D] text-black select-none py-12 sm:py-16 lg:py-0 lg:min-h-[230vh]"
     >
       {/* ═══════════════════════════════════════════
           STICKY FULL-SCREEN VIEWPORT ON DESKTOP, FLUID ON MOBILE

@@ -32,10 +32,10 @@ export default function AboutProcess() {
   return (
     <section className="space-y-10">
       <div className="text-center max-w-2xl mx-auto">
-        <span className="font-script text-3xl text-coral block -mb-1 select-none">
+        <span className="font-script text-3xl text-[#E59A3D] block -mb-1 select-none">
           Simple & Transparent
         </span>
-        <h2 className="font-display font-black text-3xl sm:text-4xl text-charcoal-900 tracking-tight">
+        <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
           How We Work With You
         </h2>
       </div>
@@ -44,17 +44,17 @@ export default function AboutProcess() {
         {steps.map((s, idx) => {
           const Icon = s.icon;
           return (
-            <div key={idx} className="bg-white rounded-3xl p-6 relative group border border-[#EAE4D9] hover:border-coral/40 shadow-sm hover:shadow-xl transition-all">
-              <span className="font-display text-sm text-coral font-black block mb-4">
+            <div key={idx} className="bg-[#14161C] rounded-3xl p-6 relative group border border-white/10 hover:border-[#E59A3D]/40 shadow-sm hover:shadow-xl transition-all">
+              <span className="font-display text-sm text-[#E59A3D] font-black block mb-4">
                 Step {s.step}
               </span>
-              <div className="w-12 h-12 rounded-2xl bg-coral-50 text-coral flex items-center justify-center mb-4 group-hover:bg-coral group-hover:text-white transition-all">
+              <div className="w-12 h-12 rounded-2xl bg-[#E59A3D]/10 text-[#E59A3D] flex items-center justify-center mb-4 group-hover:bg-[#E59A3D] group-hover:text-black transition-all">
                 <Icon size={20} />
               </div>
-              <h3 className="font-display font-bold text-lg text-charcoal-900 mb-2">
+              <h3 className="font-display font-bold text-lg text-white mb-2">
                 {s.title}
               </h3>
-              <p className="text-xs text-charcoal-600 leading-relaxed font-normal">
+              <p className="text-xs text-gray-400 leading-relaxed font-normal">
                 {s.desc}
               </p>
             </div>

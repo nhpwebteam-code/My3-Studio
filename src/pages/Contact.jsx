@@ -7,7 +7,7 @@ export default function Contact() {
   const initialService = location.state?.selectedService || '';
 
   return (
-    <div className="pt-24 sm:pt-28 pb-20 sm:pb-28 bg-[#FAF7F2] text-charcoal min-h-screen">
+    <div className="pt-24 sm:pt-28 pb-20 sm:pb-28 bg-[#000000] text-white min-h-screen">
       <ContactSection initialService={initialService} />
     </div>
   );

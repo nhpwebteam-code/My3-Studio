@@ -4,7 +4,7 @@
 export const testimonials = [
   {
     id: 1,
-    quote: "Mythri Studios didn't just photograph our wedding — they bottled the very soul of the day. Looking through our heirloom album brings back every heartbeat and joyful tear.",
+    quote: "Mythri Studio didn't just photograph our wedding — they bottled the very soul of the day. Looking through our heirloom album brings back every heartbeat and joyful tear.",
     author: "Ananya & Siddharth",
     context: "Destination Wedding, Udaipur",
     rating: 5,
@@ -12,7 +12,7 @@ export const testimonials = [
   },
   {
     id: 2,
-    quote: "Their mastery over lighting and calm presence in front of high-pressure editorial deadlines is second to none. Mythri Studios is our first call for every couture drop.",
+    quote: "Their mastery over lighting and calm presence in front of high-pressure editorial deadlines is second to none. Mythri Studio is our first call for every couture drop.",
     author: "Vikramaditya Mehta",
     context: "Creative Director, VIRAAT Atelier",
     rating: 5,

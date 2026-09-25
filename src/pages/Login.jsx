@@ -52,15 +52,15 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#11141A] text-white flex flex-col justify-between relative overflow-hidden select-none font-sans">
+    <div className="min-h-screen bg-[#07080A] text-white flex flex-col justify-between relative overflow-hidden select-none font-sans">
       {/* ─── Top Atmospheric Radial Glow ─── */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-b from-coral/10 via-transparent to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-b from-[#E59A3D]/10 via-transparent to-transparent blur-3xl pointer-events-none" />
 
       {/* ─── Header: Brand Logo & Navigation Bar ─── */}
       <header className="w-full max-w-6xl mx-auto px-6 py-6 sm:py-8 flex items-center justify-between relative z-20">
         {/* Brand Logo & Name */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-white/10 p-1.5 border border-white/15 backdrop-blur-md flex items-center justify-center transition-all group-hover:scale-105 group-hover:border-coral/50 shadow-md">
+          <div className="w-9 h-9 rounded-xl bg-white/10 p-1.5 border border-white/15 backdrop-blur-md flex items-center justify-center transition-all group-hover:scale-105 group-hover:border-[#E59A3D]/50 shadow-md">
             <img
               src="/logo.png"
               alt="MY3 Studios Official Emblem"
@@ -69,7 +69,7 @@ export default function Login() {
           </div>
           <div className="flex flex-col">
             <span className="font-display font-black text-lg sm:text-xl tracking-tight text-white leading-none">
-              MY3 <span className="text-coral">Studios</span>
+              MY3 <span className="text-[#E59A3D]">Studios</span>
             </span>
             <span className="text-[10px] font-bold text-white/50 tracking-widest uppercase mt-0.5">
               Atelier Portal
@@ -88,7 +88,7 @@ export default function Login() {
             className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.07] hover:bg-white/[0.14] border border-white/10 text-xs font-semibold text-white/90 hover:text-white transition-all"
           >
             <span>Back to Site</span>
-            <ArrowRight size={13} className="text-coral" />
+            <ArrowRight size={13} className="text-[#E59A3D]" />
           </Link>
         </div>
       </header>
@@ -104,10 +104,10 @@ export default function Login() {
                 <img
                   src="/logo.png"
                   alt="MY3 Emblem"
-                  className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(255,101,72,0.4)]"
+                  className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(229,154,61,0.4)]"
                 />
               </div>
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-coral border-2 border-[#11141A] shadow-xs" />
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#E59A3D] border-2 border-[#07080A] shadow-xs" />
             </div>
           </div>
 
@@ -132,7 +132,7 @@ export default function Login() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Login / Email Input */}
             <div>
-              <div className="relative rounded-xl overflow-hidden bg-[#1C222C] border border-white/10 hover:border-white/20 focus-within:border-coral focus-within:ring-2 focus-within:ring-coral/20 transition-all shadow-inner">
+              <div className="relative rounded-xl overflow-hidden bg-[#14161C] border border-white/10 hover:border-white/20 focus-within:border-[#E59A3D] focus-within:ring-2 focus-within:ring-[#E59A3D]/20 transition-all shadow-inner">
                 <input
                   type="email"
                   value={email}
@@ -146,7 +146,7 @@ export default function Login() {
 
             {/* Password Input */}
             <div>
-              <div className="relative rounded-xl overflow-hidden bg-[#1C222C] border border-white/10 hover:border-white/20 focus-within:border-coral focus-within:ring-2 focus-within:ring-coral/20 transition-all shadow-inner">
+              <div className="relative rounded-xl overflow-hidden bg-[#14161C] border border-white/10 hover:border-white/20 focus-within:border-[#E59A3D] focus-within:ring-2 focus-within:ring-[#E59A3D]/20 transition-all shadow-inner">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={password}
@@ -173,7 +173,7 @@ export default function Login() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-white/20 bg-white/10 text-coral focus:ring-0 cursor-pointer accent-[#FF6548]"
+                  className="w-4 h-4 rounded border-white/20 bg-white/10 text-[#E59A3D] focus:ring-0 cursor-pointer accent-[#E59A3D]"
                 />
                 <span className="text-xs text-white/70 font-medium hover:text-white transition-colors">
                   Remember me
@@ -183,7 +183,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => alert("For admin password reset, please contact Anji garu directly at +91 99493 95037.")}
-                className="text-xs text-coral hover:text-coral-light font-medium transition-colors cursor-pointer"
+                className="text-xs text-[#E59A3D] hover:text-[#f3b05c] font-medium transition-colors cursor-pointer"
               >
                 Forgot password?
               </button>
@@ -193,11 +193,11 @@ export default function Login() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 rounded-xl bg-coral hover:bg-coral-dark text-white font-bold text-sm tracking-wide shadow-[0_4px_22px_rgba(255,101,72,0.4)] transition-all duration-200 active:scale-[0.98] cursor-pointer disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
+              className="w-full py-3.5 rounded-xl bg-[#E59A3D] hover:bg-[#c98028] text-black font-bold text-sm tracking-wide shadow-[0_4px_22px_rgba(229,154,61,0.35)] transition-all duration-200 active:scale-[0.98] cursor-pointer disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
             >
               {isLoading ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
                   <span>Signing in...</span>
                 </>
               ) : (
@@ -214,7 +214,7 @@ export default function Login() {
               disabled={isLoading}
               className="w-full py-2.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.09] border border-white/10 text-white/75 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
-              <CheckCircle2 size={14} className="text-coral" />
+              <CheckCircle2 size={14} className="text-[#E59A3D]" />
               <span>One-Click Demo Admin Sign In</span>
             </button>
           </div>
@@ -249,34 +249,34 @@ export default function Login() {
             {/* Wave 1: Deep slate layer */}
             <path
               d="M0,70 C280,120 540,30 840,80 C1100,120 1320,60 1440,70 L1440,220 L0,220 Z"
-              fill="#181D26"
+              fill="#14161C"
             />
             {/* Wave 2: Slate-blue middle layer */}
             <path
               d="M0,105 C340,60 620,150 960,100 C1180,70 1340,120 1440,110 L1440,220 L0,220 Z"
-              fill="#232B38"
+              fill="#1A1C24"
               fillOpacity="0.8"
             />
-            {/* Wave 3: Soft light contrast layer */}
+            {/* Wave 3: Subtle Gold Accent Layer */}
             <path
               d="M0,140 C320,180 720,110 1080,150 C1260,170 1370,135 1440,145 L1440,220 L0,220 Z"
-              fill="#D4D9E2"
-              fillOpacity="0.45"
+              fill="#E59A3D"
+              fillOpacity="0.15"
             />
-            {/* Wave 4: Signature Cream Base matching website */}
+            {/* Wave 4: Deep Black Base */}
             <path
               d="M0,170 C380,140 780,200 1180,165 C1320,155 1390,165 1440,170 L1440,220 L0,220 Z"
-              fill="#FAF7F2"
+              fill="#000000"
             />
           </svg>
         </div>
 
-        {/* Bottom Light Base with Centered Copyright Text */}
-        <div className="bg-[#FAF7F2] py-4 px-4 text-center pointer-events-auto">
-          <p className="text-[11px] font-semibold text-charcoal-500 tracking-wide">
+        {/* Bottom Dark Base with Centered Copyright Text */}
+        <div className="bg-[#000000] py-4 px-4 text-center pointer-events-auto border-t border-white/5">
+          <p className="text-[11px] font-semibold text-gray-400 tracking-wide">
             2026 © MY3 Studios. All rights reserved.
           </p>
-          <p className="text-[10px] text-charcoal-400 mt-0.5">
+          <p className="text-[10px] text-gray-500 mt-0.5">
             Designed for Mythri Photography Atelier • Nandyal, Andhra Pradesh
           </p>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { ArrowUpRight, Play, Camera } from 'lucide-react';
+import { Play, Camera, MapPin } from 'lucide-react';
 
-function WhatsAppIcon({ size = 18, className = "" }) {
+function WhatsAppIcon({ size = 20, className = "" }) {
   return (
     <svg
       width={size}
@@ -15,6 +15,45 @@ function WhatsAppIcon({ size = 18, className = "" }) {
   );
 }
 
+function InstagramIcon({ size = 15, className = "" }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+function YoutubeIcon({ size = 15, className = "" }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+      <polygon points="10 15 15 12 10 9 10 15" fill="currentColor" />
+    </svg>
+  );
+}
+
 const HERO_WHATSAPP_MSG = encodeURIComponent(
   "Hello Anji garu (MY3 Studios)! I am visiting your website and would like to inquire about photoshoot availability and packages for my upcoming event. Could you please share more details?"
 );
@@ -22,223 +61,181 @@ const HERO_WHATSAPP_URL = `https://wa.me/919949395037?text=${HERO_WHATSAPP_MSG}`
 
 export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollToReviews }) {
   return (
-    <section id="home" className="relative w-full min-h-[92vh] flex flex-col justify-between pt-28 sm:pt-32 md:pt-36 pb-8 sm:pb-12 px-3 sm:px-6 lg:px-12 bg-[#FAF7F2] overflow-hidden select-none scroll-mt-24">
-      
-      {/* 1. Giant Headline Across Screen: PHOTO in Charcoal, GRAPHY in Coral */}
-      <div className="w-full text-center relative z-10 pointer-events-none mb-[-8px] sm:mb-[-35px] md:mb-[-55px] overflow-visible px-1 sm:px-0">
-        <h1 className="font-display font-black uppercase text-[8.6vw] min-[360px]:text-[9.2vw] min-[400px]:text-[9.8vw] sm:text-[13vw] md:text-[13vw] lg:text-[140px] xl:text-[160px] leading-[1.05] sm:leading-[0.88] tracking-tight sm:tracking-[-0.03em] flex items-center justify-center gap-0.5 sm:gap-2 lg:gap-3 whitespace-nowrap">
-          <span className="text-[#1E2024]">PHOTO</span>
-          <span className="text-coral">GRAPHY</span>
+    <section
+      id="home"
+      className="relative w-full min-h-[96vh] flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 bg-[#000000] text-white overflow-hidden select-none scroll-mt-24"
+    >
+      {/* ─── Ambient Warm Golden Spotlight Glow behind center photographer (Matching Reference) ─── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 65% 58% at 50% 55%, rgba(229, 154, 61, 0.22) 0%, rgba(35, 22, 10, 0.45) 42%, rgba(0, 0, 0, 0.9) 70%, #000000 100%)',
+        }}
+      />
+
+      {/* ─── 1. Giant Headline: "PHOTO" in White, "GRAPHY" in Golden Amber ─── */}
+      <div className="w-full text-center relative z-10 pointer-events-none mb-[-12px] sm:mb-[-35px] md:mb-[-55px] overflow-visible px-1 sm:px-0">
+        <h1 className="font-display font-black uppercase text-[8.8vw] min-[360px]:text-[9.4vw] min-[400px]:text-[10vw] sm:text-[13vw] md:text-[13.5vw] lg:text-[142px] xl:text-[162px] leading-[1.02] sm:leading-[0.88] tracking-tight sm:tracking-[-0.03em] flex items-center justify-center gap-1 sm:gap-3 whitespace-nowrap">
+          <span className="text-white">PHOTO</span>
+          <span className="text-[#E59A3D]">GRAPHY</span>
         </h1>
       </div>
 
-      {/* 2. Centerpiece & Floating Badges Container */}
-      <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center my-2 sm:my-4">
+      {/* ─── 2. Centerpiece: Left "1000+", Center Photographer, Right Rotating Badge ─── */}
+      <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center my-1 sm:my-3">
         
-        {/* Top-Left Floating Badge: "600+" tilted */}
-        <div className="absolute top-1 sm:top-6 left-1 sm:left-6 md:left-12 lg:left-20 z-20 -rotate-6 transform hover:rotate-0 transition-transform duration-300 pointer-events-none sm:pointer-events-auto">
-          <div className="flex flex-col">
-            <span className="text-3xl sm:text-5xl md:text-6xl font-black text-coral font-display leading-none tracking-tight">
-              600+
-            </span>
-            <span className="text-[11px] sm:text-sm font-semibold text-charcoal-500 max-w-[105px] sm:max-w-[150px] leading-tight mt-0.5 sm:mt-1">
-              Weddings & Events Across South India
-            </span>
+        {/* Top-Left Floating Badge: "1000+" & Vertical Gold Bar (Exact Reference Match) */}
+        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 left-4 sm:left-8 md:left-14 lg:left-20 xl:left-28 z-20 pointer-events-auto">
+          <div className="flex flex-col items-start">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[60px] font-sans font-extrabold text-[#E59A3D] leading-none tracking-tight flex items-baseline select-none">
+              <span>1000</span>
+              <span className="text-[0.82em] font-bold ml-0.5 text-[#E59A3D]">+</span>
+            </div>
+            <div className="flex items-stretch gap-2.5 sm:gap-3 mt-2 sm:mt-2.5">
+              {/* Vertical Gold Divider Bar - Exactly matches the 2-line text height */}
+              <div className="w-[2px] bg-[#E59A3D] rounded-full shrink-0" />
+              <div className="flex flex-col justify-center leading-snug">
+                <span className="text-xs sm:text-[13px] md:text-sm font-bold text-white tracking-wide">
+                  Weddings &amp; Events
+                </span>
+                <span className="text-[11px] sm:text-xs text-gray-300 font-medium tracking-normal mt-0.5">
+                  Across South India
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Central Backgroundless Cutout Photographer — smoothly masked at bottom so it blends seamlessly */}
-        <div className="relative z-10 w-full max-w-[280px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[580px] xl:max-w-[640px] mx-auto flex justify-center">
+        {/* Central Cutout Master Photographer smoothly masked at bottom */}
+        <div className="relative z-10 w-full max-w-[280px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[590px] xl:max-w-[650px] mx-auto flex justify-center">
           <img
             src="/photographer-bw.png"
             alt="MY3 Studios Master Photographer"
-            className="w-full max-h-[440px] sm:max-h-[580px] md:max-h-[640px] object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.12)] pointer-events-none"
+            className="w-full max-h-[460px] sm:max-h-[590px] md:max-h-[660px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] pointer-events-none"
             style={{
-              WebkitMaskImage: 'linear-gradient(to bottom, black 80%, rgba(0,0,0,0.5) 92%, transparent 100%)',
-              maskImage: 'linear-gradient(to bottom, black 80%, rgba(0,0,0,0.5) 92%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
             }}
           />
         </div>
 
-        {/* Top-Right Circular Rotating Stamp: "view our product reviews" with Play button */}
-        <div className="absolute top-2 sm:top-10 right-1 sm:right-8 md:right-16 lg:right-24 z-20">
+        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp (Exact Reference Match) */}
+        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 z-20">
           <button
             id="product-reviews-stamp"
             onClick={onOpenVideoReviews}
-            className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#1F2125] text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden"
+            className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-black/90 border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
             aria-label="View our product reviews"
           >
-            {/* Looping Client Video Preview */}
+            {/* Optional Looping Client Video Preview inside */}
             <video
               src="/takeout-1-001/vedio/vedio.mp4"
               autoPlay
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-35 group-hover:opacity-60 transition-opacity"
+              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-20 group-hover:opacity-40 transition-opacity"
             />
 
-            {/* Rotating SVG Curved Text */}
+            {/* Rotating Curved Text */}
             <svg
               className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none z-10"
               viewBox="0 0 100 100"
             >
               <defs>
                 <path
-                  id="circlePath"
+                  id="circlePathHero"
                   d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
                 />
               </defs>
-              <text className="text-[9.2px] uppercase font-bold tracking-[0.22em] fill-white">
-                <textPath xlinkHref="#circlePath" startOffset="0%">
-                  view our product reviews • view our product reviews •
+              <text className="text-[9.2px] uppercase font-bold tracking-[0.24em] fill-white">
+                <textPath xlinkHref="#circlePathHero" startOffset="0%">
+                  PRODUCT REVIEWS • PRODUCT REVIEWS •
                 </textPath>
               </text>
             </svg>
 
-            {/* Inner Video Preview & Play Icon */}
-            <div className="relative z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral text-white flex items-center justify-center transition-colors shadow-inner">
-              <Play size={16} fill="white" className="ml-0.5" />
+            {/* Inner Gold Play Button */}
+            <div className="relative z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/80 border border-[#E59A3D]/40 text-[#E59A3D] flex items-center justify-center transition-colors shadow-inner group-hover:border-[#E59A3D]">
+              <Play size={17} fill="#E59A3D" className="text-[#E59A3D] ml-0.5" />
             </div>
           </button>
         </div>
       </div>
 
-      {/* 3. Bottom Layered Interactive Controls */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8 sm:gap-6 pt-4">
+      {/* ─── 3. Bottom Layered Interactive Controls (Exact Reference Match) ─── */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto flex items-end justify-between pt-2">
         
-        {/* Bottom-Left Block: 4.9/5 Rating, Overlapping Avatars, Copy, and Coral "Click Here" */}
-        <div className="max-w-md space-y-4">
-          <div className="flex items-center space-x-4">
-            {/* Rating Number */}
-            <div className="flex items-baseline">
-              <span className="text-4xl sm:text-5xl font-black text-[#1E2024] font-display tracking-tight">
-                4.9
-              </span>
-              <span className="text-xl sm:text-2xl font-light text-charcoal-400 ml-0.5">
-                /5
-              </span>
-            </div>
+        {/* Bottom-Left: Circular Camera Button + Timeline Strip */}
+        <div className="flex flex-col space-y-3">
+          {/* Circular Camera Button with Gold Border */}
+          <button
+            onClick={onOpenBooking}
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black border border-[#E59A3D] hover:bg-[#E59A3D] text-white hover:text-black flex items-center justify-center transition-all duration-200 active:scale-95 shadow-lg group cursor-pointer"
+            aria-label="Book a Photography Session"
+            title="Book a Session"
+          >
+            <Camera size={19} className="group-hover:scale-110 transition-transform" />
+          </button>
 
-            {/* Overlapping Customer Avatars */}
-            <div className="flex -space-x-3 items-center pl-1">
-              <img
-                src="/takeout-1-001/potraites/2.png"
-                alt="Client Reviewer"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-white object-cover shadow-sm"
-              />
-              <img
-                src="/takeout-1-001/wedding/6.png"
-                alt="Client Reviewer"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-white object-cover shadow-sm"
-              />
-              <img
-                src="/takeout-1-001/potraites/7.png"
-                alt="Client Reviewer"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-white object-cover shadow-sm"
-              />
-            </div>
-          </div>
-
-          {/* Descriptive text */}
-          <p className="text-xs sm:text-sm text-charcoal-500 font-medium leading-relaxed max-w-[340px]">
-            Here are important comments of all our customers who have availed services from us.
-          </p>
-
-          {/* Action Button: Coral Pill "Click Here" + Circular Arrow Button */}
-          <div className="flex items-center space-x-2 pt-1">
-            <button
-              id="hero-click-here-btn"
-              onClick={onScrollToReviews}
-              className="px-8 sm:px-9 py-3 rounded-full bg-coral hover:bg-coral-dark text-white text-xs sm:text-sm font-bold tracking-wide uppercase transition-all shadow-md shadow-coral/30 active:scale-95"
-            >
-              Click Here
-            </button>
-
+          {/* Timeline & Social Links Row */}
+          <div className="flex items-center gap-2.5 text-xs text-gray-400 font-medium">
+            <span className="w-2 h-2 rounded-full bg-[#E59A3D] inline-block animate-pulse" />
             <button
               onClick={onScrollToReviews}
-              className="w-11 h-11 rounded-full border border-gray-300 hover:border-coral hover:text-coral text-charcoal-800 flex items-center justify-center transition-all group"
-              aria-label="View Customer Reviews"
+              className="text-gray-300 hover:text-white transition-colors cursor-pointer"
             >
-              <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              Timeline
             </button>
+            <span className="text-gray-600">|</span>
+            <div className="flex items-center gap-2 text-gray-400">
+              <a
+                href="https://www.instagram.com/mythri_studio_ndl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#E59A3D] transition-colors"
+                title="Instagram: @mythri_studio_ndl"
+                aria-label="Instagram"
+              >
+                <InstagramIcon size={14} />
+              </a>
+              <a
+                href="https://youtube.com/@mythristudio8857?si=5szrcmSiVDF_36an"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#E59A3D] transition-colors"
+                title="YouTube Channel"
+                aria-label="YouTube"
+              >
+                <YoutubeIcon size={14} />
+              </a>
+              <a
+                href="/contact#studio-location"
+                className="hover:text-[#E59A3D] transition-colors"
+                title="View Studio Locations & Maps"
+                aria-label="Studio Maps"
+              >
+                <MapPin size={14} />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom-Right Block: Emblem, Cursive "MY3 Studios", "Book your schedule", Outline Pill "Lets Talk" */}
-        <div className="flex flex-col md:items-end space-y-3">
-          {/* Cursive Signature: MY3 Studios */}
-          <div className="flex items-center md:justify-end gap-3.5">
-            <img
-              src="/logo.png"
-              alt="MY3 Studios Emblem"
-              className="w-12 h-12 sm:w-16 sm:h-16 object-contain filter drop-shadow-md hover:rotate-6 transition-transform"
-            />
-            <div className="md:text-right">
-              <span className="font-script text-5xl sm:text-6xl md:text-7xl text-coral block -mb-2 sm:-mb-3 select-none leading-none">
-                MY3 Studios
-              </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#1E2024] font-display tracking-tight leading-tight">
-                Book your schedule
-              </h2>
-            </div>
-          </div>
-
-          {/* Action Buttons: "Lets Talk" + "Chat on WhatsApp" */}
-          <div className="pt-2 flex items-center flex-wrap gap-2.5 sm:gap-3">
-            <button
-              id="hero-lets-talk-btn"
-              onClick={onOpenBooking}
-              className="px-7 sm:px-9 py-2.5 sm:py-3 rounded-full border-2 border-charcoal-900 hover:bg-charcoal-900 hover:text-white text-charcoal-900 text-xs sm:text-sm font-bold tracking-wide uppercase transition-all shadow-sm active:scale-95 cursor-pointer"
-            >
-              Lets Talk
-            </button>
-
-            <a
-              id="hero-whatsapp-btn"
-              href={HERO_WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold tracking-wide uppercase transition-all shadow-md shadow-[#25D366]/30 hover:scale-105 active:scale-95 cursor-pointer"
-              aria-label="Direct WhatsApp message to MY3 Studios"
-              title="Chat with Anji on WhatsApp"
-            >
-              <WhatsAppIcon size={18} />
-              <span>WhatsApp</span>
-            </a>
-          </div>
+        {/* Bottom-Right: Circular WhatsApp Quick Contact Button (Gold Border & Gold Icon) */}
+        <div>
+          <a
+            href={HERO_WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black border border-[#E59A3D] hover:bg-[#E59A3D] text-[#E59A3D] hover:text-black flex items-center justify-center transition-all duration-200 active:scale-95 shadow-lg group cursor-pointer"
+            aria-label="Direct WhatsApp Chat with MY3 Studios"
+            title="Chat with Anji on WhatsApp (+91 99493 95037)"
+          >
+            <WhatsAppIcon size={20} className="group-hover:scale-110 transition-transform" />
+          </a>
         </div>
-      </div>
 
-      {/* Floating Bottom-Left Camera Badge */}
-      <div className="hidden lg:flex fixed bottom-6 left-6 z-30">
-        <button
-          onClick={onOpenBooking}
-          className="w-14 h-14 rounded-full bg-[#2A2B30] hover:bg-black text-white flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all group cursor-pointer"
-          aria-label="Quick Camera Booking"
-        >
-          <Camera size={22} className="group-hover:scale-110 transition-transform" />
-        </button>
       </div>
-
-      {/* Floating Bottom-Right WhatsApp Quick Contact (Always Accessible in Home Section) */}
-      <div className="fixed bottom-6 right-6 z-30">
-        <a
-          href={HERO_WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all group border-2 border-white cursor-pointer"
-          aria-label="Chat with Anji on WhatsApp"
-          title="Direct WhatsApp with MY3 Studios (+91 99493 95037)"
-        >
-          <WhatsAppIcon size={26} />
-          <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-white"></span>
-          </span>
-        </a>
-      </div>
-
     </section>
   );
 }

@@ -67,21 +67,21 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
   const ctaLabel = buttonLabels[service.id] || 'Book This Package';
   const durationLabel = service.id === '2days-package' ? '/package' : service.id === 'birthday-shoot' ? '/shoot' : '/event';
 
-  // Center package (2days-package) is permanently the featured/recommended tier matching the reference design
+  // Center package (2days-package) is permanently the featured/recommended tier
   const isFeatured = service.id === '2days-package';
 
   return (
     <div
       className={`relative rounded-[32px] flex flex-col w-full h-full transition-all duration-300 ease-out select-none ${
         isFeatured
-          ? 'p-[2px] bg-gradient-to-b from-[#F77F42] via-[#E15B3E] to-[#E15B3E]/60 shadow-xl shadow-coral/15 lg:-translate-y-2'
-          : 'bg-white p-7 sm:p-8 border border-[#EAE4D9] shadow-sm hover:border-coral/40 hover:shadow-xl'
+          ? 'p-[2px] bg-gradient-to-b from-[#E59A3D] via-[#D08A2F] to-[#D08A2F]/60 shadow-xl shadow-[#E59A3D]/15 lg:-translate-y-2'
+          : 'bg-[#14161C] p-7 sm:p-8 border border-white/10 shadow-sm hover:border-[#E59A3D]/40 hover:shadow-xl'
       }`}
     >
       {/* Permanent Static Top Header Cap for Center Recommended Card */}
       {isFeatured && (
-        <div className="bg-gradient-to-r from-[#F77F42] via-[#E15B3E] to-[#E15B3E] text-white py-2.5 px-4 text-center rounded-t-[30px] flex items-center justify-center gap-1.5 text-xs font-bold tracking-wide">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+        <div className="bg-gradient-to-r from-[#E59A3D] via-[#D08A2F] to-[#D08A2F] text-black py-2.5 px-4 text-center rounded-t-[30px] flex items-center justify-center gap-1.5 text-xs font-bold tracking-wide">
+          <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse"></span>
           <span>Most Recommended</span>
         </div>
       )}
@@ -89,17 +89,17 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
       {/* Card Body */}
       <div
         className={`flex flex-col justify-between flex-grow ${
-          isFeatured ? 'bg-white rounded-b-[30px] p-7 sm:p-8' : ''
+          isFeatured ? 'bg-[#14161C] rounded-b-[30px] p-7 sm:p-8' : ''
         }`}
       >
         <div>
           {/* Plan Tier Title */}
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs sm:text-sm font-semibold text-charcoal-700 block">
+            <span className="text-xs sm:text-sm font-semibold text-gray-300 block">
               {service.title}
             </span>
             {isFeatured && (
-              <span className="text-[10px] font-bold text-coral bg-coral-50 border border-coral/20 px-2 py-0.5 rounded-full uppercase tracking-wider">
+              <span className="text-[10px] font-bold text-[#E59A3D] bg-[#E59A3D]/10 border border-[#E59A3D]/20 px-2 py-0.5 rounded-full uppercase tracking-wider">
                 Popular
               </span>
             )}
@@ -107,26 +107,26 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
 
           {/* Price Row */}
           <div className="flex items-baseline mb-2">
-            <span className="text-3xl sm:text-4xl font-bold text-charcoal-900 font-display tracking-tight">
+            <span className="text-3xl sm:text-4xl font-bold text-white font-display tracking-tight">
               {service.startingPrice}
             </span>
-            <span className="text-xs sm:text-sm text-charcoal-500 ml-1.5 font-normal">
+            <span className="text-xs sm:text-sm text-gray-500 ml-1.5 font-normal">
               {durationLabel}
             </span>
           </div>
 
           {/* Description */}
-          <p className="text-xs sm:text-[13px] text-charcoal-500 leading-relaxed mb-6 min-h-[42px]">
+          <p className="text-xs sm:text-[13px] text-gray-400 leading-relaxed mb-6 min-h-[42px]">
             {service.tagline}
           </p>
 
           {/* CTA Button */}
           <button
             onClick={handleBookClick}
-            className={`w-full py-3.5 px-6 rounded-full text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
+            className={`w-full py-3.5 px-6 rounded-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
               isFeatured
-                ? 'bg-coral hover:bg-coral-dark shadow-md shadow-coral/30 hover:shadow-lg'
-                : 'bg-coral hover:bg-coral-dark shadow-sm hover:shadow-md'
+                ? 'bg-[#E59A3D] hover:bg-[#d08a2f] text-black shadow-md shadow-[#E59A3D]/30 hover:shadow-lg'
+                : 'bg-[#E59A3D] hover:bg-[#d08a2f] text-black shadow-sm hover:shadow-md'
             }`}
           >
             <span>
@@ -142,15 +142,15 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
           <ul className="space-y-3 mt-7">
             {service.deliverables.map((item, idx) => (
               <li key={`inc-${idx}`} className="flex items-start gap-2.5 text-xs sm:text-[13px] leading-relaxed">
-                <span className="text-charcoal-900 font-bold shrink-0 text-sm">✓</span>
-                <span className="text-charcoal-700">{item}</span>
+                <span className="text-[#E59A3D] font-bold shrink-0 text-sm">✓</span>
+                <span className="text-gray-300">{item}</span>
               </li>
             ))}
 
             {excludedList.map((item, idx) => (
               <li key={`exc-${idx}`} className="flex items-start gap-2.5 text-xs sm:text-[13px] leading-relaxed">
-                <span className="text-charcoal-300 font-normal shrink-0 text-sm">✕</span>
-                <span className="text-charcoal-400">{item}</span>
+                <span className="text-gray-600 font-normal shrink-0 text-sm">✕</span>
+                <span className="text-gray-600">{item}</span>
               </li>
             ))}
           </ul>
@@ -160,7 +160,7 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
         {service.extras && service.extras.length > 0 && (
           <div
             className={`mt-6 pt-5 border-t ${
-              isSelected ? 'border-gray-100' : 'border-[#EAE6DD]'
+              isSelected ? 'border-white/5' : 'border-white/10'
             }`}
           >
             <button
@@ -169,14 +169,14 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
                 e.stopPropagation();
                 setShowAddons(!showAddons);
               }}
-              className="flex items-center justify-between w-full text-xs font-semibold text-charcoal-700 hover:text-coral transition-colors py-1"
+              className="flex items-center justify-between w-full text-xs font-semibold text-gray-300 hover:text-[#E59A3D] transition-colors py-1"
             >
               <span className="flex items-center gap-1.5">
-                <Plus size={13} className={`transform transition-transform duration-200 ${showAddons ? 'rotate-45 text-coral' : ''}`} />
+                <Plus size={13} className={`transform transition-transform duration-200 ${showAddons ? 'rotate-45 text-[#E59A3D]' : ''}`} />
                 <span>Customize Add-ons ({service.extras.length})</span>
               </span>
               {selectedExtras.length > 0 && (
-                <span className="text-[10px] font-bold text-coral bg-coral-50 border border-coral/20 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-bold text-[#E59A3D] bg-[#E59A3D]/10 border border-[#E59A3D]/20 px-2 py-0.5 rounded-full">
                   +{selectedExtras.length} added
                 </span>
               )}
@@ -192,8 +192,8 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
                       onClick={(e) => toggleExtra(extra.id, e)}
                       className={`flex items-center justify-between p-2.5 rounded-xl text-xs cursor-pointer border transition-all select-none ${
                         isChecked
-                          ? 'bg-coral-50 border-coral text-charcoal-900 font-bold'
-                          : 'bg-white border-gray-200 text-charcoal-600 hover:border-gray-300 font-medium'
+                          ? 'bg-[#E59A3D]/10 border-[#E59A3D] text-white font-bold'
+                          : 'bg-[#0D0E12] border-white/10 text-gray-400 hover:border-white/20 font-medium'
                       }`}
                     >
                       <div className="flex items-center gap-2">
@@ -201,11 +201,11 @@ export default function PricingCard({ service, isSelected, onSelect, onBook }) {
                           type="checkbox"
                           checked={isChecked}
                           onChange={() => {}}
-                          className="rounded text-coral focus:ring-coral w-3.5 h-3.5 accent-coral"
+                          className="rounded text-[#E59A3D] focus:ring-[#E59A3D] w-3.5 h-3.5 accent-[#E59A3D]"
                         />
                         <span>{extra.name}</span>
                       </div>
-                      <span className="font-bold text-coral ml-2">
+                      <span className="font-bold text-[#E59A3D] ml-2">
                         +₹{extra.price.toLocaleString('en-IN')}
                       </span>
                     </label>
