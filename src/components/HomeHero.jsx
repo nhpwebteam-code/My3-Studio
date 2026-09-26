@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Camera, MapPin } from 'lucide-react';
+import { Play, Camera, MapPin, Phone } from 'lucide-react';
 
 function WhatsAppIcon({ size = 20, className = "" }) {
   return (
@@ -221,18 +221,52 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
         </div>
 
-        {/* Bottom-Right: Circular WhatsApp Quick Contact Button (Gold Border & Gold Icon) */}
-        <div>
-          <a
-            href={HERO_WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black border border-[#E59A3D] hover:bg-[#E59A3D] text-[#E59A3D] hover:text-black flex items-center justify-center transition-all duration-200 active:scale-95 shadow-lg group cursor-pointer"
-            aria-label="Direct WhatsApp Chat with MY3 Studios"
-            title="Chat with Anji on WhatsApp (+91 99493 95037)"
-          >
-            <WhatsAppIcon size={20} className="group-hover:scale-110 transition-transform" />
-          </a>
+        {/* Bottom-Right: Booking Lockup (Matching User Marked Position & Reference) */}
+        <div className="flex flex-col items-end">
+          {/* Logo + Text Lockup */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            {/* Circular Logo */}
+            <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full overflow-hidden shadow-md border-2 border-white/20 bg-white shrink-0">
+              <img
+                src="/logo.png"
+                alt="MY3 Studio Logo"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Text Content */}
+            <div className="text-left">
+              <h3 className="font-display font-black text-base sm:text-lg md:text-xl text-white italic tracking-tight leading-tight">
+                MY3 Studio
+              </h3>
+              <p className="text-xs sm:text-sm font-bold text-white/90 tracking-tight leading-tight mt-0.5">
+                Book your schedule
+              </p>
+            </div>
+          </div>
+
+          {/* Action Buttons: LETS TALK & WHATSAPP */}
+          <div className="flex items-center gap-2 sm:gap-2.5 mt-2.5 sm:mt-3">
+            {/* Lets Talk Button */}
+            <a
+              href="tel:+919949395037"
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/70 hover:border-[#E59A3D] text-white hover:text-[#E59A3D] bg-black/50 backdrop-blur-xs font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-xs"
+            >
+              <Phone size={13} />
+              <span>LETS TALK</span>
+            </a>
+
+            {/* WhatsApp Button */}
+            <a
+              href={HERO_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#25D366] hover:bg-[#1ebd5b] text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-md"
+            >
+              <WhatsAppIcon size={14} />
+              <span>WHATSAPP</span>
+            </a>
+          </div>
         </div>
 
       </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import HomeHero from '../components/HomeHero';
-import BookingStrip from '../components/BookingStrip';
 import CuratedFramesSection from '../components/CuratedFramesSection';
 import ReviewsSection from '../components/ReviewsSection';
 import BookingModal from '../components/BookingModal';
@@ -21,9 +20,6 @@ export default function Home() {
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
       />
-
-      {/* 1.5. Book Your Schedule Strip — Logo + CTA Buttons */}
-      <BookingStrip />
 
       {/* 2. Curated Frames Editorial Section (Scroll-driven interactive frames arc) */}
       <CuratedFramesSection onOpenBooking={() => setIsBookingOpen(true)} />
