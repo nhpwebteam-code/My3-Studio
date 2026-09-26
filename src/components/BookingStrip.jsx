@@ -22,39 +22,40 @@ const WHATSAPP_URL = `https://wa.me/919949395037?text=${WHATSAPP_MSG}`;
 
 export default function BookingStrip() {
   return (
-    <section className="relative w-full bg-white py-10 sm:py-14 md:py-16 px-4 sm:px-8 lg:px-14">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center gap-6 sm:gap-8 md:gap-10">
+    <section className="relative w-full bg-white py-8 sm:py-10 md:py-12 px-4 sm:px-6">
+      <div className="max-w-xl mx-auto flex flex-col items-center justify-center text-center">
 
-        {/* Circular Logo */}
-        <div className="shrink-0">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-lg border-2 border-gray-100 bg-white flex items-center justify-center">
+        {/* Lockup: Logo + Text */}
+        <div className="flex items-center justify-center gap-3 sm:gap-4">
+          {/* Circular Logo */}
+          <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full overflow-hidden shadow-sm border border-gray-200 bg-white shrink-0">
             <img
               src="/logo.png"
               alt="MY3 Studio Logo"
               className="w-full h-full object-cover"
             />
           </div>
+
+          {/* Text Content */}
+          <div className="text-left">
+            <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-black italic tracking-tight leading-tight">
+              MY3 Studio
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mt-0.5 leading-tight">
+              Book your schedule
+            </p>
+          </div>
         </div>
 
-        {/* Text Content */}
-        <div className="flex-1 text-center sm:text-left">
-          <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-black italic tracking-tight leading-tight">
-            MY3 Studio
-          </h2>
-          <p className="text-lg sm:text-xl md:text-2xl font-bold text-black/80 mt-1 leading-snug">
-            Book your schedule
-          </p>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex items-center gap-3 sm:gap-4 shrink-0 flex-wrap justify-center">
+        {/* Action Buttons: Centered directly below */}
+        <div className="flex items-center justify-center gap-3 sm:gap-4 mt-4 sm:mt-5 flex-wrap">
           {/* Lets Talk Button */}
           <a
             href="tel:+919949395037"
-            className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border-2 border-black/80 text-black font-bold text-xs sm:text-sm uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-300 active:scale-95 shadow-sm"
+            className="inline-flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full border-2 border-black text-black font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-black hover:text-white transition-all duration-300 active:scale-95 shadow-xs"
           >
-            <Phone size={16} />
-            <span>Lets Talk</span>
+            <Phone size={15} />
+            <span>LETS TALK</span>
           </a>
 
           {/* WhatsApp Button */}
@@ -62,10 +63,10 @@ export default function BookingStrip() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#25D366] hover:bg-[#1eba57] text-white font-bold text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-md"
+            className="inline-flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#25D366] hover:bg-[#1ebd5b] text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 active:scale-95 shadow-md"
           >
-            <WhatsAppIcon size={18} />
-            <span>WhatsApp</span>
+            <WhatsAppIcon size={17} />
+            <span>WHATSAPP</span>
           </a>
         </div>
 
