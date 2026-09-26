@@ -203,27 +203,26 @@ export default function Navbar({ onOpenBooking }) {
                 </div>
                 <button
                   onClick={() => setIsDrawerOpen(false)}
-                  className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
+                  className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors cursor-pointer"
                   aria-label="Close menu"
                 >
                   <X size={20} />
                 </button>
               </div>
 
-              {/* Navigation Links with Proper Alignment */}
-              <nav className="mt-8 space-y-2">
-                <p className="text-[11px] uppercase tracking-widest text-gray-400 font-bold mb-3">
-                  Studios Directory
+              {/* Navigation Links with Matching Desktop Names */}
+              <nav className="mt-5 sm:mt-6 space-y-1 sm:space-y-1.5">
+                <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2 px-1">
+                  Navigation
                 </p>
                 {[
                   { label: 'Home', path: '/' },
-                  { label: 'Client Photo Gallery', path: '/gallery' },
-                  { label: 'Event Packages & Pricing', path: '/pricing' },
-                  { label: 'Our Services', path: '/services' },
-                  { label: 'About Us', path: '/about' },
-                  { label: '🗺️ Studio Maps (Main & Kid\'s)', path: '/contact' },
-                  { label: 'Contact & Bookings', path: '/contact' },
-                  { label: 'Admin Portal (Login / CRUD)', path: '/login' },
+                  { label: 'Gallery', path: '/gallery' },
+                  { label: 'Pricing', path: '/pricing' },
+                  { label: 'Services', path: '/services' },
+                  { label: 'About', path: '/about' },
+                  { label: 'Contact', path: '/contact' },
+                  { label: 'Admin', path: '/login' },
                 ].map((item, idx) => (
                   <div key={idx}>
                     {item.path ? (
@@ -232,14 +231,15 @@ export default function Navbar({ onOpenBooking }) {
                         end={item.path === '/'}
                         onClick={() => setIsDrawerOpen(false)}
                         className={({ isActive }) =>
-                          `block py-3 px-3.5 rounded-2xl text-base font-bold transition-all ${
+                          `flex items-center justify-between py-2.5 px-3.5 rounded-xl text-base font-bold transition-all ${
                             isActive
                               ? 'bg-[#E59A3D]/15 text-[#E59A3D]'
                               : 'text-gray-200 hover:bg-white/5 hover:text-[#E59A3D]'
                           }`
                         }
                       >
-                        {item.label}
+                        <span>{item.label}</span>
+                        <ArrowUpRight size={14} className="opacity-40" />
                       </NavLink>
                     ) : (
                       <a
@@ -248,9 +248,10 @@ export default function Navbar({ onOpenBooking }) {
                           e.preventDefault();
                           handleNavClick(item.href);
                         }}
-                        className="block py-3 px-3.5 rounded-2xl text-base font-bold text-gray-200 hover:bg-white/5 hover:text-[#E59A3D] transition-all"
+                        className="flex items-center justify-between py-2.5 px-3.5 rounded-xl text-base font-bold text-gray-200 hover:bg-white/5 hover:text-[#E59A3D] transition-all"
                       >
-                        {item.label}
+                        <span>{item.label}</span>
+                        <ArrowUpRight size={14} className="opacity-40" />
                       </a>
                     )}
                   </div>

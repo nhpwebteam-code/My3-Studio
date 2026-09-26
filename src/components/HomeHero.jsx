@@ -164,18 +164,18 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       </div>
 
       {/* ─── 3. Bottom Layered Interactive Controls (Exact Reference Match) ─── */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto flex items-end justify-between pt-2">
+      <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col-reverse sm:flex-row items-center sm:items-end justify-between gap-5 sm:gap-2 pt-4 sm:pt-2">
         
         {/* Bottom-Left: Circular Camera Button + Timeline Strip */}
-        <div className="flex flex-col space-y-3">
+        <div className="flex flex-col items-center sm:items-start space-y-2.5 sm:space-y-3">
           {/* Circular Camera Button with Gold Border */}
           <button
             onClick={onOpenBooking}
-            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black border border-[#E59A3D] hover:bg-[#E59A3D] text-white hover:text-black flex items-center justify-center transition-all duration-200 active:scale-95 shadow-lg group cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black border border-[#E59A3D] hover:bg-[#E59A3D] text-white hover:text-black flex items-center justify-center transition-all duration-200 active:scale-95 shadow-lg group cursor-pointer"
             aria-label="Book a Photography Session"
             title="Book a Session"
           >
-            <Camera size={19} className="group-hover:scale-110 transition-transform" />
+            <Camera size={18} className="group-hover:scale-110 transition-transform" />
           </button>
 
           {/* Timeline & Social Links Row */}
@@ -188,7 +188,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               Timeline
             </button>
             <span className="text-gray-600">|</span>
-            <div className="flex items-center gap-2 text-gray-400">
+            <div className="flex items-center gap-2.5 text-gray-400">
               <a
                 href="https://www.instagram.com/mythri_studio_ndl"
                 target="_blank"
@@ -221,8 +221,8 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
         </div>
 
-        {/* Bottom-Right: Booking Lockup (Matching User Marked Position & Reference) */}
-        <div className="flex flex-col items-end">
+        {/* Bottom-Right: Booking Lockup (Centered on mobile, right-aligned on desktop) */}
+        <div className="flex flex-col items-center sm:items-end">
           {/* Logo + Text Lockup */}
           <div className="flex items-center gap-2.5 sm:gap-3">
             {/* Circular Logo */}
@@ -236,7 +236,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
             {/* Text Content */}
             <div className="text-left">
-              <h3 className="font-display font-black text-base sm:text-lg md:text-xl text-white italic tracking-tight leading-tight">
+              <h3 className="font-display font-black text-lg sm:text-xl md:text-2xl text-white italic tracking-tight leading-tight">
                 MY3 Studio
               </h3>
               <p className="text-xs sm:text-sm font-bold text-white/90 tracking-tight leading-tight mt-0.5">
@@ -246,11 +246,11 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
 
           {/* Action Buttons: LETS TALK & WHATSAPP */}
-          <div className="flex items-center gap-2 sm:gap-2.5 mt-2.5 sm:mt-3">
+          <div className="flex items-center justify-center sm:justify-end gap-2.5 sm:gap-2.5 mt-2.5 sm:mt-3">
             {/* Lets Talk Button */}
             <a
               href="tel:+919949395037"
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/70 hover:border-[#E59A3D] text-white hover:text-[#E59A3D] bg-black/50 backdrop-blur-xs font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-xs"
+              className="inline-flex items-center gap-1.5 px-4 sm:px-4 py-2 rounded-full border border-white/70 hover:border-[#E59A3D] text-white hover:text-[#E59A3D] bg-black/60 backdrop-blur-xs font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-xs"
             >
               <Phone size={13} />
               <span>LETS TALK</span>
@@ -261,7 +261,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               href={HERO_WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#25D366] hover:bg-[#1ebd5b] text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-md"
+              className="inline-flex items-center gap-1.5 px-4 sm:px-4 py-2 rounded-full bg-[#25D366] hover:bg-[#1ebd5b] text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-md"
             >
               <WhatsAppIcon size={14} />
               <span>WHATSAPP</span>
