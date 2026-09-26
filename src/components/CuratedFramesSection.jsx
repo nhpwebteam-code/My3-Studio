@@ -110,8 +110,16 @@ export default function CuratedFramesSection({ onOpenBooking }) {
         targetProgress.current = Math.max(0, Math.min(1, progress));
       }
 
-      // Mobile: DISABLED auto-scroll-driven sliding to prevent scroll hijacking
-      // Users can manually swipe the cards horizontally instead
+      // Mobile: Scroll-driven sideways card movement (< 1024px)
+      if (mobileScrollRef.current && window.innerWidth < 1024 && !isMobileInteracting.current) {
+        const startY = windowHeight * 0.85;
+        const endY = -rect.height * 0.45;
+        const totalDist = startY - endY;
+        const progress = Math.max(0, Math.min(1, (startY - rect.top) / totalDist));
+
+        const maxScroll = mobileScrollRef.current.scrollWidth - mobileScrollRef.current.clientWidth;
+        targetMobileScroll.current = progress * maxScroll;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -139,8 +147,19 @@ export default function CuratedFramesSection({ onOpenBooking }) {
       const closestIdx = Math.round(currentAngleOffset / FRAME_SPACING);
       setActiveIndex(Math.max(0, Math.min(frames.length - 1, closestIdx)));
 
-      // Mobile sideways lerp: DISABLED auto-scrolling to prevent scroll hijacking
-      // Manual swipe still works via touch handlers
+      // Mobile sideways lerp: smoothly translate cards horizontally as user scrolls page on mobile
+      if (mobileScrollRef.current && window.innerWidth < 1024 && !isMobileInteracting.current) {
+        const diffMobile = targetMobileScroll.current - currentMobileScroll.current;
+        if (Math.abs(diffMobile) > 0.4) {
+          currentMobileScroll.current += diffMobile * 0.085;
+          mobileScrollRef.current.scrollLeft = currentMobileScroll.current;
+
+          const cardEl = mobileScrollRef.current.querySelector('.mobile-frame-card');
+          const cardWidth = cardEl ? cardEl.offsetWidth + 16 : 226;
+          const currentIdx = Math.round(currentMobileScroll.current / cardWidth);
+          setActiveMobileIdx(Math.max(0, Math.min(frames.length - 1, currentIdx)));
+        }
+      }
 
       animId = requestAnimationFrame(tick);
     };

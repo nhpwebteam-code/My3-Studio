@@ -93,23 +93,35 @@ export default function ReviewsSection() {
 
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      const totalScrollable = rect.height - windowHeight;
+      const isMobile = window.innerWidth < 768;
 
-      if (totalScrollable <= 0) return;
+      if (!isMobile) {
+        // Desktop / Laptop sticky scroll calculation
+        const totalScrollable = rect.height - windowHeight;
+        if (totalScrollable <= 0) return;
 
-      // CRITICAL: Only start AFTER reaching the section place (rect.top <= 0)
-      // When rect.top > 0, the section hasn't reached the top of the viewport yet: progress is strictly 0!
-      const currentScroll = -rect.top;
-      const progress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
+        // CRITICAL: Only start AFTER reaching the section place (rect.top <= 0)
+        const currentScroll = -rect.top;
+        const progress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
 
-      // Calculate translation distance to shift roughly 2.5 to 3 cards
-      const cardEl = scrollRef.current.querySelector('.review-carousel-card');
-      const cardWidth = cardEl ? cardEl.offsetWidth : 350;
-      const gap = 24;
-      const shiftDistance = (cardWidth + gap) * 2.75;
+        // Calculate translation distance to shift roughly 2.5 to 3 cards
+        const cardEl = scrollRef.current.querySelector('.review-carousel-card');
+        const cardWidth = cardEl ? cardEl.offsetWidth : 350;
+        const gap = 24;
+        const shiftDistance = (cardWidth + gap) * 2.75;
 
-      const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
-      targetScrollLeft.current = Math.min(maxScroll, progress * shiftDistance);
+        const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+        targetScrollLeft.current = Math.min(maxScroll, progress * shiftDistance);
+      } else {
+        // Mobile: Smoothly translate cards horizontally as user scrolls the page on mobile
+        const startY = windowHeight * 0.85;
+        const endY = -rect.height * 0.45;
+        const totalDist = startY - endY;
+        const progress = Math.max(0, Math.min(1, (startY - rect.top) / totalDist));
+
+        const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+        targetScrollLeft.current = progress * maxScroll;
+      }
     };
 
     window.addEventListener('scroll', handleWindowScroll, { passive: true });
