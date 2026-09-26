@@ -259,7 +259,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
     <section
       ref={containerRef}
       id="curated-frames"
-      className="relative w-full bg-[#E59A3D] text-black select-none min-h-[175vh] sm:min-h-[200vh] lg:min-h-[230vh]"
+      className="relative w-full bg-[#FF6548] text-black select-none min-h-[175vh] sm:min-h-[200vh] lg:min-h-[230vh]"
     >
       {/* ═══════════════════════════════════════════
           STICKY FULL-SCREEN VIEWPORT ACROSS ALL SCREENS

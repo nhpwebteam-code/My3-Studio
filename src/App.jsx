@@ -11,6 +11,7 @@ import Pricing from './pages/Pricing';
 import Services from './pages/Services';
 import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
+import PhotoDetail from './pages/PhotoDetail';
 
 import BookingModal from './components/BookingModal';
 import { StudioDataProvider } from './context/StudioDataContext';
@@ -26,7 +27,7 @@ function AppContent() {
     location.pathname === '/dashboard';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#000000] text-white selection:bg-[#E59A3D] selection:text-black">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-charcoal selection:bg-coral selection:text-white">
       {!isDashboardOrAuth && <Navbar onOpenBooking={() => setIsBookingOpen(true)} />}
       <main className="flex-grow">
         <Routes>
@@ -35,6 +36,10 @@ function AppContent() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/services" element={<Services />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route
+            path="/gallery/:photoSlug"
+            element={<PhotoDetail onOpenBooking={() => setIsBookingOpen(true)} />}
+          />
           <Route path="/portfolio" element={<Navigate to="/gallery" replace />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />

@@ -93,7 +93,7 @@ function MiniMapCard({ locationData, mapType, onToggleMapType, heightClass = 'h-
         <div style="font-size: 11px; color: #555555; line-height: 1.35; margin-bottom: 6px;">
           ${locationData.address}
         </div>
-        <a href="${locationData.mapsUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 11px; font-weight: 700; color: #E59A3D; text-decoration: none; display: inline-flex; align-items: center; gap: 3px;">
+        <a href="${locationData.mapsUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 11px; font-weight: 700; color: #FF6548; text-decoration: none; display: inline-flex; align-items: center; gap: 3px;">
           Open in Google Maps &rarr;
         </a>
       </div>
@@ -145,7 +145,7 @@ function MiniMapCard({ locationData, mapType, onToggleMapType, heightClass = 'h-
             type="button"
             onClick={onToggleMapType}
             title={mapType === 'roadmap' ? 'Switch to Satellite View' : 'Switch to Roadmap View'}
-            className="w-6 h-6 rounded-full bg-black/80 hover:bg-[#E59A3D] hover:text-black text-white text-[11px] flex items-center justify-center backdrop-blur-md border border-white/15 transition-all shadow-sm cursor-pointer"
+            className="w-6 h-6 rounded-full bg-black/80 hover:bg-coral text-white text-[11px] flex items-center justify-center backdrop-blur-md border border-white/15 transition-all shadow-sm cursor-pointer"
           >
             {mapType === 'roadmap' ? '🛰️' : '🗺️'}
           </button>
@@ -156,7 +156,7 @@ function MiniMapCard({ locationData, mapType, onToggleMapType, heightClass = 'h-
             target="_blank"
             rel="noopener noreferrer"
             title="Open in Google Maps App"
-            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 hover:bg-[#E59A3D] hover:text-black text-white text-[10px] font-bold backdrop-blur-md border border-white/15 transition-all shadow-sm active:scale-95"
+            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/80 hover:bg-coral text-white text-[10px] font-bold backdrop-blur-md border border-white/15 transition-all shadow-sm active:scale-95"
           >
             <span>Maps</span>
             <ExternalLink size={9} />
@@ -170,13 +170,13 @@ function MiniMapCard({ locationData, mapType, onToggleMapType, heightClass = 'h-
         target="_blank"
         rel="noopener noreferrer"
         title={`Get directions to ${locationData.name}`}
-        className="absolute bottom-2 left-2 right-2 z-[400] py-1 px-2 rounded-xl bg-black/85 hover:bg-black/95 backdrop-blur-md border border-white/15 flex items-center justify-between text-[10px] font-semibold text-white transition-all shadow-sm group-hover:border-[#E59A3D]/40"
+        className="absolute bottom-2 left-2 right-2 z-[400] py-1 px-2 rounded-xl bg-black/85 hover:bg-black/95 backdrop-blur-md border border-white/15 flex items-center justify-between text-[10px] font-semibold text-white transition-all shadow-sm group-hover:border-coral/40"
       >
         <span className="truncate flex items-center gap-1">
-          <Navigation size={10} className="text-[#E59A3D] shrink-0" />
+          <Navigation size={10} className="text-coral shrink-0" />
           <span className="truncate">{locationData.shortLocation}</span>
         </span>
-        <span className="text-[#E59A3D] font-bold text-[9px] shrink-0 ml-1">Open ↗</span>
+        <span className="text-coral font-bold text-[9px] shrink-0 ml-1">Open ↗</span>
       </a>
     </div>
   );
@@ -199,7 +199,7 @@ export default function FooterMap() {
           onClick={() => setViewMode('both')}
           className={`flex-1 py-1 px-1.5 rounded-lg font-bold transition-all text-center ${
             viewMode === 'both'
-              ? 'bg-[#E59A3D] text-black shadow-xs'
+              ? 'bg-coral text-white shadow-xs'
               : 'text-gray-400 hover:text-white hover:bg-white/5'
           }`}
         >
@@ -210,7 +210,7 @@ export default function FooterMap() {
           onClick={() => setViewMode('main')}
           className={`flex-1 py-1 px-1.5 rounded-lg font-bold transition-all text-center ${
             viewMode === 'main'
-              ? 'bg-[#E59A3D] text-black shadow-xs'
+              ? 'bg-coral text-white shadow-xs'
               : 'text-gray-400 hover:text-white hover:bg-white/5'
           }`}
         >
@@ -221,7 +221,7 @@ export default function FooterMap() {
           onClick={() => setViewMode('kids')}
           className={`flex-1 py-1 px-1.5 rounded-lg font-bold transition-all text-center ${
             viewMode === 'kids'
-              ? 'bg-[#E59A3D] text-black shadow-xs'
+              ? 'bg-coral text-white shadow-xs'
               : 'text-gray-400 hover:text-white hover:bg-white/5'
           }`}
         >

@@ -10,8 +10,8 @@ export default function Home() {
   const [isVideoReviewOpen, setIsVideoReviewOpen] = useState(false);
 
   return (
-    <div className="bg-[#000000] text-white min-h-screen">
-      {/* 1. Hero Section ("Home Section") - Unified Obsidian Black & Warm Gold aesthetic */}
+    <div className="bg-[#FAF7F2] text-charcoal min-h-screen">
+      {/* 1. Hero Section ("Home Section") */}
       <HomeHero
         onOpenBooking={() => setIsBookingOpen(true)}
         onOpenVideoReviews={() => setIsVideoReviewOpen(true)}

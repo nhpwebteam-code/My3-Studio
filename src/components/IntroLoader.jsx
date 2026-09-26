@@ -96,7 +96,7 @@ export default function IntroLoader({ onComplete }) {
         <div
           className={`absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full transition-all duration-1000 pointer-events-none ${
             stage >= 2
-              ? 'opacity-60 bg-radial from-[#FFCE26]/25 via-[#E54F33]/20 to-transparent blur-3xl scale-110'
+              ? 'opacity-60 bg-radial from-[#FA2D66]/25 via-[#FA2D66]/15 to-transparent blur-3xl scale-110'
               : 'opacity-0 scale-50'
           }`}
         />
@@ -187,7 +187,7 @@ export default function IntroLoader({ onComplete }) {
               cy="120"
               r="76"
               fill="none"
-              stroke="#FFCE26"
+              stroke="#FA2D66"
               strokeWidth="1.5"
               strokeDasharray="478"
               strokeDashoffset={stage === 0 ? '478' : '0'}
@@ -209,7 +209,7 @@ export default function IntroLoader({ onComplete }) {
             <path
               d="M 65 140 L 65 110 C 72 110, 80 105, 88 112 C 96 105, 108 110, 110 140"
               fill="none"
-              stroke="#FFCE26"
+              stroke="#FA2D66"
               strokeWidth="2.5"
               strokeDasharray="140"
               strokeDashoffset={stage === 0 ? '140' : '0'}
@@ -221,7 +221,7 @@ export default function IntroLoader({ onComplete }) {
             <path
               d="M 120 100 L 170 100 L 142 122 C 160 122, 172 134, 170 152 C 166 172, 142 174, 122 168"
               fill="none"
-              stroke="#E54F33"
+              stroke="#FA2D66"
               strokeWidth="3"
               strokeDasharray="220"
               strokeDashoffset={stage === 0 ? '220' : '0'}
@@ -235,7 +235,7 @@ export default function IntroLoader({ onComplete }) {
               cy="150"
               r="16"
               fill="none"
-              stroke="#FFCE26"
+              stroke="#FA2D66"
               strokeWidth="2"
               strokeDasharray="100"
               strokeDashoffset={stage === 0 ? '100' : '0'}
@@ -247,7 +247,7 @@ export default function IntroLoader({ onComplete }) {
           <div
             className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               stage >= 2
-                ? 'opacity-100 scale-100 filter drop-shadow-[0_10px_35px_rgba(255,206,38,0.35)]'
+                ? 'opacity-100 scale-100 filter drop-shadow-[0_10px_35px_rgba(250,45,102,0.35)]'
                 : 'opacity-0 scale-90'
             }`}
           >
@@ -268,8 +268,10 @@ export default function IntroLoader({ onComplete }) {
           }`}
         >
           {/* Main Title: Bold Sans-Serif (Matching "DailyFlutterUI" in Reference Video) */}
-          <h1 className="text-2xl sm:text-3xl font-black font-display text-white tracking-tight">
-            MY3 Studios
+          <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight">
+            <span className="text-white">MY</span>
+            <span className="text-[#FA2D66]">3</span>{' '}
+            <span className="text-white">Studios</span>
           </h1>
 
           {/* Tagline: Light-gray under title (Matching "A daily dose of beautiful Flutter UI." in Video) */}

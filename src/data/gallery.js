@@ -30,6 +30,27 @@ export const galleryCategories = [
   }
 ];
 
+export const FEATURED_PHOTO_CONFIG = [
+  { slug: 'photo-1', id: 'wedding-1' },
+  { slug: 'photo-2', id: 'wedding-2' },
+  { slug: 'photo-3', id: 'wedding-3' },
+  { slug: 'photo-4', id: 'wedding-4' },
+  { slug: 'photo-5', id: 'prewedding-1' },
+  { slug: 'photo-6', id: 'prewedding-2' },
+  { slug: 'photo-7', id: 'prewedding-3' },
+  { slug: 'photo-8', id: 'bday-1' },
+  { slug: 'photo-9', id: 'maternity-1' },
+  { slug: 'photo-10', id: 'potraites-1' },
+];
+
+export const FEATURED_SLUG_BY_ID = Object.fromEntries(
+  FEATURED_PHOTO_CONFIG.map((p) => [p.id, p.slug])
+);
+
+export const FEATURED_ID_BY_SLUG = Object.fromEntries(
+  FEATURED_PHOTO_CONFIG.map((p) => [p.slug, p.id])
+);
+
 export const galleryItems = [
   {
     "id": "wedding-1",

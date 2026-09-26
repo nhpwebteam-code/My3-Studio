@@ -38,8 +38,10 @@ export default function BookingStrip() {
 
           {/* Text Content */}
           <div className="text-left">
-            <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-black italic tracking-tight leading-tight">
-              MY3 Studio
+            <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl italic tracking-tight leading-tight">
+              <span className="text-black">MY</span>
+              <span className="text-[#FA2D66]">3</span>{' '}
+              <span className="text-black">Studio</span>
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mt-0.5 leading-tight">
               Book your schedule

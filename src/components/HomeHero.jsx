@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Play, Camera, MapPin, Phone } from 'lucide-react';
 
 function WhatsAppIcon({ size = 20, className = "" }) {
@@ -59,46 +60,119 @@ const HERO_WHATSAPP_MSG = encodeURIComponent(
 );
 const HERO_WHATSAPP_URL = `https://wa.me/919949395037?text=${HERO_WHATSAPP_MSG}`;
 
+const HERO_CYLINDER_PHOTOS = [
+  {
+    id: 1,
+    title: 'Bridal Saree Grace & Silk',
+    image: '/takeout-1-001/potraites/1724236212961_copy.jpg',
+  },
+  {
+    id: 2,
+    title: 'Classical Temple Adornment',
+    image: '/takeout-1-001/potraites/1724236213133.jpg',
+  },
+  {
+    id: 3,
+    title: 'Studio Bridal Profile',
+    image: '/takeout-1-001/potraites/1724236213624.jpg',
+  },
+  {
+    id: 4,
+    title: 'Heritage Gold Radiance',
+    image: '/takeout-1-001/potraites/DSC00290_copy.jpg.jpg',
+  },
+  {
+    id: 5,
+    title: 'Traditional Pelli Koothuru',
+    image: '/takeout-1-001/potraites/DSC00301_copy.jpg.jpg',
+  },
+  {
+    id: 6,
+    title: 'Fine-Art Studio Portrait',
+    image: '/takeout-1-001/potraites/DSC00333_copy.jpg.jpg',
+  },
+  {
+    id: 7,
+    title: 'Dramatic Strobe Lighting Portrait',
+    image: '/takeout-1-001/potraites/DSC04170.jpg',
+  },
+  {
+    id: 8,
+    title: 'Festive Silk Portrait',
+    image: '/takeout-1-001/potraites/DSC04657.jpg',
+  },
+  {
+    id: 9,
+    title: 'Cultural Beauty Portrait',
+    image: '/takeout-1-001/potraites/DSC05314.jpg',
+  },
+  {
+    id: 10,
+    title: 'Master Retouched Studio Portrait',
+    image: '/takeout-1-001/potraites/DSC06894_1c.jpg',
+  },
+  {
+    id: 11,
+    title: 'Royal Couple Portrait',
+    image: '/takeout-1-001/wedding/MY308576.jpg',
+  },
+  {
+    id: 12,
+    title: 'First Birthday Milestone Portrait',
+    image: '/takeout-1-001/bday/01.jpg',
+  },
+  {
+    id: 13,
+    title: 'Maternity Grace Portrait',
+    image: '/takeout-1-001/maternity/DSC05912_A.jpg',
+  },
+  {
+    id: 14,
+    title: 'Golden Hour Couple Portrait',
+    image: '/takeout-1-001/prewedding/1724236212687.jpg',
+  },
+];
+
 export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollToReviews }) {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[96vh] flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 bg-[#000000] text-white overflow-hidden select-none scroll-mt-24"
+      className="relative w-full min-h-[96vh] flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-24"
     >
-      {/* ─── Ambient Warm Golden Spotlight Glow behind center photographer (Matching Reference) ─── */}
+      {/* ─── Ambient Subtle Warm Spotlight Glow behind center photographer ─── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 65% 58% at 50% 55%, rgba(229, 154, 61, 0.22) 0%, rgba(35, 22, 10, 0.45) 42%, rgba(0, 0, 0, 0.9) 70%, #000000 100%)',
+          background: 'radial-gradient(ellipse 65% 58% at 50% 55%, rgba(255, 101, 72, 0.08) 0%, rgba(250, 247, 242, 0.5) 45%, #FAF7F2 100%)',
         }}
       />
 
-      {/* ─── 1. Giant Headline: "PHOTO" in White, "GRAPHY" in Golden Amber ─── */}
+      {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral ─── */}
       <div className="w-full text-center relative z-10 pointer-events-none mb-[-12px] sm:mb-[-35px] md:mb-[-55px] overflow-visible px-1 sm:px-0">
         <h1 className="font-display font-black uppercase text-[8.8vw] min-[360px]:text-[9.4vw] min-[400px]:text-[10vw] sm:text-[13vw] md:text-[13.5vw] lg:text-[142px] xl:text-[162px] leading-[1.02] sm:leading-[0.88] tracking-tight sm:tracking-[-0.03em] flex items-center justify-center gap-1 sm:gap-3 whitespace-nowrap">
-          <span className="text-white">PHOTO</span>
-          <span className="text-[#E59A3D]">GRAPHY</span>
+          <span className="text-[#1E2024]">PHOTO</span>
+          <span className="text-coral">GRAPHY</span>
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Left "1000+", Center Photographer, Right Rotating Badge ─── */}
+      {/* ─── 2. Centerpiece: Left "1000+", Center Photographer with 3D Curved Concave Portrait Ribbon, Right Rotating Badge ─── */}
       <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center my-1 sm:my-3">
         
-        {/* Top-Left Floating Badge: "1000+" & Vertical Gold Bar (Exact Reference Match) */}
-        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 left-4 sm:left-8 md:left-14 lg:left-20 xl:left-28 z-20 pointer-events-auto">
+        {/* Top-Left Floating Badge: "1000+" & Vertical Coral Bar */}
+        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 left-4 sm:left-8 md:left-14 lg:left-20 xl:left-28 z-30 pointer-events-auto">
           <div className="flex flex-col items-start">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[60px] font-sans font-extrabold text-[#E59A3D] leading-none tracking-tight flex items-baseline select-none">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[60px] font-sans font-extrabold text-coral leading-none tracking-tight flex items-baseline select-none">
               <span>1000</span>
-              <span className="text-[0.82em] font-bold ml-0.5 text-[#E59A3D]">+</span>
+              <span className="text-[0.82em] font-bold ml-0.5 text-coral">+</span>
             </div>
             <div className="flex items-stretch gap-2.5 sm:gap-3 mt-2 sm:mt-2.5">
-              {/* Vertical Gold Divider Bar - Exactly matches the 2-line text height */}
-              <div className="w-[2px] bg-[#E59A3D] rounded-full shrink-0" />
+              {/* Vertical Coral Divider Bar */}
+              <div className="w-[2px] bg-coral rounded-full shrink-0" />
               <div className="flex flex-col justify-center leading-snug">
-                <span className="text-xs sm:text-[13px] md:text-sm font-bold text-white tracking-wide">
+                <span className="text-xs sm:text-[13px] md:text-sm font-bold text-charcoal-900 tracking-wide">
                   Weddings &amp; Events
                 </span>
-                <span className="text-[11px] sm:text-xs text-gray-300 font-medium tracking-normal mt-0.5">
+                <span className="text-[11px] sm:text-xs text-charcoal-600 font-medium tracking-normal mt-0.5">
                   Across South India
                 </span>
               </div>
@@ -106,12 +180,47 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
         </div>
 
-        {/* Central Cutout Master Photographer smoothly masked at bottom */}
-        <div className="relative z-10 w-full max-w-[280px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[590px] xl:max-w-[650px] mx-auto flex justify-center">
+        {/* ─── Smooth Left-to-Right Moving Portrait Ribbon strictly behind photographer ("his backside") ─── */}
+        <div className="absolute top-[48%] sm:top-[46%] md:top-[45%] left-0 w-full -translate-y-1/2 z-10 pointer-events-none overflow-hidden py-3">
+          <div
+            className="w-full flex items-center overflow-hidden"
+            style={{
+              maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+            }}
+          >
+            <div className="hero-ribbon-track flex items-center gap-4 sm:gap-5 md:gap-6 pointer-events-auto">
+              {[...HERO_CYLINDER_PHOTOS, ...HERO_CYLINDER_PHOTOS].map((photo, idx) => (
+                <div
+                  key={`${photo.id}-${idx}`}
+                  className="shrink-0 w-[130px] h-[180px] sm:w-[155px] sm:h-[220px] md:w-[180px] md:h-[255px] lg:w-[195px] lg:h-[275px] rounded-2xl sm:rounded-3xl overflow-hidden bg-charcoal-800 shadow-[0_12px_28px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_40px_rgba(255,101,72,0.3)] border border-white/60 hover:border-coral transition-all duration-300 group cursor-pointer"
+                >
+                  <Link
+                    to="/gallery"
+                    className="block w-full h-full relative"
+                    title={photo.title}
+                  >
+                    <img
+                      src={photo.image}
+                      alt={photo.title}
+                      loading="eager"
+                      className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Central Cutout Master Photographer smoothly masked at bottom (Layered at z-20 strictly in front of the moving photos) */}
+        <div
+          className="relative z-20 w-full max-w-[280px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[590px] xl:max-w-[650px] mx-auto flex justify-center pointer-events-none"
+        >
           <img
             src="/photographer-bw.png"
             alt="MY3 Studios Master Photographer"
-            className="w-full max-h-[460px] sm:max-h-[590px] md:max-h-[660px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.6)] pointer-events-none"
+            className="w-full max-h-[460px] sm:max-h-[590px] md:max-h-[660px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.15)] relative z-20"
             style={{
               WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
               maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
@@ -119,12 +228,12 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           />
         </div>
 
-        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp (Exact Reference Match) */}
-        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 z-20">
+        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp */}
+        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 z-30">
           <button
             id="product-reviews-stamp"
             onClick={onOpenVideoReviews}
-            className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-black/90 border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
+            className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#1F2125] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
             aria-label="View our product reviews"
           >
             {/* Optional Looping Client Video Preview inside */}
@@ -134,7 +243,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-20 group-hover:opacity-40 transition-opacity"
+              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-25 group-hover:opacity-40 transition-opacity"
             />
 
             {/* Rotating Curved Text */}
@@ -155,23 +264,23 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               </text>
             </svg>
 
-            {/* Inner Gold Play Button */}
-            <div className="relative z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/80 border border-[#E59A3D]/40 text-[#E59A3D] flex items-center justify-center transition-colors shadow-inner group-hover:border-[#E59A3D]">
-              <Play size={17} fill="#E59A3D" className="text-[#E59A3D] ml-0.5" />
+            {/* Inner Coral Play Button */}
+            <div className="relative z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral border border-white/30 text-white flex items-center justify-center transition-colors shadow-inner">
+              <Play size={17} fill="white" className="text-white ml-0.5" />
             </div>
           </button>
         </div>
       </div>
 
-      {/* ─── 3. Bottom Layered Interactive Controls (Exact Reference Match) ─── */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col-reverse sm:flex-row items-center sm:items-end justify-between gap-5 sm:gap-2 pt-4 sm:pt-2">
+      {/* ─── 3. Bottom Layered Interactive Controls ─── */}
+      <div className="relative z-30 w-full max-w-7xl mx-auto flex flex-col-reverse sm:flex-row items-center sm:items-end justify-between gap-5 sm:gap-2 pt-4 sm:pt-2">
         
         {/* Bottom-Left: Circular Camera Button + Timeline Strip */}
         <div className="flex flex-col items-center sm:items-start space-y-2.5 sm:space-y-3">
-          {/* Circular Camera Button with Gold Border */}
+          {/* Circular Camera Button with Coral Border */}
           <button
             onClick={onOpenBooking}
-            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black border border-[#E59A3D] hover:bg-[#E59A3D] text-white hover:text-black flex items-center justify-center transition-all duration-200 active:scale-95 shadow-lg group cursor-pointer"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#1E2024] hover:bg-black border border-coral text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-lg group cursor-pointer"
             aria-label="Book a Photography Session"
             title="Book a Session"
           >
@@ -179,21 +288,21 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </button>
 
           {/* Timeline & Social Links Row */}
-          <div className="flex items-center gap-2.5 text-xs text-gray-400 font-medium">
-            <span className="w-2 h-2 rounded-full bg-[#E59A3D] inline-block animate-pulse" />
+          <div className="flex items-center gap-2.5 text-xs text-charcoal-600 font-medium">
+            <span className="w-2 h-2 rounded-full bg-coral inline-block animate-pulse" />
             <button
               onClick={onScrollToReviews}
-              className="text-gray-300 hover:text-white transition-colors cursor-pointer"
+              className="text-charcoal-700 hover:text-coral transition-colors cursor-pointer"
             >
               Timeline
             </button>
-            <span className="text-gray-600">|</span>
-            <div className="flex items-center gap-2.5 text-gray-400">
+            <span className="text-charcoal-300">|</span>
+            <div className="flex items-center gap-2.5 text-charcoal-600">
               <a
                 href="https://www.instagram.com/mythri_studio_ndl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#E59A3D] transition-colors"
+                className="hover:text-coral transition-colors"
                 title="Instagram: @mythri_studio_ndl"
                 aria-label="Instagram"
               >
@@ -203,7 +312,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
                 href="https://youtube.com/@mythristudio8857?si=5szrcmSiVDF_36an"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#E59A3D] transition-colors"
+                className="hover:text-coral transition-colors"
                 title="YouTube Channel"
                 aria-label="YouTube"
               >
@@ -211,7 +320,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               </a>
               <a
                 href="/contact#studio-location"
-                className="hover:text-[#E59A3D] transition-colors"
+                className="hover:text-coral transition-colors"
                 title="View Studio Locations & Maps"
                 aria-label="Studio Maps"
               >
@@ -226,7 +335,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           {/* Logo + Text Lockup */}
           <div className="flex items-center gap-2.5 sm:gap-3">
             {/* Circular Logo */}
-            <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full overflow-hidden shadow-md border-2 border-white/20 bg-white shrink-0">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full overflow-hidden shadow-md border-2 border-charcoal-200 bg-white shrink-0">
               <img
                 src="/logo.png"
                 alt="MY3 Studio Logo"
@@ -236,10 +345,12 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
             {/* Text Content */}
             <div className="text-left">
-              <h3 className="font-display font-black text-lg sm:text-xl md:text-2xl text-white italic tracking-tight leading-tight">
-                MY3 Studio
+              <h3 className="font-display font-black text-lg sm:text-xl md:text-2xl italic tracking-tight leading-tight">
+                <span className="text-charcoal-900">MY</span>
+                <span className="text-[#FA2D66]">3</span>{' '}
+                <span className="text-charcoal-900">Studio</span>
               </h3>
-              <p className="text-xs sm:text-sm font-bold text-white/90 tracking-tight leading-tight mt-0.5">
+              <p className="text-xs sm:text-sm font-bold text-charcoal-600 tracking-tight leading-tight mt-0.5">
                 Book your schedule
               </p>
             </div>
@@ -250,7 +361,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             {/* Lets Talk Button */}
             <a
               href="tel:+919949395037"
-              className="inline-flex items-center gap-1.5 px-4 sm:px-4 py-2 rounded-full border border-white/70 hover:border-[#E59A3D] text-white hover:text-[#E59A3D] bg-black/60 backdrop-blur-xs font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-xs"
+              className="inline-flex items-center gap-1.5 px-4 sm:px-4 py-2 rounded-full border border-charcoal-300 hover:border-coral text-charcoal-800 hover:text-coral bg-white hover:bg-coral-50 font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-xs"
             >
               <Phone size={13} />
               <span>LETS TALK</span>

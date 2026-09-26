@@ -76,15 +76,15 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#07080A] text-white flex flex-col justify-between relative overflow-hidden select-none font-sans">
+    <div className="min-h-screen bg-[#11141A] text-white flex flex-col justify-between relative overflow-hidden select-none font-sans">
       {/* ─── Top Atmospheric Radial Glow ─── */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-b from-[#E59A3D]/10 via-transparent to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-b from-coral/10 via-transparent to-transparent blur-3xl pointer-events-none" />
 
       {/* ─── Header: Brand Logo & Navigation Bar ─── */}
       <header className="w-full max-w-6xl mx-auto px-6 py-6 sm:py-8 flex items-center justify-between relative z-20">
         {/* Brand Logo & Name */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-white/10 p-1.5 border border-white/15 backdrop-blur-md flex items-center justify-center transition-all group-hover:scale-105 group-hover:border-[#E59A3D]/50 shadow-md">
+          <div className="w-9 h-9 rounded-xl bg-white/10 p-1.5 border border-white/15 backdrop-blur-md flex items-center justify-center transition-all group-hover:scale-105 group-hover:border-coral/50 shadow-md">
             <img
               src="/logo.png"
               alt="MY3 Studios Official Emblem"
@@ -93,7 +93,7 @@ export default function Login() {
           </div>
           <div className="flex flex-col">
             <span className="font-display font-black text-lg sm:text-xl tracking-tight text-white leading-none">
-              MY3 <span className="text-[#E59A3D]">Studios</span>
+              MY3 <span className="text-coral">Studios</span>
             </span>
             <span className="text-[10px] font-bold text-white/50 tracking-widest uppercase mt-0.5">
               Atelier Portal
@@ -112,7 +112,7 @@ export default function Login() {
             className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.07] hover:bg-white/[0.14] border border-white/10 text-xs font-semibold text-white/90 hover:text-white transition-all"
           >
             <span>Back to Site</span>
-            <ArrowRight size={13} className="text-[#E59A3D]" />
+            <ArrowRight size={13} className="text-coral" />
           </Link>
         </div>
       </header>
@@ -128,10 +128,10 @@ export default function Login() {
                 <img
                   src="/logo.png"
                   alt="MY3 Emblem"
-                  className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(229,154,61,0.4)]"
+                  className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(255,101,72,0.4)]"
                 />
               </div>
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#E59A3D] border-2 border-[#07080A] shadow-xs" />
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-coral border-2 border-[#11141A] shadow-xs" />
             </div>
           </div>
 
@@ -156,7 +156,7 @@ export default function Login() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Login / Email Input */}
             <div>
-              <div className="relative rounded-xl overflow-hidden bg-[#14161C] border border-white/10 hover:border-white/20 focus-within:border-[#E59A3D] focus-within:ring-2 focus-within:ring-[#E59A3D]/20 transition-all shadow-inner">
+              <div className="relative rounded-xl overflow-hidden bg-[#14161C] border border-white/10 hover:border-white/20 focus-within:border-coral focus-within:ring-2 focus-within:ring-coral/20 transition-all shadow-inner">
                 <input
                   type="email"
                   value={email}
@@ -170,7 +170,7 @@ export default function Login() {
 
             {/* Password Input */}
             <div>
-              <div className="relative rounded-xl overflow-hidden bg-[#14161C] border border-white/10 hover:border-white/20 focus-within:border-[#E59A3D] focus-within:ring-2 focus-within:ring-[#E59A3D]/20 transition-all shadow-inner">
+              <div className="relative rounded-xl overflow-hidden bg-[#14161C] border border-white/10 hover:border-white/20 focus-within:border-coral focus-within:ring-2 focus-within:ring-coral/20 transition-all shadow-inner">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={password}
@@ -197,7 +197,7 @@ export default function Login() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-white/20 bg-white/10 text-[#E59A3D] focus:ring-0 cursor-pointer accent-[#E59A3D]"
+                  className="w-4 h-4 rounded border-white/20 bg-white/10 text-coral focus:ring-0 cursor-pointer accent-coral"
                 />
                 <span className="text-xs text-white/70 font-medium hover:text-white transition-colors">
                   Remember me
@@ -207,7 +207,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => setIsForgotModalOpen(true)}
-                className="text-xs text-[#E59A3D] hover:text-[#f3b05c] font-medium transition-colors cursor-pointer"
+                className="text-xs text-coral hover:text-coral-light font-medium transition-colors cursor-pointer"
               >
                 Forgot password?
               </button>
@@ -217,11 +217,11 @@ export default function Login() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 rounded-xl bg-[#E59A3D] hover:bg-[#c98028] text-black font-bold text-sm tracking-wide shadow-[0_4px_22px_rgba(229,154,61,0.35)] transition-all duration-200 active:scale-[0.98] cursor-pointer disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
+              className="w-full py-3.5 rounded-xl bg-coral hover:bg-coral-dark text-white font-bold text-sm tracking-wide shadow-lg shadow-coral/30 transition-all duration-200 active:scale-[0.98] cursor-pointer disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
             >
               {isLoading ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   <span>Signing in...</span>
                 </>
               ) : (
@@ -238,7 +238,7 @@ export default function Login() {
               disabled={isLoading}
               className="w-full py-2.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.09] border border-white/10 text-white/75 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
-              <CheckCircle2 size={14} className="text-[#E59A3D]" />
+              <CheckCircle2 size={14} className="text-coral" />
               <span>One-Click Demo Admin Sign In</span>
             </button>
           </div>
@@ -281,10 +281,10 @@ export default function Login() {
               fill="#1A1C24"
               fillOpacity="0.8"
             />
-            {/* Wave 3: Subtle Gold Accent Layer */}
+            {/* Wave 3: Subtle Coral Accent Layer */}
             <path
               d="M0,140 C320,180 720,110 1080,150 C1260,170 1370,135 1440,145 L1440,220 L0,220 Z"
-              fill="#E59A3D"
+              fill="#FF6548"
               fillOpacity="0.15"
             />
             {/* Wave 4: Deep Black Base */}
@@ -421,7 +421,7 @@ function ForgotPasswordSecurityModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-fade-in">
       <div className="bg-[#14161C] rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-white/10 relative overflow-hidden max-h-[90vh] overflow-y-auto">
         {/* Glow Accent */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-24 bg-[#E59A3D]/15 blur-2xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-24 bg-coral/15 blur-2xl pointer-events-none" />
 
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5 relative z-10">
@@ -430,7 +430,7 @@ function ForgotPasswordSecurityModal({
               className={`w-9 h-9 rounded-xl flex items-center justify-center ${
                 isVerified
                   ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                  : 'bg-[#E59A3D]/20 text-[#E59A3D] border border-[#E59A3D]/30'
+                  : 'bg-coral/20 text-coral border border-coral/30'
               }`}
             >
               {isVerified ? <ShieldCheck size={18} /> : <KeyRound size={18} />}
@@ -461,7 +461,7 @@ function ForgotPasswordSecurityModal({
             {/* Display Active Question */}
             <div className="p-4 rounded-2xl bg-[#1C1F28] border border-white/10 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-black uppercase tracking-wider text-[#E59A3D] flex items-center gap-1.5">
+                <span className="text-[10px] font-black uppercase tracking-wider text-coral flex items-center gap-1.5">
                   <HelpCircle size={13} />
                   <span>Security Question</span>
                 </span>
@@ -491,7 +491,7 @@ function ForgotPasswordSecurityModal({
                   if (verifyError) setVerifyError('');
                 }}
                 placeholder="Type your answer here..."
-                className="w-full px-4 py-3 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-[#E59A3D] focus:ring-1 focus:ring-[#E59A3D]"
+                className="w-full px-4 py-3 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral"
               />
             </div>
 
@@ -514,7 +514,7 @@ function ForgotPasswordSecurityModal({
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-[#E59A3D] hover:bg-[#c98028] text-black text-xs font-bold shadow-md transition-all cursor-pointer flex items-center gap-2"
+                className="px-5 py-2.5 rounded-xl bg-coral hover:bg-coral-dark text-white text-xs font-bold shadow-md transition-all cursor-pointer flex items-center gap-2"
               >
                 <span>Verify &amp; Recover Access</span>
                 <ArrowRight size={14} />
@@ -526,7 +526,7 @@ function ForgotPasswordSecurityModal({
                 Can't remember the answer? Contact Anji garu directly at{' '}
                 <a
                   href="tel:+919949395037"
-                  className="text-[#E59A3D] hover:underline font-mono"
+                  className="text-coral hover:underline font-mono"
                 >
                   +91 99493 95037
                 </a>
@@ -574,7 +574,7 @@ function ForgotPasswordSecurityModal({
                         </div>
                       </div>
 
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#E59A3D]/15 text-[#E59A3D] border border-[#E59A3D]/30">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-coral/15 text-coral border border-coral/30">
                         {account.role || 'Admin'}
                       </span>
                     </div>
@@ -582,7 +582,7 @@ function ForgotPasswordSecurityModal({
                     <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/5 flex-wrap">
                       <div className="flex items-center gap-2">
                         <span className="text-[10px] text-gray-400 font-medium">Password:</span>
-                        <span className="text-xs font-mono font-bold text-[#E59A3D] bg-black/40 px-2 py-0.5 rounded-md border border-white/5">
+                        <span className="text-xs font-mono font-bold text-coral bg-black/40 px-2 py-0.5 rounded-md border border-white/5">
                           {isPassVisible ? account.password : '••••••••••••'}
                         </span>
                         <button
@@ -617,7 +617,7 @@ function ForgotPasswordSecurityModal({
                         <button
                           type="button"
                           onClick={() => handleDirectLogin(account)}
-                          className="px-3 py-1 rounded-lg bg-[#E59A3D] hover:bg-[#c98028] text-black text-[11px] font-bold flex items-center gap-1 cursor-pointer transition-all"
+                          className="px-3 py-1 rounded-lg bg-coral hover:bg-coral-dark text-white text-[11px] font-bold flex items-center gap-1 cursor-pointer transition-all"
                         >
                           <span>Sign In</span>
                           <ArrowRight size={12} />
@@ -632,7 +632,7 @@ function ForgotPasswordSecurityModal({
             {/* Set New Password Form */}
             <form onSubmit={handleSetNewPassword} className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2.5">
               <div className="flex items-center gap-1.5 text-xs font-bold text-gray-300">
-                <Lock size={13} className="text-[#E59A3D]" />
+                <Lock size={13} className="text-coral" />
                 <span>Or Reset Password Directly</span>
               </div>
 
@@ -640,7 +640,7 @@ function ForgotPasswordSecurityModal({
                 <select
                   value={selectedAdminId}
                   onChange={(e) => setSelectedAdminId(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white text-xs focus:outline-none focus:border-[#E59A3D]"
+                  className="w-full px-3 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white text-xs focus:outline-none focus:border-coral"
                 >
                   {adminAccounts.map((a) => (
                     <option key={a.id} value={a.id}>
@@ -654,7 +654,7 @@ function ForgotPasswordSecurityModal({
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="Enter new password"
-                  className="w-full px-3 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-[#E59A3D]"
+                  className="w-full px-3 py-2 rounded-xl bg-[#1C1F28] border border-white/20 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-coral"
                 />
               </div>
 
