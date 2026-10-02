@@ -318,10 +318,10 @@ export default function AdminDashboard() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="w-8 h-8 rounded-full bg-white hover:bg-red-50 hover:text-red-600 text-charcoal-500 border border-gray-200 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+                className="w-8 h-8 rounded-full bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
                 title="Logout from Admin"
               >
-                <LogOut size={14} />
+                <LogOut size={14} className="text-red-600" />
               </button>
             </div>
 
@@ -349,11 +349,11 @@ export default function AdminDashboard() {
               className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-2xl transition-all cursor-pointer relative ${
                 activeTab === tab.id
                   ? 'text-coral'
-                  : 'text-gray-500 hover:text-gray-300'
+                  : 'text-charcoal-500 hover:text-charcoal-900'
               }`}
             >
               <tab.icon size={20} strokeWidth={activeTab === tab.id ? 2.5 : 2} />
-              <span className={`text-[10px] font-bold ${activeTab === tab.id ? 'text-coral' : 'text-gray-500'}`}>
+              <span className={`text-[10px] font-bold ${activeTab === tab.id ? 'text-coral' : 'text-charcoal-600'}`}>
                 {tab.label}
               </span>
               {tab.count != null && tab.count > 0 && (
@@ -445,63 +445,33 @@ export default function AdminDashboard() {
         {/* Center Main Content Area */}
         <main className="flex-1 min-w-0">
 
-          {/* Mobile Profile & Horizontal Pill Tabs (Matching Mobile Reference Screenshot) */}
-          <div className="md:hidden space-y-3.5 mb-6">
-            <div className="bg-white rounded-3xl p-4 border border-gray-100 shadow-sm flex items-center justify-between">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-full bg-black text-white font-black text-sm flex items-center justify-center border border-gray-200 shadow-xs shrink-0">
-                  K
+          {/* Mobile Profile Card with Prominent Visible Logout (Upper tabs removed since bottom bar handles navigation) */}
+          <div className="md:hidden mb-5">
+            <div className="bg-white rounded-3xl p-4 border border-gray-200/90 shadow-sm flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <div className="w-10 h-10 rounded-full bg-[#1E2024] text-white font-black text-sm flex items-center justify-center border-2 border-coral/30 shadow-xs shrink-0">
+                  {(user?.name?.charAt(0) || 'A').toUpperCase()}
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <h3 className="text-sm font-bold text-charcoal-900 truncate leading-tight">
-                    MY3 Fotography Admin
+                    {user?.name || 'MY3 Fotography Admin'}
                   </h3>
-                  <p className="text-[11px] text-gray-400 truncate leading-tight mt-0.5">
-                    Studio Admin <span className="text-gray-500">(@my3fotography)</span>
+                  <p className="text-[11px] text-charcoal-500 truncate leading-tight mt-0.5">
+                    Studio Admin <span className="text-charcoal-400">({user?.email || 'rmythristudiondl.anji@gmail.com'})</span>
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5 shrink-0">
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-red-500/20 text-gray-300 hover:text-red-400 text-xs font-semibold border border-gray-100 transition-colors"
-                >
-                  <LogOut size={12} />
-                  <span>Logout</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Horizontal scrollable tab buttons */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-              {[
-                { id: 'overview', label: 'Dashboard' },
-                { id: 'packages', label: 'Packages', count: packages.length },
-                { id: 'gallery', label: 'Gallery', count: gallery.length },
-                { id: 'bookings', label: 'Inquiries', count: bookings.length },
-                { id: 'security', label: 'Security', icon: Key },
-              ].map((t) => (
-                <button
-                  key={t.id}
-                  type="button"
-                  onClick={() => setActiveTab(t.id)}
-                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
-                    activeTab === t.id
-                      ? 'bg-black text-white border border-coral/40 shadow-sm'
-                      : 'bg-white text-gray-400 hover:text-white border border-gray-100'
-                  }`}
-                >
-                  {t.icon && <t.icon size={13} className={activeTab === t.id ? 'text-coral' : ''} />}
-                  <span>{t.label}</span>
-                  {t.count != null && (
-                    <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-white/10 text-gray-300 font-mono">
-                      {t.count}
-                    </span>
-                  )}
-                </button>
-              ))}
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-red-50 hover:bg-red-100 text-red-600 text-xs font-bold border border-red-200 shadow-xs transition-all active:scale-95 cursor-pointer"
+                aria-label="Logout from Studio Admin"
+                title="Logout"
+              >
+                <LogOut size={13} className="text-red-600" />
+                <span>Logout</span>
+              </button>
             </div>
           </div>
 
