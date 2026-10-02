@@ -155,17 +155,17 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Left "1000+", Center Photographer with 3D Curved Concave Portrait Ribbon, Right Rotating Badge ─── */}
-      <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center my-1 sm:my-3">
+      {/* ─── 2. Centerpiece: Left Photographer, Left "1000+", 3D Portrait Ribbon with Enlarged Cards, Right Rotating Reviews ─── */}
+      <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center my-1 sm:my-3 min-h-[440px] sm:min-h-[540px] md:min-h-[620px] lg:min-h-[680px]">
         
-        {/* Top-Left Floating Badge: "1000+" & Vertical Coral Bar */}
-        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 left-4 sm:left-8 md:left-14 lg:left-20 xl:left-28 z-30 pointer-events-auto">
-          <div className="flex flex-col items-start">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[60px] font-sans font-extrabold text-coral leading-none tracking-tight flex items-baseline select-none">
+        {/* Top-Left Floating Badge: "1000+" with frosted glass backdrop */}
+        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 left-4 sm:left-8 md:left-14 lg:left-20 xl:left-24 z-30 pointer-events-auto">
+          <div className="flex flex-col items-start bg-white/75 backdrop-blur-md px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl border border-white/80 shadow-xs">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] font-sans font-extrabold text-coral leading-none tracking-tight flex items-baseline select-none">
               <span>1000</span>
               <span className="text-[0.82em] font-bold ml-0.5 text-coral">+</span>
             </div>
-            <div className="flex items-stretch gap-2.5 sm:gap-3 mt-2 sm:mt-2.5">
+            <div className="flex items-stretch gap-2 sm:gap-2.5 mt-1.5 sm:mt-2">
               {/* Vertical Coral Divider Bar */}
               <div className="w-[2px] bg-coral rounded-full shrink-0" />
               <div className="flex flex-col justify-center leading-snug">
@@ -180,20 +180,20 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
         </div>
 
-        {/* ─── Smooth Left-to-Right Moving Portrait Ribbon strictly behind photographer ("his backside") ─── */}
-        <div className="absolute top-[48%] sm:top-[46%] md:top-[45%] left-0 w-full -translate-y-1/2 z-10 pointer-events-none overflow-hidden py-3">
+        {/* ─── Smooth Left-to-Right Moving Portrait Ribbon with ENLARGED CARDS ─── */}
+        <div className="absolute top-[50%] left-0 w-full -translate-y-1/2 z-10 pointer-events-none overflow-hidden py-4">
           <div
             className="w-full flex items-center overflow-hidden"
             style={{
-              maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+              maskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
             }}
           >
-            <div className="hero-ribbon-track flex items-center gap-4 sm:gap-5 md:gap-6 pointer-events-auto">
+            <div className="hero-ribbon-track flex items-center gap-4 sm:gap-6 md:gap-7 pointer-events-auto">
               {[...HERO_CYLINDER_PHOTOS, ...HERO_CYLINDER_PHOTOS].map((photo, idx) => (
                 <div
                   key={`${photo.id}-${idx}`}
-                  className="shrink-0 w-[130px] h-[180px] sm:w-[155px] sm:h-[220px] md:w-[180px] md:h-[255px] lg:w-[195px] lg:h-[275px] rounded-2xl sm:rounded-3xl overflow-hidden bg-charcoal-800 shadow-[0_12px_28px_rgba(0,0,0,0.12)] hover:shadow-[0_20px_40px_rgba(255,101,72,0.3)] border border-white/60 hover:border-coral transition-all duration-300 group cursor-pointer"
+                  className="shrink-0 w-[165px] h-[235px] sm:w-[200px] sm:h-[285px] md:w-[240px] md:h-[345px] lg:w-[270px] lg:h-[390px] xl:w-[290px] xl:h-[415px] rounded-2xl sm:rounded-3xl overflow-hidden bg-charcoal-800 shadow-[0_14px_32px_rgba(0,0,0,0.14)] hover:shadow-[0_22px_45px_rgba(255,101,72,0.35)] border border-white/70 hover:border-coral transition-all duration-300 group cursor-pointer"
                 >
                   <Link
                     to="/gallery"
@@ -213,17 +213,17 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
         </div>
 
-        {/* Central Cutout Master Photographer smoothly masked at bottom (Layered at z-20 strictly in front of the moving photos) */}
+        {/* ─── Master Photographer (Anji) Positioned on the LEFT SIDE (Layered at z-20 in front of moving photos) ─── */}
         <div
-          className="relative z-20 w-full max-w-[280px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[590px] xl:max-w-[650px] mx-auto flex justify-center pointer-events-none"
+          className="absolute bottom-0 left-0 sm:left-4 md:left-8 lg:left-14 xl:left-20 z-20 pointer-events-none flex items-end justify-start"
         >
           <img
-            src="/photographer-bw.png"
-            alt="MY3 Studios Master Photographer"
-            className="w-full max-h-[460px] sm:max-h-[590px] md:max-h-[660px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.15)] relative z-20"
+            src="/photographer-cutout.png"
+            alt="MY3 Studios Lead Photographer Anji"
+            className="w-auto max-w-[240px] sm:max-w-[340px] md:max-w-[430px] lg:max-w-[490px] xl:max-w-[550px] max-h-[460px] sm:max-h-[560px] md:max-h-[640px] lg:max-h-[720px] object-contain drop-shadow-[0_22px_40px_rgba(0,0,0,0.2)]"
             style={{
-              WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
-              maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.4) 94%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 95%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 95%, transparent 100%)',
             }}
           />
         </div>
