@@ -225,9 +225,10 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             <div>
               {/* Upside Coral Line */}
               <div className="w-8 h-0.5 bg-coral rounded-full mb-1" />
-              {/* Main Headline on Mobile: PHOTOGRAPHY */}
-              <h1 className="font-display font-black text-xl min-[400px]:text-2xl text-[#1E2024] tracking-tight uppercase leading-none">
-                PHOTOGRAPHY
+              {/* Old Photography Headline: PHOTO in Black, GRAPHY in Orange/Coral */}
+              <h1 className="font-display font-black text-xl min-[400px]:text-2xl uppercase tracking-tight leading-none flex items-center gap-0.5">
+                <span className="text-[#1E2024]">PHOTO</span>
+                <span className="text-coral">GRAPHY</span>
               </h1>
               {/* Down of PHOTOGRAPHY: Poet-style author name - ANJI */}
               <p className="font-serif italic font-semibold text-xs min-[400px]:text-[13px] text-charcoal-700 tracking-wide mt-1 pl-0.5 select-none">
