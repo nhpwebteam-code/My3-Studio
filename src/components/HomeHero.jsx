@@ -220,32 +220,32 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             </div>
           </div>
 
-          {/* ─── Mobile-only Top Header Lockup: Line + PHOTOGRAPHY + (- ANJI) + Circular Photographer Badge ─── */}
-          <div className="md:hidden flex items-center justify-between w-full shrink-0 mb-1 px-1">
-            <div>
-              {/* Upside Coral Line */}
-              <div className="w-8 h-0.5 bg-coral rounded-full mb-1" />
-              {/* Old Photography Headline: PHOTO in Black, GRAPHY in Orange/Coral */}
-              <h1 className="font-display font-black text-xl min-[400px]:text-2xl uppercase tracking-tight leading-none flex items-center gap-0.5">
+          {/* ─── Mobile-only: Same Old Alignment Headline Lockup ─── */}
+          <div className="md:hidden w-full text-center relative z-10 mb-1 sm:mb-2 overflow-visible px-1 sm:px-0 flex flex-col items-center justify-center">
+            {/* Mobile Lead Photographer Badge beside PHOTOGRAPHY on the left */}
+            <div className="absolute left-0 min-[380px]:left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-auto select-none">
+              <div className="w-12 h-12 min-[360px]:w-13 min-[360px]:h-13 min-[400px]:w-15 min-[400px]:h-15 rounded-full overflow-hidden border-2 border-coral shadow-xl bg-charcoal-900 ring-2 ring-white/80 shrink-0 transform-gpu">
+                <img
+                  src="/photographer-badge.png"
+                  alt="MY3 Lead Photographer Anji"
+                  className="w-full h-full object-cover select-none pointer-events-none"
+                  loading="eager"
+                  fetchPriority="high"
+                  draggable={false}
+                />
+              </div>
+            </div>
+
+            <div className="inline-flex flex-col items-end pl-12 min-[360px]:pl-14 min-[400px]:pl-16">
+              <h1 className="font-display font-black uppercase text-[7.5vw] min-[360px]:text-[8vw] min-[400px]:text-[8.5vw] sm:text-[9.5vw] leading-tight tracking-tight sm:tracking-[-0.01em] flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap pointer-events-none select-none">
                 <span className="text-[#1E2024]">PHOTO</span>
                 <span className="text-coral">GRAPHY</span>
               </h1>
+
               {/* Down of PHOTOGRAPHY: Poet-style author name - ANJI */}
-              <p className="font-serif italic font-semibold text-xs min-[400px]:text-[13px] text-charcoal-700 tracking-wide mt-1 pl-0.5 select-none">
+              <p className="text-right -mt-0.5 pr-1 font-serif italic font-semibold text-xs min-[400px]:text-[13px] text-charcoal-700 tracking-wide select-none pointer-events-none">
                 - <span className="font-sans font-bold uppercase tracking-wider text-[11px] min-[400px]:text-xs text-[#1E2024]">ANJI</span>
               </p>
-            </div>
-
-            {/* Circular Photographer Badge on Mobile */}
-            <div className="w-12 h-12 min-[380px]:w-14 min-[380px]:h-14 rounded-full overflow-hidden border-2 border-coral shadow-lg bg-charcoal-900 ring-2 ring-white/80 shrink-0">
-              <img
-                src="/photographer-badge.png"
-                alt="MY3 Lead Photographer Anji"
-                className="w-full h-full object-cover select-none pointer-events-none"
-                loading="eager"
-                fetchPriority="high"
-                draggable={false}
-              />
             </div>
           </div>
 
