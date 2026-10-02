@@ -171,7 +171,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
   return (
     <section
       id="home"
-      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-[62px] min-[390px]:pt-[66px] sm:pt-22 md:pt-24 lg:pt-26 pb-2 sm:pb-4 px-3.5 sm:px-6 lg:px-8 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20"
+      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-[78px] min-[360px]:pt-[82px] min-[390px]:pt-[86px] sm:pt-22 md:pt-24 lg:pt-26 pb-2 sm:pb-4 px-3 sm:px-6 lg:px-8 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20"
     >
       {/* ─── Ambient Subtle Warm Spotlight Glow behind hero ─── */}
       <div
@@ -220,30 +220,29 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             </div>
           </div>
 
-          {/* ─── Mobile-only: Same Old Alignment Headline Lockup ─── */}
-          <div className="md:hidden w-full text-center relative z-10 mb-0 shrink-0 overflow-visible px-1 sm:px-0 flex flex-col items-center justify-center">
+          {/* ─── Mobile-only: Lead Photographer Badge + PHOTO GRAPHY + (- ANJI) ─── */}
+          <div className="md:hidden w-full flex items-center justify-center gap-2 min-[360px]:gap-2.5 min-[390px]:gap-3 px-2 py-0.5 relative z-10 shrink-0">
             {/* Mobile Lead Photographer Badge beside PHOTOGRAPHY on the left */}
-            <div className="absolute left-0 min-[380px]:left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-auto select-none">
-              <div className="w-12 h-12 min-[360px]:w-13 min-[360px]:h-13 min-[400px]:w-15 min-[400px]:h-15 rounded-full overflow-hidden border-2 border-coral shadow-xl bg-charcoal-900 ring-2 ring-white/80 shrink-0 transform-gpu">
-                <img
-                  src="/photographer-badge.png"
-                  alt="MY3 Lead Photographer Anji"
-                  className="w-full h-full object-cover select-none pointer-events-none"
-                  loading="eager"
-                  fetchPriority="high"
-                  draggable={false}
-                />
-              </div>
+            <div className="w-11 h-11 min-[360px]:w-12 min-[360px]:h-12 min-[390px]:w-13 min-[390px]:h-13 rounded-full overflow-hidden border-2 border-coral shadow-lg bg-charcoal-900 ring-2 ring-white/90 shrink-0 select-none">
+              <img
+                src="/photographer-badge.png"
+                alt="MY3 Lead Photographer Anji"
+                className="w-full h-full object-cover select-none pointer-events-none"
+                loading="eager"
+                fetchPriority="high"
+                draggable={false}
+              />
             </div>
 
-            <div className="inline-flex flex-col items-end pl-12 min-[360px]:pl-14 min-[400px]:pl-16">
-              <h1 className="font-display font-black uppercase text-[7.5vw] min-[360px]:text-[8vw] min-[400px]:text-[8.5vw] sm:text-[9.5vw] leading-tight tracking-tight sm:tracking-[-0.01em] flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap pointer-events-none select-none">
+            {/* Headline + Poet attribution: PHOTOGRAPHY with - ANJI directly down */}
+            <div className="flex flex-col items-end shrink-0">
+              <h1 className="font-display font-black uppercase text-[6.2vw] min-[360px]:text-[6.6vw] min-[390px]:text-[7vw] leading-none tracking-tight flex items-center gap-0.5 whitespace-nowrap pointer-events-none select-none">
                 <span className="text-[#1E2024]">PHOTO</span>
                 <span className="text-coral">GRAPHY</span>
               </h1>
 
               {/* Down of PHOTOGRAPHY: Poet-style author name - ANJI */}
-              <p className="text-right -mt-0.5 pr-1 font-serif italic font-semibold text-xs min-[400px]:text-[13px] text-charcoal-700 tracking-wide select-none pointer-events-none">
+              <p className="text-right mt-0.5 sm:mt-1 pr-0.5 font-serif italic font-semibold text-xs min-[400px]:text-[13px] text-charcoal-700 tracking-wide select-none pointer-events-none">
                 - <span className="font-sans font-bold uppercase tracking-wider text-[11px] min-[400px]:text-xs text-[#1E2024]">ANJI</span>
               </p>
             </div>
