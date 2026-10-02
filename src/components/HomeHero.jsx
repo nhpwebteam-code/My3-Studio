@@ -171,7 +171,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
   return (
     <section
       id="home"
-      className="relative w-full min-h-[96vh] min-h-[96dvh] flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-24"
+      className="relative w-full min-h-[96vh] min-h-[96dvh] flex flex-col justify-between pt-20 sm:pt-24 md:pt-24 pb-4 sm:pb-6 px-4 sm:px-8 lg:px-10 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-24"
     >
       {/* ─── Ambient Subtle Warm Spotlight Glow behind center photographer ─── */}
       <div
@@ -181,8 +181,8 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         }}
       />
 
-      {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral — Decreased size as requested ─── */}
-      <div className="w-full text-center relative z-10 mb-1 sm:mb-2 md:mb-2 overflow-visible px-1 sm:px-0 flex items-center justify-center">
+      {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral ─── */}
+      <div className="w-full text-center relative z-10 mb-1 sm:mb-2 md:mb-3 overflow-visible px-1 sm:px-0 flex items-center justify-center">
         {/* Mobile-only Lead Photographer Badge beside PHOTOGRAPHY on the left (Red-circled area) */}
         <div className="md:hidden absolute -left-2 min-[380px]:-left-1 sm:left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-auto select-none">
           <div className="w-13 h-13 min-[360px]:w-14 min-[360px]:h-14 min-[400px]:w-16 min-[400px]:h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden border-2 border-coral shadow-xl bg-charcoal-900 ring-2 ring-white/80 shrink-0 transform-gpu">
@@ -203,11 +203,11 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Mobile has full-width photo; Laptop/Desktop has side-by-side layout with NO overlap ─── */}
-      <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-5 lg:gap-8 xl:gap-10 my-auto pt-1 pb-1 sm:py-2 md:overflow-hidden">
+      {/* ─── 2. Centerpiece: Mobile has full-width photo; Laptop/Desktop has total-fill edge-to-edge layout with NO white gap ─── */}
+      <div className="relative w-full max-w-none flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-0 my-auto pt-1 pb-1 sm:py-2 md:overflow-hidden">
 
-        {/* ─── Master Photographer (Anji) — Hidden on mobile; On desktop: strictly in left column with NO overlap onto showcase ─── */}
-        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-center shrink-0 w-auto md:w-[280px] lg:w-[340px] xl:w-[400px] md:h-[580px] lg:h-[660px] xl:h-[720px] md:overflow-visible">
+        {/* ─── Master Photographer (Anji) — Hidden on mobile; On desktop: flush against showcase on the left with zero white gap ─── */}
+        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-[240px] lg:w-[290px] xl:w-[350px] md:h-[54vh] lg:h-[60vh] xl:h-[65vh] min-h-[440px] max-h-[680px] md:overflow-visible md:-ml-4 lg:-ml-8 xl:-ml-10">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
@@ -219,9 +219,9 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           />
         </div>
 
-        {/* ─── Single-Image Showcase — Increased size; covers TOTAL width on mobile; fills ALL remaining space on desktop with NO overlap ─── */}
+        {/* ─── Single-Image Showcase — Fills TOTAL remaining space edge-to-edge with NO white gap ─── */}
         <div
-          className="w-full md:flex-1 h-[440px] min-[390px]:h-[490px] sm:h-[530px] md:h-[580px] lg:h-[660px] xl:h-[720px] rounded-2xl sm:rounded-3xl md:rounded-l-[32px] md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-14"
+          className="w-full md:flex-1 h-[440px] min-[390px]:h-[490px] sm:h-[530px] md:h-[54vh] lg:h-[60vh] xl:h-[65vh] min-h-[440px] max-h-[680px] rounded-2xl sm:rounded-3xl md:rounded-l-2xl md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-10"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -242,12 +242,12 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           })()}
         </div>
 
-        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp */}
+        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp — Fixed for all mobile engines (OnePlus, Android, Apple) */}
         <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-8 z-30">
           <button
             id="product-reviews-stamp"
             onClick={onOpenVideoReviews}
-            className="relative w-18 h-18 min-[390px]:w-20 min-[390px]:h-20 sm:w-26 sm:h-26 md:w-30 md:h-30 lg:w-32 lg:h-32 rounded-full bg-[#1F2125] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
+            className="relative w-18 h-18 min-[390px]:w-20 min-[390px]:h-20 sm:w-26 sm:h-26 md:w-30 md:h-30 lg:w-32 lg:h-32 rounded-full bg-[#181A1D] border-2 border-white/30 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
             aria-label="View our product reviews"
           >
             {/* Optional Looping Client Video Preview inside */}
@@ -257,10 +257,12 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-25 group-hover:opacity-40 transition-opacity"
+              webkit-playsinline="true"
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-35 group-hover:opacity-50 transition-opacity pointer-events-none"
             />
 
-            {/* Rotating Curved Text */}
+            {/* Rotating Curved Text — Uses BOTH href and xlinkHref with inline presentation attributes for 100% browser support */}
             <svg
               className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none z-10"
               viewBox="0 0 100 100"
@@ -271,15 +273,15 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
                   d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
                 />
               </defs>
-              <text className="text-[9.2px] uppercase font-bold tracking-[0.24em] fill-white">
-                <textPath xlinkHref="#circlePathHero" startOffset="0%">
+              <text fill="#FFFFFF" fontSize="9.2" fontWeight="700" letterSpacing="0.22em" className="uppercase font-bold tracking-[0.22em] fill-white drop-shadow">
+                <textPath href="#circlePathHero" xlinkHref="#circlePathHero" startOffset="0%">
                   PRODUCT REVIEWS • PRODUCT REVIEWS •
                 </textPath>
               </text>
             </svg>
 
             {/* Inner Coral Play Button */}
-            <div className="relative z-20 w-8 h-8 min-[390px]:w-9 min-[390px]:h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral border border-white/30 text-white flex items-center justify-center transition-colors shadow-inner">
+            <div className="relative z-20 w-8 h-8 min-[390px]:w-9 min-[390px]:h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-coral/95 group-hover:bg-coral border border-white/40 text-white flex items-center justify-center transition-all group-hover:scale-110 shadow-lg">
               <Play size={15} fill="white" className="text-white ml-0.5" />
             </div>
           </button>
