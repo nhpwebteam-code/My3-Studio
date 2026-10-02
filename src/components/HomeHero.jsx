@@ -182,16 +182,19 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       />
       {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral ─── */}
       <div className="w-full text-center relative z-10 mb-1 sm:mb-2 md:mb-3 overflow-visible px-1 sm:px-0 flex flex-col items-center justify-center">
-        <div className="inline-flex flex-col items-end">
-          <h1 className="font-display font-black uppercase text-[7.5vw] min-[360px]:text-[8vw] min-[400px]:text-[8.5vw] sm:text-[9.5vw] md:text-[6vw] lg:text-[76px] leading-tight tracking-tight sm:tracking-[-0.01em] flex items-center justify-center gap-1 sm:gap-2.5 whitespace-nowrap pointer-events-none select-none">
+        <div className="relative inline-flex flex-col items-center">
+          <h1 className="font-display font-black uppercase text-[7.5vw] min-[360px]:text-[8vw] min-[400px]:text-[8.5vw] sm:text-[9.5vw] md:text-[6vw] lg:text-[76px] xl:text-[90px] leading-tight tracking-tight sm:tracking-[-0.01em] flex items-center justify-center gap-1 sm:gap-2.5 whitespace-nowrap pointer-events-none select-none">
             <span className="text-[#1E2024]">PHOTO</span>
             <span className="text-coral">GRAPHY</span>
           </h1>
 
-          {/* Mobile-only: Poet-style author attribution "— ANJI" underneath PHOTOGRAPHY */}
-          <p className="md:hidden text-right -mt-0.5 sm:-mt-1 pr-1 font-serif italic text-xs min-[360px]:text-[13px] min-[400px]:text-sm text-charcoal-700 tracking-wide select-none pointer-events-none">
-            — <span className="font-sans font-bold uppercase tracking-wider text-[11px] min-[360px]:text-xs text-[#1E2024]">ANJI</span>
-          </p>
+          {/* Mobile-only: Poet-style author attribution "- ANJI" placed directly down of PHOTOGRAPHY */}
+          <div className="md:hidden w-full flex items-center justify-end pr-1 min-[360px]:pr-2 pt-0.5 select-none pointer-events-none">
+            <span className="font-serif italic font-medium text-xs min-[360px]:text-[13px] text-charcoal-600 mr-1">-</span>
+            <span className="font-display font-black text-xs min-[360px]:text-sm uppercase tracking-widest text-[#1E2024]">
+              ANJI
+            </span>
+          </div>
         </div>
       </div>
 
@@ -199,7 +202,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       <div className="relative w-full max-w-none flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-0 my-auto pt-1 pb-1 sm:py-2 md:overflow-hidden">
 
         {/* ─── Master Photographer (Anji) — Hidden on mobile; On desktop: flush against showcase on the left with zero white gap ─── */}
-        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-[280px] lg:w-[350px] md:h-[620px] lg:h-[700px] md:overflow-visible md:-ml-4 lg:-ml-8">
+        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-[280px] lg:w-[350px] xl:w-[420px] md:h-[620px] lg:h-[700px] xl:h-[760px] md:overflow-visible md:-ml-4 lg:-ml-8 xl:-ml-12">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
@@ -213,7 +216,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
         {/* ─── Single-Image Showcase — Mobile fits one screen like Image 1; Desktop is big & tall (620px-760px) so photos appear full ─── */}
         <div
-          className="w-full md:flex-1 h-[385px] min-[390px]:h-[425px] sm:h-[465px] md:h-[620px] lg:h-[700px] rounded-2xl sm:rounded-3xl md:rounded-l-2xl md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-10"
+          className="w-full md:flex-1 h-[385px] min-[390px]:h-[425px] sm:h-[465px] md:h-[620px] lg:h-[700px] xl:h-[760px] rounded-2xl sm:rounded-3xl md:rounded-l-2xl md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-10"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
