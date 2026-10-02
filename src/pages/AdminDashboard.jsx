@@ -189,9 +189,6 @@ export default function AdminDashboard() {
                 <span className="font-display font-black text-sm tracking-tight text-[#1E2024] block leading-tight">
                   MY3 Studios
                 </span>
-                <span className="text-[10px] font-bold text-coral uppercase tracking-widest block leading-tight">
-                  Admin Console
-                </span>
               </div>
             </Link>
 
@@ -296,17 +293,6 @@ export default function AdminDashboard() {
               <Plus size={14} />
               <span>Add Photo</span>
             </button>
-
-            {/* View Live Website Button */}
-            <Link
-              to="/pricing"
-              target="_blank"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-gray-50 border border-gray-200/90 text-xs font-bold text-charcoal-700 shadow-xs transition-all active:scale-95"
-              title="View Public Pricing Page"
-            >
-              <span className="hidden sm:inline">Live Site</span>
-              <ArrowUpRight size={13} />
-            </Link>
 
             {/* Admin Profile & Logout */}
             <div className="flex items-center gap-2 pl-2 border-l border-gray-200/80">

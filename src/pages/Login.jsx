@@ -26,8 +26,14 @@ export default function Login() {
     updateAdminPassword,
   } = useStudioData();
 
-  const [email, setEmail] = useState('rmythristudiondl.anji@gmail.com');
-  const [password, setPassword] = useState('my3studios2026');
+  const [email, setEmail] = useState(() => {
+    try {
+      return localStorage.getItem('my3_remembered_admin_email') || '';
+    } catch {
+      return '';
+    }
+  });
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +50,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email) {
-      setErrorMsg('Please enter your login email');
+      setErrorMsg('Please enter your username');
       return;
     }
     if (!password) {
@@ -59,20 +65,24 @@ export default function Login() {
       const res = login(email, password);
       setIsLoading(false);
       if (res && res.success) {
+        if (rememberMe) {
+          try {
+            localStorage.setItem('my3_remembered_admin_email', email);
+          } catch {
+            // ignore storage error
+          }
+        } else {
+          try {
+            localStorage.removeItem('my3_remembered_admin_email');
+          } catch {
+            // ignore storage error
+          }
+        }
         navigate('/admin');
       } else {
-        setErrorMsg(res?.message || 'Invalid email or password');
+        setErrorMsg(res?.message || 'Invalid username or password');
       }
     }, 350);
-  };
-
-  const handleQuickDemoLogin = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      login('rmythristudiondl.anji@gmail.com', 'my3studios2026');
-      setIsLoading(false);
-      navigate('/admin');
-    }, 250);
   };
 
   return (
@@ -141,7 +151,7 @@ export default function Login() {
               Sign in
             </h1>
             <p className="text-xs sm:text-sm text-white/60 mt-2 font-medium">
-              Sign in and start managing your studio!
+              Enter your username and password to access the admin portal.
             </p>
           </div>
 
@@ -154,15 +164,15 @@ export default function Login() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Login / Email Input */}
+            {/* Username Input */}
             <div>
               <div className="relative rounded-xl overflow-hidden bg-[#14161C] border border-white/10 hover:border-white/20 focus-within:border-coral focus-within:ring-2 focus-within:ring-coral/20 transition-all shadow-inner">
                 <input
-                  type="email"
+                  type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Login"
-                  autoComplete="email"
+                  placeholder="Username"
+                  autoComplete="username"
                   className="w-full px-4 py-3.5 bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none font-medium"
                 />
               </div>
@@ -229,19 +239,6 @@ export default function Login() {
               )}
             </button>
           </form>
-
-          {/* Quick Demo One-Click Sign In Helper */}
-          <div className="mt-5 pt-4 border-t border-white/[0.08] text-center">
-            <button
-              type="button"
-              onClick={handleQuickDemoLogin}
-              disabled={isLoading}
-              className="w-full py-2.5 px-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.09] border border-white/10 text-white/75 hover:text-white text-xs font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
-            >
-              <CheckCircle2 size={14} className="text-coral" />
-              <span>One-Click Demo Admin Sign In</span>
-            </button>
-          </div>
 
         </div>
       </main>

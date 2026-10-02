@@ -259,14 +259,14 @@ export default function CuratedFramesSection({ onOpenBooking }) {
     <section
       ref={containerRef}
       id="curated-frames"
-      className="relative w-full bg-[#FF6548] text-black select-none min-h-[175vh] sm:min-h-[200vh] lg:min-h-[230vh]"
+      className="relative w-full bg-[#FF6548] text-black select-none min-h-[175vh] sm:min-h-[200vh] lg:min-h-[230vh] scroll-mt-20 sm:scroll-mt-24"
     >
       {/* ═══════════════════════════════════════════
           STICKY FULL-SCREEN VIEWPORT ACROSS ALL SCREENS
       ═══════════════════════════════════════════ */}
-      <div className="sticky top-0 h-screen min-h-[100dvh] w-full flex items-center justify-center overflow-hidden py-3 sm:py-6 lg:py-10">
-        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-12 items-center">
+      <div className="sticky top-0 h-screen h-[100dvh] max-h-screen max-h-[100dvh] w-full flex flex-col justify-center overflow-hidden pt-18 sm:pt-20 lg:pt-22 pb-3 sm:pb-5">
+        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center min-h-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-8 items-center min-h-0 my-auto">
             
             {/* ═══════════════════════════════════════════
                 LEFT / TOP (MOBILE): SEMI-CIRCLE ARC & SCROLL-DRIVEN FRAMES
@@ -317,7 +317,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
               </div>
 
               {/* Aspect-Square Container guarantees 1:1 coordinate symmetry with zero distortion */}
-              <div className="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[680px] aspect-square mx-auto touch-pan-y">
+              <div className="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[380px] md:max-w-[430px] lg:max-w-[470px] xl:max-w-[520px] 2xl:max-w-[560px] max-h-[min(510px,calc(100dvh-120px))] aspect-square mx-auto touch-pan-y">
                 
                 {/* ─── The Continuous Flowing Semi-Circle Arc ─── */}
                 <svg
@@ -444,13 +444,13 @@ export default function CuratedFramesSection({ onOpenBooking }) {
             {/* ═══════════════════════════════════════════
                 RIGHT (DESKTOP) / BOTTOM (MOBILE): EDITORIAL NARRATIVE & ARROW CONNECTORS
             ═══════════════════════════════════════════ */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-2 sm:space-y-6 lg:space-y-10">
+            <div className="lg:col-span-5 flex flex-col justify-center space-y-2 sm:space-y-3.5 lg:space-y-4 xl:space-y-5">
               
               {/* Top Block: Headline + Horizontal Arrow + Paragraph (Desktop Only) */}
-              <div className="hidden lg:block space-y-3 sm:space-y-4">
+              <div className="hidden lg:block space-y-2 sm:space-y-2.5">
                 <div className="flex items-center justify-between gap-3 sm:gap-4 flex-wrap sm:flex-nowrap">
                   <div className="flex items-center gap-3">
-                    <h3 className="font-display font-black text-xl sm:text-2xl lg:text-3xl text-black tracking-tight uppercase whitespace-nowrap">
+                    <h3 className="font-display font-black text-xl sm:text-2xl text-black tracking-tight uppercase whitespace-nowrap">
                       ABOUT THIS PROJECT
                     </h3>
                   </div>
@@ -461,7 +461,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                       onClick={() => handleStep(-1)}
                       disabled={scrollProgress <= 0.05}
                       aria-label="Previous frame"
-                      className="p-1.5 rounded-full bg-black/10 hover:bg-black hover:text-white disabled:opacity-25 transition-all text-black"
+                      className="p-1 sm:p-1.5 rounded-full bg-black/10 hover:bg-black hover:text-white disabled:opacity-25 transition-all text-black cursor-pointer"
                     >
                       <ChevronLeft size={16} />
                     </button>
@@ -469,7 +469,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                       onClick={() => handleStep(1)}
                       disabled={scrollProgress >= 0.95}
                       aria-label="Next frame"
-                      className="p-1.5 rounded-full bg-black/10 hover:bg-black hover:text-white disabled:opacity-25 transition-all text-black"
+                      className="p-1 sm:p-1.5 rounded-full bg-black/10 hover:bg-black hover:text-white disabled:opacity-25 transition-all text-black cursor-pointer"
                     >
                       <ChevronRight size={16} />
                     </button>
@@ -477,53 +477,53 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                 </div>
 
                 {/* Horizontal Directional Arrow matching reference */}
-                <div className="flex items-center w-full py-1">
+                <div className="flex items-center w-full py-0.5">
                   <div className="h-[2px] bg-black flex-grow" />
-                  <ArrowRight size={18} className="text-black -ml-1 shrink-0" />
+                  <ArrowRight size={16} className="text-black -ml-1 shrink-0" />
                 </div>
 
                 <p className="text-xs sm:text-sm font-medium text-black/90 leading-relaxed max-w-lg">
-                  Every celebration is a living tapestry of sacred rituals, tender family bonds, and fleeting glances. In Nandyal and across South India, our atelier transforms unscripted wedding moments into enduring visual heirlooms. By redefining candid storytelling and cinematic light, we create imagery that doesn't just document your celebration — it commands timeless reverence.
+                  Every celebration is a living tapestry of sacred rituals and fleeting glances. In Nandyal and across South India, our atelier transforms unscripted wedding moments into enduring visual heirlooms that command timeless reverence.
                 </p>
               </div>
 
               {/* Middle Block: Downward Arrow + Condensed Headline */}
-              <div className="space-y-1 sm:space-y-3">
+              <div className="space-y-1 sm:space-y-2">
                 {/* Downward Vertical Arrow matching reference */}
-                <div className="hidden sm:flex flex-col items-start pl-1">
-                  <div className="w-[2px] h-6 sm:h-8 lg:h-10 bg-black" />
-                  <ArrowDown size={16} className="text-black -mt-1" />
+                <div className="hidden sm:flex flex-col items-start pl-0.5">
+                  <div className="w-[2px] h-4 sm:h-5 lg:h-6 bg-black" />
+                  <ArrowDown size={14} className="text-black -mt-1" />
                 </div>
 
-                <h2 className="font-display font-black text-lg xs:text-xl sm:text-3xl lg:text-4xl xl:text-5xl text-black leading-[1.05] tracking-tighter uppercase">
+                <h2 className="font-display font-black text-base xs:text-lg sm:text-2xl lg:text-[26px] xl:text-[32px] 2xl:text-4xl text-black leading-[1.08] tracking-tighter uppercase">
                   CURATED WORK THE FRAMES THAT SET THE STANDARD
                 </h2>
               </div>
 
               {/* Bottom Block: Downward Arrow + Narrative Paragraph + Actions */}
-              <div className="space-y-2 sm:space-y-4">
+              <div className="space-y-1.5 sm:space-y-3">
                 {/* Downward Vertical Arrow matching reference */}
-                <div className="hidden sm:flex flex-col items-start pl-1">
-                  <div className="w-[2px] h-6 sm:h-8 lg:h-10 bg-black" />
-                  <ArrowDown size={16} className="text-black -mt-1" />
+                <div className="hidden sm:flex flex-col items-start pl-0.5">
+                  <div className="w-[2px] h-4 sm:h-5 lg:h-6 bg-black" />
+                  <ArrowDown size={14} className="text-black -mt-1" />
                 </div>
 
                 <p className="text-[11px] sm:text-xs lg:text-sm font-medium text-black/90 leading-relaxed max-w-lg line-clamp-2 sm:line-clamp-none">
-                  We anchor our entire photography philosophy on the concept of "The Frame" — the artistic lens through which your family's heritage is remembered for generations. Utilizing master color grading, 4K aerial cinematography, and museum-grade lay-flat albums, we position every wedding and portrait with undeniable elegance.
+                  We anchor our entire photography philosophy on the concept of "The Frame" — capturing your family's heritage with master color grading, 4K aerial cinematography, and museum-grade lay-flat albums.
                 </p>
 
                 {/* Action Buttons */}
-                <div className="pt-1 sm:pt-2 flex items-center gap-2 sm:gap-3 flex-wrap">
+                <div className="pt-0.5 sm:pt-1.5 flex items-center gap-2 sm:gap-3 flex-wrap">
                   <Link
                     to="/gallery"
-                    className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-black hover:bg-black/85 text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-black hover:bg-black/85 text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer"
                   >
                     <span>Explore Gallery</span>
                     <ArrowRight size={14} />
                   </Link>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-white/25 hover:bg-white text-black font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all border border-black/40 hover:border-black active:scale-95"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/25 hover:bg-white text-black font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all border border-black/40 hover:border-black active:scale-95 cursor-pointer"
                   >
                     <span>Reserve Date With Anji</span>
                   </Link>

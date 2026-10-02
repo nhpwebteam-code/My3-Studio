@@ -36,7 +36,7 @@ export default function Navbar({ onOpenBooking }) {
           isScrolled ? 'py-1.5 sm:py-2 shadow-sm' : 'py-2 sm:py-3'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Left: Circular Menu Button & Left Symmetrical Links */}
           <div className="flex items-center space-x-6 sm:space-x-8">

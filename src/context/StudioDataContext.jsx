@@ -461,7 +461,7 @@ export function StudioDataProvider({ children }) {
   const DEFAULT_MASTER_ADMIN = {
     id: 'admin-1',
     name: 'MY3 Master Admin',
-    email: 'rmythristudiondl.anji@gmail.com',
+    email: 'my3studio',
     password: 'my3studios2026',
     role: 'Master Studio Administrator',
     designation: 'Master Studio Administrator',
@@ -471,6 +471,11 @@ export function StudioDataProvider({ children }) {
     avatarInitial: 'M',
     lastActive: 'Active',
   };
+
+  // Brute-force protection: track failed login attempts
+  const loginAttempts = useRef({ count: 0, lastAttempt: 0, lockedUntil: 0 });
+  const MAX_ATTEMPTS = 5;
+  const LOCKOUT_DURATION = 60000; // 1 minute lockout after max failed attempts
 
   const PERMANENT_BANNED_EMAILS = [
     'admin@my3studios.com',
@@ -762,14 +767,24 @@ export function StudioDataProvider({ children }) {
   };
 
   // ─── AUTH METHODS ───
-  const login = (email, password) => {
-    const normalizedEmail = (email || '').trim().toLowerCase();
+  const login = (identifier, password) => {
+    const normalizedId = (identifier || '').trim().toLowerCase();
 
-    // Check if email has been deleted or banned
+    // Rate limiting check
+    const now = Date.now();
+    if (loginAttempts.current.lockedUntil > now) {
+      const remainSec = Math.ceil((loginAttempts.current.lockedUntil - now) / 1000);
+      return {
+        success: false,
+        message: `Too many failed attempts. Please wait ${remainSec}s before trying again.`,
+      };
+    }
+
+    // Check if identifier has been deleted or banned
     const deletedList = getDeletedEmailsFromStorage();
     if (
-      PERMANENT_BANNED_EMAILS.includes(normalizedEmail) ||
-      deletedList.includes(normalizedEmail)
+      PERMANENT_BANNED_EMAILS.includes(normalizedId) ||
+      deletedList.includes(normalizedId)
     ) {
       return {
         success: false,
@@ -777,18 +792,21 @@ export function StudioDataProvider({ children }) {
       };
     }
 
-    // Check against current adminAccounts
+    // Check against current adminAccounts (match by email/username)
     const matchingAccount = adminAccounts.find(
       (acc) =>
-        acc.email.toLowerCase() === normalizedEmail &&
-        (acc.password === password || password === 'my3studios2026')
+        acc.email.toLowerCase() === normalizedId &&
+        acc.password === password
     );
 
+    // Master fallback: accept 'my3studio' or 'admin' or the old email as username
     const isMasterFallback =
-      (password === 'my3studios2026' || matchingAccount?.password === password) &&
-      normalizedEmail === 'rmythristudiondl.anji@gmail.com';
+      password === 'my3studios2026' &&
+      (normalizedId === 'my3studio' || normalizedId === 'admin' || normalizedId === 'rmythristudiondl.anji@gmail.com');
 
     if (matchingAccount) {
+      // Reset attempts on success
+      loginAttempts.current = { count: 0, lastAttempt: 0, lockedUntil: 0 };
       const userData = {
         id: matchingAccount.id,
         email: matchingAccount.email,
@@ -802,9 +820,11 @@ export function StudioDataProvider({ children }) {
     }
 
     if (isMasterFallback) {
+      // Reset attempts on success
+      loginAttempts.current = { count: 0, lastAttempt: 0, lockedUntil: 0 };
       const userData = {
         id: 'admin-1',
-        email: normalizedEmail || 'rmythristudiondl.anji@gmail.com',
+        email: 'my3studio',
         name: 'MY3 Master Admin',
         role: 'Master Studio Administrator',
         avatar: '/logo.png',
@@ -814,7 +834,20 @@ export function StudioDataProvider({ children }) {
       return { success: true, user: userData };
     }
 
-    return { success: false, message: 'Invalid credentials. Please verify your email and password.' };
+    // Failed login — increment attempts and maybe lock
+    loginAttempts.current.count += 1;
+    loginAttempts.current.lastAttempt = now;
+    if (loginAttempts.current.count >= MAX_ATTEMPTS) {
+      loginAttempts.current.lockedUntil = now + LOCKOUT_DURATION;
+      loginAttempts.current.count = 0;
+      return {
+        success: false,
+        message: 'Too many failed attempts. Account locked for 1 minute.',
+      };
+    }
+
+    const remaining = MAX_ATTEMPTS - loginAttempts.current.count;
+    return { success: false, message: `Invalid username or password. ${remaining} attempt${remaining !== 1 ? 's' : ''} remaining.` };
   };
 
   const logout = () => {
