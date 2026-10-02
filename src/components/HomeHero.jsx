@@ -185,7 +185,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       <div className="max-w-7xl mx-auto w-full h-full flex-1 flex flex-col justify-between min-h-0 relative z-10">
 
         {/* ─── Centerpiece: Left Brand & Photographer + Right Image Showcase ─── */}
-        <div className="relative w-full flex-1 min-h-0 flex flex-col md:flex-row items-center md:items-stretch justify-between gap-3 md:gap-5 lg:gap-8 my-auto py-1">
+        <div className="relative w-full flex-1 min-h-0 flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-between gap-1.5 min-[380px]:gap-2 sm:gap-3 md:gap-5 lg:gap-8 my-auto py-0.5 sm:py-1">
 
           {/* ─── Desktop Left Column: Line + ANJI + PHOTOGRAPHY + Cutout (Flush-aligned with grid) ─── */}
           <div className="hidden md:flex flex-col justify-between shrink-0 w-[220px] lg:w-[260px] xl:w-[300px] h-full min-h-0 z-20">
@@ -221,7 +221,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
 
           {/* ─── Mobile-only: Same Old Alignment Headline Lockup ─── */}
-          <div className="md:hidden w-full text-center relative z-10 mb-1 sm:mb-2 overflow-visible px-1 sm:px-0 flex flex-col items-center justify-center">
+          <div className="md:hidden w-full text-center relative z-10 mb-0 overflow-visible px-1 sm:px-0 flex flex-col items-center justify-center">
             {/* Mobile Lead Photographer Badge beside PHOTOGRAPHY on the left */}
             <div className="absolute left-0 min-[380px]:left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-auto select-none">
               <div className="w-12 h-12 min-[360px]:w-13 min-[360px]:h-13 min-[400px]:w-15 min-[400px]:h-15 rounded-full overflow-hidden border-2 border-coral shadow-xl bg-charcoal-900 ring-2 ring-white/80 shrink-0 transform-gpu">
@@ -251,7 +251,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
           {/* ─── Right Column: Showcase Card (Full rounded corners on all sides, flexes to window height) ─── */}
           <div
-            className="w-full md:flex-1 h-[320px] min-[390px]:h-[360px] sm:h-[400px] md:h-full md:min-h-0 rounded-2xl sm:rounded-3xl lg:rounded-[28px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-200/60 cursor-pointer select-none"
+            className="w-full md:flex-1 h-[360px] min-[390px]:h-[400px] min-[420px]:h-[430px] sm:h-[460px] md:h-full md:min-h-0 rounded-2xl sm:rounded-3xl lg:rounded-[28px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-200/60 cursor-pointer select-none"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
