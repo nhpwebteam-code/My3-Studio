@@ -180,7 +180,6 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           background: 'radial-gradient(ellipse 65% 58% at 50% 55%, rgba(255, 101, 72, 0.08) 0%, rgba(250, 247, 242, 0.5) 45%, #FAF7F2 100%)',
         }}
       />
-
       {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral ─── */}
       <div className="w-full text-center relative z-10 mb-1 sm:mb-2 md:mb-3 overflow-visible px-1 sm:px-0 flex items-center justify-center">
         {/* Mobile-only Lead Photographer Badge beside PHOTOGRAPHY on the left (Red-circled area) */}
@@ -197,17 +196,17 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
         </div>
 
-        <h1 className="font-display font-black uppercase text-[5.8vw] min-[360px]:text-[6.2vw] min-[400px]:text-[6.6vw] sm:text-[7vw] md:text-[5vw] lg:text-[62px] xl:text-[72px] leading-tight tracking-tight sm:tracking-[-0.01em] flex items-center justify-center gap-1 sm:gap-2.5 whitespace-nowrap pointer-events-none select-none pl-12 min-[360px]:pl-14 min-[400px]:pl-16 md:pl-0">
+        <h1 className="font-display font-black uppercase text-[7.5vw] min-[360px]:text-[8vw] min-[400px]:text-[8.5vw] sm:text-[9.5vw] md:text-[6vw] lg:text-[76px] xl:text-[90px] leading-tight tracking-tight sm:tracking-[-0.01em] flex items-center justify-center gap-1 sm:gap-2.5 whitespace-nowrap pointer-events-none select-none pl-12 min-[360px]:pl-14 min-[400px]:pl-16 md:pl-0">
           <span className="text-[#1E2024]">PHOTO</span>
           <span className="text-coral">GRAPHY</span>
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Mobile has full-width photo; Laptop/Desktop has total-fill edge-to-edge layout with NO white gap ─── */}
+      {/* ─── 2. Centerpiece: Mobile has full-width photo; Laptop/Desktop has big total-fill showcase with NO white gap ─── */}
       <div className="relative w-full max-w-none flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-0 my-auto pt-1 pb-1 sm:py-2 md:overflow-hidden">
 
         {/* ─── Master Photographer (Anji) — Hidden on mobile; On desktop: flush against showcase on the left with zero white gap ─── */}
-        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-[240px] lg:w-[290px] xl:w-[350px] md:h-[54vh] lg:h-[60vh] xl:h-[65vh] min-h-[440px] max-h-[680px] md:overflow-visible md:-ml-4 lg:-ml-8 xl:-ml-10">
+        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-[280px] lg:w-[350px] xl:w-[420px] md:h-[620px] lg:h-[700px] xl:h-[760px] md:overflow-visible md:-ml-4 lg:-ml-8 xl:-ml-12">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
@@ -219,9 +218,9 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           />
         </div>
 
-        {/* ─── Single-Image Showcase — Fills TOTAL remaining space edge-to-edge with NO white gap ─── */}
+        {/* ─── Single-Image Showcase — Mobile fits one screen like Image 1; Desktop is big & tall (620px-760px) so photos appear full ─── */}
         <div
-          className="w-full md:flex-1 h-[440px] min-[390px]:h-[490px] sm:h-[530px] md:h-[54vh] lg:h-[60vh] xl:h-[65vh] min-h-[440px] max-h-[680px] rounded-2xl sm:rounded-3xl md:rounded-l-2xl md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-10"
+          className="w-full md:flex-1 h-[385px] min-[390px]:h-[425px] sm:h-[465px] md:h-[620px] lg:h-[700px] xl:h-[760px] rounded-2xl sm:rounded-3xl md:rounded-l-2xl md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-10"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -235,7 +234,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
                 <img
                   src={currentPhoto.image}
                   alt={currentPhoto.title}
-                  className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-[center_25%] filter contrast-105 group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             );
