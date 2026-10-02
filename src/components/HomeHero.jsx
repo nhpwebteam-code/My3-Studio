@@ -206,8 +206,8 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       {/* ─── 2. Centerpiece: Mobile has full-width photo; Laptop/Desktop has side-by-side layout with prominent photographer ─── */}
       <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-0 my-auto pt-2 pb-1 sm:py-2 md:overflow-hidden">
 
-        {/* ─── Master Photographer (Anji) — Hidden on mobile (green circle removed); On laptop/desktop: big and prominent (untouched) ─── */}
-        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-auto md:max-w-[340px] lg:max-w-[420px] xl:max-w-[480px] md:h-[550px] lg:h-[620px] xl:h-[680px] md:overflow-visible md:-ml-6 lg:-ml-10 xl:-ml-12">
+        {/* ─── Master Photographer (Anji) — Hidden on mobile; On laptop/desktop: compact width, shifted left so showcase is big ─── */}
+        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-[170px] lg:w-[220px] xl:w-[270px] md:h-[520px] lg:h-[600px] xl:h-[660px] md:overflow-visible md:-ml-12 lg:-ml-16 xl:-ml-20">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
@@ -219,9 +219,9 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           />
         </div>
 
-        {/* ─── Single-Image Showcase — Covers TOTAL width on mobile; on laptop/desktop fills ALL remaining space edge-to-edge, no white gaps, no border radius on right edge ─── */}
+        {/* ─── Single-Image Showcase — Covers TOTAL width on mobile; on laptop/desktop fills ALL remaining space edge-to-edge, huge top to bottom ─── */}
         <div
-          className="w-full md:flex-1 h-[390px] min-[390px]:h-[440px] sm:h-[470px] md:h-[550px] lg:h-[620px] xl:h-[680px] rounded-2xl sm:rounded-3xl md:rounded-l-[32px] md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-14"
+          className="w-full md:flex-1 h-[390px] min-[390px]:h-[440px] sm:h-[470px] md:h-[580px] lg:h-[660px] xl:h-[730px] rounded-2xl sm:rounded-3xl md:rounded-l-[32px] md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-14"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
