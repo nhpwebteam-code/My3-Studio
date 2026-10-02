@@ -184,8 +184,8 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral ─── */}
       <div className="w-full text-center relative z-10 mb-1 sm:mb-2 md:mb-3 overflow-visible px-1 sm:px-0 flex items-center justify-center">
         {/* Mobile-only Lead Photographer Badge beside PHOTOGRAPHY on the left (Red-circled area) */}
-        <div className="md:hidden absolute left-1.5 min-[380px]:left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
-          <div className="w-11 h-11 min-[380px]:w-13 min-[380px]:h-13 sm:w-15 sm:h-15 rounded-full overflow-hidden border-2 border-coral shadow-lg bg-charcoal-900 ring-2 ring-white/70">
+        <div className="md:hidden absolute -left-2 min-[380px]:-left-1 sm:left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
+          <div className="w-14 h-14 min-[360px]:w-16 min-[360px]:h-16 min-[400px]:w-18 min-[400px]:h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-coral shadow-xl bg-charcoal-900 ring-2 ring-white/80">
             <img
               src="/photographer-badge.png"
               alt="MY3 Lead Photographer Anji"
@@ -194,7 +194,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
         </div>
 
-        <h1 className="font-display font-black uppercase text-[8.5vw] min-[360px]:text-[9vw] sm:text-[10vw] md:text-[9vw] lg:text-[112px] xl:text-[132px] leading-none tracking-tight sm:tracking-[-0.02em] flex items-center justify-center gap-1 sm:gap-3 whitespace-nowrap pointer-events-none">
+        <h1 className="font-display font-black uppercase text-[7.8vw] min-[360px]:text-[8.2vw] min-[400px]:text-[8.5vw] sm:text-[10vw] md:text-[9vw] lg:text-[112px] xl:text-[132px] leading-none tracking-tight sm:tracking-[-0.02em] flex items-center justify-center gap-1 sm:gap-3 whitespace-nowrap pointer-events-none pl-12 min-[360px]:pl-14 min-[400px]:pl-16 md:pl-0">
           <span className="text-[#1E2024]">PHOTO</span>
           <span className="text-coral">GRAPHY</span>
         </h1>
