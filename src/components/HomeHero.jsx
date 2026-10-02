@@ -171,7 +171,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
   return (
     <section
       id="home"
-      className="relative w-full min-h-[96vh] flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-24"
+      className="relative w-full min-h-[96vh] min-h-[96dvh] flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-14 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-24"
     >
       {/* ─── Ambient Subtle Warm Spotlight Glow behind center photographer ─── */}
       <div
@@ -184,17 +184,20 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral ─── */}
       <div className="w-full text-center relative z-10 mb-1 sm:mb-2 md:mb-3 overflow-visible px-1 sm:px-0 flex items-center justify-center">
         {/* Mobile-only Lead Photographer Badge beside PHOTOGRAPHY on the left (Red-circled area) */}
-        <div className="md:hidden absolute -left-2 min-[380px]:-left-1 sm:left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
-          <div className="w-14 h-14 min-[360px]:w-16 min-[360px]:h-16 min-[400px]:w-18 min-[400px]:h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-coral shadow-xl bg-charcoal-900 ring-2 ring-white/80">
+        <div className="md:hidden absolute -left-2 min-[380px]:-left-1 sm:left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-auto select-none">
+          <div className="w-14 h-14 min-[360px]:w-16 min-[360px]:h-16 min-[400px]:w-18 min-[400px]:h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-coral shadow-xl bg-charcoal-900 ring-2 ring-white/80 shrink-0 transform-gpu">
             <img
               src="/photographer-badge.png"
               alt="MY3 Lead Photographer Anji"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover select-none pointer-events-none"
+              loading="eager"
+              fetchPriority="high"
+              draggable={false}
             />
           </div>
         </div>
 
-        <h1 className="font-display font-black uppercase text-[7.8vw] min-[360px]:text-[8.2vw] min-[400px]:text-[8.5vw] sm:text-[10vw] md:text-[9vw] lg:text-[112px] xl:text-[132px] leading-none tracking-tight sm:tracking-[-0.02em] flex items-center justify-center gap-1 sm:gap-3 whitespace-nowrap pointer-events-none pl-12 min-[360px]:pl-14 min-[400px]:pl-16 md:pl-0">
+        <h1 className="font-display font-black uppercase text-[7.8vw] min-[360px]:text-[8.2vw] min-[400px]:text-[8.5vw] sm:text-[10vw] md:text-[9vw] lg:text-[112px] xl:text-[132px] leading-none tracking-tight sm:tracking-[-0.02em] flex items-center justify-center gap-1 sm:gap-3 whitespace-nowrap pointer-events-none select-none pl-12 min-[360px]:pl-14 min-[400px]:pl-16 md:pl-0">
           <span className="text-[#1E2024]">PHOTO</span>
           <span className="text-coral">GRAPHY</span>
         </h1>
