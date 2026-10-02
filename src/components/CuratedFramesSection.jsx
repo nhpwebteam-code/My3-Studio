@@ -317,7 +317,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
               </div>
 
               {/* Aspect-Square Container guarantees 1:1 coordinate symmetry with zero distortion */}
-              <div className="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[470px] xl:max-w-[520px] 2xl:max-w-[560px] lg:max-h-[min(510px,calc(100dvh-120px))] aspect-square mx-auto touch-pan-y">
+              <div className="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[470px] lg:max-h-[min(510px,calc(100dvh-120px))] aspect-square mx-auto touch-pan-y">
                 
                 {/* ─── The Continuous Flowing Semi-Circle Arc ─── */}
                 <svg
@@ -444,7 +444,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
             {/* ═══════════════════════════════════════════
                 RIGHT (DESKTOP) / BOTTOM (MOBILE): EDITORIAL NARRATIVE & ARROW CONNECTORS
             ═══════════════════════════════════════════ */}
-            <div className="lg:col-span-5 flex flex-col justify-center space-y-2 sm:space-y-3.5 lg:space-y-4 xl:space-y-5">
+            <div className="lg:col-span-5 flex flex-col justify-center space-y-2 sm:space-y-3.5 lg:space-y-4">
               
               {/* Top Block: Headline + Horizontal Arrow + Paragraph (Desktop Only) */}
               <div className="hidden lg:block space-y-2 sm:space-y-2.5">
@@ -495,7 +495,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                   <ArrowDown size={14} className="text-black -mt-1" />
                 </div>
 
-                <h2 className="font-display font-black text-base xs:text-lg sm:text-2xl lg:text-[26px] xl:text-[32px] 2xl:text-4xl text-black leading-[1.08] tracking-tighter uppercase">
+                <h2 className="font-display font-black text-base xs:text-lg sm:text-2xl lg:text-[26px] text-black leading-[1.08] tracking-tighter uppercase">
                   CURATED WORK THE FRAMES THAT SET THE STANDARD
                 </h2>
               </div>
