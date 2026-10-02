@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, Camera, MapPin, Phone } from 'lucide-react';
 
@@ -134,6 +134,18 @@ const HERO_CYLINDER_PHOTOS = [
 ];
 
 export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollToReviews }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-advance photos every 3 seconds as requested by client
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
   return (
     <section
       id="home"
@@ -155,23 +167,41 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Left Corner Photographer, 3D Portrait Ribbon with Enlarged Cards, Right Rotating Reviews ─── */}
-      <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center my-1 sm:my-3 min-h-[400px] sm:min-h-[480px] md:min-h-[540px] lg:min-h-[600px]">
+      {/* ─── 2. Centerpiece: Left Photographer (100% Separate, 0 Images Behind) + Right 3-Second Showcase (Fills Total Space, Zero White Space) ─── */}
+      <div className="relative w-full max-w-[1440px] mx-auto flex-1 flex flex-col md:flex-row items-center md:items-end justify-between gap-4 lg:gap-8 my-2 sm:my-3">
 
-        {/* ─── Smooth Left-to-Right Moving Portrait Ribbon with ENLARGED CARDS (Flows behind photographer's hands) ─── */}
-        <div className="absolute top-[48%] left-0 w-full -translate-y-1/2 z-10 pointer-events-none overflow-hidden py-4">
-          <div
-            className="w-full flex items-center overflow-hidden"
+        {/* ─── Master Photographer (Anji) — 100% Standalone Column on Left, ZERO Images Behind ─── */}
+        <div className="shrink-0 w-full md:w-[260px] lg:w-[320px] xl:w-[380px] flex justify-center md:justify-start items-end relative z-20 pointer-events-none">
+          <img
+            src="/photographer-cutout.png"
+            alt="MY3 Studios Lead Photographer Anji"
+            className="w-auto max-w-[210px] sm:max-w-[260px] md:max-w-[320px] lg:max-w-[360px] xl:max-w-[400px] max-h-[350px] sm:max-h-[430px] md:max-h-[500px] lg:max-h-[560px] xl:max-h-[620px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)]"
             style={{
-              maskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.3) 96%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.3) 96%, transparent 100%)',
             }}
-          >
-            <div className="hero-ribbon-track flex items-center gap-4 sm:gap-6 md:gap-7 pointer-events-auto">
-              {[...HERO_CYLINDER_PHOTOS, ...HERO_CYLINDER_PHOTOS].map((photo, idx) => (
+          />
+        </div>
+
+        {/* ─── Right Showcase (Blue Marked Area) — Fills Total Area (Zero White Background), Auto-Changes Every 3 Seconds ─── */}
+        <div
+          className="flex-1 w-full h-[360px] sm:h-[440px] md:h-[500px] lg:h-[560px] xl:h-[600px] rounded-3xl sm:rounded-[32px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-800 flex flex-col justify-between"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Images Grid filling the total area (4 panels on desktop, 3 on tablet/laptop, 2 on sm, 1 on mobile) — Fills total height & width with NO white color */}
+          <div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-2.5 p-2 sm:p-2.5 bg-[#181A1D]">
+            {[0, 1, 2, 3].map((offset) => {
+              const photo = HERO_CYLINDER_PHOTOS[(currentIndex + offset) % HERO_CYLINDER_PHOTOS.length];
+              let visibilityClass = 'block';
+              if (offset === 1) visibilityClass = 'hidden sm:block';
+              if (offset === 2) visibilityClass = 'hidden md:block';
+              if (offset === 3) visibilityClass = 'hidden lg:block';
+
+              return (
                 <div
-                  key={`${photo.id}-${idx}`}
-                  className="shrink-0 w-[220px] h-[330px] min-[390px]:w-[240px] min-[390px]:h-[350px] sm:w-[240px] sm:h-[345px] md:w-[240px] md:h-[345px] lg:w-[270px] lg:h-[390px] xl:w-[290px] xl:h-[415px] rounded-2xl sm:rounded-3xl overflow-hidden bg-charcoal-800 shadow-[0_14px_32px_rgba(0,0,0,0.14)] hover:shadow-[0_22px_45px_rgba(255,101,72,0.35)] border border-white/70 hover:border-coral transition-all duration-300 group cursor-pointer"
+                  key={`${photo.id}-${offset}-${currentIndex}`}
+                  className={`h-full w-full rounded-2xl overflow-hidden relative group bg-charcoal-900 ${visibilityClass}`}
                 >
                   <Link
                     to="/gallery"
@@ -181,73 +211,116 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
                     <img
                       src={photo.image}
                       alt={photo.title}
-                      loading="eager"
-                      className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700 animate-fade-in"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
+                    <div className="absolute bottom-3.5 left-3.5 right-3.5 text-left">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-coral bg-black/60 backdrop-blur-xs px-2.5 py-0.5 rounded-full inline-block mb-1.5 border border-white/10">
+                        MY3 Curation
+                      </span>
+                      <p className="text-xs sm:text-[13px] font-bold text-white truncate drop-shadow-sm">
+                        {photo.title}
+                      </p>
+                    </div>
                   </Link>
                 </div>
-              ))}
+              );
+            })}
+          </div>
+
+          {/* Rotating "PRODUCT REVIEWS" Stamp at Top-Right of Showcase */}
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30">
+            <button
+              id="product-reviews-stamp"
+              onClick={onOpenVideoReviews}
+              className="relative w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 rounded-full bg-[#1F2125]/90 backdrop-blur-md border border-white/30 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
+              aria-label="View our product reviews"
+            >
+              {/* Optional Looping Client Video Preview inside */}
+              <video
+                src="/takeout-1-001/vedio/vedio.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover rounded-full opacity-30 group-hover:opacity-50 transition-opacity"
+              />
+
+              {/* Rotating Curved Text */}
+              <svg
+                className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none z-10"
+                viewBox="0 0 100 100"
+              >
+                <defs>
+                  <path
+                    id="circlePathHero"
+                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                  />
+                </defs>
+                <text className="text-[9.2px] uppercase font-bold tracking-[0.24em] fill-white">
+                  <textPath xlinkHref="#circlePathHero" startOffset="0%">
+                    PRODUCT REVIEWS • PRODUCT REVIEWS •
+                  </textPath>
+                </text>
+              </svg>
+
+              {/* Inner Coral Play Button */}
+              <div className="relative z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral border border-white/30 text-white flex items-center justify-center transition-colors shadow-inner">
+                <Play size={14} fill="white" className="text-white ml-0.5" />
+              </div>
+            </button>
+          </div>
+
+          {/* Bottom 3-Second Progress Bar & Slide Controls */}
+          <div className="absolute bottom-0 left-0 right-0 z-20 px-3.5 py-2.5 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex items-center justify-between text-xs text-white/80">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-coral animate-ping" />
+              <span className="font-mono text-[11px] font-bold text-white/90">
+                {String(currentIndex + 1).padStart(2, '0')} / {String(HERO_CYLINDER_PHOTOS.length).padStart(2, '0')}
+              </span>
+              <span className="text-[10px] text-white/60 hidden sm:inline">• 3s Auto-transition</span>
+            </div>
+
+            {/* 3s Active Progress Line Indicator */}
+            <div className="hidden sm:block w-36 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div
+                key={currentIndex}
+                className="h-full bg-coral rounded-full"
+                style={{
+                  animation: 'progressFill 3s linear infinite',
+                }}
+              />
+            </div>
+
+            {/* Interactive Next / Prev */}
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentIndex((prev) => (prev - 1 + HERO_CYLINDER_PHOTOS.length) % HERO_CYLINDER_PHOTOS.length);
+                }}
+                className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white cursor-pointer transition-colors text-sm font-bold"
+                title="Previous photo"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length);
+                }}
+                className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white cursor-pointer transition-colors text-sm font-bold"
+                title="Next photo"
+              >
+                ›
+              </button>
             </div>
           </div>
+
         </div>
 
-        {/* ─── Master Photographer (Anji) in Corner & Scaled so background images flow behind hands & camera ─── */}
-        <div
-          className="absolute bottom-0 left-0 sm:left-2 md:left-4 lg:left-6 xl:left-8 z-20 pointer-events-none flex items-end justify-start"
-        >
-          <img
-            src="/photographer-cutout.png"
-            alt="MY3 Studios Lead Photographer Anji"
-            className="w-auto max-w-[170px] sm:max-w-[220px] md:max-w-[270px] lg:max-w-[320px] xl:max-w-[360px] max-h-[310px] sm:max-h-[390px] md:max-h-[450px] lg:max-h-[510px] xl:max-h-[550px] object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.18)]"
-            style={{
-              WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 95%, transparent 100%)',
-              maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 95%, transparent 100%)',
-            }}
-          />
-        </div>
-
-        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp */}
-        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 right-4 sm:right-8 md:right-14 lg:right-20 xl:right-28 z-30">
-          <button
-            id="product-reviews-stamp"
-            onClick={onOpenVideoReviews}
-            className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#1F2125] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
-            aria-label="View our product reviews"
-          >
-            {/* Optional Looping Client Video Preview inside */}
-            <video
-              src="/takeout-1-001/vedio/vedio.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-25 group-hover:opacity-40 transition-opacity"
-            />
-
-            {/* Rotating Curved Text */}
-            <svg
-              className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none z-10"
-              viewBox="0 0 100 100"
-            >
-              <defs>
-                <path
-                  id="circlePathHero"
-                  d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                />
-              </defs>
-              <text className="text-[9.2px] uppercase font-bold tracking-[0.24em] fill-white">
-                <textPath xlinkHref="#circlePathHero" startOffset="0%">
-                  PRODUCT REVIEWS • PRODUCT REVIEWS •
-                </textPath>
-              </text>
-            </svg>
-
-            {/* Inner Coral Play Button */}
-            <div className="relative z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral border border-white/30 text-white flex items-center justify-center transition-colors shadow-inner">
-              <Play size={17} fill="white" className="text-white ml-0.5" />
-            </div>
-          </button>
-        </div>
       </div>
 
       {/* ─── 3. Bottom Layered Interactive Controls ─── */}

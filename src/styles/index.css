@@ -132,6 +132,15 @@ table tbody tr:hover {
   animation-play-state: paused;
 }
 
+@keyframes progressFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 
 
 
