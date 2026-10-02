@@ -197,7 +197,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
-            className="w-auto max-w-[130px] min-[390px]:max-w-[145px] md:max-w-none md:w-auto md:h-full max-h-[225px] min-[390px]:max-h-[250px] sm:max-h-[280px] object-contain md:object-bottom drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
+            className="w-auto max-w-[130px] min-[390px]:max-w-[145px] md:max-w-none md:w-auto md:h-full max-h-[225px] min-[390px]:max-h-[250px] sm:max-h-[280px] md:max-h-none object-contain md:object-bottom drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
             style={{
               WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
               maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
