@@ -190,14 +190,14 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       </div>
 
       {/* ─── 2. Centerpiece: Mobile has full-width photo with small photographer at bottom-left corner; Laptop/Desktop has side-by-side layout ─── */}
-      <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-5 lg:gap-6 my-auto pt-2 pb-1 sm:py-2">
+      <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-0 my-auto pt-2 pb-1 sm:py-2 md:overflow-hidden">
 
-        {/* ─── Master Photographer (Anji) — On mobile: small, bottom-left corner ON photo; On desktop: standalone left column ─── */}
-        <div className="absolute md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none flex items-end justify-start shrink-0 w-auto md:w-[260px] lg:w-[320px] xl:w-[380px]">
+        {/* ─── Master Photographer (Anji) — On mobile: small, bottom-left corner ON photo; On desktop: shifted left so no rectangular box shows behind, hand cut is OK ─── */}
+        <div className="absolute md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none flex items-end justify-start shrink-0 w-auto md:w-[220px] lg:w-[270px] xl:w-[330px] md:overflow-hidden md:-ml-8 lg:-ml-10 xl:-ml-12">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
-            className="w-auto max-w-[130px] min-[390px]:max-w-[145px] md:max-w-[270px] lg:max-w-[320px] xl:max-w-[380px] max-h-[225px] min-[390px]:max-h-[250px] sm:max-h-[280px] md:max-h-[520px] lg:max-h-[580px] xl:max-h-[640px] object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
+            className="w-auto max-w-[130px] min-[390px]:max-w-[145px] md:max-w-[280px] lg:max-w-[330px] xl:max-w-[400px] max-h-[225px] min-[390px]:max-h-[250px] sm:max-h-[280px] md:max-h-[530px] lg:max-h-[600px] xl:max-h-[660px] object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
             style={{
               WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
               maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
@@ -205,9 +205,9 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           />
         </div>
 
-        {/* ─── Single-Image Showcase — Covers TOTAL width on mobile; fills remaining space on desktop; 100% clean with NO names ─── */}
+        {/* ─── Single-Image Showcase — Covers TOTAL width on mobile; on laptop/desktop fills ALL remaining space edge-to-edge, no white gaps, no border radius on right edge ─── */}
         <div
-          className="w-full md:flex-1 h-[390px] min-[390px]:h-[440px] sm:h-[470px] md:h-[500px] lg:h-[560px] xl:h-[620px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-800 cursor-pointer select-none"
+          className="w-full md:flex-1 h-[390px] min-[390px]:h-[440px] sm:h-[470px] md:h-[510px] lg:h-[570px] xl:h-[630px] rounded-2xl sm:rounded-3xl md:rounded-l-[32px] md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-4 lg:-mr-14"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
