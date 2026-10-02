@@ -124,28 +124,31 @@ export function StudioDataProvider({ children }) {
       console.warn('BroadcastChannel error', e);
     }
 
-    // Fetch from Supabase cloud database
+    // Fetch from Supabase cloud database (with global deletion sync across all devices)
     const fetchSupabaseGallery = async () => {
       if (!isSupabaseConfigured || !supabase) return;
       try {
-        const { data, error } = await supabase
-          .from('gallery')
-          .select('*')
-          .order('created_at', { ascending: false });
+        const [{ data: cloudData, error: galleryError }, { data: deletedRows }] =
+          await Promise.all([
+            supabase.from('gallery').select('*').order('created_at', { ascending: false }),
+            supabase.from('deleted_gallery_ids').select('id'),
+          ]);
 
-        if (!error && Array.isArray(data) && isMounted) {
-          if (data.length > 0) {
-            setGallery((prev) => {
-              const cloudIds = new Set(data.map((d) => d.id));
-              // Keep any locally created photos not yet synced
-              const localUnsynced = prev.filter(
-                (p) => !cloudIds.has(p.id) && !defaultGalleryItems.some((d) => d.id === p.id)
-              );
-              const remainingDefaults = defaultGalleryItems.filter((item) => !cloudIds.has(item.id));
-              return [...localUnsynced, ...data, ...remainingDefaults];
-            });
-          }
+        if (galleryError) {
+          console.warn('Supabase gallery fetch notice:', galleryError);
           return;
+        }
+
+        const deletedSet = new Set((deletedRows || []).map((r) => r.id));
+        const activeCloudPhotos = (cloudData || []).filter((item) => !deletedSet.has(item.id));
+        const activeDefaults = defaultGalleryItems.filter((item) => !deletedSet.has(item.id));
+
+        const cloudIds = new Set(activeCloudPhotos.map((d) => d.id));
+        const nonDuplicatedDefaults = activeDefaults.filter((item) => !cloudIds.has(item.id));
+
+        const merged = [...activeCloudPhotos, ...nonDuplicatedDefaults];
+        if (isMounted) {
+          setGallery(merged);
         }
       } catch (err) {
         console.warn('Supabase gallery fetch notice:', err);
@@ -154,15 +157,22 @@ export function StudioDataProvider({ children }) {
 
     fetchSupabaseGallery();
 
-    // Subscribe to real-time changes across all connected devices
+    // Subscribe to real-time changes across all connected devices (inserts, updates, deletes)
     let realtimeChannel = null;
     if (isSupabaseConfigured && supabase) {
       try {
         realtimeChannel = supabase
-          .channel('public:gallery')
+          .channel('my3_gallery_sync')
           .on(
             'postgres_changes',
             { event: '*', schema: 'public', table: 'gallery' },
+            () => {
+              fetchSupabaseGallery();
+            }
+          )
+          .on(
+            'postgres_changes',
+            { event: '*', schema: 'public', table: 'deleted_gallery_ids' },
             () => {
               fetchSupabaseGallery();
             }
@@ -305,6 +315,7 @@ export function StudioDataProvider({ children }) {
     // Sync to Supabase Cloud Database (Makes photo live on all laptops & mobiles worldwide)
     if (isSupabaseConfigured && supabase) {
       try {
+        await supabase.from('deleted_gallery_ids').delete().eq('id', itemWithId.id);
         await supabase.from('gallery').upsert([
           {
             id: itemWithId.id,
@@ -396,7 +407,10 @@ export function StudioDataProvider({ children }) {
 
     if (isSupabaseConfigured && supabase) {
       try {
+        // 1. Delete from gallery table if it was an uploaded photo
         await supabase.from('gallery').delete().eq('id', itemId);
+        // 2. Mark in deleted_gallery_ids so all other laptops/mobiles immediately remove it
+        await supabase.from('deleted_gallery_ids').upsert([{ id: itemId }]);
       } catch (sbErr) {
         console.warn('Supabase delete notice:', sbErr);
       }
@@ -414,6 +428,15 @@ export function StudioDataProvider({ children }) {
   const resetGallery = async () => {
     setGallery(defaultGalleryItems);
     broadcastGallery(defaultGalleryItems);
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        // Clear all deleted marks so defaults restore
+        await supabase.from('deleted_gallery_ids').delete().neq('id', '__keep_schema__');
+      } catch (e) {
+        console.warn('Supabase reset deleted notice:', e);
+      }
+    }
 
     try {
       await fetch('/api/gallery/reset', { method: 'POST' });
