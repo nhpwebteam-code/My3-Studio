@@ -264,9 +264,9 @@ export default function CuratedFramesSection({ onOpenBooking }) {
       {/* ═══════════════════════════════════════════
           STICKY FULL-SCREEN VIEWPORT ACROSS ALL SCREENS
       ═══════════════════════════════════════════ */}
-      <div className="sticky top-0 h-screen h-[100dvh] max-h-screen max-h-[100dvh] w-full flex flex-col justify-center overflow-hidden pt-18 sm:pt-20 lg:pt-22 pb-3 sm:pb-5">
-        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center min-h-0">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-8 items-center min-h-0 my-auto">
+      <div className="sticky top-0 h-screen min-h-[100dvh] w-full flex items-center justify-center overflow-hidden py-3 sm:py-6 lg:pt-22 lg:pb-5">
+        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center lg:min-h-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-8 items-center lg:min-h-0 lg:my-auto">
             
             {/* ═══════════════════════════════════════════
                 LEFT / TOP (MOBILE): SEMI-CIRCLE ARC & SCROLL-DRIVEN FRAMES
@@ -317,7 +317,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
               </div>
 
               {/* Aspect-Square Container guarantees 1:1 coordinate symmetry with zero distortion */}
-              <div className="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[380px] md:max-w-[430px] lg:max-w-[470px] xl:max-w-[520px] 2xl:max-w-[560px] max-h-[min(510px,calc(100dvh-120px))] aspect-square mx-auto touch-pan-y">
+              <div className="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[470px] xl:max-w-[520px] 2xl:max-w-[560px] lg:max-h-[min(510px,calc(100dvh-120px))] aspect-square mx-auto touch-pan-y">
                 
                 {/* ─── The Continuous Flowing Semi-Circle Arc ─── */}
                 <svg

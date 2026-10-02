@@ -171,263 +171,229 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
   return (
     <section
       id="home"
-      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-20 sm:pt-22 md:pt-24 lg:pt-26 pb-3 sm:pb-4 px-4 sm:px-6 lg:px-8 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20"
+      className="relative w-full min-h-[96vh] min-h-[96dvh] flex flex-col justify-between pt-20 sm:pt-24 md:pt-24 pb-4 sm:pb-6 px-4 sm:px-8 lg:px-10 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-24"
     >
-      {/* ─── Ambient Subtle Warm Spotlight Glow behind hero ─── */}
+      {/* ─── Ambient Subtle Warm Spotlight Glow behind center photographer ─── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: 'radial-gradient(ellipse 65% 58% at 50% 55%, rgba(255, 101, 72, 0.08) 0%, rgba(250, 247, 242, 0.5) 45%, #FAF7F2 100%)',
         }}
       />
-
-      {/* ─── Master Aligned Inner Container (max-w-7xl matching Navbar, Curated Frames & Footer) ─── */}
-      <div className="max-w-7xl mx-auto w-full h-full flex-1 flex flex-col justify-between min-h-0 relative z-10">
-
-        {/* ─── Centerpiece: Left Brand & Photographer + Right Image Showcase ─── */}
-        <div className="relative w-full flex-1 min-h-0 flex flex-col md:flex-row items-center md:items-stretch justify-between gap-3 md:gap-5 lg:gap-8 my-auto py-1">
-
-          {/* ─── Desktop Left Column: Line + ANJI + PHOTOGRAPHY + Cutout (Flush-aligned with grid) ─── */}
-          <div className="hidden md:flex flex-col justify-between shrink-0 w-[220px] lg:w-[260px] xl:w-[300px] h-full min-h-0 z-20">
-            {/* Top Brand Lockup: Upside Line -> ANJI -> PHOTOGRAPHY */}
-            <div className="pt-0.5 sm:pt-1 shrink-0">
-              {/* 1. Upside Coral Accent Line */}
-              <div className="w-10 lg:w-11 h-[2.5px] bg-coral rounded-full mb-1.5 sm:mb-2" />
-              
-              {/* 2. Lead Photographer Name: ANJI */}
-              <h1 className="font-display font-black text-2xl lg:text-3xl xl:text-4xl text-[#1E2024] tracking-wider uppercase leading-none">
-                ANJI
-              </h1>
-              
-              {/* 3. Sub-title: PHOTOGRAPHY (Spaced out uppercase like screenshot) */}
-              <p className="font-sans font-medium tracking-[0.32em] text-xs lg:text-sm text-charcoal-700 uppercase mt-1 select-none">
-                PHOTOGRAPHY
-              </p>
-            </div>
-
-            {/* 4. Master Photographer Cutout (Anji holding camera with sunglasses, bottom faded, dynamically scaled) */}
-            <div className="relative flex-1 min-h-0 flex items-end justify-start overflow-hidden pt-1 pointer-events-none">
-              <img
-                src="/photographer-cutout.png"
-                alt="MY3 Studios Lead Photographer Anji"
-                className="w-auto h-full max-h-full object-contain object-bottom drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)]"
-                style={{
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.25) 98%, transparent 100%)',
-                  maskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.25) 98%, transparent 100%)',
-                }}
-                draggable={false}
-              />
-            </div>
+      {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral ─── */}
+      <div className="w-full text-center relative z-10 mb-1 sm:mb-2 md:mb-3 overflow-visible px-1 sm:px-0 flex items-center justify-center">
+        {/* Mobile-only Lead Photographer Badge beside PHOTOGRAPHY on the left (Red-circled area) */}
+        <div className="md:hidden absolute -left-2 min-[380px]:-left-1 sm:left-1 top-1/2 -translate-y-1/2 z-20 pointer-events-auto select-none">
+          <div className="w-13 h-13 min-[360px]:w-14 min-[360px]:h-14 min-[400px]:w-16 min-[400px]:h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden border-2 border-coral shadow-xl bg-charcoal-900 ring-2 ring-white/80 shrink-0 transform-gpu">
+            <img
+              src="/photographer-badge.png"
+              alt="MY3 Lead Photographer Anji"
+              className="w-full h-full object-cover select-none pointer-events-none"
+              loading="eager"
+              fetchPriority="high"
+              draggable={false}
+            />
           </div>
-
-          {/* ─── Mobile-only Top Header Lockup: Line + ANJI + PHOTOGRAPHY + Circular Photographer Badge ─── */}
-          <div className="md:hidden flex items-center justify-between w-full shrink-0 mb-1 px-1">
-            <div>
-              {/* Upside Coral Line */}
-              <div className="w-8 h-0.5 bg-coral rounded-full mb-1" />
-              {/* Name: ANJI */}
-              <h1 className="font-display font-black text-xl min-[400px]:text-2xl text-[#1E2024] tracking-wider uppercase leading-none">
-                ANJI
-              </h1>
-              {/* PHOTOGRAPHY */}
-              <p className="font-sans font-medium tracking-[0.28em] text-[11px] min-[400px]:text-xs text-charcoal-700 uppercase mt-0.5">
-                PHOTOGRAPHY
-              </p>
-            </div>
-
-            {/* Circular Photographer Badge on Mobile */}
-            <div className="w-12 h-12 min-[380px]:w-14 min-[380px]:h-14 rounded-full overflow-hidden border-2 border-coral shadow-lg bg-charcoal-900 ring-2 ring-white/80 shrink-0">
-              <img
-                src="/photographer-badge.png"
-                alt="MY3 Lead Photographer Anji"
-                className="w-full h-full object-cover select-none pointer-events-none"
-                loading="eager"
-                fetchPriority="high"
-                draggable={false}
-              />
-            </div>
-          </div>
-
-          {/* ─── Right Column: Showcase Card (Full rounded corners on all sides, flexes to window height) ─── */}
-          <div
-            className="w-full md:flex-1 h-[320px] min-[390px]:h-[360px] sm:h-[400px] md:h-full md:min-h-0 rounded-2xl sm:rounded-3xl lg:rounded-[28px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-200/60 cursor-pointer select-none"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            onClick={() => setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length)}
-            title="Tap or swipe to advance photograph"
-          >
-            {(() => {
-              const currentPhoto = HERO_CYLINDER_PHOTOS[currentIndex % HERO_CYLINDER_PHOTOS.length];
-              return (
-                <div key={currentIndex} className="w-full h-full relative group animate-fade-in">
-                  <img
-                    src={currentPhoto.image}
-                    alt={currentPhoto.title}
-                    className="w-full h-full object-cover object-[center_28%] filter contrast-105 group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-              );
-            })()}
-
-            {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp */}
-            <div className="absolute top-2.5 sm:top-3.5 right-2.5 sm:right-3.5 z-30">
-              <button
-                id="product-reviews-stamp"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (onOpenVideoReviews) onOpenVideoReviews();
-                }}
-                className="relative w-16 h-16 min-[390px]:w-18 min-[390px]:h-18 sm:w-22 sm:h-22 md:w-24 md:h-24 lg:w-26 lg:h-26 rounded-full bg-[#181A1D]/90 backdrop-blur-xs border-2 border-white/30 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
-                aria-label="View our product reviews"
-              >
-                {/* Optional Looping Client Video Preview inside */}
-                <video
-                  src="/takeout-1-001/vedio/vedio.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  webkit-playsinline="true"
-                  preload="auto"
-                  className="absolute inset-0 w-full h-full object-cover rounded-full opacity-35 group-hover:opacity-50 transition-opacity pointer-events-none"
-                />
-
-                {/* Rotating Curved Text */}
-                <svg
-                  className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none z-10"
-                  viewBox="0 0 100 100"
-                >
-                  <defs>
-                    <path
-                      id="circlePathHero"
-                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                    />
-                  </defs>
-                  <text fill="#FFFFFF" fontSize="9.2" fontWeight="700" letterSpacing="0.22em" className="uppercase font-bold tracking-[0.22em] fill-white drop-shadow">
-                    <textPath href="#circlePathHero" xlinkHref="#circlePathHero" startOffset="0%">
-                      PRODUCT REVIEWS • PRODUCT REVIEWS •
-                    </textPath>
-                  </text>
-                </svg>
-
-                {/* Inner Coral Play Button */}
-                <div className="relative z-20 w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-coral/95 group-hover:bg-coral border border-white/40 text-white flex items-center justify-center transition-all group-hover:scale-110 shadow-lg">
-                  <Play size={13} fill="white" className="text-white ml-0.5" />
-                </div>
-              </button>
-            </div>
-
-          </div>
-
         </div>
 
-        {/* ─── 3. Bottom Layered Interactive Controls: Always visible in any window size ─── */}
-        <div className="relative z-30 w-full shrink-0 flex flex-col-reverse sm:flex-row items-center sm:items-end justify-between gap-3 sm:gap-2 pt-2 sm:pt-2.5">
-          
-          {/* Bottom-Left: Circular Camera Button + Timeline Strip */}
-          <div className="flex flex-col items-center sm:items-start space-y-2 sm:space-y-2.5">
-            {/* Circular Camera Button with Coral Border */}
-            <button
-              onClick={onOpenBooking}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1E2024] hover:bg-black border border-coral text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md group cursor-pointer"
-              aria-label="Book a Photography Session"
-              title="Book a Session"
-            >
-              <Camera size={17} className="group-hover:scale-110 transition-transform" />
-            </button>
+        <h1 className="font-display font-black uppercase text-[7.5vw] min-[360px]:text-[8vw] min-[400px]:text-[8.5vw] sm:text-[9.5vw] md:text-[6vw] lg:text-[76px] xl:text-[90px] leading-tight tracking-tight sm:tracking-[-0.01em] flex items-center justify-center gap-1 sm:gap-2.5 whitespace-nowrap pointer-events-none select-none pl-12 min-[360px]:pl-14 min-[400px]:pl-16 md:pl-0">
+          <span className="text-[#1E2024]">PHOTO</span>
+          <span className="text-coral">GRAPHY</span>
+        </h1>
+      </div>
 
-            {/* Timeline & Social Links Row */}
-            <div className="flex items-center gap-2 sm:gap-2.5 text-xs text-charcoal-600 font-medium">
-              <span className="w-2 h-2 rounded-full bg-coral inline-block animate-pulse" />
-              <button
-                onClick={onScrollToReviews}
-                className="text-charcoal-800 hover:text-coral font-semibold transition-colors cursor-pointer"
-              >
-                Timeline
-              </button>
-              <span className="text-charcoal-300">|</span>
-              <div className="flex items-center gap-2 sm:gap-2.5 text-charcoal-600">
-                <a
-                  href="https://www.instagram.com/mythri_studio_ndl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-coral transition-colors p-0.5"
-                  title="Instagram: @mythri_studio_ndl"
-                  aria-label="Instagram"
-                >
-                  <InstagramIcon size={14} />
-                </a>
-                <a
-                  href="https://youtube.com/@mythristudio8857?si=5szrcmSiVDF_36an"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-coral transition-colors p-0.5"
-                  title="YouTube Channel"
-                  aria-label="YouTube"
-                >
-                  <YoutubeIcon size={14} />
-                </a>
-                <a
-                  href="/contact#studio-location"
-                  className="hover:text-coral transition-colors p-0.5"
-                  title="View Studio Locations & Maps"
-                  aria-label="Studio Maps"
-                >
-                  <MapPin size={14} />
-                </a>
-              </div>
-            </div>
-          </div>
+      {/* ─── 2. Centerpiece: Mobile has full-width photo; Laptop/Desktop has big total-fill showcase with NO white gap ─── */}
+      <div className="relative w-full max-w-none flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-0 my-auto pt-1 pb-1 sm:py-2 md:overflow-hidden">
 
-          {/* Bottom-Right: Booking Lockup (Centered on mobile, right-aligned on desktop; LETS TALK & WHATSAPP down of MY3 Studio) */}
-          <div className="flex flex-col items-center sm:items-end">
-            {/* Logo + Text Lockup */}
-            <div className="flex items-center gap-2.5 sm:gap-3">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full overflow-hidden shadow-xs border border-charcoal-200 bg-white shrink-0">
+        {/* ─── Master Photographer (Anji) — Hidden on mobile; On desktop: flush against showcase on the left with zero white gap ─── */}
+        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-[280px] lg:w-[350px] xl:w-[420px] md:h-[620px] lg:h-[700px] xl:h-[760px] md:overflow-visible md:-ml-4 lg:-ml-8 xl:-ml-12">
+          <img
+            src="/photographer-cutout.png"
+            alt="MY3 Studios Lead Photographer Anji"
+            className="w-auto md:w-full md:h-full md:max-h-none object-contain md:object-bottom drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
+            style={{
+              WebkitMaskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.3) 97%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.3) 97%, transparent 100%)',
+            }}
+          />
+        </div>
+
+        {/* ─── Single-Image Showcase — Mobile fits one screen like Image 1; Desktop is big & tall (620px-760px) so photos appear full ─── */}
+        <div
+          className="w-full md:flex-1 h-[385px] min-[390px]:h-[425px] sm:h-[465px] md:h-[620px] lg:h-[700px] xl:h-[760px] rounded-2xl sm:rounded-3xl md:rounded-l-2xl md:rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] md:border-r-0 border border-charcoal-800 cursor-pointer select-none md:-mr-8 lg:-mr-10"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onClick={() => setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length)}
+          title="Tap or swipe to advance photograph"
+        >
+          {(() => {
+            const currentPhoto = HERO_CYLINDER_PHOTOS[currentIndex % HERO_CYLINDER_PHOTOS.length];
+            return (
+              <div key={currentIndex} className="w-full h-full relative group animate-fade-in">
                 <img
-                  src="/logo.png"
-                  alt="MY3 Studio Logo"
-                  className="w-full h-full object-cover"
+                  src={currentPhoto.image}
+                  alt={currentPhoto.title}
+                  className="w-full h-full object-cover object-[center_25%] filter contrast-105 group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
+            );
+          })()}
+        </div>
 
-              <div className="text-left">
-                <h3 className="font-display font-black text-base sm:text-lg md:text-xl italic tracking-tight leading-tight">
-                  <span className="text-charcoal-900">MY</span>
-                  <span className="text-[#FA2D66]">3</span>{' '}
-                  <span className="text-charcoal-900">Studio</span>
-                </h3>
-                <p className="text-[11px] sm:text-xs font-semibold text-charcoal-600 tracking-tight leading-none mt-0.5">
-                  Book your schedule
-                </p>
-              </div>
+        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp — Fixed for all mobile engines (OnePlus, Android, Apple) */}
+        <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-8 z-30">
+          <button
+            id="product-reviews-stamp"
+            onClick={onOpenVideoReviews}
+            className="relative w-18 h-18 min-[390px]:w-20 min-[390px]:h-20 sm:w-26 sm:h-26 md:w-30 md:h-30 lg:w-32 lg:h-32 rounded-full bg-[#181A1D] border-2 border-white/30 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
+            aria-label="View our product reviews"
+          >
+            {/* Optional Looping Client Video Preview inside */}
+            <video
+              src="/takeout-1-001/vedio/vedio.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              webkit-playsinline="true"
+              preload="auto"
+              className="absolute inset-0 w-full h-full object-cover rounded-full opacity-35 group-hover:opacity-50 transition-opacity pointer-events-none"
+            />
+
+            {/* Rotating Curved Text — Uses BOTH href and xlinkHref with inline presentation attributes for 100% browser support */}
+            <svg
+              className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none z-10"
+              viewBox="0 0 100 100"
+            >
+              <defs>
+                <path
+                  id="circlePathHero"
+                  d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                />
+              </defs>
+              <text fill="#FFFFFF" fontSize="9.2" fontWeight="700" letterSpacing="0.22em" className="uppercase font-bold tracking-[0.22em] fill-white drop-shadow">
+                <textPath href="#circlePathHero" xlinkHref="#circlePathHero" startOffset="0%">
+                  PRODUCT REVIEWS • PRODUCT REVIEWS •
+                </textPath>
+              </text>
+            </svg>
+
+            {/* Inner Coral Play Button */}
+            <div className="relative z-20 w-8 h-8 min-[390px]:w-9 min-[390px]:h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-coral/95 group-hover:bg-coral border border-white/40 text-white flex items-center justify-center transition-all group-hover:scale-110 shadow-lg">
+              <Play size={15} fill="white" className="text-white ml-0.5" />
             </div>
+          </button>
+        </div>
 
-            {/* Action Buttons: LETS TALK & WHATSAPP (Down of MY3 Studio) */}
-            <div className="flex items-center justify-center sm:justify-end gap-2 sm:gap-2.5 mt-2 sm:mt-2.5">
-              {/* Lets Talk Button */}
-              <a
-                href="tel:+919949395037"
-                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-charcoal-300 hover:border-coral text-charcoal-900 hover:text-coral bg-white hover:bg-coral-50 font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-sm"
-              >
-                <Phone size={13} />
-                <span>LETS TALK</span>
-              </a>
+      </div>
 
-              {/* WhatsApp Button */}
+      {/* ─── 3. Bottom Layered Interactive Controls ─── */}
+      <div className="relative z-30 w-full max-w-7xl mx-auto flex flex-col-reverse sm:flex-row items-center sm:items-end justify-between gap-5 sm:gap-2 pt-4 sm:pt-2">
+        
+        {/* Bottom-Left: Circular Camera Button + Timeline Strip */}
+        <div className="flex flex-col items-center sm:items-start space-y-2.5 sm:space-y-3">
+          {/* Circular Camera Button with Coral Border */}
+          <button
+            onClick={onOpenBooking}
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#1E2024] hover:bg-black border border-coral text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-lg group cursor-pointer"
+            aria-label="Book a Photography Session"
+            title="Book a Session"
+          >
+            <Camera size={18} className="group-hover:scale-110 transition-transform" />
+          </button>
+
+          {/* Timeline & Social Links Row */}
+          <div className="flex items-center gap-2.5 text-xs text-charcoal-600 font-medium">
+            <span className="w-2 h-2 rounded-full bg-coral inline-block animate-pulse" />
+            <button
+              onClick={onScrollToReviews}
+              className="text-charcoal-700 hover:text-coral transition-colors cursor-pointer"
+            >
+              Timeline
+            </button>
+            <span className="text-charcoal-300">|</span>
+            <div className="flex items-center gap-2.5 text-charcoal-600">
               <a
-                href={HERO_WHATSAPP_URL}
+                href="https://www.instagram.com/mythri_studio_ndl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#25D366] hover:bg-[#1ebd5b] text-white font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-md shadow-emerald-500/20"
+                className="hover:text-coral transition-colors"
+                title="Instagram: @mythri_studio_ndl"
+                aria-label="Instagram"
               >
-                <WhatsAppIcon size={14} />
-                <span>WHATSAPP</span>
+                <InstagramIcon size={14} />
+              </a>
+              <a
+                href="https://youtube.com/@mythristudio8857?si=5szrcmSiVDF_36an"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-coral transition-colors"
+                title="YouTube Channel"
+                aria-label="YouTube"
+              >
+                <YoutubeIcon size={14} />
+              </a>
+              <a
+                href="/contact#studio-location"
+                className="hover:text-coral transition-colors"
+                title="View Studio Locations & Maps"
+                aria-label="Studio Maps"
+              >
+                <MapPin size={14} />
               </a>
             </div>
           </div>
+        </div>
 
+        {/* Bottom-Right: Booking Lockup (Centered on mobile, right-aligned on desktop) */}
+        <div className="flex flex-col items-center sm:items-end">
+          {/* Logo + Text Lockup */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            {/* Circular Logo */}
+            <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full overflow-hidden shadow-md border-2 border-charcoal-200 bg-white shrink-0">
+              <img
+                src="/logo.png"
+                alt="MY3 Studio Logo"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Text Content */}
+            <div className="text-left">
+              <h3 className="font-display font-black text-lg sm:text-xl md:text-2xl italic tracking-tight leading-tight">
+                <span className="text-charcoal-900">MY</span>
+                <span className="text-[#FA2D66]">3</span>{' '}
+                <span className="text-charcoal-900">Studio</span>
+              </h3>
+              <p className="text-xs sm:text-sm font-bold text-charcoal-600 tracking-tight leading-tight mt-0.5">
+                Book your schedule
+              </p>
+            </div>
+          </div>
+
+          {/* Action Buttons: LETS TALK & WHATSAPP */}
+          <div className="flex items-center justify-center sm:justify-end gap-2.5 sm:gap-2.5 mt-2.5 sm:mt-3">
+            {/* Lets Talk Button */}
+            <a
+              href="tel:+919949395037"
+              className="inline-flex items-center gap-1.5 px-4 sm:px-4 py-2 rounded-full border border-charcoal-300 hover:border-coral text-charcoal-800 hover:text-coral bg-white hover:bg-coral-50 font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-xs"
+            >
+              <Phone size={13} />
+              <span>LETS TALK</span>
+            </a>
+
+            {/* WhatsApp Button */}
+            <a
+              href={HERO_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 sm:px-4 py-2 rounded-full bg-[#25D366] hover:bg-[#1ebd5b] text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-md"
+            >
+              <WhatsAppIcon size={14} />
+              <span>WHATSAPP</span>
+            </a>
+          </div>
         </div>
 
       </div>
