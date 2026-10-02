@@ -135,16 +135,38 @@ const HERO_CYLINDER_PHOTOS = [
 
 export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollToReviews }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
-  // Auto-advance photos every 3 seconds as requested by client
+  // Auto-advance photos strictly every 3 seconds (3000ms) across laptop and desktop without slow pause
   useEffect(() => {
-    if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, []);
+
+  // Touch and drag swipe navigation
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > 35) {
+      // Swiped left -> next photo
+      setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length);
+    } else if (distance < -35) {
+      // Swiped right -> prev photo
+      setCurrentIndex((prev) => (prev - 1 + HERO_CYLINDER_PHOTOS.length) % HERO_CYLINDER_PHOTOS.length);
+    }
+  };
 
   return (
     <section
@@ -167,15 +189,15 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Left Photographer + Right Single Image Showcase (Same stunning row view on Mobile, Laptop & Desktop; Fills ALL spaces) ─── */}
-      <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-row items-end justify-between gap-2 min-[390px]:gap-2.5 sm:gap-4 md:gap-6 my-auto py-1 sm:py-2">
+      {/* ─── 2. Centerpiece: Left Photographer + Right Single Image Showcase (Enlarged on mobile to fill vertical space; pure photo with NO names) ─── */}
+      <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-row items-end justify-between gap-2.5 sm:gap-4 md:gap-6 my-auto pt-2 pb-1 sm:py-2">
 
-        {/* ─── Master Photographer (Anji) — 100% Standalone Column on Left, ZERO Images Behind ─── */}
-        <div className="shrink-0 w-[110px] min-[390px]:w-[130px] sm:w-[190px] md:w-[260px] lg:w-[320px] xl:w-[380px] flex justify-start items-end relative z-20 pointer-events-none">
+        {/* ─── Master Photographer (Anji) — Much taller on mobile to fill vertical space ─── */}
+        <div className="shrink-0 w-[130px] min-[390px]:w-[155px] min-[420px]:w-[170px] sm:w-[210px] md:w-[270px] lg:w-[320px] xl:w-[380px] flex justify-start items-end relative z-20 pointer-events-none">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
-            className="w-full h-auto max-h-[250px] min-[390px]:max-h-[285px] sm:max-h-[380px] md:max-h-[480px] lg:max-h-[550px] xl:max-h-[610px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)]"
+            className="w-full h-auto max-h-[380px] min-[390px]:max-h-[430px] min-[420px]:max-h-[460px] sm:max-h-[490px] md:max-h-[520px] lg:max-h-[580px] xl:max-h-[640px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)]"
             style={{
               WebkitMaskImage: 'linear-gradient(to bottom, black 86%, rgba(0,0,0,0.3) 96%, transparent 100%)',
               maskImage: 'linear-gradient(to bottom, black 86%, rgba(0,0,0,0.3) 96%, transparent 100%)',
@@ -183,47 +205,35 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           />
         </div>
 
-        {/* ─── Single-Image Showcase — Expands to fill 100% of remaining width so NO empty spaces appear ─── */}
+        {/* ─── Single-Image Showcase — Much taller on mobile to match photographer & fill space; 100% clean with NO names ─── */}
         <div
-          className="flex-1 w-full h-[240px] min-[390px]:h-[275px] sm:h-[370px] md:h-[470px] lg:h-[540px] xl:h-[600px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-800"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          className="flex-1 w-full h-[360px] min-[390px]:h-[410px] min-[420px]:h-[440px] sm:h-[470px] md:h-[500px] lg:h-[560px] xl:h-[620px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-800 cursor-pointer select-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onClick={() => setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length)}
+          title="Tap or swipe to advance photograph"
         >
           {(() => {
             const currentPhoto = HERO_CYLINDER_PHOTOS[currentIndex % HERO_CYLINDER_PHOTOS.length];
             return (
               <div key={currentIndex} className="w-full h-full relative group animate-fade-in">
-                <Link
-                  to="/gallery"
-                  className="block w-full h-full relative"
-                  title={currentPhoto.title}
-                >
-                  <img
-                    src={currentPhoto.image}
-                    alt={currentPhoto.title}
-                    className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
-                  <div className="absolute bottom-2.5 left-2.5 sm:bottom-5 sm:left-5 right-2.5 sm:right-5 text-left">
-                    <span className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-coral bg-black/60 backdrop-blur-xs px-2 py-0.5 sm:px-3 sm:py-1 rounded-full inline-block mb-1 sm:mb-1.5 border border-white/10">
-                      MY3 Studios Portfolio
-                    </span>
-                    <p className="text-xs sm:text-base md:text-lg font-bold text-white drop-shadow-md truncate">
-                      {currentPhoto.title}
-                    </p>
-                  </div>
-                </Link>
+                <img
+                  src={currentPhoto.image}
+                  alt={currentPhoto.title}
+                  className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                />
               </div>
             );
           })()}
         </div>
 
-        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp */}
+        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp — Big like old on mobile & desktop */}
         <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-8 z-30">
           <button
             id="product-reviews-stamp"
             onClick={onOpenVideoReviews}
-            className="relative w-15 h-15 min-[390px]:w-17 min-[390px]:h-17 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full bg-[#1F2125] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
+            className="relative w-20 h-20 min-[390px]:w-22 min-[390px]:h-22 sm:w-26 sm:h-26 md:w-30 md:h-30 lg:w-32 lg:h-32 rounded-full bg-[#1F2125] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
             aria-label="View our product reviews"
           >
             {/* Optional Looping Client Video Preview inside */}
@@ -255,7 +265,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             </svg>
 
             {/* Inner Coral Play Button */}
-            <div className="relative z-20 w-7 h-7 min-[390px]:w-8 min-[390px]:h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral border border-white/30 text-white flex items-center justify-center transition-colors shadow-inner">
+            <div className="relative z-20 w-9 h-9 min-[390px]:w-10 min-[390px]:h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral border border-white/30 text-white flex items-center justify-center transition-colors shadow-inner">
               <Play size={16} fill="white" className="text-white ml-0.5" />
             </div>
           </button>
