@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useRef } from 'r
 import { services as defaultServices } from '../data/services';
 import { galleryItems as defaultGalleryItems, galleryCategories } from '../data/gallery';
 
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
+
 const StudioDataContext = createContext(null);
 
 const STORAGE_KEYS = {
@@ -25,7 +27,7 @@ export function StudioDataProvider({ children }) {
     }
   });
 
-  // 2. Gallery State (Synced with localStorage)
+  // 2. Gallery State (Synced with localStorage & Supabase)
   const [gallery, setGallery] = useState(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.GALLERY);
@@ -102,7 +104,7 @@ export function StudioDataProvider({ children }) {
     }
   }, [user]);
 
-  // 5. BroadcastChannel & Server Fetch: Ensure EVERYONE on ANY device/browser sees uploaded photos
+  // 5. BroadcastChannel & Supabase Sync: Ensure EVERYONE on ANY device/browser sees uploaded photos
   const channelRef = useRef(null);
 
   useEffect(() => {
@@ -122,7 +124,48 @@ export function StudioDataProvider({ children }) {
       console.warn('BroadcastChannel error', e);
     }
 
-    // Fetch shared server gallery data (ensures cross-system visibility)
+    // Fetch from Supabase cloud database
+    const fetchSupabaseGallery = async () => {
+      if (!isSupabaseConfigured || !supabase) return;
+      try {
+        const { data, error } = await supabase
+          .from('gallery')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (!error && Array.isArray(data) && data.length > 0 && isMounted) {
+          const cloudIds = new Set(data.map((d) => d.id));
+          const nonDuplicatedDefaults = defaultGalleryItems.filter((item) => !cloudIds.has(item.id));
+          setGallery([...data, ...nonDuplicatedDefaults]);
+          return;
+        }
+      } catch (err) {
+        console.warn('Supabase gallery fetch notice:', err);
+      }
+    };
+
+    fetchSupabaseGallery();
+
+    // Subscribe to real-time changes across all connected devices
+    let realtimeChannel = null;
+    if (isSupabaseConfigured && supabase) {
+      try {
+        realtimeChannel = supabase
+          .channel('public:gallery')
+          .on(
+            'postgres_changes',
+            { event: '*', schema: 'public', table: 'gallery' },
+            () => {
+              fetchSupabaseGallery();
+            }
+          )
+          .subscribe();
+      } catch (e) {
+        console.warn('Supabase realtime error', e);
+      }
+    }
+
+    // Fallback: Fetch shared server gallery data (ensures cross-system visibility)
     const fetchSharedGallery = async () => {
       try {
         const res = await fetch('/api/gallery');
@@ -134,7 +177,7 @@ export function StudioDataProvider({ children }) {
           }
         }
       } catch {
-        // Fall through to static JSON fallback
+        // Fall through
       }
 
       try {
@@ -155,6 +198,9 @@ export function StudioDataProvider({ children }) {
     return () => {
       isMounted = false;
       channelRef.current?.close();
+      if (realtimeChannel && supabase) {
+        supabase.removeChannel(realtimeChannel);
+      }
     };
   }, []);
 
@@ -246,6 +292,27 @@ export function StudioDataProvider({ children }) {
       return updated;
     });
 
+    // Sync to Supabase Cloud Database (Makes photo live on all laptops & mobiles worldwide)
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('gallery').upsert([
+          {
+            id: itemWithId.id,
+            title: itemWithId.title,
+            category: itemWithId.category,
+            image: itemWithId.image,
+            description: itemWithId.description || '',
+            year: itemWithId.year || '2026',
+            location: itemWithId.location || 'Nandyal / Kurnool',
+            client: itemWithId.client || 'MY3 Client',
+            camera: itemWithId.camera || 'Sony Alpha 7R V',
+          },
+        ]);
+      } catch (sbErr) {
+        console.warn('Supabase gallery insert notice:', sbErr);
+      }
+    }
+
     // Send to backend server to save image file into /uploads/ and update public/gallery-data.json
     try {
       const response = await fetch('/api/gallery', {
@@ -291,6 +358,14 @@ export function StudioDataProvider({ children }) {
       return updated;
     });
 
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('gallery').update(updatedData).eq('id', itemId);
+      } catch (sbErr) {
+        console.warn('Supabase update notice:', sbErr);
+      }
+    }
+
     try {
       await fetch(`/api/gallery/${encodeURIComponent(itemId)}`, {
         method: 'PUT',
@@ -308,6 +383,14 @@ export function StudioDataProvider({ children }) {
       broadcastGallery(updated);
       return updated;
     });
+
+    if (isSupabaseConfigured && supabase) {
+      try {
+        await supabase.from('gallery').delete().eq('id', itemId);
+      } catch (sbErr) {
+        console.warn('Supabase delete notice:', sbErr);
+      }
+    }
 
     try {
       await fetch(`/api/gallery/${encodeURIComponent(itemId)}`, {

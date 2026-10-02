@@ -44,6 +44,8 @@ import {
   Settings,
 } from 'lucide-react';
 import { useStudioData } from '../context/StudioDataContext';
+import { isSupabaseConfigured } from '../lib/supabase';
+import { uploadImageToSupabase } from '../lib/supabaseStorage';
 
 // ─── STUDIO RECOVERY QUESTION (Single Fixed Question) ───
 export const STUDIO_SECURITY_QUESTION = {
@@ -1776,14 +1778,28 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
     '/takeout-1-001/prewedding/DSC04577.jpg',
   ];
 
-  // Process uploaded file → compress and convert to base64 data URL
-  const handleFileUpload = (file) => {
+  // Process uploaded file → upload to Supabase Cloud Storage (or fallback to local base64)
+  const handleFileUpload = async (file) => {
     if (!file || !file.type.startsWith('image/')) {
       setUploadStatus('Please select a valid image file');
       return;
     }
 
-    setUploadStatus('Processing...');
+    setUploadStatus('Uploading photo to cloud storage...');
+
+    // If Supabase is configured, upload directly to Supabase Storage bucket 'studio-photos'
+    if (isSupabaseConfigured) {
+      try {
+        const publicUrl = await uploadImageToSupabase(file, 'gallery');
+        setFormData((prev) => ({ ...prev, image: publicUrl }));
+        setUploadStatus('Uploaded to cloud successfully!');
+        setTimeout(() => setUploadStatus(''), 2500);
+        return;
+      } catch (cloudErr) {
+        console.warn('Supabase cloud upload failed, using local fallback:', cloudErr);
+        setUploadStatus('Cloud upload failed, processing locally...');
+      }
+    }
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -1809,7 +1825,7 @@ function PhotoFormModal({ title, initialData, onSave, onClose }) {
         ctx.drawImage(img, 0, 0, w, h);
         const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
         setFormData((prev) => ({ ...prev, image: compressedDataUrl }));
-        setUploadStatus('Photo uploaded successfully');
+        setUploadStatus('Photo processed successfully');
         setTimeout(() => setUploadStatus(''), 2000);
       };
       img.src = e.target.result;
