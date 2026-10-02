@@ -189,25 +189,25 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Left Photographer + Right Single Image Showcase (Enlarged on mobile to fill vertical space; pure photo with NO names) ─── */}
-      <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-row items-end justify-between gap-2.5 sm:gap-4 md:gap-6 my-auto pt-2 pb-1 sm:py-2">
+      {/* ─── 2. Centerpiece: Mobile has full-width photo with small photographer at bottom-left corner; Laptop/Desktop has side-by-side layout ─── */}
+      <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-5 lg:gap-6 my-auto pt-2 pb-1 sm:py-2">
 
-        {/* ─── Master Photographer (Anji) — Much taller on mobile to fill vertical space ─── */}
-        <div className="shrink-0 w-[130px] min-[390px]:w-[155px] min-[420px]:w-[170px] sm:w-[210px] md:w-[270px] lg:w-[320px] xl:w-[380px] flex justify-start items-end relative z-20 pointer-events-none">
+        {/* ─── Master Photographer (Anji) — On mobile: small, bottom-left corner ON photo; On desktop: standalone left column ─── */}
+        <div className="absolute md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none flex items-end justify-start shrink-0 w-auto md:w-[260px] lg:w-[320px] xl:w-[380px]">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
-            className="w-full h-auto max-h-[380px] min-[390px]:max-h-[430px] min-[420px]:max-h-[460px] sm:max-h-[490px] md:max-h-[520px] lg:max-h-[580px] xl:max-h-[640px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.18)]"
+            className="w-auto max-w-[130px] min-[390px]:max-w-[145px] md:max-w-[270px] lg:max-w-[320px] xl:max-w-[380px] max-h-[225px] min-[390px]:max-h-[250px] sm:max-h-[280px] md:max-h-[520px] lg:max-h-[580px] xl:max-h-[640px] object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
             style={{
-              WebkitMaskImage: 'linear-gradient(to bottom, black 86%, rgba(0,0,0,0.3) 96%, transparent 100%)',
-              maskImage: 'linear-gradient(to bottom, black 86%, rgba(0,0,0,0.3) 96%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
+              maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
             }}
           />
         </div>
 
-        {/* ─── Single-Image Showcase — Much taller on mobile to match photographer & fill space; 100% clean with NO names ─── */}
+        {/* ─── Single-Image Showcase — Covers TOTAL width on mobile; fills remaining space on desktop; 100% clean with NO names ─── */}
         <div
-          className="flex-1 w-full h-[360px] min-[390px]:h-[410px] min-[420px]:h-[440px] sm:h-[470px] md:h-[500px] lg:h-[560px] xl:h-[620px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-800 cursor-pointer select-none"
+          className="w-full md:flex-1 h-[390px] min-[390px]:h-[440px] sm:h-[470px] md:h-[500px] lg:h-[560px] xl:h-[620px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-800 cursor-pointer select-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -228,12 +228,12 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           })()}
         </div>
 
-        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp — Big like old on mobile & desktop */}
+        {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp */}
         <div className="absolute top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-8 z-30">
           <button
             id="product-reviews-stamp"
             onClick={onOpenVideoReviews}
-            className="relative w-20 h-20 min-[390px]:w-22 min-[390px]:h-22 sm:w-26 sm:h-26 md:w-30 md:h-30 lg:w-32 lg:h-32 rounded-full bg-[#1F2125] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
+            className="relative w-18 h-18 min-[390px]:w-20 min-[390px]:h-20 sm:w-26 sm:h-26 md:w-30 md:h-30 lg:w-32 lg:h-32 rounded-full bg-[#1F2125] border border-white/20 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
             aria-label="View our product reviews"
           >
             {/* Optional Looping Client Video Preview inside */}
@@ -265,8 +265,8 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             </svg>
 
             {/* Inner Coral Play Button */}
-            <div className="relative z-20 w-9 h-9 min-[390px]:w-10 min-[390px]:h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral border border-white/30 text-white flex items-center justify-center transition-colors shadow-inner">
-              <Play size={16} fill="white" className="text-white ml-0.5" />
+            <div className="relative z-20 w-8 h-8 min-[390px]:w-9 min-[390px]:h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-md group-hover:bg-coral border border-white/30 text-white flex items-center justify-center transition-colors shadow-inner">
+              <Play size={15} fill="white" className="text-white ml-0.5" />
             </div>
           </button>
         </div>
