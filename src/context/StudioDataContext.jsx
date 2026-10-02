@@ -133,10 +133,18 @@ export function StudioDataProvider({ children }) {
           .select('*')
           .order('created_at', { ascending: false });
 
-        if (!error && Array.isArray(data) && data.length > 0 && isMounted) {
-          const cloudIds = new Set(data.map((d) => d.id));
-          const nonDuplicatedDefaults = defaultGalleryItems.filter((item) => !cloudIds.has(item.id));
-          setGallery([...data, ...nonDuplicatedDefaults]);
+        if (!error && Array.isArray(data) && isMounted) {
+          if (data.length > 0) {
+            setGallery((prev) => {
+              const cloudIds = new Set(data.map((d) => d.id));
+              // Keep any locally created photos not yet synced
+              const localUnsynced = prev.filter(
+                (p) => !cloudIds.has(p.id) && !defaultGalleryItems.some((d) => d.id === p.id)
+              );
+              const remainingDefaults = defaultGalleryItems.filter((item) => !cloudIds.has(item.id));
+              return [...localUnsynced, ...data, ...remainingDefaults];
+            });
+          }
           return;
         }
       } catch (err) {
@@ -172,7 +180,15 @@ export function StudioDataProvider({ children }) {
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0 && isMounted) {
-            setGallery(data);
+            setGallery((prev) => {
+              // Preserve custom added photos
+              const customPhotos = prev.filter(
+                (p) => !defaultGalleryItems.some((d) => d.id === p.id)
+              );
+              const serverIds = new Set(data.map((d) => d.id));
+              const uniqueCustom = customPhotos.filter((c) => !serverIds.has(c.id));
+              return [...uniqueCustom, ...data];
+            });
             return;
           }
         }
@@ -180,17 +196,11 @@ export function StudioDataProvider({ children }) {
         // Fall through
       }
 
-      try {
-        const fallbackRes = await fetch('/gallery-data.json');
-        if (fallbackRes.ok) {
-          const fallbackData = await fallbackRes.json();
-          if (Array.isArray(fallbackData) && fallbackData.length > 0 && isMounted) {
-            setGallery(fallbackData);
-          }
-        }
-      } catch {
-        // LocalStorage fallback already initialized in useState
-      }
+      // DO NOT overwrite existing user photos with static gallery-data.json
+      setGallery((prev) => {
+        if (prev && prev.length > 0) return prev;
+        return defaultGalleryItems;
+      });
     };
 
     fetchSharedGallery();
