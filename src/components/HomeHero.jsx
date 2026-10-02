@@ -182,22 +182,33 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       />
 
       {/* ─── 1. Giant Headline: "PHOTO" in Charcoal, "GRAPHY" in Coral ─── */}
-      <div className="w-full text-center relative z-10 pointer-events-none mb-1 sm:mb-2 md:mb-3 overflow-visible px-1 sm:px-0">
-        <h1 className="font-display font-black uppercase text-[8.5vw] min-[360px]:text-[9vw] sm:text-[10vw] md:text-[9vw] lg:text-[112px] xl:text-[132px] leading-none tracking-tight sm:tracking-[-0.02em] flex items-center justify-center gap-1 sm:gap-3 whitespace-nowrap">
+      <div className="w-full text-center relative z-10 mb-1 sm:mb-2 md:mb-3 overflow-visible px-1 sm:px-0 flex items-center justify-center">
+        {/* Mobile-only Lead Photographer Badge beside PHOTOGRAPHY on the left (Red-circled area) */}
+        <div className="md:hidden absolute left-1.5 min-[380px]:left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
+          <div className="w-11 h-11 min-[380px]:w-13 min-[380px]:h-13 sm:w-15 sm:h-15 rounded-full overflow-hidden border-2 border-coral shadow-lg bg-charcoal-900 ring-2 ring-white/70">
+            <img
+              src="/photographer-badge.png"
+              alt="MY3 Lead Photographer Anji"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <h1 className="font-display font-black uppercase text-[8.5vw] min-[360px]:text-[9vw] sm:text-[10vw] md:text-[9vw] lg:text-[112px] xl:text-[132px] leading-none tracking-tight sm:tracking-[-0.02em] flex items-center justify-center gap-1 sm:gap-3 whitespace-nowrap pointer-events-none">
           <span className="text-[#1E2024]">PHOTO</span>
           <span className="text-coral">GRAPHY</span>
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Mobile has full-width photo with small photographer at bottom-left corner; Laptop/Desktop has side-by-side layout ─── */}
+      {/* ─── 2. Centerpiece: Mobile has full-width photo; Laptop/Desktop has side-by-side layout with prominent photographer ─── */}
       <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-0 my-auto pt-2 pb-1 sm:py-2 md:overflow-hidden">
 
-        {/* ─── Master Photographer (Anji) — On mobile: small corner overlay (untouched); On laptop/desktop: big and prominent ─── */}
-        <div className="absolute md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none flex items-end justify-start shrink-0 w-auto md:w-auto md:max-w-[340px] lg:max-w-[420px] xl:max-w-[480px] md:h-[550px] lg:h-[620px] xl:h-[680px] md:overflow-visible md:-ml-6 lg:-ml-10 xl:-ml-12">
+        {/* ─── Master Photographer (Anji) — Hidden on mobile (green circle removed); On laptop/desktop: big and prominent (untouched) ─── */}
+        <div className="hidden md:flex md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none items-end justify-start shrink-0 w-auto md:w-auto md:max-w-[340px] lg:max-w-[420px] xl:max-w-[480px] md:h-[550px] lg:h-[620px] xl:h-[680px] md:overflow-visible md:-ml-6 lg:-ml-10 xl:-ml-12">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
-            className="w-auto max-w-[130px] min-[390px]:max-w-[145px] md:max-w-none md:w-auto md:h-full max-h-[225px] min-[390px]:max-h-[250px] sm:max-h-[280px] md:max-h-none object-contain md:object-bottom drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
+            className="w-auto md:max-w-none md:w-auto md:h-full md:max-h-none object-contain md:object-bottom drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
             style={{
               WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
               maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
