@@ -1,0 +1,28 @@
+{
+  "adminAccounts": [
+    {
+      "id": "admin-1",
+      "name": "MY3 Master Admin",
+      "email": "rmythristudiondl.anji@gmail.com",
+      "password": "my3studios2026",
+      "role": "Master Studio Administrator",
+      "designation": "Master Studio Administrator",
+      "isMaster": true,
+      "status": "ACTIVE",
+      "badges": ["MASTER ADMIN", "ACTIVE"],
+      "avatarInitial": "M",
+      "lastActive": "Active"
+    }
+  ],
+  "deletedAccountEmails": [
+    "admin@my3studios.com",
+    "anji@my3studios.com",
+    "bookings@my3studios.com"
+  ],
+  "securityQA": {
+    "question": "What is the founding location and primary atelier of MY3 Studios?",
+    "answer": "Srinivasa Center, Nandyal, Andhra Pradesh",
+    "lastUpdated": "October 2026"
+  },
+  "version": 2
+}

@@ -26,7 +26,7 @@ export default function Login() {
     updateAdminPassword,
   } = useStudioData();
 
-  const [email, setEmail] = useState('admin@my3studios.com');
+  const [email, setEmail] = useState('rmythristudiondl.anji@gmail.com');
   const [password, setPassword] = useState('my3studios2026');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);

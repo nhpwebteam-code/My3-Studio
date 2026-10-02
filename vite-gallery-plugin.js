@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 export function galleryApiPlugin() {
   const uploadsDir = path.resolve(__dirname, 'public/uploads');
   const galleryDataFile = path.resolve(__dirname, 'public/gallery-data.json');
+  const adminConfigFile = path.resolve(__dirname, 'public/admin-config.json');
 
   const ensureDirs = () => {
     if (!fs.existsSync(uploadsDir)) {
@@ -33,6 +34,51 @@ export function galleryApiPlugin() {
     fs.writeFileSync(galleryDataFile, JSON.stringify(data, null, 2), 'utf8');
   };
 
+  const getAdminConfig = () => {
+    if (fs.existsSync(adminConfigFile)) {
+      try {
+        return JSON.parse(fs.readFileSync(adminConfigFile, 'utf8'));
+      } catch (e) {
+        console.error('Error reading admin config:', e);
+      }
+    }
+    return {
+      adminAccounts: [
+        {
+          id: 'admin-1',
+          name: 'MY3 Master Admin',
+          email: 'rmythristudiondl.anji@gmail.com',
+          password: 'my3studios2026',
+          role: 'Master Studio Administrator',
+          designation: 'Master Studio Administrator',
+          isMaster: true,
+          status: 'ACTIVE',
+          badges: ['MASTER ADMIN', 'ACTIVE'],
+          avatarInitial: 'M',
+          lastActive: 'Active',
+        },
+      ],
+      deletedAccountEmails: [
+        'admin@my3studios.com',
+        'anji@my3studios.com',
+        'bookings@my3studios.com',
+      ],
+      securityQA: {
+        question: 'What is the founding location and primary atelier of MY3 Studios?',
+        answer: 'Srinivasa Center, Nandyal, Andhra Pradesh',
+        lastUpdated: 'October 2026',
+      },
+    };
+  };
+
+  const saveAdminConfig = (data) => {
+    try {
+      fs.writeFileSync(adminConfigFile, JSON.stringify(data, null, 2), 'utf8');
+    } catch (e) {
+      console.error('Error saving admin config:', e);
+    }
+  };
+
   const handleBase64Image = (imageData, filenamePrefix = 'my3') => {
     if (!imageData || typeof imageData !== 'string' || !imageData.startsWith('data:image/')) {
       return imageData; // Already a URL or relative path
@@ -55,7 +101,8 @@ export function galleryApiPlugin() {
     server.middlewares.use(async (req, res, next) => {
       const url = req.url?.split('?')[0] || '';
 
-      if (!url.startsWith('/api/gallery')) {
+      // Skip non-API calls
+      if (!url.startsWith('/api/gallery') && !url.startsWith('/api/admin')) {
         return next();
       }
 
@@ -76,6 +123,71 @@ export function galleryApiPlugin() {
         });
 
       try {
+        // ─── ADMIN API ───
+        if (url.startsWith('/api/admin')) {
+          if (req.method === 'GET' && url === '/api/admin') {
+            const config = getAdminConfig();
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(config));
+            return;
+          }
+
+          if (req.method === 'POST' && url === '/api/admin/sync') {
+            const body = await getJsonBody();
+            saveAdminConfig(body);
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ success: true }));
+            return;
+          }
+
+          if (req.method === 'POST' && url === '/api/admin/account') {
+            const body = await getJsonBody();
+            const config = getAdminConfig();
+            const existingIndex = config.adminAccounts.findIndex((a) => a.id === body.id);
+            if (existingIndex >= 0) {
+              config.adminAccounts[existingIndex] = { ...config.adminAccounts[existingIndex], ...body };
+            } else {
+              config.adminAccounts.push(body);
+            }
+            saveAdminConfig(config);
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ success: true, account: body }));
+            return;
+          }
+
+          if (req.method === 'DELETE' && url.startsWith('/api/admin/account/')) {
+            const id = decodeURIComponent(url.replace('/api/admin/account/', ''));
+            const config = getAdminConfig();
+            const target = config.adminAccounts.find((a) => a.id === id);
+            if (target && !target.isMaster) {
+              config.adminAccounts = config.adminAccounts.filter((a) => a.id !== id);
+              if (!config.deletedAccountEmails) config.deletedAccountEmails = [];
+              if (target.email && !config.deletedAccountEmails.includes(target.email.toLowerCase())) {
+                config.deletedAccountEmails.push(target.email.toLowerCase());
+              }
+              saveAdminConfig(config);
+            }
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ success: true }));
+            return;
+          }
+
+          if (req.method === 'POST' && url === '/api/admin/security-qa') {
+            const body = await getJsonBody();
+            const config = getAdminConfig();
+            config.securityQA = {
+              question: body.question,
+              answer: body.answer,
+              lastUpdated: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+            };
+            saveAdminConfig(config);
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ success: true, securityQA: config.securityQA }));
+            return;
+          }
+        }
+
+        // ─── GALLERY API ───
         // GET /api/gallery
         if (req.method === 'GET' && url === '/api/gallery') {
           const items = getGalleryData();
@@ -156,7 +268,7 @@ export function galleryApiPlugin() {
 
         next();
       } catch (err) {
-        console.error('API Gallery Middleware error:', err);
+        console.error('API Middleware error:', err);
         res.statusCode = 500;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({ error: err.message }));

@@ -342,65 +342,78 @@ export function StudioDataProvider({ children }) {
   };
 
   // ─── ADMIN & SECURITY ACCOUNTS ───
+  const DEFAULT_MASTER_ADMIN = {
+    id: 'admin-1',
+    name: 'MY3 Master Admin',
+    email: 'rmythristudiondl.anji@gmail.com',
+    password: 'my3studios2026',
+    role: 'Master Studio Administrator',
+    designation: 'Master Studio Administrator',
+    isMaster: true,
+    status: 'ACTIVE',
+    badges: ['MASTER ADMIN', 'ACTIVE'],
+    avatarInitial: 'M',
+    lastActive: 'Active',
+  };
+
+  const PERMANENT_BANNED_EMAILS = [
+    'admin@my3studios.com',
+    'anji@my3studios.com',
+    'bookings@my3studios.com',
+  ];
+
+  const getDeletedEmailsFromStorage = () => {
+    try {
+      const raw = localStorage.getItem('my3_deleted_admin_emails');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed.map((e) => (e || '').toLowerCase());
+      }
+    } catch {
+      // Ignore parse errors
+    }
+    return [];
+  };
+
+  const cleanseAccountsList = (accounts, extraDeletedEmails = []) => {
+    if (!Array.isArray(accounts)) return [DEFAULT_MASTER_ADMIN];
+    const allBanned = new Set([
+      ...PERMANENT_BANNED_EMAILS.map((e) => e.toLowerCase()),
+      ...extraDeletedEmails.map((e) => (e || '').toLowerCase()),
+    ]);
+
+    const cleaned = accounts.filter(
+      (acc) => acc && acc.email && !allBanned.has(acc.email.trim().toLowerCase())
+    );
+
+    // Ensure master admin is preserved
+    const hasMaster = cleaned.some(
+      (a) => a.isMaster || a.email.toLowerCase() === DEFAULT_MASTER_ADMIN.email.toLowerCase()
+    );
+    if (!hasMaster) {
+      cleaned.unshift(DEFAULT_MASTER_ADMIN);
+    }
+
+    return cleaned;
+  };
+
   const [adminAccounts, setAdminAccounts] = useState(() => {
     try {
+      const deletedEmails = getDeletedEmailsFromStorage();
       const stored = localStorage.getItem('my3_admin_accounts');
-      if (stored) return JSON.parse(stored);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const cleaned = cleanseAccountsList(parsed, deletedEmails);
+          // Persist the clean list to localStorage immediately
+          localStorage.setItem('my3_admin_accounts', JSON.stringify(cleaned));
+          return cleaned;
+        }
+      }
     } catch (e) {
       console.error('Failed to load admin accounts', e);
     }
-    return [
-      {
-        id: 'admin-1',
-        name: 'MY3 Master Admin',
-        email: 'rmythristudiondl.anji@gmail.com',
-        password: 'my3studios2026',
-        role: 'Master Studio Administrator',
-        designation: 'Master Studio Administrator',
-        isMaster: true,
-        status: 'ACTIVE',
-        badges: ['MASTER ADMIN', 'ACTIVE', 'Master Admin Only'],
-        avatarInitial: 'M',
-        lastActive: 'Just now',
-      },
-      {
-        id: 'admin-2',
-        name: 'MY3 Fotography Admin',
-        email: 'admin@my3studios.com',
-        password: 'my3studios2026',
-        role: 'Studio Admin',
-        designation: 'Studio Admin (@my3studios)',
-        isCurrent: true,
-        status: 'ACTIVE',
-        badges: ['ADMINISTRATOR', 'ACTIVE'],
-        avatarInitial: 'K',
-        lastActive: 'Active session',
-      },
-      {
-        id: 'admin-3',
-        name: 'Anji Lead Photographer',
-        email: 'anji@my3studios.com',
-        password: 'my3studios2026',
-        role: 'Founder & Principal Artist',
-        designation: 'Studio Founder & Lead Artist',
-        status: 'ACTIVE',
-        badges: ['LEAD ARTIST', 'ACTIVE'],
-        avatarInitial: 'A',
-        lastActive: '2 hours ago',
-      },
-      {
-        id: 'admin-4',
-        name: 'Studio Bookings & Ops',
-        email: 'bookings@my3studios.com',
-        password: 'my3studios2026',
-        role: 'Client Coordination',
-        designation: 'Client Relations & Scheduling',
-        status: 'ACTIVE',
-        badges: ['OPERATIONS', 'ACTIVE'],
-        avatarInitial: 'S',
-        lastActive: '1 day ago',
-      },
-    ];
+    return [DEFAULT_MASTER_ADMIN];
   });
 
   const [securityQA, setSecurityQA] = useState(() => {
@@ -413,16 +426,85 @@ export function StudioDataProvider({ children }) {
     return {
       question: 'What is the founding location and primary atelier of MY3 Studios?',
       answer: 'Srinivasa Center, Nandyal, Andhra Pradesh',
-      lastUpdated: 'September 2026',
+      lastUpdated: 'October 2026',
     };
   });
 
+  // Fetch shared admin-config.json so any device gets the latest active credentials
+  useEffect(() => {
+    let isMounted = true;
+    const fetchSharedAdminConfig = async () => {
+      try {
+        const res = await fetch(`/admin-config.json?t=${Date.now()}`);
+        if (res.ok) {
+          const config = await res.json();
+          if (config && isMounted) {
+            const configDeleted = Array.isArray(config.deletedAccountEmails)
+              ? config.deletedAccountEmails.map((e) => (e || '').toLowerCase())
+              : [];
+
+            const localDeleted = getDeletedEmailsFromStorage();
+            const mergedDeleted = Array.from(new Set([...configDeleted, ...localDeleted]));
+            try {
+              localStorage.setItem('my3_deleted_admin_emails', JSON.stringify(mergedDeleted));
+            } catch {
+              // Ignore storage errors
+            }
+
+            if (Array.isArray(config.adminAccounts) && config.adminAccounts.length > 0) {
+              const cleanFromConfig = cleanseAccountsList(config.adminAccounts, mergedDeleted);
+              setAdminAccounts((current) => {
+                // Keep local custom added accounts that are not banned or deleted
+                const localCustom = current.filter(
+                  (c) =>
+                    !c.isMaster &&
+                    !cleanFromConfig.some(
+                      (cfg) => cfg.id === c.id || cfg.email.toLowerCase() === c.email.toLowerCase()
+                    ) &&
+                    !mergedDeleted.includes(c.email.toLowerCase())
+                );
+                const combined = cleanseAccountsList([...cleanFromConfig, ...localCustom], mergedDeleted);
+                try {
+                  localStorage.setItem('my3_admin_accounts', JSON.stringify(combined));
+                } catch {
+                  // Ignore storage errors
+                }
+                return combined;
+              });
+            }
+
+            if (config.securityQA && config.securityQA.question) {
+              setSecurityQA(config.securityQA);
+              try {
+                localStorage.setItem('my3_security_qa', JSON.stringify(config.securityQA));
+              } catch {
+                // Ignore storage errors
+              }
+            }
+          }
+        }
+      } catch {
+        // Fallback to local
+      }
+    };
+    fetchSharedAdminConfig();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const updateAdminEmail = (id, newEmail) => {
     const cleanEmail = (newEmail || '').trim().toLowerCase();
+    let updatedAccount = null;
+
     setAdminAccounts((prev) => {
-      const updated = prev.map((acc) =>
-        acc.id === id ? { ...acc, email: cleanEmail } : acc
-      );
+      const updated = prev.map((acc) => {
+        if (acc.id === id) {
+          updatedAccount = { ...acc, email: cleanEmail };
+          return updatedAccount;
+        }
+        return acc;
+      });
       try {
         localStorage.setItem('my3_admin_accounts', JSON.stringify(updated));
       } catch (e) {
@@ -430,15 +512,30 @@ export function StudioDataProvider({ children }) {
       }
       return updated;
     });
+
+    if (updatedAccount) {
+      fetch('/api/admin/account', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedAccount),
+      }).catch(() => {});
+    }
+
     // If the currently logged in user matches this account, update user session
     setUser((curr) => (curr && curr.id === id ? { ...curr, email: cleanEmail } : curr));
   };
 
   const updateAdminPassword = (id, newPassword) => {
+    let updatedAccount = null;
+
     setAdminAccounts((prev) => {
-      const updated = prev.map((acc) =>
-        acc.id === id ? { ...acc, password: newPassword } : acc
-      );
+      const updated = prev.map((acc) => {
+        if (acc.id === id) {
+          updatedAccount = { ...acc, password: newPassword };
+          return updatedAccount;
+        }
+        return acc;
+      });
       try {
         localStorage.setItem('my3_admin_accounts', JSON.stringify(updated));
       } catch (e) {
@@ -446,6 +543,14 @@ export function StudioDataProvider({ children }) {
       }
       return updated;
     });
+
+    if (updatedAccount) {
+      fetch('/api/admin/account', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedAccount),
+      }).catch(() => {});
+    }
   };
 
   const updateSecurityQA = (question, answer) => {
@@ -460,6 +565,13 @@ export function StudioDataProvider({ children }) {
     } catch (e) {
       console.error(e);
     }
+
+    fetch('/api/admin/security-qa', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updated),
+    }).catch(() => {});
+
     return updated;
   };
 
@@ -468,6 +580,21 @@ export function StudioDataProvider({ children }) {
     if (target?.isMaster) {
       return { success: false, message: 'Master Admin account is protected and cannot be deleted.' };
     }
+
+    // Record deleted email in storage so it never resurfaces on this or other browsers
+    if (target?.email) {
+      const emailLower = target.email.toLowerCase();
+      try {
+        const localDeleted = getDeletedEmailsFromStorage();
+        if (!localDeleted.includes(emailLower)) {
+          localDeleted.push(emailLower);
+          localStorage.setItem('my3_deleted_admin_emails', JSON.stringify(localDeleted));
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
     setAdminAccounts((prev) => {
       const updated = prev.filter((acc) => acc.id !== id);
       try {
@@ -477,6 +604,11 @@ export function StudioDataProvider({ children }) {
       }
       return updated;
     });
+
+    fetch(`/api/admin/account/${encodeURIComponent(id)}`, {
+      method: 'DELETE',
+    }).catch(() => {});
+
     return { success: true };
   };
 
@@ -503,12 +635,31 @@ export function StudioDataProvider({ children }) {
       }
       return updated;
     });
+
+    fetch('/api/admin/account', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(accountWithId),
+    }).catch(() => {});
+
     return accountWithId;
   };
 
   // ─── AUTH METHODS ───
   const login = (email, password) => {
     const normalizedEmail = (email || '').trim().toLowerCase();
+
+    // Check if email has been deleted or banned
+    const deletedList = getDeletedEmailsFromStorage();
+    if (
+      PERMANENT_BANNED_EMAILS.includes(normalizedEmail) ||
+      deletedList.includes(normalizedEmail)
+    ) {
+      return {
+        success: false,
+        message: 'This account has been deleted and cannot access the admin portal.',
+      };
+    }
 
     // Check against current adminAccounts
     const matchingAccount = adminAccounts.find(
@@ -518,8 +669,7 @@ export function StudioDataProvider({ children }) {
     );
 
     const isMasterFallback =
-      password === 'my3studios2026' ||
-      normalizedEmail === 'admin@my3studios.com' ||
+      (password === 'my3studios2026' || matchingAccount?.password === password) &&
       normalizedEmail === 'rmythristudiondl.anji@gmail.com';
 
     if (matchingAccount) {
