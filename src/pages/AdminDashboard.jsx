@@ -45,63 +45,16 @@ import {
 } from 'lucide-react';
 import { useStudioData } from '../context/StudioDataContext';
 
-// ─── STUDIO RECOVERY QUESTIONS REPOSITORY ───
-export const STUDIO_SECURITY_QUESTIONS = [
-  {
-    id: 'q1',
-    category: 'Founding & Atelier',
-    question: 'What is the founding location and primary atelier of MY3 Studios?',
-    defaultAnswer: 'Srinivasa Center, Nandyal, Andhra Pradesh',
-    hint: 'Official headquarters atelier in Nandyal',
-    badge: 'HQ Location',
-    icon: 'MapPin',
-  },
-  {
-    id: 'q2',
-    category: 'Studio Legacy',
-    question: 'What was the founding year of MY3 Studios photography studio?',
-    defaultAnswer: '2014',
-    hint: 'Year of studio establishment & inauguration',
-    badge: 'Legacy Year',
-    icon: 'Calendar',
-  },
-  {
-    id: 'q3',
-    category: 'Master Photographer',
-    question: 'What is the founder full name and master photographer of MY3 Studios?',
-    defaultAnswer: 'Anji Reddy',
-    hint: 'Founder & Principal Master Cinematographer',
-    badge: 'Founder Identity',
-    icon: 'UserCheck',
-  },
-  {
-    id: 'q4',
-    category: 'Flagship Equipment',
-    question: 'What is the primary flagship camera body used by MY3 Studios?',
-    defaultAnswer: 'Sony Alpha A7 IV / Canon EOS R5',
-    hint: 'Master camera system for wedding captures',
-    badge: 'Camera Gear',
-    icon: 'Camera',
-  },
-  {
-    id: 'q5',
-    category: 'Studio Landmark',
-    question: 'What is the primary landmark near MY3 Studios Main Branch in Nandyal?',
-    defaultAnswer: 'Opposite Srinivasa Center, Main Road, Nandyal',
-    hint: 'Prominent city landmark for client appointments',
-    badge: 'City Landmark',
-    icon: 'Compass',
-  },
-  {
-    id: 'q6',
-    category: 'Official Studio Hotline',
-    question: 'What is the registered studio phone number for client bookings?',
-    defaultAnswer: '+91 94901 02030',
-    hint: 'Official inquiry & studio reservation contact',
-    badge: 'Client Hotline',
-    icon: 'Phone',
-  },
-];
+// ─── STUDIO RECOVERY QUESTION (Single Fixed Question) ───
+export const STUDIO_SECURITY_QUESTION = {
+  id: 'q1',
+  category: 'Founding & Atelier',
+  question: 'What is the founding location and primary atelier of MY3 Studios?',
+  defaultAnswer: 'Srinivasa Center, Nandyal, Andhra Pradesh',
+  hint: 'Official headquarters atelier in Nandyal',
+  badge: 'HQ Location',
+  icon: 'MapPin',
+};
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -240,8 +193,8 @@ export default function AdminDashboard() {
               </div>
             </Link>
 
-            {/* Pill Navigation Tabs (Exact Reference Image 2 Style) */}
-            <nav className="flex items-center gap-1.5 bg-white/70 p-1 rounded-full border border-gray-200/90 shadow-xs">
+            {/* Pill Navigation Tabs — horizontally scrollable on small screens */}
+            <nav className="hidden md:flex items-center gap-1.5 bg-white/70 p-1 rounded-full border border-gray-200/90 shadow-xs">
               <button
                 type="button"
                 onClick={() => setActiveTab('overview')}
@@ -292,8 +245,8 @@ export default function AdminDashboard() {
                 onClick={() => setActiveTab('bookings')}
                 className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   activeTab === 'bookings'
-                    ? 'bg-coral text-black shadow-xs'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-coral text-white shadow-xs'
+                    : 'text-charcoal-600 hover:text-black hover:bg-gray-100/70'
                 }`}
               >
                 <Calendar size={14} />
@@ -308,8 +261,8 @@ export default function AdminDashboard() {
                 onClick={() => setActiveTab('security')}
                 className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   activeTab === 'security'
-                    ? 'bg-black text-white border border-coral/40 shadow-xs'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-[#1E2024] text-white border border-coral/40 shadow-xs'
+                    : 'text-charcoal-600 hover:text-black hover:bg-gray-100/70'
                 }`}
               >
                 <Key size={14} className={activeTab === 'security' ? 'text-coral' : ''} />
@@ -317,10 +270,6 @@ export default function AdminDashboard() {
               </button>
             </nav>
 
-            {/* Mobile: show current tab name */}
-            <span className="md:hidden text-sm font-bold text-white font-display capitalize truncate">
-              {activeTab === 'overview' ? 'Dashboard' : activeTab === 'bookings' ? 'Inquiries' : activeTab === 'security' ? 'Security' : activeTab}
-            </span>
           </div>
 
           {/* Right: Actions + Live Site + User Profile */}
@@ -1252,8 +1201,8 @@ export default function AdminDashboard() {
                 <h2 className="text-2xl sm:text-3xl font-black font-display text-[#1E2024] tracking-tight">
                   Password &amp; Access Security
                 </h2>
-                <p className="text-xs sm:text-sm text-gray-400 mt-1">
-                  Welcome back, <strong className="text-white font-semibold">MY3 Fotography Admin</strong>. All studio systems running in real-time.
+                <p className="text-xs sm:text-sm text-charcoal-500 mt-1">
+                  Welcome back, <strong className="text-charcoal-900 font-semibold">MY3 Fotography Admin</strong>. All studio systems running in real-time.
                 </p>
               </div>
 
@@ -1375,71 +1324,73 @@ export default function AdminDashboard() {
                           </div>
                         </div>
 
-                        {/* Right: Actions (Change Email + Show/Copy Password + Change Password + Delete) */}
-                        <div className="flex items-center gap-2 flex-wrap self-start md:self-center shrink-0">
-                          {/* Change Email Button */}
-                          <button
-                            type="button"
-                            onClick={() => setEmailModalAccount(acc)}
-                            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 text-xs font-bold text-charcoal-800 transition-all hover:border-coral cursor-pointer active:scale-95"
-                          >
-                            <Mail size={13} className="text-coral" />
-                            <span>CHANGE EMAIL</span>
-                          </button>
+                        {/* Right: Actions — stacks vertically on mobile for better touch targets */}
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
+                          {/* Row 1: Email + Password actions */}
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <button
+                              type="button"
+                              onClick={() => setEmailModalAccount(acc)}
+                              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 text-xs font-bold text-charcoal-800 transition-all hover:border-coral cursor-pointer active:scale-95"
+                            >
+                              <Mail size={13} className="text-coral" />
+                              <span className="hidden sm:inline">CHANGE</span> <span>EMAIL</span>
+                            </button>
 
-                          {/* Password Box: Toggle View & Copy */}
-                          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gray-50 border border-gray-200 shadow-inner">
-                            <span className="text-xs font-mono font-bold text-charcoal-900 min-w-[70px]">
-                              {isRevealed ? acc.password : '••••••••••••'}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() => togglePasswordVisibility(acc.id)}
-                              className="text-charcoal-400 hover:text-charcoal-900 transition-colors cursor-pointer p-0.5"
-                              title={isRevealed ? "Hide Password" : "View Password"}
-                            >
-                              {isRevealed ? <EyeOff size={14} className="text-coral" /> : <Eye size={14} />}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => handleCopyPassword(acc)}
-                              className="text-charcoal-400 hover:text-charcoal-900 transition-colors cursor-pointer p-0.5"
-                              title="Copy Password to Clipboard"
-                            >
-                              {isCopied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
-                            </button>
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-200 shadow-inner">
+                              <span className="text-xs font-mono font-bold text-charcoal-900 min-w-[60px] sm:min-w-[70px]">
+                                {isRevealed ? acc.password : '••••••••'}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => togglePasswordVisibility(acc.id)}
+                                className="text-charcoal-400 hover:text-charcoal-900 transition-colors cursor-pointer p-0.5"
+                                title={isRevealed ? "Hide Password" : "View Password"}
+                              >
+                                {isRevealed ? <EyeOff size={14} className="text-coral" /> : <Eye size={14} />}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleCopyPassword(acc)}
+                                className="text-charcoal-400 hover:text-charcoal-900 transition-colors cursor-pointer p-0.5"
+                                title="Copy Password to Clipboard"
+                              >
+                                {isCopied ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
+                              </button>
+                            </div>
                           </div>
 
-                          {/* Change Password Button */}
-                          <button
-                            type="button"
-                            onClick={() => setPasswordModalAccount(acc)}
-                            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 text-xs font-bold text-charcoal-800 transition-all hover:border-coral cursor-pointer active:scale-95"
-                          >
-                            <Key size={13} className="text-coral" />
-                            <span>CHANGE PASSWORD</span>
-                          </button>
-
-                          {/* Delete Account Button */}
-                          {acc.isMaster ? (
-                            <div
-                              className="px-2.5 py-2 rounded-full bg-gray-100 border border-gray-200 text-charcoal-400 flex items-center gap-1 text-[11px] font-semibold cursor-not-allowed"
-                              title="Master Admin account is protected"
-                            >
-                              <Lock size={12} />
-                              <span>Protected</span>
-                            </div>
-                          ) : (
+                          {/* Row 2: Password change + Delete */}
+                          <div className="flex items-center gap-2">
                             <button
                               type="button"
-                              onClick={() => setDeleteModalAccount(acc)}
-                              className="inline-flex items-center gap-1 px-3 py-2 rounded-full bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border border-red-200 text-xs font-bold transition-all cursor-pointer active:scale-95"
-                              title={`Delete ${acc.name}`}
+                              onClick={() => setPasswordModalAccount(acc)}
+                              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-gray-50 hover:bg-gray-100 border border-gray-200 text-xs font-bold text-charcoal-800 transition-all hover:border-coral cursor-pointer active:scale-95"
                             >
-                              <Trash2 size={13} className="text-red-500" />
-                              <span>DELETE</span>
+                              <Key size={13} className="text-coral" />
+                              <span className="hidden sm:inline">CHANGE</span> <span>PASSWORD</span>
                             </button>
-                          )}
+
+                            {acc.isMaster ? (
+                              <div
+                                className="px-2.5 py-2 rounded-full bg-gray-100 border border-gray-200 text-charcoal-400 flex items-center gap-1 text-[11px] font-semibold cursor-not-allowed"
+                                title="Master Admin account is protected"
+                              >
+                                <Lock size={12} />
+                                <span>Protected</span>
+                              </div>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => setDeleteModalAccount(acc)}
+                                className="inline-flex items-center gap-1 px-3 py-2 rounded-full bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 border border-red-200 text-xs font-bold transition-all cursor-pointer active:scale-95"
+                                title={`Delete ${acc.name}`}
+                              >
+                                <Trash2 size={13} className="text-red-500" />
+                                <span>DELETE</span>
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
                     );
@@ -1499,110 +1450,7 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              {/* ─── AVAILABLE STUDIO SECURITY QUESTIONS REPOSITORY ─── */}
-              <div className="space-y-4">
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <div className="flex items-center gap-2">
-                    <HelpCircle size={16} className="text-coral" />
-                    <h3 className="text-xs font-black uppercase tracking-wider text-charcoal-900">
-                      AVAILABLE SECURITY RECOVERY QUESTIONS
-                    </h3>
-                    <span className="text-[11px] font-bold text-charcoal-700 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">
-                      {STUDIO_SECURITY_QUESTIONS.length} Verified Questions
-                    </span>
-                  </div>
-                  <span className="text-xs text-charcoal-500 font-medium">
-                    Click any question below to set as active recovery protocol
-                  </span>
-                </div>
 
-                {/* Grid of Security Questions */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {STUDIO_SECURITY_QUESTIONS.map((item, idx) => {
-                    const isActive =
-                      (securityQA.question || '').trim().toLowerCase() === item.question.trim().toLowerCase();
-
-                    return (
-                      <div
-                        key={item.id}
-                        className={`rounded-3xl p-5 border transition-all flex flex-col justify-between gap-4 ${
-                          isActive
-                            ? 'bg-emerald-500/5 border-emerald-500/40 shadow-sm'
-                            : 'bg-white border-gray-100 hover:border-gray-300 shadow-sm'
-                        }`}
-                      >
-                        <div className="space-y-2.5">
-                          <div className="flex items-center justify-between gap-2 flex-wrap">
-                            <span
-                              className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
-                                isActive
-                                  ? 'bg-emerald-500/15 text-emerald-700 border-emerald-500/30'
-                                  : 'bg-gray-100 text-charcoal-600 border-gray-200'
-                              }`}
-                            >
-                              {item.category}
-                            </span>
-                            {isActive ? (
-                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/15 text-emerald-700 border border-emerald-500/30">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                ACTIVE QUESTION
-                              </span>
-                            ) : (
-                              <span className="text-[11px] font-mono font-semibold text-charcoal-400">
-                                Question #{idx + 1}
-                              </span>
-                            )}
-                          </div>
-
-                          <h4 className="text-sm font-bold text-charcoal-900 leading-snug">
-                            {item.question}
-                          </h4>
-
-                          <div className="p-3 rounded-xl bg-gray-50 border border-gray-100 text-xs">
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-charcoal-400 block mb-0.5">
-                              Standard / Suggested Answer:
-                            </span>
-                            <span className="font-semibold text-charcoal-800 font-mono text-[11px]">
-                              {item.defaultAnswer}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="pt-2 border-t border-gray-100 flex items-center justify-between gap-2 flex-wrap">
-                          <span className="text-[11px] text-charcoal-500 italic">
-                            {item.hint}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setQaModalInitialQuestion(item.question);
-                              setQaModalInitialAnswer(isActive ? securityQA.answer : item.defaultAnswer);
-                              setIsQAModalOpen(true);
-                            }}
-                            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 active:scale-95 ${
-                              isActive
-                                ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs'
-                                : 'bg-[#1E2024] hover:bg-black text-white'
-                            }`}
-                          >
-                            {isActive ? (
-                              <>
-                                <Check size={13} />
-                                <span>Edit Answer</span>
-                              </>
-                            ) : (
-                              <>
-                                <KeyRound size={13} />
-                                <span>Use This Question</span>
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
 
             </div>
           )}
@@ -2413,30 +2261,22 @@ function ChangePasswordModal({ account, onSave, onClose }) {
 // MODAL: UPDATE SECURITY Q&A
 // ─────────────────────────────────────────────
 function SecurityQAModal({ currentQA, initialQuestion, initialAnswer, onSave, onClose }) {
-  const [question, setQuestion] = useState(initialQuestion || currentQA.question || '');
+  const fixedQuestion = STUDIO_SECURITY_QUESTION.question;
   const [answer, setAnswer] = useState(initialAnswer || currentQA.answer || '');
   const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!question.trim() || !answer.trim()) {
-      setErrorMsg('Please enter both the security question and answer.');
+    if (!answer.trim()) {
+      setErrorMsg('Please enter the security answer.');
       return;
     }
-    onSave(question.trim(), answer.trim());
-  };
-
-  const handleSelectPreset = (presetItem) => {
-    setQuestion(presetItem.question);
-    if (!answer.trim() || answer === currentQA.answer) {
-      setAnswer(presetItem.defaultAnswer);
-    }
-    if (errorMsg) setErrorMsg('');
+    onSave(fixedQuestion, answer.trim());
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-      <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-gray-100 max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-gray-100 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between pb-4 border-b border-gray-100 mb-5">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-600 flex items-center justify-center">
@@ -2444,7 +2284,7 @@ function SecurityQAModal({ currentQA, initialQuestion, initialAnswer, onSave, on
             </div>
             <div>
               <h3 className="text-base font-bold text-charcoal-900 leading-none">
-                Update Security Recovery Q&amp;A
+                Update Security Recovery Answer
               </h3>
               <p className="text-[11px] text-charcoal-500 mt-1">
                 Used to verify studio ownership if access is ever lost
@@ -2467,58 +2307,17 @@ function SecurityQAModal({ currentQA, initialQuestion, initialAnswer, onSave, on
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Fixed Question Display */}
           <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="block text-xs font-bold text-charcoal-800">
-                Security Question *
-              </label>
-              <span className="text-[10px] text-charcoal-500 font-medium">
-                Choose a preset or write your own
-              </span>
+            <label className="block text-xs font-bold text-charcoal-800 mb-1.5">
+              Security Question (Fixed)
+            </label>
+            <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-200 text-sm font-semibold text-charcoal-900">
+              {fixedQuestion}
             </div>
-
-            {/* Quick Preset Selector Buttons */}
-            <div className="space-y-1.5 mb-3">
-              <span className="text-[10.5px] font-bold text-charcoal-600 uppercase tracking-wider block">
-                Quick Preset Questions:
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                {STUDIO_SECURITY_QUESTIONS.map((item) => {
-                  const isSelected = question.trim() === item.question.trim();
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => handleSelectPreset(item)}
-                      className={`text-[11px] p-2.5 rounded-xl border text-left transition-all cursor-pointer flex items-center justify-between gap-1.5 ${
-                        isSelected
-                          ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-800 font-bold'
-                          : 'bg-gray-50 hover:bg-gray-100 border-gray-200 text-charcoal-700'
-                      }`}
-                    >
-                      <span className="truncate">{item.badge}</span>
-                      {isSelected ? (
-                        <Check size={12} className="text-emerald-600 shrink-0" />
-                      ) : (
-                        <span className="text-[10px] text-charcoal-400 shrink-0">&rarr;</span>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <textarea
-              rows={2}
-              required
-              value={question}
-              onChange={(e) => {
-                setQuestion(e.target.value);
-                if (errorMsg) setErrorMsg('');
-              }}
-              placeholder="Enter your security recovery question..."
-              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 text-charcoal-900 placeholder-charcoal-400 text-xs sm:text-sm font-semibold focus:outline-none focus:border-coral focus:ring-1 focus:ring-[#FF6548] resize-none"
-            />
+            <span className="text-[10px] text-charcoal-500 mt-1 block">
+              This is your studio's fixed security recovery question.
+            </span>
           </div>
 
           <div>
@@ -2542,7 +2341,7 @@ function SecurityQAModal({ currentQA, initialQuestion, initialAnswer, onSave, on
               className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 text-charcoal-900 placeholder-charcoal-400 text-sm focus:outline-none focus:border-coral focus:ring-1 focus:ring-[#FF6548] font-medium"
             />
             <span className="text-[10px] text-charcoal-500 mt-1 block">
-              Tip: Keep the answer memorable, e.g. "Srinivasa Center, Nandyal, Andhra Pradesh" or "Anji Reddy".
+              Tip: Keep the answer memorable, e.g. "Srinivasa Center, Nandyal, Andhra Pradesh".
             </span>
           </div>
 
@@ -2559,7 +2358,7 @@ function SecurityQAModal({ currentQA, initialQuestion, initialAnswer, onSave, on
               className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md cursor-pointer transition-colors flex items-center gap-1.5"
             >
               <Check size={14} />
-              <span>Save Recovery Protocol</span>
+              <span>Save Recovery Answer</span>
             </button>
           </div>
         </form>
