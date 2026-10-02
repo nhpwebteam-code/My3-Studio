@@ -192,12 +192,12 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       {/* ─── 2. Centerpiece: Mobile has full-width photo with small photographer at bottom-left corner; Laptop/Desktop has side-by-side layout ─── */}
       <div className="relative w-full max-w-[1600px] mx-auto flex-1 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-between md:gap-0 my-auto pt-2 pb-1 sm:py-2 md:overflow-hidden">
 
-        {/* ─── Master Photographer (Anji) — On mobile: small, bottom-left corner ON photo; On desktop: shifted left so no rectangular box shows behind, hand cut is OK ─── */}
-        <div className="absolute md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none flex items-end justify-start shrink-0 w-auto md:w-[220px] lg:w-[270px] xl:w-[330px] md:overflow-hidden md:-ml-8 lg:-ml-10 xl:-ml-12">
+        {/* ─── Master Photographer (Anji) — On mobile: small, bottom-left corner ON photo; On desktop: tightly cropped and zoomed in so no background rectangle is visible, shifted left ─── */}
+        <div className="absolute md:relative bottom-0 md:bottom-auto left-0 md:left-auto z-20 pointer-events-none flex items-end justify-center shrink-0 w-auto md:w-[200px] lg:w-[250px] xl:w-[300px] md:h-[510px] lg:h-[570px] xl:h-[630px] md:overflow-hidden md:-ml-6 lg:-ml-8 xl:-ml-10">
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
-            className="w-auto max-w-[130px] min-[390px]:max-w-[145px] md:max-w-[280px] lg:max-w-[330px] xl:max-w-[400px] max-h-[225px] min-[390px]:max-h-[250px] sm:max-h-[280px] md:max-h-[530px] lg:max-h-[600px] xl:max-h-[660px] object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
+            className="w-auto max-w-[130px] min-[390px]:max-w-[145px] md:max-w-none md:w-[320px] lg:w-[380px] xl:w-[440px] max-h-[225px] min-[390px]:max-h-[250px] sm:max-h-[280px] md:max-h-none md:h-full object-contain md:object-cover md:object-top drop-shadow-[0_18px_32px_rgba(0,0,0,0.22)]"
             style={{
               WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
               maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 96%, transparent 100%)',
