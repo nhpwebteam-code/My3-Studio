@@ -171,7 +171,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               {[...HERO_CYLINDER_PHOTOS, ...HERO_CYLINDER_PHOTOS].map((photo, idx) => (
                 <div
                   key={`${photo.id}-${idx}`}
-                  className="shrink-0 w-[165px] h-[235px] sm:w-[200px] sm:h-[285px] md:w-[240px] md:h-[345px] lg:w-[270px] lg:h-[390px] xl:w-[290px] xl:h-[415px] rounded-2xl sm:rounded-3xl overflow-hidden bg-charcoal-800 shadow-[0_14px_32px_rgba(0,0,0,0.14)] hover:shadow-[0_22px_45px_rgba(255,101,72,0.35)] border border-white/70 hover:border-coral transition-all duration-300 group cursor-pointer"
+                  className="shrink-0 w-[220px] h-[330px] min-[390px]:w-[240px] min-[390px]:h-[350px] sm:w-[240px] sm:h-[345px] md:w-[240px] md:h-[345px] lg:w-[270px] lg:h-[390px] xl:w-[290px] xl:h-[415px] rounded-2xl sm:rounded-3xl overflow-hidden bg-charcoal-800 shadow-[0_14px_32px_rgba(0,0,0,0.14)] hover:shadow-[0_22px_45px_rgba(255,101,72,0.35)] border border-white/70 hover:border-coral transition-all duration-300 group cursor-pointer"
                 >
                   <Link
                     to="/gallery"
