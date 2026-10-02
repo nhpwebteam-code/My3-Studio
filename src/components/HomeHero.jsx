@@ -155,33 +155,11 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </h1>
       </div>
 
-      {/* ─── 2. Centerpiece: Left Photographer, Left "1000+", 3D Portrait Ribbon with Enlarged Cards, Right Rotating Reviews ─── */}
-      <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center my-1 sm:my-3 min-h-[440px] sm:min-h-[540px] md:min-h-[620px] lg:min-h-[680px]">
-        
-        {/* Top-Left Floating Badge: "1000+" with frosted glass backdrop */}
-        <div className="absolute top-2 sm:top-4 md:top-6 lg:top-8 left-4 sm:left-8 md:left-14 lg:left-20 xl:left-24 z-30 pointer-events-auto">
-          <div className="flex flex-col items-start bg-white/75 backdrop-blur-md px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl border border-white/80 shadow-xs">
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] font-sans font-extrabold text-coral leading-none tracking-tight flex items-baseline select-none">
-              <span>1000</span>
-              <span className="text-[0.82em] font-bold ml-0.5 text-coral">+</span>
-            </div>
-            <div className="flex items-stretch gap-2 sm:gap-2.5 mt-1.5 sm:mt-2">
-              {/* Vertical Coral Divider Bar */}
-              <div className="w-[2px] bg-coral rounded-full shrink-0" />
-              <div className="flex flex-col justify-center leading-snug">
-                <span className="text-xs sm:text-[13px] md:text-sm font-bold text-charcoal-900 tracking-wide">
-                  Weddings &amp; Events
-                </span>
-                <span className="text-[11px] sm:text-xs text-charcoal-600 font-medium tracking-normal mt-0.5">
-                  Across South India
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* ─── 2. Centerpiece: Left Corner Photographer, 3D Portrait Ribbon with Enlarged Cards, Right Rotating Reviews ─── */}
+      <div className="relative w-full max-w-7xl mx-auto flex-1 flex items-center justify-center my-1 sm:my-3 min-h-[400px] sm:min-h-[480px] md:min-h-[540px] lg:min-h-[600px]">
 
-        {/* ─── Smooth Left-to-Right Moving Portrait Ribbon with ENLARGED CARDS ─── */}
-        <div className="absolute top-[50%] left-0 w-full -translate-y-1/2 z-10 pointer-events-none overflow-hidden py-4">
+        {/* ─── Smooth Left-to-Right Moving Portrait Ribbon with ENLARGED CARDS (Flows behind photographer's hands) ─── */}
+        <div className="absolute top-[48%] left-0 w-full -translate-y-1/2 z-10 pointer-events-none overflow-hidden py-4">
           <div
             className="w-full flex items-center overflow-hidden"
             style={{
@@ -213,14 +191,14 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
         </div>
 
-        {/* ─── Master Photographer (Anji) Positioned on the LEFT SIDE (Layered at z-20 in front of moving photos) ─── */}
+        {/* ─── Master Photographer (Anji) in Corner & Scaled so background images flow behind hands & camera ─── */}
         <div
-          className="absolute bottom-0 left-0 sm:left-4 md:left-8 lg:left-14 xl:left-20 z-20 pointer-events-none flex items-end justify-start"
+          className="absolute bottom-0 left-0 sm:left-2 md:left-4 lg:left-6 xl:left-8 z-20 pointer-events-none flex items-end justify-start"
         >
           <img
             src="/photographer-cutout.png"
             alt="MY3 Studios Lead Photographer Anji"
-            className="w-auto max-w-[240px] sm:max-w-[340px] md:max-w-[430px] lg:max-w-[490px] xl:max-w-[550px] max-h-[460px] sm:max-h-[560px] md:max-h-[640px] lg:max-h-[720px] object-contain drop-shadow-[0_22px_40px_rgba(0,0,0,0.2)]"
+            className="w-auto max-w-[170px] sm:max-w-[220px] md:max-w-[270px] lg:max-w-[320px] xl:max-w-[360px] max-h-[310px] sm:max-h-[390px] md:max-h-[450px] lg:max-h-[510px] xl:max-h-[550px] object-contain drop-shadow-[0_18px_32px_rgba(0,0,0,0.18)]"
             style={{
               WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 95%, transparent 100%)',
               maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.3) 95%, transparent 100%)',
