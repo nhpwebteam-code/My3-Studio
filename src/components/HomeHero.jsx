@@ -171,7 +171,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
   return (
     <section
       id="home"
-      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-[78px] min-[360px]:pt-[82px] min-[390px]:pt-[86px] sm:pt-22 md:pt-24 lg:pt-26 pb-2 sm:pb-4 px-3 sm:px-6 lg:px-8 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20"
+      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-[78px] min-[360px]:pt-[82px] min-[390px]:pt-[86px] sm:pt-22 md:pt-24 lg:pt-26 pb-2 sm:pb-4 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20"
     >
       {/* ─── Ambient Subtle Warm Spotlight Glow behind hero ─── */}
       <div
@@ -182,13 +182,13 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       />
 
       {/* ─── Master Aligned Inner Container (max-w-7xl matching Navbar, Curated Frames & Footer) ─── */}
-      <div className="max-w-7xl mx-auto w-full h-full flex-1 flex flex-col justify-between min-h-0 relative z-10">
+      <div className="max-w-7xl mx-auto w-full h-full flex-1 flex flex-col justify-between min-h-0 relative z-10 px-4 sm:px-6 lg:px-8">
 
         {/* ─── Centerpiece: Left Brand & Photographer + Right Image Showcase ─── */}
         <div className="relative w-full flex-1 min-h-0 flex flex-col md:flex-row items-center md:items-stretch justify-start md:justify-between gap-1.5 sm:gap-3 md:gap-5 lg:gap-8 my-0 md:my-auto py-0 md:py-1">
 
           {/* ─── Desktop Left Column: Line + ANJI + PHOTOGRAPHY + Cutout (Flush-aligned with grid) ─── */}
-          <div className="hidden md:flex flex-col justify-between shrink-0 w-[220px] lg:w-[260px] xl:w-[300px] h-full min-h-0 z-20">
+          <div className="hidden md:flex flex-col justify-between shrink-0 w-[240px] lg:w-[280px] xl:w-[320px] h-full min-h-0 z-20">
             {/* Top Brand Lockup: Upside Line -> ANJI -> PHOTOGRAPHY */}
             <div className="pt-0.5 sm:pt-1 shrink-0">
               {/* 1. Upside Coral Accent Line */}
@@ -210,10 +210,10 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               <img
                 src="/photographer-cutout.png"
                 alt="MY3 Studios Lead Photographer Anji"
-                className="w-auto h-full max-h-full object-contain object-bottom drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)]"
+                className="w-auto h-full max-h-full object-contain object-left-bottom drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)]"
                 style={{
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.25) 98%, transparent 100%)',
-                  maskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.25) 98%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.25) 96%, transparent 100%)',
+                  maskImage: 'linear-gradient(to bottom, black 82%, rgba(0,0,0,0.25) 96%, transparent 100%)',
                 }}
                 draggable={false}
               />
@@ -322,23 +322,25 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
         </div>
 
-        {/* ─── 3. Bottom Layered Interactive Controls: Always visible in any window size ─── */}
-        <div className="relative z-30 w-full shrink-0 flex flex-col-reverse sm:flex-row items-center sm:items-end justify-between gap-3 sm:gap-2 pt-2 sm:pt-2.5">
+        {/* ─── 3. Bottom Layered Interactive Controls: Perfectly Symmetrical & Baseline Aligned ─── */}
+        <div className="relative z-30 w-full shrink-0 flex flex-col-reverse sm:flex-row items-center sm:items-end justify-between gap-3 sm:gap-2 pt-2 sm:pt-3">
           
           {/* Bottom-Left: Circular Camera Button + Timeline Strip */}
           <div className="flex flex-col items-center sm:items-start space-y-2 sm:space-y-2.5">
-            {/* Circular Camera Button with Coral Border */}
-            <button
-              onClick={onOpenBooking}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1E2024] hover:bg-black border border-coral text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md group cursor-pointer"
-              aria-label="Book a Photography Session"
-              title="Book a Session"
-            >
-              <Camera size={17} className="group-hover:scale-110 transition-transform" />
-            </button>
+            {/* Circular Camera Button with Coral Border - Row 1 (Matches Logo Lockup height) */}
+            <div className="h-10 sm:h-11 flex items-center">
+              <button
+                onClick={onOpenBooking}
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1E2024] hover:bg-black border border-coral text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md group cursor-pointer"
+                aria-label="Book a Photography Session"
+                title="Book a Session"
+              >
+                <Camera size={17} className="group-hover:scale-110 transition-transform" />
+              </button>
+            </div>
 
-            {/* Timeline & Social Links Row */}
-            <div className="flex items-center gap-2 sm:gap-2.5 text-xs text-charcoal-600 font-medium">
+            {/* Timeline & Social Links Row - Row 2 (Matches Buttons height) */}
+            <div className="h-8 sm:h-9 flex items-center gap-2 sm:gap-2.5 text-xs text-charcoal-600 font-medium">
               <span className="w-2 h-2 rounded-full bg-coral inline-block animate-pulse" />
               <button
                 onClick={onScrollToReviews}
@@ -381,9 +383,9 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
 
           {/* Bottom-Right: Booking Lockup (Centered on mobile, right-aligned on desktop; LETS TALK & WHATSAPP down of MY3 Studio) */}
-          <div className="flex flex-col items-center sm:items-end">
-            {/* Logo + Text Lockup */}
-            <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="flex flex-col items-center sm:items-end space-y-2 sm:space-y-2.5">
+            {/* Logo + Text Lockup - Row 1 (Matches Camera Button height) */}
+            <div className="h-10 sm:h-11 flex items-center gap-2.5 sm:gap-3">
               <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full overflow-hidden shadow-xs border border-charcoal-200 bg-white shrink-0">
                 <img
                   src="/logo.png"
@@ -404,8 +406,8 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               </div>
             </div>
 
-            {/* Action Buttons: LETS TALK & WHATSAPP (Down of MY3 Studio) */}
-            <div className="flex items-center justify-center sm:justify-end gap-2 sm:gap-2.5 mt-2 sm:mt-2.5">
+            {/* Action Buttons: LETS TALK & WHATSAPP - Row 2 (Matches Timeline row height) */}
+            <div className="h-8 sm:h-9 flex items-center justify-center sm:justify-end gap-2 sm:gap-2.5">
               {/* Lets Talk Button */}
               <a
                 href="tel:+919949395037"
