@@ -171,7 +171,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
   return (
     <section
       id="home"
-      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-[78px] min-[360px]:pt-[82px] min-[390px]:pt-[86px] sm:pt-22 md:pt-24 lg:pt-26 pb-2 sm:pb-4 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20"
+      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-[78px] min-[360px]:pt-[82px] min-[390px]:pt-[86px] sm:pt-22 md:pt-24 lg:pt-26 pb-2 sm:pb-4 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20 2xl:pt-[84px] 2xl:pb-4 2xl:px-[clamp(32px,3vw,48px)] hero-2xl-section"
     >
       {/* ─── Ambient Subtle Warm Spotlight Glow behind hero ─── */}
       <div
@@ -181,8 +181,8 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         }}
       />
 
-      {/* ─── Master Aligned Inner Container (max-w-7xl matching Navbar, Curated Frames & Footer) ─── */}
-      <div className="max-w-7xl mx-auto w-full h-full flex-1 flex flex-col justify-between min-h-0 relative z-10 px-4 sm:px-6 lg:px-8">
+      {/* ─── Standard Layout (< 1536px: Mobile, Tablet, Laptop 1024-1535px untouched) ─── */}
+      <div className="2xl:hidden max-w-7xl mx-auto w-full h-full flex-1 flex flex-col justify-between min-h-0 relative z-10 px-4 sm:px-6 lg:px-8">
 
         {/* ─── Centerpiece: Left Brand & Photographer + Right Image Showcase ─── */}
         <div className="relative w-full flex-1 min-h-0 flex flex-col md:flex-row items-center md:items-stretch justify-start md:justify-between gap-1.5 sm:gap-3 md:gap-5 lg:gap-8 my-0 md:my-auto py-0 md:py-1">
@@ -430,6 +430,212 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             </div>
           </div>
 
+        </div>
+
+      </div>
+
+      {/* ─── Large PC / Desktop Grid Layout (>= 1536px ONLY: 1536px, 1920x1080, 2560x1440 Ultrawide) ─── */}
+      <div className="hidden 2xl:grid hero-2xl-container min-h-0 relative z-10">
+        
+        {/* Column 1 (Left): Spans Row 1 to Row 2, flex column */}
+        <div className="hero-2xl-left-col z-20">
+          {/* 1. Title at top: Coral line -> ANJI -> PHOTOGRAPHY */}
+          <div className="shrink-0 pt-1">
+            <div className="w-12 h-[3px] bg-coral rounded-full mb-2" />
+            <h1 className="font-display font-black text-3xl xl:text-4xl text-[#1E2024] tracking-wider uppercase leading-none">
+              ANJI
+            </h1>
+            <p className="font-sans font-medium tracking-[0.32em] text-sm text-charcoal-700 uppercase mt-1 select-none">
+              PHOTOGRAPHY
+            </p>
+          </div>
+
+          {/* 2. Portrait fills remaining height (object-fit: contain, object-position: bottom center) */}
+          <div className="hero-2xl-portrait-box relative my-2 pointer-events-none">
+            <img
+              src="/photographer-cutout.png"
+              alt="MY3 Studios Lead Photographer Anji"
+              className="hero-2xl-portrait-img drop-shadow-[0_16px_32px_rgba(0,0,0,0.18)]"
+              style={{
+                WebkitMaskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.25) 98%, transparent 100%)',
+                maskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.25) 98%, transparent 100%)',
+              }}
+              draggable={false}
+            />
+          </div>
+
+          {/* 3. Timeline & Camera Button pinned to the bottom */}
+          <div className="shrink-0 flex items-center gap-4 pt-1">
+            {/* Circular Camera Button */}
+            <button
+              onClick={onOpenBooking}
+              className="w-11 h-11 rounded-full bg-[#1E2024] hover:bg-black border border-coral text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md group cursor-pointer shrink-0"
+              aria-label="Book a Photography Session"
+              title="Book a Session"
+            >
+              <Camera size={18} className="group-hover:scale-110 transition-transform" />
+            </button>
+
+            {/* Timeline Strip & Socials */}
+            <div className="flex items-center gap-2.5 text-xs text-charcoal-600 font-medium">
+              <span className="w-2 h-2 rounded-full bg-coral inline-block animate-pulse" />
+              <button
+                onClick={onScrollToReviews}
+                className="text-charcoal-800 hover:text-coral font-semibold transition-colors cursor-pointer"
+              >
+                Timeline
+              </button>
+              <span className="text-charcoal-300">|</span>
+              <div className="flex items-center gap-2.5 text-charcoal-600">
+                <a
+                  href="https://www.instagram.com/mythri_studio_ndl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-coral transition-colors p-0.5"
+                  title="Instagram: @mythri_studio_ndl"
+                  aria-label="Instagram"
+                >
+                  <InstagramIcon size={15} />
+                </a>
+                <a
+                  href="https://youtube.com/@mythristudio8857?si=5szrcmSiVDF_36an"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-coral transition-colors p-0.5"
+                  title="YouTube Channel"
+                  aria-label="YouTube"
+                >
+                  <YoutubeIcon size={15} />
+                </a>
+                <a
+                  href="/contact#studio-location"
+                  className="hover:text-coral transition-colors p-0.5"
+                  title="View Studio Locations & Maps"
+                  aria-label="Studio Maps"
+                >
+                  <MapPin size={15} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Column 2 (Right), Row 1: Right Hero Image Card (100% width and height of grid cell, object-cover, object-center, no gap below) */}
+        <div
+          className="hero-2xl-right-card rounded-[28px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-200/60 cursor-pointer select-none"
+          onClick={() => setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length)}
+          title="Click to advance photograph"
+        >
+          {(() => {
+            const currentPhoto = HERO_CYLINDER_PHOTOS[currentIndex % HERO_CYLINDER_PHOTOS.length];
+            return (
+              <div key={currentIndex} className="w-full h-full relative group animate-fade-in">
+                <img
+                  src={currentPhoto.image}
+                  alt={currentPhoto.title}
+                  className="w-full h-full object-cover object-[center_28%] filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            );
+          })()}
+
+          {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp */}
+          <div className="absolute top-4 right-4 z-30">
+            <button
+              id="product-reviews-stamp-2xl"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onOpenVideoReviews) onOpenVideoReviews();
+              }}
+              className="relative w-24 h-24 lg:w-26 lg:h-26 rounded-full bg-[#181A1D]/90 backdrop-blur-xs border-2 border-white/30 text-white flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all group overflow-hidden cursor-pointer"
+              aria-label="View our product reviews"
+            >
+              {/* Optional Looping Client Video Preview inside */}
+              <video
+                src="/takeout-1-001/vedio/vedio.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                webkit-playsinline="true"
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover rounded-full opacity-35 group-hover:opacity-50 transition-opacity pointer-events-none"
+              />
+
+              {/* Rotating Curved Text */}
+              <svg
+                className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none z-10"
+                viewBox="0 0 100 100"
+              >
+                <defs>
+                  <path
+                    id="circlePathHero2xl"
+                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                  />
+                </defs>
+                <text fill="#FFFFFF" fontSize="9.2" fontWeight="700" letterSpacing="0.22em" className="uppercase font-bold tracking-[0.22em] fill-white drop-shadow">
+                  <textPath href="#circlePathHero2xl" xlinkHref="#circlePathHero2xl" startOffset="0%">
+                    PRODUCT REVIEWS • PRODUCT REVIEWS •
+                  </textPath>
+                </text>
+              </svg>
+
+              {/* Inner Coral Play Button */}
+              <div className="relative z-20 w-9 h-9 rounded-full bg-coral/95 group-hover:bg-coral border border-white/40 text-white flex items-center justify-center transition-all group-hover:scale-110 shadow-lg">
+                <Play size={13} fill="white" className="text-white ml-0.5" />
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Column 2 (Right), Row 2: Bottom Bar (Inside grid's last row, right-aligned under image with 16px gap, no floating) */}
+        <div className="hero-2xl-bottom-bar z-20">
+          <div className="flex items-center gap-6">
+            {/* Logo + Text Lockup */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full overflow-hidden shadow-xs border border-charcoal-200 bg-white shrink-0">
+                <img
+                  src="/logo.png"
+                  alt="MY3 Studio Logo"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="text-left">
+                <h3 className="font-display font-black text-lg italic tracking-tight leading-tight">
+                  <span className="text-charcoal-900">MY</span>
+                  <span className="text-[#FA2D66]">3</span>{' '}
+                  <span className="text-charcoal-900">Studio</span>
+                </h3>
+                <p className="text-xs font-semibold text-charcoal-600 tracking-tight leading-none mt-0.5">
+                  Book your schedule
+                </p>
+              </div>
+            </div>
+
+            {/* Action Buttons: LETS TALK & WHATSAPP */}
+            <div className="flex items-center gap-2.5">
+              {/* Lets Talk Button */}
+              <a
+                href="tel:+919949395037"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-charcoal-300 hover:border-coral text-charcoal-900 hover:text-coral bg-white hover:bg-coral-50 font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-sm"
+              >
+                <Phone size={13} />
+                <span>LETS TALK</span>
+              </a>
+
+              {/* WhatsApp Button */}
+              <a
+                href={HERO_WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#25D366] hover:bg-[#1ebd5b] text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-md shadow-emerald-500/20"
+              >
+                <WhatsAppIcon size={14} />
+                <span>WHATSAPP</span>
+              </a>
+            </div>
+          </div>
         </div>
 
       </div>
