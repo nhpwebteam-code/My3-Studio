@@ -380,13 +380,13 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           DESKTOP LAYOUT (≥ 768px) — Full-width immersive hero
           Photographer partially cropped at left edge, showcase fills right
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="hidden md:flex flex-1 min-h-0 relative z-10 pt-[82px] lg:pt-[84px] pb-2.5 lg:pb-3 gap-3 lg:gap-5 xl:gap-6">
+      <div className="hidden md:flex flex-1 min-h-0 relative z-10 pt-[90px] lg:pt-[94px] xl:pt-[98px] pb-3 lg:pb-3.5 gap-4 lg:gap-6 xl:gap-8">
 
         {/* ─── Left Column: Photographer partially bleeding off the left viewport edge ─── */}
         <div className="hero-left-photographer shrink-0 relative z-10 flex flex-col h-full min-h-0">
           {/* Title block at top, aligned with navbar left margin */}
-          <div className="shrink-0 pl-6 lg:pl-8 2xl:pl-10 pt-0.5 relative z-20">
-            <div className="w-10 lg:w-11 h-[2.5px] bg-coral rounded-full mb-1.5 sm:mb-2" />
+          <div className="shrink-0 pl-6 lg:pl-8 xl:pl-10 2xl:pl-[clamp(32px,3vw,48px)] pt-1 pb-3 lg:pb-4 relative z-20">
+            <div className="w-10 lg:w-11 h-[2.5px] bg-coral rounded-full mb-2" />
             <h1 className="font-display font-black text-2xl lg:text-3xl xl:text-4xl text-[#1E2024] tracking-wider uppercase leading-none">
               ANJI
             </h1>
@@ -402,15 +402,15 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               alt="MY3 Studios Lead Photographer Anji"
               className="hero-photographer-img drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)]"
               style={{
-                WebkitMaskImage: 'linear-gradient(to bottom, black 72%, rgba(0,0,0,0.3) 88%, transparent 100%)',
-                maskImage: 'linear-gradient(to bottom, black 72%, rgba(0,0,0,0.3) 88%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 70%, rgba(0,0,0,0.3) 86%, transparent 100%)',
+                maskImage: 'linear-gradient(to bottom, black 70%, rgba(0,0,0,0.3) 86%, transparent 100%)',
               }}
               draggable={false}
             />
           </div>
 
           {/* Camera button + Timeline pinned at bottom, aligned with title block */}
-          <div className="shrink-0 pl-6 lg:pl-8 2xl:pl-10 pb-0.5 flex flex-col gap-2 relative z-20">
+          <div className="shrink-0 pl-6 lg:pl-8 xl:pl-10 2xl:pl-[clamp(32px,3vw,48px)] pb-0.5 flex flex-col gap-2 relative z-20">
             <div className="h-10 lg:h-11 flex items-center">
               <button
                 onClick={onOpenBooking}
@@ -443,7 +443,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </div>
 
         {/* ─── Right Column: Showcase image + Bottom bar (fills all remaining space) ─── */}
-        <div className="flex-1 min-w-0 flex flex-col h-full min-h-0 pr-4 sm:pr-6 lg:pr-8 2xl:pr-10">
+        <div className="flex-1 min-w-0 flex flex-col h-full min-h-0 pr-4 sm:pr-6 lg:pr-8 xl:pr-10 2xl:pr-[clamp(32px,3vw,48px)]">
 
           {/* Showcase Card — fills all available height minus bottom bar */}
           <div

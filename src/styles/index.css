@@ -144,15 +144,16 @@ table tbody tr:hover {
 /* ─── Desktop Hero: Photographer at left edge + full-width showcase ─── */
 @media (min-width: 768px) {
   .hero-left-photographer {
-    width: clamp(220px, 22vw, 260px);
+    width: clamp(220px, 22vw, 270px);
     margin-left: 0;
   }
 
   .hero-photographer-img {
     position: absolute;
     bottom: 0;
-    left: -40px;
-    height: 100%;
+    left: -35px;
+    height: 94%;
+    max-height: 100%;
     width: auto;
     max-width: none;
     object-fit: contain;
@@ -162,37 +163,37 @@ table tbody tr:hover {
 
 @media (min-width: 1024px) {
   .hero-left-photographer {
-    width: clamp(250px, 20vw, 300px);
+    width: clamp(250px, 20vw, 310px);
     margin-left: 0;
   }
 
   .hero-photographer-img {
-    left: -55px;
-    height: 102%;
+    left: -48px;
+    height: 95%;
   }
 }
 
 @media (min-width: 1280px) {
   .hero-left-photographer {
-    width: clamp(280px, 20vw, 340px);
+    width: clamp(280px, 20vw, 350px);
     margin-left: 0;
   }
 
   .hero-photographer-img {
-    left: -70px;
-    height: 104%;
+    left: -65px;
+    height: 95%;
   }
 }
 
 @media (min-width: 1536px) {
   .hero-left-photographer {
-    width: clamp(320px, 19vw, 380px);
+    width: clamp(320px, 19vw, 390px);
     margin-left: 0;
   }
 
   .hero-photographer-img {
-    left: -90px;
-    height: 105%;
+    left: -80px;
+    height: 96%;
   }
 }
 
