@@ -171,7 +171,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
   return (
     <section
       id="home"
-      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-[78px] min-[360px]:pt-[82px] min-[390px]:pt-[86px] sm:pt-22 md:pt-24 lg:pt-26 pb-2 sm:pb-4 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20 2xl:pt-[84px] 2xl:pb-4 2xl:px-[clamp(32px,3vw,48px)] hero-2xl-section"
+      className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col justify-between pt-[78px] min-[360px]:pt-[82px] min-[390px]:pt-[86px] sm:pt-22 md:pt-24 lg:pt-0 pb-2 sm:pb-4 lg:pb-0 bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20 hero-desktop-section"
     >
       {/* ─── Ambient Subtle Warm Spotlight Glow behind hero ─── */}
       <div
@@ -181,8 +181,8 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         }}
       />
 
-      {/* ─── Standard Layout (< 1536px: Mobile, Tablet, Laptop 1024-1535px untouched) ─── */}
-      <div className="2xl:hidden max-w-7xl mx-auto w-full h-full flex-1 flex flex-col justify-between min-h-0 relative z-10 px-4 sm:px-6 lg:px-8">
+      {/* ─── Standard Layout (< 1024px: Mobile, Tablet untouched) ─── */}
+      <div className="lg:hidden max-w-7xl mx-auto w-full h-full flex-1 flex flex-col justify-between min-h-0 relative z-10 px-4 sm:px-6 lg:px-8">
 
         {/* ─── Centerpiece: Left Brand & Photographer + Right Image Showcase ─── */}
         <div className="relative w-full flex-1 min-h-0 flex flex-col md:flex-row items-center md:items-stretch justify-start md:justify-between gap-1.5 sm:gap-3 md:gap-5 lg:gap-8 my-0 md:my-auto py-0 md:py-1">
@@ -434,28 +434,28 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
       </div>
 
-      {/* ─── Large PC / Desktop Grid Layout (>= 1536px ONLY: 1536px, 1920x1080, 2560x1440 Ultrawide) ─── */}
-      <div className="hidden 2xl:grid hero-2xl-container min-h-0 relative z-10">
+      {/* ─── Laptop and Desktop Grid Layout (>= 1024px ONLY: 1024px, 1366px, 1440px, 1920x1080, 2560x1440) ─── */}
+      <div className="hidden lg:grid hero-desktop-container min-h-0 relative z-10">
         
         {/* Column 1 (Left): Spans Row 1 to Row 2, flex column */}
-        <div className="hero-2xl-left-col z-20">
-          {/* 1. Title at top: Coral line -> ANJI -> PHOTOGRAPHY */}
-          <div className="shrink-0 pt-1">
-            <div className="w-12 h-[3px] bg-coral rounded-full mb-2" />
+        <div className="hero-desktop-left-col z-20">
+          {/* 1. Title at top: Coral line -> ANJI -> PHOTOGRAPHY (all left-aligned to same left edge) */}
+          <div className="hero-desktop-title shrink-0">
+            <div className="w-11 lg:w-12 h-[2.5px] lg:h-[3px] bg-coral rounded-full mb-2" />
             <h1 className="font-display font-black text-3xl xl:text-4xl text-[#1E2024] tracking-wider uppercase leading-none">
               ANJI
             </h1>
-            <p className="font-sans font-medium tracking-[0.32em] text-sm text-charcoal-700 uppercase mt-1 select-none">
+            <p className="font-sans font-medium tracking-[0.32em] text-xs lg:text-sm text-charcoal-700 uppercase mt-1.5 select-none">
               PHOTOGRAPHY
             </p>
           </div>
 
-          {/* 2. Portrait fills remaining height (object-fit: contain, object-position: bottom center) */}
-          <div className="hero-2xl-portrait-box relative my-2 pointer-events-none">
+          {/* 2. Portrait wrapper: flex: 1, min-height: 0, width: 100%, position: relative. Image: object-fit: contain, object-position: left bottom */}
+          <div className="hero-desktop-portrait-box">
             <img
               src="/photographer-cutout.png"
               alt="MY3 Studios Lead Photographer Anji"
-              className="hero-2xl-portrait-img drop-shadow-[0_16px_32px_rgba(0,0,0,0.18)]"
+              className="hero-desktop-portrait-img drop-shadow-[0_16px_32px_rgba(0,0,0,0.18)]"
               style={{
                 WebkitMaskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.25) 98%, transparent 100%)',
                 maskImage: 'linear-gradient(to bottom, black 85%, rgba(0,0,0,0.25) 98%, transparent 100%)',
@@ -464,12 +464,13 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             />
           </div>
 
-          {/* 3. Timeline & Camera Button pinned to the bottom */}
-          <div className="shrink-0 flex items-center gap-4 pt-1">
+          {/* 3. Camera icon + Timeline row: pinned at bottom (margin-top: auto), left-aligned to same edge, 16px below portrait */}
+          <div className="hero-desktop-timeline-row">
             {/* Circular Camera Button */}
             <button
+              id="hero-camera-booking-btn"
               onClick={onOpenBooking}
-              className="w-11 h-11 rounded-full bg-[#1E2024] hover:bg-black border border-coral text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md group cursor-pointer shrink-0"
+              className="w-10 h-10 lg:w-11 lg:h-11 rounded-full bg-[#1E2024] hover:bg-black border border-coral text-white flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md group cursor-pointer shrink-0"
               aria-label="Book a Photography Session"
               title="Book a Session"
             >
@@ -477,7 +478,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
             </button>
 
             {/* Timeline Strip & Socials */}
-            <div className="flex items-center gap-2.5 text-xs text-charcoal-600 font-medium">
+            <div className="flex items-center gap-2 lg:gap-2.5 text-xs text-charcoal-600 font-medium">
               <span className="w-2 h-2 rounded-full bg-coral inline-block animate-pulse" />
               <button
                 onClick={onScrollToReviews}
@@ -486,7 +487,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
                 Timeline
               </button>
               <span className="text-charcoal-300">|</span>
-              <div className="flex items-center gap-2.5 text-charcoal-600">
+              <div className="flex items-center gap-2 lg:gap-2.5 text-charcoal-600">
                 <a
                   href="https://www.instagram.com/mythri_studio_ndl"
                   target="_blank"
@@ -522,7 +523,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
         {/* Column 2 (Right), Row 1: Right Hero Image Card (100% width and height of grid cell, object-cover, object-center, no gap below) */}
         <div
-          className="hero-2xl-right-card rounded-[28px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-200/60 cursor-pointer select-none"
+          className="hero-desktop-right-card rounded-[28px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-200/60 cursor-pointer select-none"
           onClick={() => setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length)}
           title="Click to advance photograph"
         >
@@ -542,7 +543,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           {/* Top-Right Circular Rotating "PRODUCT REVIEWS" Stamp */}
           <div className="absolute top-4 right-4 z-30">
             <button
-              id="product-reviews-stamp-2xl"
+              id="product-reviews-stamp-desktop"
               onClick={(e) => {
                 e.stopPropagation();
                 if (onOpenVideoReviews) onOpenVideoReviews();
@@ -569,12 +570,12 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
               >
                 <defs>
                   <path
-                    id="circlePathHero2xl"
+                    id="circlePathHeroDesktop"
                     d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
                   />
                 </defs>
                 <text fill="#FFFFFF" fontSize="9.2" fontWeight="700" letterSpacing="0.22em" className="uppercase font-bold tracking-[0.22em] fill-white drop-shadow">
-                  <textPath href="#circlePathHero2xl" xlinkHref="#circlePathHero2xl" startOffset="0%">
+                  <textPath href="#circlePathHeroDesktop" xlinkHref="#circlePathHeroDesktop" startOffset="0%">
                     PRODUCT REVIEWS • PRODUCT REVIEWS •
                   </textPath>
                 </text>
@@ -589,7 +590,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </div>
 
         {/* Column 2 (Right), Row 2: Bottom Bar (Inside grid's last row, right-aligned under image with 16px gap, no floating) */}
-        <div className="hero-2xl-bottom-bar z-20">
+        <div className="hero-desktop-bottom-bar z-20">
           <div className="flex items-center gap-6">
             {/* Logo + Text Lockup */}
             <div className="flex items-center gap-3">
