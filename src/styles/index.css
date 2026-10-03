@@ -141,101 +141,59 @@ table tbody tr:hover {
   }
 }
 
-/* ─── Hero Laptop & Desktop Viewport (>= 1024px ONLY: 1024, 1366x768, 1440x900, 1920x1080) ─── */
+/* ─── Desktop Hero: Photographer at left edge + full-width showcase ─── */
+@media (min-width: 768px) {
+  .hero-left-photographer {
+    width: clamp(220px, 22vw, 260px);
+    margin-left: 0;
+  }
+
+  .hero-photographer-img {
+    position: absolute;
+    bottom: 0;
+    left: -40px;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: left bottom;
+  }
+}
+
 @media (min-width: 1024px) {
-  .hero-desktop-section {
-    height: 100vh !important;
-    height: 100dvh !important;
-    max-height: 100vh !important;
-    max-height: 100dvh !important;
-    padding-top: 82px !important;
-    padding-bottom: 16px !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    overflow: hidden !important;
+  .hero-left-photographer {
+    width: clamp(250px, 20vw, 300px);
+    margin-left: 0;
   }
 
-  .hero-desktop-grid {
-    display: grid !important;
-    grid-template-columns: clamp(260px, 20vw, 300px) 1fr !important;
-    column-gap: 28px !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 0 !important;
+  .hero-photographer-img {
+    left: -55px;
+    height: 102%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-left-photographer {
+    width: clamp(280px, 20vw, 340px);
+    margin-left: 0;
   }
 
-  .hero-desktop-left-col {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    height: 100% !important;
-    min-height: 0 !important;
-    width: 100% !important;
-    padding-left: 0 !important;
-  }
-
-  .hero-desktop-portrait-wrap {
-    flex: 1 1 0% !important;
-    min-height: 0 !important;
-    width: 100% !important;
-    position: relative !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .hero-desktop-portrait-img {
-    width: 100% !important;
-    height: 100% !important;
-    max-height: 100% !important;
-    object-fit: contain !important;
-    object-position: left bottom !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .hero-desktop-timeline-pin {
-    flex-shrink: 0 !important;
-    margin-top: auto !important;
-    padding-top: 16px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    row-gap: 8px !important;
-  }
-
-  .hero-desktop-right-col {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    height: 100% !important;
-    min-height: 0 !important;
-    width: 100% !important;
-  }
-
-  .hero-desktop-showcase-card {
-    flex: 1 1 0% !important;
-    min-height: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .hero-desktop-bottom-bar {
-    flex-shrink: 0 !important;
-    margin-top: auto !important;
-    padding-top: 16px !important;
-    width: 100% !important;
-    display: flex !important;
-    align-items: flex-end !important;
-    justify-content: flex-end !important;
+  .hero-photographer-img {
+    left: -70px;
+    height: 104%;
   }
 }
 
 @media (min-width: 1536px) {
-  .hero-desktop-grid {
-    grid-template-columns: clamp(280px, 18vw, 340px) 1fr !important;
-    column-gap: 32px !important;
+  .hero-left-photographer {
+    width: clamp(320px, 19vw, 380px);
+    margin-left: 0;
+  }
+
+  .hero-photographer-img {
+    left: -90px;
+    height: 105%;
   }
 }
+
+
