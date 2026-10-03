@@ -141,47 +141,70 @@ table tbody tr:hover {
   }
 }
 
-/* ─── Hero Laptop & Desktop Viewport (>= 1024px ONLY: 1024, 1366x768, 1440x900, 1920x1080) ─── */
+/* ─── Laptop and Desktop Hero Viewport (>= 1024px ONLY: 1024px, 1366px, 1440px, 1920x1080, 2560x1440) ─── */
 @media (min-width: 1024px) {
   .hero-desktop-section {
     height: 100vh !important;
     height: 100dvh !important;
     max-height: 100vh !important;
     max-height: 100dvh !important;
-    padding-top: 82px !important;
+    padding-top: 84px !important;
     padding-bottom: 16px !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     overflow: hidden !important;
   }
 
-  .hero-desktop-grid {
+  .hero-desktop-container {
     display: grid !important;
     grid-template-columns: 1fr 2.6fr !important;
+    grid-template-rows: 1fr auto !important;
     column-gap: 24px !important;
+    row-gap: 16px !important;
     align-items: stretch !important;
+    max-width: 1280px !important;
     width: 100% !important;
     height: 100% !important;
-    min-height: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+    box-sizing: border-box !important;
   }
 
   .hero-desktop-left-col {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 3 !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
     height: 100% !important;
     min-height: 0 !important;
-    width: 100% !important;
-    padding-left: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
-  .hero-desktop-portrait-wrap {
+  .hero-desktop-title {
+    flex-shrink: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-top: 2px !important;
+    margin: 0 !important;
+  }
+
+  .hero-desktop-portrait-box {
     flex: 1 1 0% !important;
     min-height: 0 !important;
     width: 100% !important;
     position: relative !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: flex-start !important;
     overflow: hidden !important;
     margin: 0 !important;
+    margin-bottom: 16px !important;
     padding: 0 !important;
   }
 
@@ -192,42 +215,42 @@ table tbody tr:hover {
     object-fit: contain !important;
     object-position: left bottom !important;
     display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
   }
 
-  .hero-desktop-timeline-pin {
+  .hero-desktop-timeline-row {
     flex-shrink: 0 !important;
-    margin-top: auto !important;
-    padding-top: 16px !important;
     display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    row-gap: 8px !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
   }
 
-  .hero-desktop-right-col {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
+  .hero-desktop-right-card {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+    width: 100% !important;
     height: 100% !important;
     min-height: 0 !important;
-    width: 100% !important;
-  }
-
-  .hero-desktop-showcase-card {
-    flex: 1 1 0% !important;
-    min-height: 0 !important;
-    width: 100% !important;
   }
 
   .hero-desktop-bottom-bar {
-    flex-shrink: 0 !important;
-    margin-top: auto !important;
-    padding-top: 16px !important;
+    grid-column: 2 / 3 !important;
+    grid-row: 2 / 3 !important;
     width: 100% !important;
     display: flex !important;
-    align-items: flex-end !important;
+    align-items: center !important;
     justify-content: flex-end !important;
   }
 }
+
+@media (min-width: 1536px) {
+  .hero-desktop-container {
+    max-width: 2200px !important;
+    padding-left: clamp(32px, 3vw, 48px) !important;
+    padding-right: clamp(32px, 3vw, 48px) !important;
+  }
+}
+
