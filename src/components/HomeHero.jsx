@@ -384,13 +384,13 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
         {/* ─── Left Column: Photographer partially bleeding off the left viewport edge ─── */}
         <div className="hero-left-photographer shrink-0 relative z-10 flex flex-col h-full min-h-0">
-          {/* Title block at top, moved left for clean clearance from showcase */}
-          <div className="shrink-0 pl-2 lg:pl-2.5 xl:pl-3.5 2xl:pl-4 pt-1 pb-3 lg:pb-4 relative z-20">
+          {/* Title block at top, perfectly proportioned across all laptops and desktops */}
+          <div className="shrink-0 pl-5 lg:pl-6 xl:pl-8 2xl:pl-10 pt-1 pb-3 lg:pb-4 relative z-20">
             <div className="w-10 lg:w-11 h-[2.5px] bg-coral rounded-full mb-2" />
-            <h1 className="font-display font-black text-2xl lg:text-3xl xl:text-4xl text-[#1E2024] tracking-wider uppercase leading-none whitespace-nowrap">
+            <h1 className="font-display font-black text-2xl lg:text-[28px] xl:text-3xl text-[#1E2024] tracking-wider uppercase leading-none whitespace-nowrap">
               ANJI
             </h1>
-            <p className="font-sans font-medium tracking-[0.26em] lg:tracking-[0.3em] text-xs lg:text-sm text-charcoal-700 uppercase mt-1 select-none whitespace-nowrap">
+            <p className="font-sans font-medium tracking-[0.22em] lg:tracking-[0.24em] xl:tracking-[0.26em] text-[11px] lg:text-xs xl:text-[13px] text-charcoal-700 uppercase mt-1 select-none whitespace-nowrap">
               PHOTOGRAPHY
             </p>
           </div>
@@ -410,7 +410,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
 
           {/* Camera button + Timeline pinned at bottom, aligned with title block */}
-          <div className="shrink-0 pl-2 lg:pl-2.5 xl:pl-3.5 2xl:pl-4 pb-0.5 flex flex-col gap-2 relative z-20">
+          <div className="shrink-0 pl-5 lg:pl-6 xl:pl-8 2xl:pl-10 pb-0.5 flex flex-col gap-2 relative z-20">
             <div className="h-10 lg:h-11 flex items-center">
               <button
                 onClick={onOpenBooking}
