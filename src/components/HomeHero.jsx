@@ -380,7 +380,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           DESKTOP LAYOUT (≥ 768px) — Full-width immersive hero
           Photographer partially cropped at left edge, showcase fills right
           ══════════════════════════════════════════════════════════════════ */}
-      <div className="hidden md:flex flex-1 min-h-0 relative z-10 pt-[90px] lg:pt-[94px] xl:pt-[98px] pb-3 lg:pb-3.5 gap-4 lg:gap-6 xl:gap-8">
+      <div className="hidden md:flex flex-1 min-h-0 relative z-10 pt-[90px] lg:pt-[94px] xl:pt-[98px] pb-0 gap-0">
 
         {/* ─── Left Column: Photographer partially bleeding off the left viewport edge ─── */}
         <div className="hero-left-photographer shrink-0 relative z-10 flex flex-col h-full min-h-0">
@@ -443,11 +443,11 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </div>
 
         {/* ─── Right Column: Showcase image + Bottom bar (fills all remaining space) ─── */}
-        <div className="flex-1 min-w-0 flex flex-col h-full min-h-0 pr-4 sm:pr-6 lg:pr-8 xl:pr-10 2xl:pr-[clamp(32px,3vw,48px)]">
+        <div className="flex-1 min-w-0 flex flex-col h-full min-h-0 pr-0">
 
           {/* Showcase Card — fills all available height minus bottom bar */}
           <div
-            className="flex-1 min-h-0 rounded-2xl lg:rounded-3xl xl:rounded-[28px] overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-200/60 cursor-pointer select-none"
+            className="flex-1 min-h-0 rounded-l-2xl lg:rounded-l-3xl xl:rounded-l-[28px] rounded-r-none overflow-hidden relative shadow-2xl bg-[#181A1D] border border-charcoal-200/60 border-r-0 cursor-pointer select-none"
             onClick={() => setCurrentIndex((prev) => (prev + 1) % HERO_CYLINDER_PHOTOS.length)}
             title="Click to advance photograph"
           >
@@ -507,7 +507,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           </div>
 
           {/* Bottom Bar: MY3 Studio / Lets Talk / WhatsApp */}
-          <div className="shrink-0 pt-2.5 lg:pt-3 flex items-center justify-end">
+          <div className="shrink-0 pt-2.5 lg:pt-3 pb-2.5 lg:pb-3 pr-4 lg:pr-8 xl:pr-10 flex items-center justify-end">
             <div className="flex items-center gap-4 lg:gap-6">
               {/* Logo + Text Lockup */}
               <div className="flex items-center gap-2.5 lg:gap-3">
