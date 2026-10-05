@@ -175,28 +175,32 @@ table tbody tr:hover {
 
 @media (min-width: 1280px) {
   .hero-left-photographer {
-    width: 230px;
+    width: 215px;
     margin-left: 0;
   }
 
   .hero-photographer-img {
     left: -50px;
     height: 95%;
-    /* Clip the right edge so photographer never bleeds onto showcase */
-    clip-path: inset(0 0px 0 -999px);
   }
 }
 
 @media (min-width: 1536px) {
   .hero-left-photographer {
-    width: 260px;
+    width: 245px;
     margin-left: 0;
   }
 
   .hero-photographer-img {
     left: -60px;
     height: 96%;
-    clip-path: inset(0 0px 0 -999px);
+  }
+}
+
+/* ─── Desktop Monitors (≥ 1750px: 1920x1080 Full HD Dell Vostro 3902, LG, BenQ, Samsung, etc.) ─── */
+@media (min-width: 1750px) {
+  .hero-showcase-column {
+    margin-left: 14px;
   }
 }
 

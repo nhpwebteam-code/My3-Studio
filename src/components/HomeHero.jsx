@@ -443,7 +443,7 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
         </div>
 
         {/* ─── Right Column: Showcase image + Bottom bar (fills all remaining space) ─── */}
-        <div className="flex-1 min-w-0 flex flex-col h-full min-h-0 pr-0 xl:ml-2 2xl:ml-3">
+        <div className="hero-showcase-column flex-1 min-w-0 flex flex-col h-full min-h-0 pr-0">
 
           {/* Showcase Card — fills all available height minus bottom bar */}
           <div
