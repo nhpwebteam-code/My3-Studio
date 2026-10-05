@@ -393,17 +393,11 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           {/* Title block at top, perfectly proportioned across all laptops and desktops */}
           <div className="shrink-0 pl-5 lg:pl-6 xl:pl-8 2xl:pl-10 pt-1 pb-3 lg:pb-4 relative z-20">
             <div className="w-10 lg:w-11 h-[2.5px] bg-coral rounded-full mb-2" />
-<<<<<<< HEAD
             <h1 className="font-display font-black text-2xl lg:text-[28px] xl:text-3xl text-[#1E2024] tracking-wider uppercase leading-none whitespace-nowrap">
               ANJI
             </h1>
             <p className="font-sans font-medium tracking-[0.22em] lg:tracking-[0.24em] xl:tracking-[0.26em] text-[11px] lg:text-xs xl:text-[13px] text-charcoal-700 uppercase mt-1 select-none whitespace-nowrap">
-=======
-            <div className="font-display font-black text-2xl lg:text-3xl xl:text-4xl text-[#1E2024] tracking-wider uppercase leading-none">
-              ANJI
-            </div>
-            <p className="font-sans font-medium tracking-[0.32em] text-xs lg:text-sm text-charcoal-700 uppercase mt-1 select-none">
->>>>>>> 7f9cf71 (My changes)
+
               PHOTOGRAPHY
             </p>
             <p className="text-[11px] lg:text-xs font-semibold text-charcoal-500 mt-2 max-w-[200px] leading-tight select-none">
