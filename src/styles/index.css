@@ -175,25 +175,28 @@ table tbody tr:hover {
 
 @media (min-width: 1280px) {
   .hero-left-photographer {
-    width: 215px;
+    width: 230px;
     margin-left: 0;
   }
 
   .hero-photographer-img {
     left: -50px;
     height: 95%;
+    /* Clip the right edge so photographer never bleeds onto showcase */
+    clip-path: inset(0 0px 0 -999px);
   }
 }
 
 @media (min-width: 1536px) {
   .hero-left-photographer {
-    width: 245px;
+    width: 260px;
     margin-left: 0;
   }
 
   .hero-photographer-img {
     left: -60px;
     height: 96%;
+    clip-path: inset(0 0px 0 -999px);
   }
 }
 
