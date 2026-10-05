@@ -19,6 +19,7 @@ import {
   FEATURED_ID_BY_SLUG,
   galleryItems as defaultGalleryItems,
 } from '../data/gallery';
+import SEO from '../components/SEO';
 
 export default function PhotoDetail({ onOpenBooking }) {
   const { photoSlug } = useParams();
@@ -142,6 +143,17 @@ export default function PhotoDetail({ onOpenBooking }) {
 
   return (
     <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
+      <SEO
+        title={`${item.title} | Mythri Studios Nandyal`}
+        description={
+          item.subtitle ||
+          item.description ||
+          `View ${item.title} captured by Mythri Studios in Nandyal, Andhra Pradesh.`
+        }
+        canonical={`https://mythristudios.in/gallery/${photoSlug}`}
+        ogImage={item.imageUrl}
+        ogType="article"
+      />
       {/* ─── 1. Sub-Header Navigation Bar ─── */}
       <section className="pt-24 sm:pt-28 pb-4 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200/80 pb-4">

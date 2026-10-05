@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStudioData } from '../context/StudioDataContext';
 import { Camera } from 'lucide-react';
 import { FEATURED_SLUG_BY_ID } from '../data/gallery';
+import SEO from '../components/SEO';
 
 export default function Gallery() {
   const { gallery, galleryCategories } = useStudioData();
@@ -18,6 +19,11 @@ export default function Gallery() {
 
   return (
     <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
+      <SEO
+        title="Photography Portfolio | Mythri Studios Nandyal"
+        description="Explore the photography portfolio of Mythri Studios in Nandyal. Discover our creative captures across weddings, portraits, traditional ceremonies, and special events."
+        canonical="https://mythristudios.in/gallery"
+      />
       {/* 1. Header Section */}
       <section className="pt-28 sm:pt-36 pb-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-coral-50 border border-coral/15 mb-4">

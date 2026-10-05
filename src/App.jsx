@@ -12,8 +12,11 @@ import Services from './pages/Services';
 import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import PhotoDetail from './pages/PhotoDetail';
+import WeddingPhotographyNandyal from './pages/WeddingPhotographyNandyal';
+import PortraitPhotographyNandyal from './pages/PortraitPhotographyNandyal';
 
 import BookingModal from './components/BookingModal';
+import SEO from './components/SEO';
 import { StudioDataProvider } from './context/StudioDataContext';
 
 function AppContent() {
@@ -28,10 +31,13 @@ function AppContent() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-charcoal selection:bg-coral selection:text-white">
+      <SEO />
       {!isDashboardOrAuth && <Navbar onOpenBooking={() => setIsBookingOpen(true)} />}
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/wedding-photography-nandyal" element={<WeddingPhotographyNandyal />} />
+          <Route path="/portrait-photography-nandyal" element={<PortraitPhotographyNandyal />} />
           <Route path="/about" element={<About />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/services" element={<Services />} />

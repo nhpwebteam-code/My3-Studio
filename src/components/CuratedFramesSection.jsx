@@ -36,25 +36,29 @@ export default function CuratedFramesSection({ onOpenBooking }) {
       id: 1,
       title: 'Traditional Muhurtham',
       tag: 'Sacred Rituals',
-      image: '/takeout-1-001/wedding/MY306596.jpg',
+      image: '/takeout-1-001/wedding/MY306596.webp',
+      alt: 'Traditional Muhurtham wedding rituals in Nandyal - Mythri Studios',
     },
     {
       id: 2,
       title: 'Royal Telugu Couple',
       tag: 'Wedding Portrait',
-      image: '/takeout-1-001/wedding/MY308576.jpg',
+      image: '/takeout-1-001/wedding/MY308576.webp',
+      alt: 'Best wedding photography in Nandyal - candid couple shot, Mythri Studios',
     },
     {
       id: 3,
       title: 'Sacred Talambralu',
       tag: 'Muhurtham Moments',
-      image: '/takeout-1-001/wedding/SAI09788.jpg',
+      image: '/takeout-1-001/wedding/SAI09788.webp',
+      alt: 'Best wedding photography in Nandyal - candid couple shot, Mythri Studios',
     },
     {
       id: 4,
       title: 'Cinematic Pre-Wedding',
       tag: 'Romantic Escape',
-      image: '/takeout-1-001/prewedding/SAI09694.jpg',
+      image: '/takeout-1-001/prewedding/SAI09694.webp',
+      alt: 'Cinematic pre-wedding photoshoot in Nandyal - Mythri Studios',
     },
     {
       id: 5,
@@ -417,7 +421,7 @@ export default function CuratedFramesSection({ onOpenBooking }) {
                       <div className="relative w-full h-full overflow-hidden rounded-[2px] sm:rounded-xs bg-charcoal-950">
                         <img
                           src={frame.image}
-                          alt={frame.title}
+                          alt={frame.alt || frame.title}
                           loading="lazy"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 filter contrast-105"
                         />

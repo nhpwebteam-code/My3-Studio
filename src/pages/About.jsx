@@ -4,10 +4,16 @@ import PageHeader from '../components/PageHeader';
 import HomeStats from '../components/HomeStats';
 import AboutProcess from '../components/AboutProcess';
 import { studioConfig } from '../data/studioConfig';
+import SEO from '../components/SEO';
 
 export default function About() {
   return (
     <div className="pb-24 space-y-20 bg-[#FAF7F2] text-charcoal min-h-screen">
+      <SEO
+        title="About Mythri Studios | Photography Studio in Nandyal"
+        description="About Mythri Studios - Nandyal's trusted photography studio. Learn about our story, experienced team, and commitment to capturing authentic emotions and timeless memories."
+        canonical="https://mythristudios.in/about"
+      />
       <PageHeader
         kicker="Behind The Lens"
         title="About MY3 Studios"

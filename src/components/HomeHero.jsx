@@ -173,6 +173,9 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
       id="home"
       className="relative w-full h-screen h-[100dvh] max-h-screen max-h-[100dvh] flex flex-col bg-[#FAF7F2] text-charcoal overflow-hidden select-none scroll-mt-20"
     >
+      {/* ─── Primary Semantic H1 for SEO ─── */}
+      <h1 className="sr-only">Best Photography Studio in Nandyal, Andhra Pradesh</h1>
+
       {/* ─── Ambient Subtle Warm Spotlight Glow behind hero ─── */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -205,14 +208,17 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
 
             {/* Headline + Poet attribution: PHOTOGRAPHY with - ANJI directly down */}
             <div className="flex flex-col items-end shrink-0">
-              <h1 className="font-display font-black uppercase text-[6.2vw] min-[360px]:text-[6.6vw] min-[390px]:text-[7vw] leading-none tracking-tight flex items-center gap-0.5 whitespace-nowrap pointer-events-none select-none">
+              <div className="font-display font-black uppercase text-[6.2vw] min-[360px]:text-[6.6vw] min-[390px]:text-[7vw] leading-none tracking-tight flex items-center gap-0.5 whitespace-nowrap pointer-events-none select-none">
                 <span className="text-[#1E2024]">PHOTO</span>
                 <span className="text-coral">GRAPHY</span>
-              </h1>
+              </div>
 
               {/* Down of PHOTOGRAPHY: Poet-style author name - ANJI */}
               <p className="text-right mt-0.5 sm:mt-1 pr-0.5 font-serif italic font-semibold text-xs min-[400px]:text-[13px] text-charcoal-700 tracking-wide select-none pointer-events-none">
                 - <span className="font-sans font-bold uppercase tracking-wider text-[11px] min-[400px]:text-xs text-[#1E2024]">ANJI</span>
+              </p>
+              <p className="text-right text-[10px] min-[360px]:text-[11px] font-semibold text-charcoal-500 mt-0.5 max-w-[210px] leading-tight select-none pointer-events-none">
+                Best Photography Studio in Nandyal, Andhra Pradesh
               </p>
             </div>
           </div>
@@ -387,11 +393,21 @@ export default function HomeHero({ onOpenBooking, onOpenVideoReviews, onScrollTo
           {/* Title block at top, perfectly proportioned across all laptops and desktops */}
           <div className="shrink-0 pl-5 lg:pl-6 xl:pl-8 2xl:pl-10 pt-1 pb-3 lg:pb-4 relative z-20">
             <div className="w-10 lg:w-11 h-[2.5px] bg-coral rounded-full mb-2" />
+<<<<<<< HEAD
             <h1 className="font-display font-black text-2xl lg:text-[28px] xl:text-3xl text-[#1E2024] tracking-wider uppercase leading-none whitespace-nowrap">
               ANJI
             </h1>
             <p className="font-sans font-medium tracking-[0.22em] lg:tracking-[0.24em] xl:tracking-[0.26em] text-[11px] lg:text-xs xl:text-[13px] text-charcoal-700 uppercase mt-1 select-none whitespace-nowrap">
+=======
+            <div className="font-display font-black text-2xl lg:text-3xl xl:text-4xl text-[#1E2024] tracking-wider uppercase leading-none">
+              ANJI
+            </div>
+            <p className="font-sans font-medium tracking-[0.32em] text-xs lg:text-sm text-charcoal-700 uppercase mt-1 select-none">
+>>>>>>> 7f9cf71 (My changes)
               PHOTOGRAPHY
+            </p>
+            <p className="text-[11px] lg:text-xs font-semibold text-charcoal-500 mt-2 max-w-[200px] leading-tight select-none">
+              Best Photography Studio in Nandyal, Andhra Pradesh
             </p>
           </div>
 

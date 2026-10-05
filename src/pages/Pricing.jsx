@@ -13,6 +13,7 @@ import {
   Heart,
   Crown,
 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function Pricing() {
   const { packages } = useStudioData();
@@ -26,6 +27,11 @@ export default function Pricing() {
 
   return (
     <div className="pb-24 bg-[#FAF7F2] text-charcoal min-h-screen">
+      <SEO
+        title="Photography Packages & Pricing | Mythri Studios"
+        description="Transparent photography packages and pricing from Mythri Studios in Nandyal. Tailored packages for weddings, birthdays, outdoor shoots, and premium album design."
+        canonical="https://mythristudios.in/pricing"
+      />
       {/* ═══════════════════════════════════════════
           HERO SECTION
       ═══════════════════════════════════════════ */}

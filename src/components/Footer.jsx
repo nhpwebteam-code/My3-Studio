@@ -229,22 +229,22 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs text-gray-400">
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">Wedding Cinema</Link>
+                <Link to="/wedding-photography-nandyal" className="hover:text-coral transition-colors font-medium">Wedding Photography Nandyal</Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">Candid Photography</Link>
+                <Link to="/portrait-photography-nandyal" className="hover:text-coral transition-colors font-medium">Portrait Photography Nandyal</Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">Pre-Wedding Shoots</Link>
+                <Link to="/services" className="hover:text-white transition-colors">Wedding Cinema &amp; 4K Drone</Link>
+              </li>
+              <li>
+                <Link to="/gallery" className="hover:text-white transition-colors">Portfolio Gallery</Link>
               </li>
               <li>
                 <Link to="/services" className="hover:text-white transition-colors">Luxury Lay-Flat Albums</Link>
               </li>
               <li>
                 <Link to="/services" className="hover:text-white transition-colors">Traditional Muhurtham</Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-white transition-colors">Cradle &amp; 1st Birthday</Link>
               </li>
             </ul>
           </div>
