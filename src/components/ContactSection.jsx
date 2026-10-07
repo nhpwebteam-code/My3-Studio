@@ -96,9 +96,9 @@ export default function ContactSection({ initialService = '' }) {
             <User size={13} />
             Mythri Studio Nandyal • Contact: Anji
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-charcoal-900 tracking-tight">
+          <h1 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-charcoal-900 tracking-tight">
             Get In Touch
-          </h2>
+          </h1>
           <p className="text-sm sm:text-base text-charcoal-500 font-medium leading-relaxed">
             Have an upcoming wedding, ceremony, or portrait shoot? Reach out directly to Anji and the Mythri Studio crew or leave your message below.
           </p>

@@ -144,14 +144,22 @@ export default function PhotoDetail({ onOpenBooking }) {
   return (
     <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
-        title={`${item.title} | Mythri Studios Nandyal`}
-        description={
+        title={
+          `${item.title} | Mythri Studios`.length <= 60
+            ? `${item.title} | Mythri Studios`
+            : `${item.title}`.slice(0, 56) + '...'
+        }
+        description={(
           item.subtitle ||
           item.description ||
           `View ${item.title} captured by Mythri Studios in Nandyal, Andhra Pradesh.`
+        ).slice(0, 155)}
+        canonical={`https://www.mythristudios.in/gallery/${photoSlug}`}
+        ogImage={
+          item.imageUrl?.startsWith('http')
+            ? item.imageUrl
+            : `https://www.mythristudios.in${item.imageUrl?.startsWith('/') ? '' : '/'}${item.imageUrl}`
         }
-        canonical={`https://mythristudios.in/gallery/${photoSlug}`}
-        ogImage={item.imageUrl}
         ogType="article"
       />
       {/* ─── 1. Sub-Header Navigation Bar ─── */}

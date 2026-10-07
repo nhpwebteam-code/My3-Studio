@@ -1,6 +1,40 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { DEFAULT_SEO, getSEOForPath } from '../data/seoConfig';
+import { DEFAULT_SEO, SITE_URL, getSEOForPath } from '../data/seoConfig';
+
+function toAbsoluteUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('https://mythristudios.in')) {
+    return url.replace('https://mythristudios.in', 'https://www.mythristudios.in');
+  }
+  if (url.startsWith('http://mythristudios.in')) {
+    return url.replace('http://mythristudios.in', 'https://www.mythristudios.in');
+  }
+  if (url.startsWith('http://www.mythristudios.in')) {
+    return url.replace('http://www.mythristudios.in', 'https://www.mythristudios.in');
+  }
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  return `${SITE_URL}${url.startsWith('/') ? '' : '/'}${url}`;
+}
+
+function formatCanonical(href) {
+  if (!href) return `${SITE_URL}/`;
+  const absolute = toAbsoluteUrl(href);
+  try {
+    const urlObj = new URL(absolute);
+    if (urlObj.pathname === '/' || urlObj.pathname === '') {
+      return `${urlObj.origin}/`;
+    }
+    if (urlObj.pathname.endsWith('/')) {
+      return `${urlObj.origin}${urlObj.pathname.slice(0, -1)}`;
+    }
+    return `${urlObj.origin}${urlObj.pathname}`;
+  } catch {
+    return absolute;
+  }
+}
 
 function updateMetaTag(attrName, attrValue, content) {
   if (!content) return;
@@ -37,16 +71,16 @@ export function useDocumentSEO(overrides = {}) {
     const title = seo.title || DEFAULT_SEO.title;
     const description = seo.description || DEFAULT_SEO.description;
     const keywords = seo.keywords || DEFAULT_SEO.keywords;
-    const canonical = seo.canonical || DEFAULT_SEO.canonical;
+    const canonical = formatCanonical(seo.canonical || DEFAULT_SEO.canonical);
     const robots = seo.robots || DEFAULT_SEO.robots;
     const ogTitle = seo.ogTitle || title;
     const ogDescription = seo.ogDescription || description;
-    const ogImage = seo.ogImage || DEFAULT_SEO.ogImage;
+    const ogImage = toAbsoluteUrl(seo.ogImage || DEFAULT_SEO.ogImage);
     const ogType = seo.ogType || DEFAULT_SEO.ogType;
     const ogLocale = seo.ogLocale || DEFAULT_SEO.ogLocale || 'en_IN';
     const twitterTitle = seo.twitterTitle || title;
     const twitterDescription = seo.twitterDescription || description;
-    const twitterImage = seo.twitterImage || ogImage;
+    const twitterImage = toAbsoluteUrl(seo.twitterImage || ogImage);
 
     // 1. Title
     document.title = title;

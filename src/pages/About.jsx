@@ -11,8 +11,8 @@ export default function About() {
     <div className="pb-24 space-y-20 bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
         title="About Mythri Studios | Photography Studio in Nandyal"
-        description="About Mythri Studios - Nandyal's trusted photography studio. Learn about our story, experienced team, and commitment to capturing authentic emotions and timeless memories."
-        canonical="https://mythristudios.in/about"
+        description="About Mythri Studios, Nandyal's trusted photo studio. Learn about our story, experienced team, and commitment to capturing authentic emotions and memories."
+        canonical="https://www.mythristudios.in/about"
       />
       <PageHeader
         kicker="Behind The Lens"

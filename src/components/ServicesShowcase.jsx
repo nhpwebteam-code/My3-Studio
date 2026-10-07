@@ -132,10 +132,10 @@ export default function ServicesShowcase() {
               Professional Photography & Cinematography
             </span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-charcoal-900 tracking-tight leading-tight">
+          <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-charcoal-900 tracking-tight leading-tight">
             Our Expert Services:{' '}
             <span className="text-coral">Tailored for Your Milestones</span>
-          </h2>
+          </h1>
           <p className="mt-4 text-sm sm:text-base text-charcoal-600 leading-relaxed max-w-2xl mx-auto">
             At MY3 Studios, we provide a wide range of photography and cinematic services designed to elevate your celebrations. From sacred Telugu wedding rituals to modern pre-wedding films, we ensure every moment is preserved with artistic excellence. Explore our core services below.
           </p>

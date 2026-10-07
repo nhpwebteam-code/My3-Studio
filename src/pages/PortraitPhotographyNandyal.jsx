@@ -77,7 +77,7 @@ export default function PortraitPhotographyNandyal() {
       <SEO
         title="Portrait Photography Studio in Nandyal | Mythri Studios"
         description="Professional portrait photography studio in Nandyal. Specialized in bridal portraits, maternity shoots, baby & 1st birthday milestones, and fine-art lighting."
-        canonical="https://mythristudios.in/portrait-photography-nandyal"
+        canonical="https://www.mythristudios.in/portrait-photography-nandyal"
         keywords="portrait photography nandyal, photo studio nandyal, maternity shoot nandyal, baby photoshoot nandyal, bridal portrait nandyal"
       />
 

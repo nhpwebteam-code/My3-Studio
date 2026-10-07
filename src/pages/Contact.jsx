@@ -12,7 +12,7 @@ export default function Contact() {
       <SEO
         title="Contact Mythri Studios | Book a Shoot in Nandyal"
         description="Contact Mythri Studios in Nandyal, Andhra Pradesh. Get in touch to check date availability, request pricing quotes, or book your photography session today."
-        canonical="https://mythristudios.in/contact"
+        canonical="https://www.mythristudios.in/contact"
       />
       <ContactSection initialService={initialService} />
     </div>

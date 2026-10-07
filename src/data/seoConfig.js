@@ -1,7 +1,7 @@
-export const SITE_URL = 'https://mythristudios.in';
+export const SITE_URL = 'https://www.mythristudios.in';
 
 export const DEFAULT_SEO = {
-  title: 'Mythri Studios | Best Photography Studio in Nandyal, Andhra Pradesh',
+  title: 'Mythri Studios | Best Photography in Nandyal',
   description:
     "Mythri Studios - Nandyal's photography studio for weddings, portraits and events. Creative, detail-focused photography serving Nandyal and Andhra Pradesh.",
   keywords:
@@ -44,7 +44,7 @@ export const PAGE_SEO = {
   '/gallery': {
     title: 'Photography Portfolio | Mythri Studios Nandyal',
     description:
-      'Explore the photography portfolio of Mythri Studios in Nandyal. Discover our creative captures across weddings, portraits, traditional ceremonies, and special events.',
+      'Explore the photography portfolio of Mythri Studios in Nandyal. Discover our creative captures across weddings, portraits, ceremonies, and special events.',
     canonical: `${SITE_URL}/gallery`,
     keywords:
       'photography portfolio nandyal, wedding photography gallery, portrait shoots nandyal, mythri studios photos',
@@ -55,7 +55,7 @@ export const PAGE_SEO = {
   '/services': {
     title: 'Wedding, Portrait & Event Photography | Mythri Studios',
     description:
-      'Comprehensive photography services by Mythri Studios in Nandyal, Andhra Pradesh. Specializing in wedding photography, candid shoots, portraits, events, and luxury albums.',
+      'Comprehensive photography services by Mythri Studios in Nandyal. Specializing in wedding photography, candid shoots, portraits, events, and luxury albums.',
     canonical: `${SITE_URL}/services`,
     keywords:
       'wedding photography nandyal, portrait photography services, candid event shoots, luxury album printing nandyal',
@@ -66,7 +66,7 @@ export const PAGE_SEO = {
   '/about': {
     title: 'About Mythri Studios | Photography Studio in Nandyal',
     description:
-      "About Mythri Studios - Nandyal's trusted photography studio. Learn about our story, experienced team, and commitment to capturing authentic emotions and timeless memories.",
+      "About Mythri Studios, Nandyal's trusted photo studio. Learn about our story, experienced team, and commitment to capturing authentic emotions and memories.",
     canonical: `${SITE_URL}/about`,
     keywords:
       'about mythri studios, photographers in nandyal, professional photo studio andhra pradesh, mythri studios team',
@@ -77,7 +77,7 @@ export const PAGE_SEO = {
   '/pricing': {
     title: 'Photography Packages & Pricing | Mythri Studios',
     description:
-      'Transparent photography packages and pricing from Mythri Studios in Nandyal. Tailored packages for weddings, birthdays, outdoor shoots, and premium album design.',
+      'Transparent photography packages and pricing from Mythri Studios in Nandyal for weddings, birthdays, outdoor shoots, and premium album design.',
     canonical: `${SITE_URL}/pricing`,
     keywords:
       'photography packages nandyal, wedding shoot pricing, studio rates nandyal, photo package cost andhra pradesh',

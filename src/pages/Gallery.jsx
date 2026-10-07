@@ -21,8 +21,8 @@ export default function Gallery() {
     <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
         title="Photography Portfolio | Mythri Studios Nandyal"
-        description="Explore the photography portfolio of Mythri Studios in Nandyal. Discover our creative captures across weddings, portraits, traditional ceremonies, and special events."
-        canonical="https://mythristudios.in/gallery"
+        description="Explore the photography portfolio of Mythri Studios in Nandyal. Discover our creative captures across weddings, portraits, ceremonies, and special events."
+        canonical="https://www.mythristudios.in/gallery"
       />
       {/* 1. Header Section */}
       <section className="pt-28 sm:pt-36 pb-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">

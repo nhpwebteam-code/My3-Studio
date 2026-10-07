@@ -14,10 +14,10 @@ export default function Home() {
   return (
     <div className="bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
-        title="Mythri Studios | Best Photography Studio in Nandyal, Andhra Pradesh"
+        title="Mythri Studios | Best Photography in Nandyal"
         description="Mythri Studios - Nandyal's photography studio for weddings, portraits and events. Creative, detail-focused photography serving Nandyal and Andhra Pradesh."
         keywords="mythri studios, mythristudios, my3 studios, best photography in nandyal, photography studio nandyal, wedding photography nandyal, portrait photography andhra pradesh"
-        canonical="https://mythristudios.in/"
+        canonical="https://www.mythristudios.in/"
       />
       {/* 1. Hero Section ("Home Section") */}
       <HomeHero

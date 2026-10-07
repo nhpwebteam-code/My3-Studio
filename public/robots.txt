@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /login
 
-Sitemap: https://mythristudios.in/sitemap.xml
+Sitemap: https://www.mythristudios.in/sitemap.xml
