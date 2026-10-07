@@ -46,6 +46,7 @@ import {
 import { useStudioData } from '../context/StudioDataContext';
 import { isSupabaseConfigured } from '../lib/supabase';
 import { uploadImageToSupabase } from '../lib/supabaseStorage';
+import SEO from '../components/SEO';
 
 // ─── STUDIO RECOVERY QUESTION (Single Fixed Question) ───
 export const STUDIO_SECURITY_QUESTION = {
@@ -164,6 +165,12 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-[#F4F2EC] text-[#1E2024] flex flex-col">
+      <SEO
+        title="Studio Dashboard | Mythri Studios"
+        description="Mythri Studios administrative portal."
+        canonical="https://www.mythristudios.in/admin"
+        robots="noindex, nofollow"
+      />
       
       {/* ─── TOAST NOTIFICATION ─── */}
       {toastMsg && (

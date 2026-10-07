@@ -15,6 +15,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { useStudioData } from '../context/StudioDataContext';
+import SEO from '../components/SEO';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -87,6 +88,12 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-[#11141A] text-white flex flex-col justify-between relative overflow-hidden select-none font-sans">
+      <SEO
+        title="Admin Login | Mythri Studios"
+        description="Mythri Studios studio portal and administrative management."
+        canonical="https://www.mythristudios.in/login"
+        robots="noindex, nofollow"
+      />
       {/* ─── Top Atmospheric Radial Glow ─── */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-b from-coral/10 via-transparent to-transparent blur-3xl pointer-events-none" />
 
