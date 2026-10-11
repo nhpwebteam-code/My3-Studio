@@ -3,6 +3,8 @@ import HomeHero from '../components/HomeHero';
 import CuratedFramesSection from '../components/CuratedFramesSection';
 import HomeDisciplines from '../components/HomeDisciplines';
 import ReviewsSection from '../components/ReviewsSection';
+import GeoFactsBlock from '../components/GeoFactsBlock';
+import FAQSection from '../components/FAQSection';
 import BookingModal from '../components/BookingModal';
 import VideoReviewModal from '../components/VideoReviewModal';
 import SEO from '../components/SEO';
@@ -14,9 +16,9 @@ export default function Home() {
   return (
     <div className="bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
-        title="Mythri Studios | Best Photography in Nandyal"
-        description="Mythri Studios - Nandyal's photography studio for weddings, portraits and events. Creative, detail-focused photography serving Nandyal and Andhra Pradesh."
-        keywords="mythri studios, mythristudios, my3 studios, best photography in nandyal, photography studio nandyal, wedding photography nandyal, portrait photography andhra pradesh"
+        title="Mythri Studio | Best Photography in Nandyal, Andhra Pradesh"
+        description="Mythri Studio (Mythri Studios) — Nandyal's photography studio for weddings, portraits and events. Serving Nandyal and Andhra Pradesh."
+        keywords="mythri studio, mythri studios, mythristudios, my3 studio, my3 studios, best photography in nandyal, photography studio nandyal, wedding photography nandyal, portrait photography andhra pradesh"
         canonical="https://www.mythristudios.in/"
       />
       {/* 1. Hero Section ("Home Section") */}
@@ -35,8 +37,18 @@ export default function Home() {
       {/* 3. Core Photography Disciplines (H2s: Wedding Photography · Portrait Sessions · Event Coverage) */}
       <HomeDisciplines onOpenBooking={() => setIsBookingOpen(true)} />
 
-      {/* 4. Inspiring Client Experiences Testimonials */}
+      {/* 4. About / Facts Block — declarative facts for AI/GEO extraction */}
+      <div className="py-16 sm:py-20 bg-[#FAF7F2]">
+        <GeoFactsBlock />
+      </div>
+
+      {/* 5. Inspiring Client Experiences Testimonials */}
       <ReviewsSection />
+
+      {/* 6. FAQ — GEO-optimised Q&As + FAQPage JSON-LD */}
+      <div className="py-16 sm:py-20 bg-[#FAF7F2]">
+        <FAQSection />
+      </div>
 
       {/* Interactive Booking Modal */}
       <BookingModal

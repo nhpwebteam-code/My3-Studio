@@ -28,7 +28,7 @@ export default function Pricing() {
   return (
     <div className="pb-24 bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
-        title="Photography Packages & Pricing | Mythri Studios"
+        title="Photography Packages & Pricing | Mythri Studio"
         description="Transparent photography packages and pricing from Mythri Studios in Nandyal for weddings, birthdays, outdoor shoots, and premium album design."
         canonical="https://www.mythristudios.in/pricing"
       />

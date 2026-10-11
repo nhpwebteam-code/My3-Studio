@@ -75,10 +75,10 @@ export default function PortraitPhotographyNandyal() {
   return (
     <div className="bg-[#FAF7F2] text-charcoal min-h-screen pt-28 sm:pt-36 pb-24">
       <SEO
-        title="Portrait Photography Studio in Nandyal | Mythri Studios"
-        description="Professional portrait photography studio in Nandyal. Specialized in bridal portraits, maternity shoots, baby & 1st birthday milestones, and fine-art lighting."
+        title="Portrait Photography Studio in Nandyal | Mythri Studio"
+        description="Professional portrait photography studio in Nandyal. Mythri Studios specializes in bridal portraits, maternity shoots, baby & 1st birthday milestones, and fine-art lighting."
         canonical="https://www.mythristudios.in/portrait-photography-nandyal"
-        keywords="portrait photography nandyal, photo studio nandyal, maternity shoot nandyal, baby photoshoot nandyal, bridal portrait nandyal"
+        keywords="portrait photography nandyal, photo studio nandyal, maternity shoot nandyal, baby photoshoot nandyal, bridal portrait nandyal, mythri studio portrait, mythri studios"
       />
 
       {/* ─── Hero Section with Primary H1 ─── */}

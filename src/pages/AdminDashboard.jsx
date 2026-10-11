@@ -166,8 +166,8 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-[#F4F2EC] text-[#1E2024] flex flex-col">
       <SEO
-        title="Studio Dashboard | Mythri Studios"
-        description="Mythri Studios administrative portal."
+        title="Studio Dashboard | Mythri Studio"
+        description="Mythri Studio administrative portal."
         canonical="https://www.mythristudios.in/admin"
         robots="noindex, nofollow"
       />

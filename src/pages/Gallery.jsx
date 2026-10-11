@@ -20,8 +20,8 @@ export default function Gallery() {
   return (
     <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
-        title="Photography Portfolio | Mythri Studios Nandyal"
-        description="Explore the photography portfolio of Mythri Studios in Nandyal. Discover our creative captures across weddings, portraits, ceremonies, and special events."
+        title="Photography Portfolio | Mythri Studio Nandyal"
+        description="Explore the photography portfolio of Mythri Studios in Nandyal. Discover creative captures across weddings, portraits, ceremonies, and special events."
         canonical="https://www.mythristudios.in/gallery"
       />
       {/* 1. Header Section */}

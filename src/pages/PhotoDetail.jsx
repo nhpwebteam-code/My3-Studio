@@ -145,8 +145,8 @@ export default function PhotoDetail({ onOpenBooking }) {
     <div className="w-full bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
         title={
-          `${item.title} | Mythri Studios`.length <= 60
-            ? `${item.title} | Mythri Studios`
+          `${item.title} | Mythri Studio`.length <= 60
+            ? `${item.title} | Mythri Studio`
             : `${item.title}`.slice(0, 56) + '...'
         }
         description={(

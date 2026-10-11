@@ -1,35 +1,94 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 
+/**
+ * FAQ data — GEO-optimised first, then operational.
+ * Keep answers factual and verifiable: AI engines extract these verbatim.
+ */
 const faqs = [
+  /* ── GEO / Discovery Q&As ─────────────────────────────────────────── */
   {
-    question: "How do we lock in our date and book a package?",
-    answer: "You can book directly by clicking 'Book Your Schedule' or contacting us via phone/WhatsApp with your event date. A nominal booking advance secures our photography and cinematography crew exclusively for your dates."
+    question: 'Who is the best photographer in Nandyal?',
+    answer:
+      'Mythri Studio is a Nandyal-based photography studio founded in 2018 by lead photographer Anji. With over 1,000 weddings and ceremonies documented across Nandyal and Andhra Pradesh, and a 4.9/5.0 verified client rating, Mythri Studio is one of the most experienced photography studios in Nandyal.',
   },
   {
-    question: "What is included in the physical album delivery?",
-    answer: "Our 2-day package includes a luxury 60-sheets album with custom layout design, 2 calendars, and a 12x18 inch display frame. The 1-day event and birthday packages include a 30-sheets album and 2 calendars. All albums use premium archival lustre paper with lay-flat binding."
+    question: 'What services does Mythri Studio offer?',
+    answer:
+      'Mythri Studio (also known as Mythri Studios) offers wedding photography and videography, portrait photography, event photography, maternity and newborn shoots, baby milestone sessions, bridal portrait sessions, pre-wedding shoots, cinematic 4K wedding films, aerial drone coverage, and luxury lay-flat heirloom album design and printing.',
   },
   {
-    question: "Can we add optional extras like Drone, LED screens, or Candid coverage later?",
-    answer: "Yes, absolutely! You can customize your package anytime before the event date. Popular add-ons include 4K Aerial Drone (₹7,000), Live LED Walls (₹7,000), Candid / Candy Photography (₹10,000), and Cinematic 4K Film Production (₹15,000 - ₹16,000)."
+    question: 'Where is Mythri Studio located in Nandyal?',
+    answer:
+      "Mythri Studio's main studio is at Shop No 02, 1st Floor, Nivarthi Bhavan, opposite National College, Srinivasa Nagar, Nandyal, Andhra Pradesh 518501. A dedicated Mythri Kid's Studio for baby and milestone photography is located at Bhagatsingh Colony, near Noone Palle Flyover, Raithunagar Road, Nandyal.",
   },
   {
-    question: "Can we order additional album sheets?",
-    answer: "Yes! If you have more favorite photos that you would like included, you can add extra album sheets for just ₹500 per sheet during the album layout design review."
+    question: 'Is Mythri Studio available for wedding photography in Andhra Pradesh?',
+    answer:
+      'Yes. Mythri Studio is based in Nandyal and covers weddings across Andhra Pradesh, including Kurnool, Nellore, Ongole, and surrounding districts. The team has documented Telugu weddings — including Muhurtham, Pellikoduku, Pellikooturu, and Haldi ceremonies — for over 8 years.',
   },
   {
-    question: "What is the delivery turnaround time for videos and albums?",
-    answer: "We deliver a teaser highlight video and initial photo previews within 3 to 5 days. Full video editing and album design drafts are shared within 3 to 4 weeks. Once you approve the album layout, printing and hand-delivery takes 7 to 10 days."
+    question: 'How long has Mythri Studio been in business?',
+    answer:
+      'Mythri Studio was established in 2018 by lead photographer Anji. As of 2026 the studio has been in operation for over 8 years and has documented more than 1,000 weddings and celebrations in and around Nandyal.',
   },
   {
-    question: "Do you deliver all raw photos and high-resolution files?",
-    answer: "Yes, all high-resolution edited photos and full-length edited videos are handed over on a complimentary high-speed 64 GB Pen Drive along with a secure cloud backup link."
+    question: 'How can I contact Mythri Studio or book a session?',
+    answer:
+      'You can contact Mythri Studio by phone or WhatsApp at +91 99493 95037, by email at mythristudiondl.anji@gmail.com, or through the contact form at https://www.mythristudios.in/contact. The studio is open Monday–Saturday 9:30 AM–8:30 PM and Sundays 10:00 AM–6:00 PM.',
+  },
+  /* ── Operational Q&As (existing) ─────────────────────────────────── */
+  {
+    question: 'How do we lock in our date and book a package?',
+    answer:
+      'Book directly by clicking "Book Your Schedule" or contacting us via phone or WhatsApp with your event date. A nominal booking advance secures our photography and cinematography crew exclusively for your dates.',
+  },
+  {
+    question: 'What is included in the physical album delivery?',
+    answer:
+      'Our 2-day wedding package includes a luxury 60-sheet lay-flat album with custom layout design, 2 calendars, and a 12x18 inch display frame. The 1-day event and birthday packages include a 30-sheet album and 2 calendars. All albums use premium archival lustre paper with lay-flat binding.',
+  },
+  {
+    question: 'What is the delivery turnaround time for photos and albums?',
+    answer:
+      'We deliver a teaser highlight video and initial photo previews within 3-5 days. Full video editing and album design drafts are shared within 3-4 weeks. Once you approve the album layout, printing and hand-delivery takes 7-10 days. All high-resolution files are provided on a complimentary 64 GB pen drive with a secure cloud backup link.',
   },
 ];
 
+function buildFAQSchema(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
+
+  /* Inject FAQPage JSON-LD into <head> for SPA compatibility */
+  useEffect(() => {
+    const schemaId = 'faq-page-schema';
+    let script = document.getElementById(schemaId);
+    if (!script) {
+      script = document.createElement('script');
+      script.id = schemaId;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(buildFAQSchema(faqs));
+    return () => {
+      const el = document.getElementById(schemaId);
+      if (el) el.remove();
+    };
+  }, []);
 
   const toggleFAQ = (idx) => {
     setOpenIndex(openIndex === idx ? -1 : idx);
@@ -48,7 +107,7 @@ export default function FAQSection() {
           </h2>
         </div>
         <p className="text-sm text-charcoal-500 max-w-md font-medium">
-          Everything you need to know about our event packages, album specifications, extras, and delivery timelines.
+          Quick answers about Mythri Studio — who we are, where we are, and how our packages, albums and deliveries work.
         </p>
       </div>
 
@@ -71,16 +130,26 @@ export default function FAQSection() {
                 aria-expanded={isOpen}
               >
                 <div className="flex items-center gap-3">
-                  <span className={`text-xs font-mono font-bold px-2.5 py-0.5 rounded-md ${isOpen ? 'bg-coral text-white' : 'bg-gray-100 text-charcoal-500'}`}>
-                    0{idx + 1}
+                  <span
+                    className={`text-xs font-mono font-bold px-2.5 py-0.5 rounded-md ${
+                      isOpen ? 'bg-coral text-white' : 'bg-gray-100 text-charcoal-500'
+                    }`}
+                  >
+                    {String(idx + 1).padStart(2, '0')}
                   </span>
-                  <span className={`text-base sm:text-lg font-bold transition-colors ${isOpen ? 'text-charcoal-900' : 'text-charcoal-800 group-hover:text-coral'}`}>
+                  <span
+                    className={`text-base sm:text-lg font-bold transition-colors ${
+                      isOpen ? 'text-charcoal-900' : 'text-charcoal-800 group-hover:text-coral'
+                    }`}
+                  >
                     {faq.question}
                   </span>
                 </div>
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                    isOpen ? 'bg-coral text-white rotate-180' : 'bg-gray-100 text-charcoal-600 group-hover:bg-gray-200'
+                    isOpen
+                      ? 'bg-coral text-white rotate-180'
+                      : 'bg-gray-100 text-charcoal-600 group-hover:bg-gray-200'
                   }`}
                 >
                   <ChevronDown size={16} />
@@ -97,7 +166,7 @@ export default function FAQSection() {
         })}
       </div>
 
-      {/* Bottom Still Have Questions Bar */}
+      {/* Bottom CTA bar */}
       <div className="mt-12 text-center bg-white rounded-2xl p-6 border border-[#EAE4D9] shadow-sm max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3 text-left">
           <div className="w-10 h-10 rounded-full bg-coral-50 text-coral flex items-center justify-center shrink-0">
@@ -105,7 +174,7 @@ export default function FAQSection() {
           </div>
           <div>
             <h4 className="font-bold text-sm text-charcoal-900">Have more questions?</h4>
-            <p className="text-xs text-charcoal-500">Our studios concierge is always happy to assist.</p>
+            <p className="text-xs text-charcoal-500">Our studio team is always happy to assist.</p>
           </div>
         </div>
 

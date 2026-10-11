@@ -6,7 +6,7 @@ export default function Services() {
   return (
     <div className="pt-20 sm:pt-24 pb-24 bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
-        title="Wedding, Portrait & Event Photography | Mythri Studios"
+        title="Wedding, Portrait & Event Photography | Mythri Studio"
         description="Comprehensive photography services by Mythri Studios in Nandyal. Specializing in wedding photography, candid shoots, portraits, events, and luxury albums."
         canonical="https://www.mythristudios.in/services"
       />

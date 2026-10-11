@@ -3,3 +3,34 @@ Allow: /
 Disallow: /admin
 Disallow: /login
 Sitemap: https://www.mythristudios.in/sitemap.xml
+
+# AI / LLM crawlers — allow full public content indexing
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /login
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /login
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /login
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /login
+
+User-agent: CCBot
+Allow: /
+Disallow: /admin
+Disallow: /login
+
+User-agent: Bytespider
+Allow: /
+Disallow: /admin
+Disallow: /login

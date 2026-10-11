@@ -89,8 +89,8 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-[#11141A] text-white flex flex-col justify-between relative overflow-hidden select-none font-sans">
       <SEO
-        title="Admin Login | Mythri Studios"
-        description="Mythri Studios studio portal and administrative management."
+        title="Admin Login | Mythri Studio"
+        description="Mythri Studio studio portal and administrative management."
         canonical="https://www.mythristudios.in/login"
         robots="noindex, nofollow"
       />

@@ -10,8 +10,8 @@ export default function About() {
   return (
     <div className="pb-24 space-y-20 bg-[#FAF7F2] text-charcoal min-h-screen">
       <SEO
-        title="About Mythri Studios | Photography Studio in Nandyal"
-        description="About Mythri Studios, Nandyal's trusted photo studio. Learn about our story, experienced team, and commitment to capturing authentic emotions and memories."
+        title="About Mythri Studio | Photography Studio in Nandyal"
+        description="About Mythri Studio (Mythri Studios), Nandyal's trusted photo studio. Learn about our story, experienced team, and commitment to capturing authentic emotions and memories."
         canonical="https://www.mythristudios.in/about"
       />
       <PageHeader
@@ -70,7 +70,7 @@ export default function About() {
                 We believe great photography isn't about stiff poses or artificial filters. It's about capturing how your celebration actually felt — the laughter during haldi, the happy tears during the vows, and the joyous dance floor energy with your closest friends.
               </p>
               <p>
-                With over 8 years of experience covering multi-day weddings, birthday milestones, and family gatherings, our team combines traditional rituals coverage with modern candid moments and cinematic drone visuals.
+                Founded in 2018 by lead photographer Anji, Mythri Studio has spent over 8 years covering multi-day weddings, birthday milestones, and family gatherings in Nandyal and across Andhra Pradesh. We have documented more than 1,000 weddings and celebrations, combining traditional ritual coverage with modern candid moments and cinematic drone visuals.
               </p>
               <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border-l-4 border-coral text-[#FAF7F2] text-sm font-semibold shadow-inner">
                 "We take care of every detail — from photography and videography to custom printed albums and frames you'll cherish for a lifetime."

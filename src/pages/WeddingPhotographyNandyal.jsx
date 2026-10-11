@@ -87,10 +87,10 @@ export default function WeddingPhotographyNandyal() {
   return (
     <div className="bg-[#FAF7F2] text-charcoal min-h-screen pt-28 sm:pt-36 pb-24">
       <SEO
-        title="Best Wedding Photography in Nandyal | Mythri Studios"
-        description="Looking for the best wedding photography in Nandyal? Mythri Studios captures candid moments, traditional Telugu rituals, pre-wedding shoots, and luxury albums."
+        title="Best Wedding Photography in Nandyal | Mythri Studio"
+        description="Looking for the best wedding photography in Nandyal? Mythri Studio (also Mythri Studios) captures candid moments, traditional Telugu rituals, pre-wedding shoots, and luxury albums."
         canonical="https://www.mythristudios.in/wedding-photography-nandyal"
-        keywords="wedding photography nandyal, best wedding photographer nandyal, candid wedding photography nandyal, telugu wedding photos nandyal, mythri studios wedding"
+        keywords="wedding photography nandyal, best wedding photographer nandyal, candid wedding photography nandyal, telugu wedding photos nandyal, mythri studio wedding, mythri studios wedding"
       />
 
       {/* ─── Hero Section with Primary H1 ─── */}
